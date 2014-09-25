@@ -2,9 +2,9 @@
 <%@ taglib prefix="facebook" tagdir="/WEB-INF/tags/facebook" %>
 <%@ taglib prefix="util" uri="http://java.webstories.org/jsp/jstl/util" %>
 <div class="container">
-  <h1>Ops!</h1>
+  <h1>Acesso restrito</h1>
   <p>
-    É necessário estar logado para acessar esta página =(
+    É necessário ter uma conta para acessar esta página
   </p>
   <p>
     <c:set var="redirect" value="${util:buildURI( requestScope['javax.servlet.forward.request_uri'], requestScope['javax.servlet.forward.query_string'] )}"/>
