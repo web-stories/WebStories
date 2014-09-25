@@ -39,19 +39,19 @@ public class LogonAction extends BaseServlet {
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 	throws IOException, ServletException {
 		RequestParams params = RequestParams.from( request );
+		OAuth2Data data = retrieveData( request );
 		
 		// User refused to give access or something wrong happened
 		if ( params.get( "error" ).toString() != null ) {
-			response.sendRedirect( request.getContextPath() + "/" );
+			response.sendRedirect( data.getRedirect() );
 			return;
 		}
 		
 		try {
 			OAuth2Token token = requestToken( request );
-			OAuth2Data data = retrieveData( request );
 			Logged logged = facebookAuth.authenticate( token, data );
 			setLogged( logged, request );
-			response.sendRedirect( request.getContextPath() + "/home/" );
+			response.sendRedirect( data.getRedirect() );
 		} catch ( OAuth2TokenException | AuthenticationException e ) {
 			throw new ServletException( e );
 		}

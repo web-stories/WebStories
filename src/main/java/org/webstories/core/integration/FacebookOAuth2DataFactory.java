@@ -14,6 +14,14 @@ public class FacebookOAuth2DataFactory extends OAuth2DataFactory {
 	}
 	@Override
 	protected String retrieveInviteCode() {
-		return data[ 0 ];
+		String code = data[ 0 ];
+		if ( code.isEmpty() ) {
+			return null;
+		}
+		return code;
+	}
+	@Override
+	protected String retrieveRedirect() {
+		return data[ 1 ];
 	}
 }

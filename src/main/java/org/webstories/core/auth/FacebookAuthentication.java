@@ -41,6 +41,10 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			return Logged.from( facebookEntity );
 		}
 		
+		if ( data.getInviteCode() == null ) {
+			throw new AuthenticationException( "Invitation code is empty" );
+		}
+		
 		InviteEntity invite = inviteQueries.findByInviteCode( data.getInviteCode() );
 		if ( invite == null ) {
 			throw new AuthenticationException( "Invalid invitation code: " + data.getInviteCode() );
