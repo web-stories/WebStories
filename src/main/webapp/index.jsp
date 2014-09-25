@@ -12,13 +12,17 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-3.2.0.css" media="screen">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.custom-0.1.0.css" media="screen">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/${build}/css/app.css" media="screen">
-    <convention:include-stylesheet/>
     <script>var require = { baseUrl: "${pageContext.request.contextPath}/static/${build}" };</script>
     <script src="${pageContext.request.contextPath}/static/${build}/js/require.main.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/require-2.1.15.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/senna-0.2.1.js"></script>
   </head>
   <body data-senna>
+    <div id="style-wrapper" data-senna-surface>
+      <div id="style-wrapper-default">
+        <convention:include-stylesheet/>
+      </div>
+    </div>
     <jsp:include page="/jsp/include/header.jsp"/>
     <div id="wrapper" data-senna-surface>
       <div id="wrapper-default">
@@ -27,7 +31,7 @@
     </div>
     <script>require( ["bootstrap"] );</script>
     <div id="script-wrapper" data-senna-surface>
-      <div id="script-wraper-default">
+      <div id="script-wrapper-default">
         <convention:include-script/>
       </div>
     </div>
