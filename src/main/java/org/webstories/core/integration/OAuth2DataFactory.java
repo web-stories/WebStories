@@ -12,6 +12,7 @@ public abstract class OAuth2DataFactory {
 	}
 	/**
 	 * Retrieves the invite code data from an OAuth2 authorization process
+	 * @return  The invite code or <code>null</code> if the invite code is empty
 	 */
 	protected abstract String retrieveInviteCode();
 }
