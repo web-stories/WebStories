@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS ws_invite CASCADE;
+DROP TABLE IF EXISTS invite_sequences CASCADE;
+
+DROP TABLE IF EXISTS ws_facebook CASCADE;
+DROP TABLE IF EXISTS facebook_sequences CASCADE;

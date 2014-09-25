@@ -1,0 +1,14 @@
+/*
+ * 1. Tamanho mínimo de todas as páginas do sistema
+ *    Evita desestruturação de layout em dispositivos muito pequenos
+ *    320px: Android portrait (4.2.2)
+ */
+body {
+  min-width: 320px; /* 1 */
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

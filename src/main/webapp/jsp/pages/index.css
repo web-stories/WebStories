@@ -1,0 +1,21 @@
+.index-banner {
+  text-align: center;
+  background-color: #3C3C3C;
+  box-shadow: 0 0 150px #000 inset;
+}
+.index-banner .index-banner-closed {
+  margin: 0 auto;
+  font-size: 15px;
+  color: #FFF;
+}
+.index-banner-contact a {
+  color: #FFF;
+  text-decoration: underline;
+}
+.index-banner h1,
+.index-banner-paragraph {
+  color: #FFF;
+}
+.index-story-thumb-summary {
+  margin-bottom: 0;
+}

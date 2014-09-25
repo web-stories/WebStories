@@ -1,0 +1,2687 @@
+/*!
+ * Megafone Bootstrap v0.1.0
+ * https://github.com/FagnerMartinsBrack/MegafoneBOOTSTRAP
+ */
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.thumbnail,
+.img-thumbnail {
+  -webkit-transition: border-color 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out;
+}
+.thumbnail {
+  border-radius: 0;
+}
+/* =============================================================================================
+   Fixed size
+   ============================================================================================= */
+.btn-xlg {
+  padding: 15px 35px;
+  font-size: 22px;
+  line-height: 1.11;
+  border-radius: 9px;
+}
+/* =============================================================================================
+   Custom styles
+   ============================================================================================= */
+.btn-default,
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .15 ), 0 1px 1px rgba( 0, 0, 0, .075 );
+  box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .15 ), 0 1px 1px rgba( 0, 0, 0, .075 );
+}
+.btn-default:active,
+.btn-primary:active,
+.btn-success:active,
+.btn-info:active,
+.btn-warning:active,
+.btn-danger:active,
+.btn-default.active,
+.btn-primary.active,
+.btn-success.active,
+.btn-info.active,
+.btn-warning.active,
+.btn-danger.active {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.btn-default.disabled:hover,
+.btn-primary.disabled:hover,
+.btn-success.disabled:hover,
+.btn-info.disabled:hover,
+.btn-warning.disabled:hover,
+.btn-danger.disabled:hover,
+.btn-default.disabled:focus,
+.btn-primary.disabled:focus,
+.btn-success.disabled:focus,
+.btn-info.disabled:focus,
+.btn-warning.disabled:focus,
+.btn-danger.disabled:focus,
+.btn-default[disabled]:hover,
+.btn-primary[disabled]:hover,
+.btn-success[disabled]:hover,
+.btn-info[disabled]:hover,
+.btn-warning[disabled]:hover,
+.btn-danger[disabled]:hover,
+.btn-default[disabled]:focus,
+.btn-primary[disabled]:focus,
+.btn-success[disabled]:focus,
+.btn-info[disabled]:focus,
+.btn-warning[disabled]:focus,
+.btn-danger[disabled]:focus {
+  background-position: 0;
+}
+.btn-default:focus,
+.btn-primary:focus,
+.btn-success:focus,
+.btn-info:focus,
+.btn-warning:focus,
+.btn-danger:focus {
+  outline: 0;
+}
+.btn-primary:focus,
+.btn-success:focus,
+.btn-info:focus,
+.btn-warning:focus,
+.btn-danger:focus {
+  -webkit-box-shadow: 0 0 0 1px #ffffff inset;
+  box-shadow: 0 0 0 1px #ffffff inset;
+}
+.btn-primary:focus:active,
+.btn-success:focus:active,
+.btn-info:focus:active,
+.btn-warning:focus:active,
+.btn-danger:focus:active,
+.btn-primary:focus.active,
+.btn-success:focus.active,
+.btn-info:focus.active,
+.btn-warning:focus.active,
+.btn-danger:focus.active {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+/*
+ * 1. Removes the "not-allowed" cursor
+ */
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  cursor: default;
+  /* 1 */
+
+}
+/* =============================================================================================
+   States
+   ============================================================================================= */
+.btn-default {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#ffffff), to(#e0e0e0));
+  background-image: -webkit-linear-gradient(top, #ffffff, 0%, #e0e0e0, 100%);
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #e0e0e0 100%);
+  background-image: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
+  background-repeat: repeat-x;
+  text-shadow: 0 1px 0 #FFF;
+  border-color: #bbbbbb;
+}
+.btn-default:hover,
+.btn-default:focus {
+  background-color: #e0e0e0;
+  background-position: 0 -15px;
+  border-color: #bbbbbb;
+}
+.btn-default:focus {
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  border-color: #66afe9;
+  -webkit-box-shadow: 0 0 3px rgba(82, 168, 236, 0.6);
+  box-shadow: 0 0 3px rgba(82, 168, 236, 0.6);
+}
+.btn-default:active,
+.btn-default.active {
+  background-color: #e0e0e0;
+}
+.btn-primary {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#428bca), to(#2d6ca2));
+  background-image: -webkit-linear-gradient(top, #428bca, 0%, #2d6ca2, 100%);
+  background-image: -moz-linear-gradient(top, #428bca 0%, #2d6ca2 100%);
+  background-image: linear-gradient(to bottom, #428bca 0%, #2d6ca2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff2d6ca2', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #2b669a;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #2d6ca2;
+  background-position: 0 -15px;
+  border-color: #2b669a;
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #2d6ca2;
+  border-color: #2b669a;
+}
+.btn-success {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#5cb85c), to(#419641));
+  background-image: -webkit-linear-gradient(top, #5cb85c, 0%, #419641, 100%);
+  background-image: -moz-linear-gradient(top, #5cb85c 0%, #419641 100%);
+  background-image: linear-gradient(to bottom, #5cb85c 0%, #419641 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff419641', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #3e8f3e;
+}
+.btn-success:hover,
+.btn-success:focus {
+  background-color: #419641;
+  background-position: 0 -15px;
+  border-color: #3e8f3e;
+}
+.btn-success:active,
+.btn-success.active {
+  background-color: #419641;
+  border-color: #3e8f3e;
+}
+.btn-warning {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f0ad4e), to(#eb9316));
+  background-image: -webkit-linear-gradient(top, #f0ad4e, 0%, #eb9316, 100%);
+  background-image: -moz-linear-gradient(top, #f0ad4e 0%, #eb9316 100%);
+  background-image: linear-gradient(to bottom, #f0ad4e 0%, #eb9316 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e', endColorstr='#ffeb9316', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #e38d13;
+}
+.btn-warning:hover,
+.btn-warning:focus {
+  background-color: #eb9316;
+  background-position: 0 -15px;
+  border-color: #e38d13;
+}
+.btn-warning:active,
+.btn-warning.active {
+  background-color: #eb9316;
+  border-color: #e38d13;
+}
+.btn-danger {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#d9534f), to(#c12e2a));
+  background-image: -webkit-linear-gradient(top, #d9534f, 0%, #c12e2a, 100%);
+  background-image: -moz-linear-gradient(top, #d9534f 0%, #c12e2a 100%);
+  background-image: linear-gradient(to bottom, #d9534f 0%, #c12e2a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f', endColorstr='#ffc12e2a', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #b92c28;
+}
+.btn-danger:hover,
+.btn-danger:focus {
+  background-color: #c12e2a;
+  background-position: 0 -15px;
+  border-color: #b92c28;
+}
+.btn-danger:active,
+.btn-danger.active {
+  background-color: #c12e2a;
+  border-color: #b92c28;
+}
+.btn-info {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#5bc0de), to(#2aabd2));
+  background-image: -webkit-linear-gradient(top, #5bc0de, 0%, #2aabd2, 100%);
+  background-image: -moz-linear-gradient(top, #5bc0de 0%, #2aabd2 100%);
+  background-image: linear-gradient(to bottom, #5bc0de 0%, #2aabd2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2aabd2', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #28a4c9;
+}
+.btn-info:hover,
+.btn-info:focus {
+  background-color: #2aabd2;
+  background-position: 0 -15px;
+  border-color: #28a4c9;
+}
+.btn-info:active,
+.btn-info.active {
+  background-color: #2aabd2;
+  border-color: #28a4c9;
+}
+.panel {
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.panel-default > .panel-heading {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f5f5f5), to(#e8e8e8));
+  background-image: -webkit-linear-gradient(top, #f5f5f5, 0%, #e8e8e8, 100%);
+  background-image: -moz-linear-gradient(top, #f5f5f5 0%, #e8e8e8 100%);
+  background-image: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+  background-repeat: repeat-x;
+}
+.panel-primary > .panel-heading {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#428bca), to(#357ebd));
+  background-image: -webkit-linear-gradient(top, #428bca, 0%, #357ebd, 100%);
+  background-image: -moz-linear-gradient(top, #428bca 0%, #357ebd 100%);
+  background-image: linear-gradient(to bottom, #428bca 0%, #357ebd 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff357ebd', GradientType=0);
+  background-repeat: repeat-x;
+}
+.panel-success > .panel-heading {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#dff0d8), to(#c8e5bc));
+  background-image: -webkit-linear-gradient(top, #dff0d8, 0%, #c8e5bc, 100%);
+  background-image: -moz-linear-gradient(top, #dff0d8 0%, #c8e5bc 100%);
+  background-image: linear-gradient(to bottom, #dff0d8 0%, #c8e5bc 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdff0d8', endColorstr='#ffc8e5bc', GradientType=0);
+  background-repeat: repeat-x;
+}
+.panel-info > .panel-heading {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#d9edf7), to(#b9def0));
+  background-image: -webkit-linear-gradient(top, #d9edf7, 0%, #b9def0, 100%);
+  background-image: -moz-linear-gradient(top, #d9edf7 0%, #b9def0 100%);
+  background-image: linear-gradient(to bottom, #d9edf7 0%, #b9def0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9edf7', endColorstr='#ffb9def0', GradientType=0);
+  background-repeat: repeat-x;
+}
+.panel-warning > .panel-heading {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#fcf8e3), to(#f8efc0));
+  background-image: -webkit-linear-gradient(top, #fcf8e3, 0%, #f8efc0, 100%);
+  background-image: -moz-linear-gradient(top, #fcf8e3 0%, #f8efc0 100%);
+  background-image: linear-gradient(to bottom, #fcf8e3 0%, #f8efc0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0);
+  background-repeat: repeat-x;
+}
+.panel-danger > .panel-heading {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f2dede), to(#e7c3c3));
+  background-image: -webkit-linear-gradient(top, #f2dede, 0%, #e7c3c3, 100%);
+  background-image: -moz-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
+  background-image: linear-gradient(to bottom, #f2dede 0%, #e7c3c3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2dede', endColorstr='#ffe7c3c3', GradientType=0);
+  background-repeat: repeat-x;
+}
+.panel-heading h1,
+.panel-heading h2,
+.panel-heading h3,
+.panel-heading h4,
+.panel-heading h5,
+.panel-heading h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.panel-body p:last-child {
+  margin-bottom: 0;
+}
+.list-group {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+}
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#428bca), to(#357ebd));
+  background-image: -webkit-linear-gradient(top, #428bca, 0%, #357ebd, 100%);
+  background-image: -moz-linear-gradient(top, #428bca 0%, #357ebd 100%);
+  background-image: linear-gradient(to bottom, #428bca 0%, #357ebd 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff357ebd', GradientType=0);
+  background-repeat: repeat-x;
+  text-shadow: 0 -1px 0 #3071a9;
+  border-color: #3278b3;
+}
+.alert {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .25 ), 0 1px 2px rgba( 0, 0, 0, .05 );
+  box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .25 ), 0 1px 2px rgba( 0, 0, 0, .05 );
+}
+.alert-success {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#dff0d8), to(#c8e5bc));
+  background-image: -webkit-linear-gradient(top, #dff0d8, 0%, #c8e5bc, 100%);
+  background-image: -moz-linear-gradient(top, #dff0d8 0%, #c8e5bc 100%);
+  background-image: linear-gradient(to bottom, #dff0d8 0%, #c8e5bc 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdff0d8', endColorstr='#ffc8e5bc', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #b2dba1;
+}
+.alert-info {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#d9edf7), to(#b9def0));
+  background-image: -webkit-linear-gradient(top, #d9edf7, 0%, #b9def0, 100%);
+  background-image: -moz-linear-gradient(top, #d9edf7 0%, #b9def0 100%);
+  background-image: linear-gradient(to bottom, #d9edf7 0%, #b9def0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9edf7', endColorstr='#ffb9def0', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #9acfea;
+}
+.alert-warning {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#fcf8e3), to(#f8efc0));
+  background-image: -webkit-linear-gradient(top, #fcf8e3, 0%, #f8efc0, 100%);
+  background-image: -moz-linear-gradient(top, #fcf8e3 0%, #f8efc0 100%);
+  background-image: linear-gradient(to bottom, #fcf8e3 0%, #f8efc0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #f5e79e;
+}
+.alert-danger {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f2dede), to(#e7c3c3));
+  background-image: -webkit-linear-gradient(top, #f2dede, 0%, #e7c3c3, 100%);
+  background-image: -moz-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
+  background-image: linear-gradient(to bottom, #f2dede 0%, #e7c3c3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2dede', endColorstr='#ffe7c3c3', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #dca7a7;
+}
+/* =============================================================================================
+   Alertas fixos no topo da página
+   ============================================================================================= */
+.system-alerts {
+  width: 100%;
+}
+.system-alerts .alert {
+  width: 100%;
+  margin-bottom: -5px;
+  border-radius: 0;
+}
+/* =============================================================================================
+   Blockquote
+   ============================================================================================= */
+q,
+blockquote {
+  font-family: Georgia, serif;
+}
+blockquote {
+  position: relative;
+  width: 500px;
+  padding: 5px 40px;
+  margin: 5px 10px 5px 10px;
+  border-left: 0;
+}
+blockquote:before {
+  position: absolute;
+  left: 0;
+  top: -25px;
+  display: block;
+  font-size: 80px;
+  content: "\201C";
+  color: #7A7A7A;
+}
+blockquote.pull-right {
+  padding: 5px 40px;
+  border-right: none;
+}
+blockquote cite {
+  display: block;
+  color: #999;
+  font-size: 14px;
+  font-style: italic;
+}
+blockquote cite:before {
+  content: "\2014 \2009";
+}
+/* =============================================================================================
+   Quotes
+   ============================================================================================= */
+q {
+  color: #444;
+}
+q:before {
+  content: "\201C";
+}
+q:after {
+  content: "\201D";
+}
+/* =============================================================================================
+   Workarounds
+   ============================================================================================= */
+/*
+ * 1. https://github.com/twbs/bootstrap/issues/10000
+ */
+.fix-form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+  /* 1 */
+
+}
+/* =============================================================================================
+   Fixed size
+   ============================================================================================= */
+.input-xlg {
+  height: 60px;
+  padding: 15px 35px;
+  font-size: 22px;
+  line-height: 1.11;
+  border-radius: 9px;
+}
+/* =============================================================================================
+   Custom styles
+   ============================================================================================= */
+/*
+ * 1. Should override the whole bootstrap declaration
+ */
+.form-control:focus {
+  -webkit-box-shadow: inset 0 1px 1px rgba( 0, 0, 0, .075 ), 0 0 3px rgba( 82, 168, 236, .6 );
+  box-shadow: inset 0 1px 1px rgba( 0, 0, 0, .075 ), 0 0 3px rgba( 82, 168, 236, .6 );
+  /* 1 */
+
+}
+.has-success .form-control:focus {
+  -webkit-box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.075 ) inset, 0 0 3px #67b168;
+  box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.075 ) inset, 0 0 3px #67b168;
+}
+.has-warning .form-control:focus {
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px #c0a16b;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px #c0a16b;
+}
+.has-error .form-control:focus {
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px #ce8483;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px #ce8483;
+}
+/*
+ * 1. Removes the "not-allowed" cursor
+ */
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+  cursor: default;
+  /* 1 */
+
+}
+/*
+ * 1. Removes the "not-allowed" cursor
+ */
+input[type="radio"][disabled],
+input[type="checkbox"][disabled],
+.radio[disabled],
+.radio-inline[disabled],
+.checkbox[disabled],
+.checkbox-inline[disabled],
+fieldset[disabled] input[type="radio"],
+fieldset[disabled] input[type="checkbox"],
+fieldset[disabled] .radio,
+fieldset[disabled] .radio-inline,
+fieldset[disabled] .checkbox,
+fieldset[disabled] .checkbox-inline {
+  cursor: default;
+  /* 1 */
+
+}
+/*
+ * 1. Do not let the user distort the layout
+ */
+textarea {
+  resize: vertical;
+  /* 1 */
+
+}
+/*
+ * 1. Tamanho mínimo de um textarea de acordo com o tamanho padrão da fonte
+ */
+textarea {
+  min-height: 40px;
+  /* 1 */
+
+}
+/*
+ * 1. Define um padrão mínimo para o select múltiplo
+ *    Aproveita e deixa o tamanho consistente para os elementos originais do multiselect
+ */
+select[multiple] {
+  min-height: 200px;
+  /* 1 */
+
+}
+@font-face {
+  font-family: 'icomoon';
+  src: url('../fonts/Icon.eot');
+  src: url('../fonts/Icon.eot?#iefix') format('embedded-opentype'), url('../fonts/Icon.woff') format('woff'), url('../fonts/Icon.ttf') format('truetype'), url('../fonts/Icon.svg#Icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/*
+ * 1. Assistive technologies should not try to speak the icon as a regular character.
+ */
+[class*="icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  /* 1 */
+
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-library:before {
+  content: "\e600";
+}
+.icon-googleplus:before {
+  content: "\e601";
+}
+.icon-googleplus2:before {
+  content: "\e602";
+}
+.icon-facebook:before {
+  content: "\e603";
+}
+.icon-facebook2:before {
+  content: "\e604";
+}
+.icon-facebook3:before {
+  content: "\e605";
+}
+.icon-twitter:before {
+  content: "\e606";
+}
+.icon-twitter2:before {
+  content: "\e607";
+}
+.icon-twitter3:before {
+  content: "\e608";
+}
+.icon-youtube:before {
+  content: "\e609";
+}
+.icon-youtube2:before {
+  content: "\e60a";
+}
+.icon-paypal:before {
+  content: "\e60b";
+}
+.icon-paypal2:before {
+  content: "\e60c";
+}
+.icon-paypal3:before {
+  content: "\e60d";
+}
+.icon-file-pdf:before {
+  content: "\e60e";
+}
+.icon-file-word:before {
+  content: "\e60f";
+}
+.icon-file-excel:before {
+  content: "\e610";
+}
+.icon-file-powerpoint:before {
+  content: "\e611";
+}
+.icon-group:before {
+  content: "\e612";
+}
+.icon-pilcrow:before {
+  content: "\e000";
+}
+.icon-multiply:before {
+  content: "\e001";
+}
+.icon-divide:before {
+  content: "\e002";
+}
+.icon-home:before {
+  content: "\e003";
+}
+.icon-capslock:before {
+  content: "\e004";
+}
+.icon-gradient:before {
+  content: "\e005";
+}
+.icon-minus:before {
+  content: "\e006";
+}
+.icon-infinity:before {
+  content: "\e007";
+}
+.icon-intersection:before {
+  content: "\e008";
+}
+.icon-image:before {
+  content: "\e009";
+}
+.icon-fork:before {
+  content: "\e00a";
+}
+.icon-bell:before {
+  content: "\e00b";
+}
+.icon-chair:before {
+  content: "\e00c";
+}
+.icon-rectangle:before {
+  content: "\e00d";
+}
+.icon-triangle:before {
+  content: "\e00e";
+}
+.icon-yinyang:before {
+  content: "\e00f";
+}
+.icon-compass:before {
+  content: "\e010";
+}
+.icon-diamond:before {
+  content: "\e011";
+}
+.icon-checkmark:before {
+  content: "\e012";
+}
+.icon-wallet:before {
+  content: "\e013";
+}
+.icon-roundedclose:before {
+  content: "\e014";
+}
+.icon-roundedcheckmark:before {
+  content: "\e015";
+}
+.icon-left2:before {
+  content: "\e016";
+}
+.icon-right2:before {
+  content: "\e017";
+}
+.icon-up2:before {
+  content: "\e018";
+}
+.icon-down2:before {
+  content: "\e019";
+}
+.icon-plus2:before {
+  content: "\e01a";
+}
+.icon-minus2:before {
+  content: "\e01b";
+}
+.icon-multiply2:before {
+  content: "\e01c";
+}
+.icon-checkmark2:before {
+  content: "\e01d";
+}
+.icon-up3:before {
+  content: "\e01e";
+}
+.icon-down3:before {
+  content: "\e01f";
+}
+.icon-edit3:before {
+  content: "\e020";
+}
+.icon-exportfile2:before {
+  content: "\e021";
+}
+.icon-rewindprevious:before {
+  content: "\e022";
+}
+.icon-fastforwardnext:before {
+  content: "\e023";
+}
+.icon-list2:before {
+  content: "\e024";
+}
+.icon-invisible:before {
+  content: "\e025";
+}
+.icon-tag:before {
+  content: "\e026";
+}
+.icon-files:before {
+  content: "\e027";
+}
+.icon-contrast:before {
+  content: "\e028";
+}
+.icon-fullscreen:before {
+  content: "\e029";
+}
+.icon-ajax2:before {
+  content: "\e02a";
+}
+.icon-flag:before {
+  content: "\e02b";
+}
+.icon-pigpent2:before {
+  content: "\e02c";
+}
+.icon-pigpenu2:before {
+  content: "\e02d";
+}
+.icon-pigpenv2:before {
+  content: "\e02e";
+}
+.icon-pigpens2:before {
+  content: "\e02f";
+}
+.icon-pigpens:before {
+  content: "\e030";
+}
+.icon-pigpent:before {
+  content: "\e031";
+}
+.icon-pigpenu:before {
+  content: "\e032";
+}
+.icon-pigpenv:before {
+  content: "\e033";
+}
+.icon-hydrant:before {
+  content: "\e034";
+}
+.icon-fort:before {
+  content: "\e035";
+}
+.icon-route:before {
+  content: "\e036";
+}
+.icon-gameboy:before {
+  content: "\e037";
+}
+.icon-nintendods:before {
+  content: "\e038";
+}
+.icon-baloon:before {
+  content: "\e039";
+}
+.icon-egg:before {
+  content: "\e03a";
+}
+.icon-dna:before {
+  content: "\e03b";
+}
+.icon-broom:before {
+  content: "\e03c";
+}
+.icon-speed:before {
+  content: "\e03d";
+}
+.icon-fridge:before {
+  content: "\e03e";
+}
+.icon-islam:before {
+  content: "\e03f";
+}
+.icon-desklamp:before {
+  content: "\e040";
+}
+.icon-aaabattery:before {
+  content: "\e041";
+}
+.icon-sharethree:before {
+  content: "\e042";
+}
+.icon-danger:before {
+  content: "\e043";
+}
+.icon-razor:before {
+  content: "\e044";
+}
+.icon-safetypin:before {
+  content: "\e045";
+}
+.icon-searchdocument:before {
+  content: "\e046";
+}
+.icon-searchfolder:before {
+  content: "\e047";
+}
+.icon-thissideup:before {
+  content: "\e048";
+}
+.icon-pictureframe:before {
+  content: "\e049";
+}
+.icon-blackberry:before {
+  content: "\e04a";
+}
+.icon-travel:before {
+  content: "\e04b";
+}
+.icon-tank:before {
+  content: "\e04c";
+}
+.icon-screw:before {
+  content: "\e04d";
+}
+.icon-nut:before {
+  content: "\e04e";
+}
+.icon-nail:before {
+  content: "\e04f";
+}
+.icon-foursquare:before {
+  content: "\e050";
+}
+.icon-microwave:before {
+  content: "\e051";
+}
+.icon-bread:before {
+  content: "\e052";
+}
+.icon-tetrisone:before {
+  content: "\e053";
+}
+.icon-tetristwo:before {
+  content: "\e054";
+}
+.icon-tetristhree:before {
+  content: "\e055";
+}
+.icon-birthday:before {
+  content: "\e056";
+}
+.icon-globe:before {
+  content: "\e057";
+}
+.icon-lego:before {
+  content: "\e058";
+}
+.icon-stove:before {
+  content: "\e059";
+}
+.icon-speaker:before {
+  content: "\e05a";
+}
+.icon-trumpet:before {
+  content: "\e05b";
+}
+.icon-metronome:before {
+  content: "\e05c";
+}
+.icon-cassette:before {
+  content: "\e05d";
+}
+.icon-watch:before {
+  content: "\e05e";
+}
+.icon-favoritefile:before {
+  content: "\e05f";
+}
+.icon-favoritefolder:before {
+  content: "\e060";
+}
+.icon-crayon:before {
+  content: "\e061";
+}
+.icon-toiletpaper:before {
+  content: "\e062";
+}
+.icon-toothbrush:before {
+  content: "\e063";
+}
+.icon-raceflag:before {
+  content: "\e064";
+}
+.icon-handcuffs:before {
+  content: "\e065";
+}
+.icon-tictactoe:before {
+  content: "\e066";
+}
+.icon-dialpad:before {
+  content: "\e067";
+}
+.icon-washer:before {
+  content: "\e068";
+}
+.icon-theather:before {
+  content: "\e069";
+}
+.icon-glassesalt:before {
+  content: "\e06a";
+}
+.icon-taxi:before {
+  content: "\e06b";
+}
+.icon-macpro:before {
+  content: "\e06c";
+}
+.icon-keyboarddelete:before {
+  content: "\e06d";
+}
+.icon-gearfour:before {
+  content: "\e06e";
+}
+.icon-flowernew:before {
+  content: "\e06f";
+}
+.icon-signal:before {
+  content: "\e070";
+}
+.icon-parentheses:before {
+  content: "\e071";
+}
+.icon-circleleft:before {
+  content: "\e072";
+}
+.icon-circledown:before {
+  content: "\e073";
+}
+.icon-circleup:before {
+  content: "\e074";
+}
+.icon-circleright:before {
+  content: "\e075";
+}
+.icon-bowlingpins:before {
+  content: "\e076";
+}
+.icon-domino:before {
+  content: "\e077";
+}
+.icon-stadium:before {
+  content: "\e078";
+}
+.icon-whistle:before {
+  content: "\e079";
+}
+.icon-addfriend:before {
+  content: "\e07a";
+}
+.icon-removefriend:before {
+  content: "\e07b";
+}
+.icon-ticket:before {
+  content: "\e07c";
+}
+.icon-helicopter:before {
+  content: "\e07d";
+}
+.icon-invoice:before {
+  content: "\e07e";
+}
+.icon-lighthouse:before {
+  content: "\e07f";
+}
+.icon-resistor:before {
+  content: "\e080";
+}
+.icon-telescope:before {
+  content: "\e081";
+}
+.icon-fedora:before {
+  content: "\e082";
+}
+.icon-wheelchair:before {
+  content: "\e083";
+}
+.icon-dieone:before {
+  content: "\e084";
+}
+.icon-dietwo:before {
+  content: "\e085";
+}
+.icon-diethree:before {
+  content: "\e086";
+}
+.icon-diefive:before {
+  content: "\e087";
+}
+.icon-diesix:before {
+  content: "\e088";
+}
+.icon-diefour:before {
+  content: "\e089";
+}
+.icon-scales:before {
+  content: "\e08a";
+}
+.icon-slicepie:before {
+  content: "\e08b";
+}
+.icon-splitpie:before {
+  content: "\e08c";
+}
+.icon-chipset:before {
+  content: "\e08d";
+}
+.icon-chipset2:before {
+  content: "\e08e";
+}
+.icon-safe:before {
+  content: "\e08f";
+}
+.icon-safe2:before {
+  content: "\e090";
+}
+.icon-speed2:before {
+  content: "\e091";
+}
+.icon-equalizer3:before {
+  content: "\e092";
+}
+.icon-settings6:before {
+  content: "\e093";
+}
+.icon-fan:before {
+  content: "\e094";
+}
+.icon-database:before {
+  content: "\e095";
+}
+.icon-databaseadd:before {
+  content: "\e096";
+}
+.icon-databaseremove:before {
+  content: "\e097";
+}
+.icon-settings:before {
+  content: "\e098";
+}
+.icon-drawer:before {
+  content: "\e099";
+}
+.icon-supportrequest2:before {
+  content: "\e09a";
+}
+.icon-support4:before {
+  content: "\e09b";
+}
+.icon-support3:before {
+  content: "\e09c";
+}
+.icon-reliability:before {
+  content: "\e09d";
+}
+.icon-uptime:before {
+  content: "\e09e";
+}
+.icon-value:before {
+  content: "\e09f";
+}
+.icon-domain2:before {
+  content: "\e0a0";
+}
+.icon-domain:before {
+  content: "\e0a1";
+}
+.icon-domain3:before {
+  content: "\e0a2";
+}
+.icon-affiliate:before {
+  content: "\e0a3";
+}
+.icon-intel:before {
+  content: "\e0a4";
+}
+.icon-link:before {
+  content: "\e0a5";
+}
+.icon-colocation2:before {
+  content: "\e0a6";
+}
+.icon-colocation3:before {
+  content: "\e0a7";
+}
+.icon-server:before {
+  content: "\e0a8";
+}
+.icon-servers:before {
+  content: "\e0a9";
+}
+.icon-email:before {
+  content: "\e0aa";
+}
+.icon-ftp:before {
+  content: "\e0ab";
+}
+.icon-hdd:before {
+  content: "\e0ac";
+}
+.icon-home2:before {
+  content: "\e0ad";
+}
+.icon-security:before {
+  content: "\e0ae";
+}
+.icon-security2:before {
+  content: "\e0af";
+}
+.icon-barchart:before {
+  content: "\e0b0";
+}
+.icon-analytics4:before {
+  content: "\e0b1";
+}
+.icon-webhostinghub:before {
+  content: "\e0b2";
+}
+.icon-price:before {
+  content: "\e0b3";
+}
+.icon-webpage:before {
+  content: "\e0b4";
+}
+.icon-websitebuilder:before {
+  content: "\e0b5";
+}
+.icon-shoppingcart:before {
+  content: "\e0b6";
+}
+.icon-cms:before {
+  content: "\e0b7";
+}
+.icon-managedhosting:before {
+  content: "\e0b8";
+}
+.icon-sharedhosting:before {
+  content: "\e0b9";
+}
+.icon-socialnetworking:before {
+  content: "\e0ba";
+}
+.icon-wizard:before {
+  content: "\e0bb";
+}
+.icon-contact:before {
+  content: "\e0bc";
+}
+.icon-theme:before {
+  content: "\e0bd";
+}
+.icon-lang:before {
+  content: "\e0be";
+}
+.icon-shortcut:before {
+  content: "\e0bf";
+}
+.icon-spam:before {
+  content: "\e0c0";
+}
+.icon-spam2:before {
+  content: "\e0c1";
+}
+.icon-emailforward2:before {
+  content: "\e0c2";
+}
+.icon-error:before {
+  content: "\e0c3";
+}
+.icon-taskmanager:before {
+  content: "\e0c4";
+}
+.icon-awstats:before {
+  content: "\e0c5";
+}
+.icon-protecteddirectory:before {
+  content: "\e0c6";
+}
+.icon-sslmanager:before {
+  content: "\e0c7";
+}
+.icon-authentication:before {
+  content: "\e0c8";
+}
+.icon-subdomain:before {
+  content: "\e0c9";
+}
+.icon-domainaddon:before {
+  content: "\e0ca";
+}
+.icon-redirect:before {
+  content: "\e0cb";
+}
+.icon-mimetype:before {
+  content: "\e0cc";
+}
+.icon-certificate:before {
+  content: "\e0cd";
+}
+.icon-certificate2:before {
+  content: "\e0ce";
+}
+.icon-error2:before {
+  content: "\e0cf";
+}
+.icon-wrench:before {
+  content: "\e0d0";
+}
+.icon-filter:before {
+  content: "\e0d1";
+}
+.icon-userfiltering:before {
+  content: "\e0d2";
+}
+.icon-accountfiltering:before {
+  content: "\e0d3";
+}
+.icon-backupwizard:before {
+  content: "\e0d4";
+}
+.icon-phpbb:before {
+  content: "\e0d5";
+}
+.icon-mybb:before {
+  content: "\e0d6";
+}
+.icon-ruby:before {
+  content: "\e0d7";
+}
+.icon-html:before {
+  content: "\e0d8";
+}
+.icon-whmcs:before {
+  content: "\e0d9";
+}
+.icon-oxwall:before {
+  content: "\e0da";
+}
+.icon-ajax:before {
+  content: "\e0db";
+}
+.icon-refresh:before {
+  content: "\e0dc";
+}
+.icon-cgicenter:before {
+  content: "\e0dd";
+}
+.icon-mxentry:before {
+  content: "\e0de";
+}
+.icon-ftpaccounts:before {
+  content: "\e0df";
+}
+.icon-ftpsession:before {
+  content: "\e0e0";
+}
+.icon-analytics3:before {
+  content: "\e0e1";
+}
+.icon-leechprotect:before {
+  content: "\e0e2";
+}
+.icon-dnszone:before {
+  content: "\e0e3";
+}
+.icon-commentout:before {
+  content: "\e0e4";
+}
+.icon-github:before {
+  content: "\e0e5";
+}
+.icon-ads:before {
+  content: "\e0e6";
+}
+.icon-binary:before {
+  content: "\e0e7";
+}
+.icon-push:before {
+  content: "\e0e8";
+}
+.icon-pull:before {
+  content: "\e0e9";
+}
+.icon-query:before {
+  content: "\e0ea";
+}
+.icon-ipcontrol:before {
+  content: "\e0eb";
+}
+.icon-form:before {
+  content: "\e0ec";
+}
+.icon-sc:before {
+  content: "\e0ed";
+}
+.icon-autorespond:before {
+  content: "\e0ee";
+}
+.icon-address:before {
+  content: "\e0ef";
+}
+.icon-mailinglists:before {
+  content: "\e0f0";
+}
+.icon-emailtrace:before {
+  content: "\e0f1";
+}
+.icon-importcontacts:before {
+  content: "\e0f2";
+}
+.icon-key:before {
+  content: "\e0f3";
+}
+.icon-filemanager:before {
+  content: "\e0f4";
+}
+.icon-legacyfilemanager:before {
+  content: "\e0f5";
+}
+.icon-diskspace:before {
+  content: "\e0f6";
+}
+.icon-visitor:before {
+  content: "\e0f7";
+}
+.icon-plugin2:before {
+  content: "\e0f8";
+}
+.icon-faq:before {
+  content: "\e0f9";
+}
+.icon-software:before {
+  content: "\e0fa";
+}
+.icon-phppear:before {
+  content: "\e0fb";
+}
+.icon-fourohfour:before {
+  content: "\e0fc";
+}
+.icon-indexmanager:before {
+  content: "\e0fd";
+}
+.icon-images:before {
+  content: "\e0fe";
+}
+.icon-plugin:before {
+  content: "\e0ff";
+}
+.icon-calendar2:before {
+  content: "\e100";
+}
+.icon-briefcase:before {
+  content: "\e101";
+}
+.icon-supportrequest:before {
+  content: "\e102";
+}
+.icon-dropmenu:before {
+  content: "\e103";
+}
+.icon-network:before {
+  content: "\e104";
+}
+.icon-piwigo:before {
+  content: "\e105";
+}
+.icon-algorhythm:before {
+  content: "\e106";
+}
+.icon-sync:before {
+  content: "\e107";
+}
+.icon-lock:before {
+  content: "\e108";
+}
+.icon-unlock:before {
+  content: "\e109";
+}
+.icon-remotemysql:before {
+  content: "\e10a";
+}
+.icon-rawaccesslogs:before {
+  content: "\e10b";
+}
+.icon-document:before {
+  content: "\e10c";
+}
+.icon-spreadsheet:before {
+  content: "\e10d";
+}
+.icon-presentation:before {
+  content: "\e10e";
+}
+.icon-search:before {
+  content: "\e10f";
+}
+.icon-createfile:before {
+  content: "\e110";
+}
+.icon-deletefile:before {
+  content: "\e111";
+}
+.icon-save:before {
+  content: "\e112";
+}
+.icon-copy:before {
+  content: "\e113";
+}
+.icon-cut:before {
+  content: "\e114";
+}
+.icon-paste:before {
+  content: "\e115";
+}
+.icon-trash:before {
+  content: "\e116";
+}
+.icon-trashempty:before {
+  content: "\e117";
+}
+.icon-trashfull:before {
+  content: "\e118";
+}
+.icon-circleadd:before {
+  content: "\e119";
+}
+.icon-circledelete:before {
+  content: "\e11a";
+}
+.icon-circleselect:before {
+  content: "\e11b";
+}
+.icon-mouse:before {
+  content: "\e11c";
+}
+.icon-monitor:before {
+  content: "\e11d";
+}
+.icon-file:before {
+  content: "\e11e";
+}
+.icon-notes:before {
+  content: "\e11f";
+}
+.icon-laptop:before {
+  content: "\e120";
+}
+.icon-explorerwindow:before {
+  content: "\e121";
+}
+.icon-addfolder:before {
+  content: "\e122";
+}
+.icon-deletefolder:before {
+  content: "\e123";
+}
+.icon-cursor:before {
+  content: "\e124";
+}
+.icon-diskspace2:before {
+  content: "\e125";
+}
+.icon-volumefull:before {
+  content: "\e126";
+}
+.icon-volumehalf:before {
+  content: "\e127";
+}
+.icon-volumemute:before {
+  content: "\e128";
+}
+.icon-volumemute2:before {
+  content: "\e129";
+}
+.icon-iphone:before {
+  content: "\e12a";
+}
+.icon-nexus:before {
+  content: "\e12b";
+}
+.icon-mobile:before {
+  content: "\e12c";
+}
+.icon-router:before {
+  content: "\e12d";
+}
+.icon-plug:before {
+  content: "\e12e";
+}
+.icon-lock2:before {
+  content: "\e12f";
+}
+.icon-treediagram:before {
+  content: "\e130";
+}
+.icon-powerplug:before {
+  content: "\e131";
+}
+.icon-lan:before {
+  content: "\e132";
+}
+.icon-sharedfile:before {
+  content: "\e133";
+}
+.icon-foldertree:before {
+  content: "\e134";
+}
+.icon-tethering:before {
+  content: "\e135";
+}
+.icon-edit2:before {
+  content: "\e136";
+}
+.icon-imac:before {
+  content: "\e137";
+}
+.icon-firewire:before {
+  content: "\e138";
+}
+.icon-powerjack:before {
+  content: "\e139";
+}
+.icon-webcam:before {
+  content: "\e13a";
+}
+.icon-wifi:before {
+  content: "\e13b";
+}
+.icon-networksignal:before {
+  content: "\e13c";
+}
+.icon-sd:before {
+  content: "\e13d";
+}
+.icon-microsd:before {
+  content: "\e13e";
+}
+.icon-graphicscard:before {
+  content: "\e13f";
+}
+.icon-screenshot:before {
+  content: "\e140";
+}
+.icon-usb:before {
+  content: "\e141";
+}
+.icon-usb2:before {
+  content: "\e142";
+}
+.icon-usb3:before {
+  content: "\e143";
+}
+.icon-grid:before {
+  content: "\e144";
+}
+.icon-details:before {
+  content: "\e145";
+}
+.icon-thumbnails:before {
+  content: "\e146";
+}
+.icon-list:before {
+  content: "\e147";
+}
+.icon-terminal:before {
+  content: "\e148";
+}
+.icon-touchpad:before {
+  content: "\e149";
+}
+.icon-zip:before {
+  content: "\e14a";
+}
+.icon-rar:before {
+  content: "\e14b";
+}
+.icon-tablet:before {
+  content: "\e14c";
+}
+.icon-keyboard:before {
+  content: "\e14d";
+}
+.icon-download:before {
+  content: "\e14e";
+}
+.icon-upload:before {
+  content: "\e14f";
+}
+.icon-sync2:before {
+  content: "\e150";
+}
+.icon-power:before {
+  content: "\e151";
+}
+.icon-shutdown:before {
+  content: "\e152";
+}
+.icon-restart:before {
+  content: "\e153";
+}
+.icon-sim2:before {
+  content: "\e154";
+}
+.icon-loading:before {
+  content: "\e155";
+}
+.icon-hourglass2:before {
+  content: "\e156";
+}
+.icon-sidebar:before {
+  content: "\e157";
+}
+.icon-mouse2:before {
+  content: "\e158";
+}
+.icon-menu:before {
+  content: "\e159";
+}
+.icon-comment:before {
+  content: "\e15a";
+}
+.icon-comment2:before {
+  content: "\e15b";
+}
+.icon-post:before {
+  content: "\e15c";
+}
+.icon-quote:before {
+  content: "\e15d";
+}
+.icon-post2:before {
+  content: "\e15e";
+}
+.icon-loved:before {
+  content: "\e15f";
+}
+.icon-love:before {
+  content: "\e160";
+}
+.icon-user:before {
+  content: "\e161";
+}
+.icon-friends:before {
+  content: "\e162";
+}
+.icon-phonebook:before {
+  content: "\e163";
+}
+.icon-email2:before {
+  content: "\e164";
+}
+.icon-businesscard2:before {
+  content: "\e165";
+}
+.icon-favorite:before {
+  content: "\e166";
+}
+.icon-favorite2:before {
+  content: "\e167";
+}
+.icon-happy:before {
+  content: "\e168";
+}
+.icon-sad:before {
+  content: "\e169";
+}
+.icon-laugh:before {
+  content: "\e16a";
+}
+.icon-blankstare:before {
+  content: "\e16b";
+}
+.icon-notificationdown:before {
+  content: "\e16c";
+}
+.icon-notificationup:before {
+  content: "\e16d";
+}
+.icon-flickr:before {
+  content: "\e16e";
+}
+.icon-phone2:before {
+  content: "\e16f";
+}
+.icon-phone3:before {
+  content: "\e170";
+}
+.icon-instagram:before {
+  content: "\e171";
+}
+.icon-phonebook2:before {
+  content: "\e172";
+}
+.icon-comment3:before {
+  content: "\e173";
+}
+.icon-comment4:before {
+  content: "\e174";
+}
+.icon-comment5:before {
+  content: "\e175";
+}
+.icon-comment6:before {
+  content: "\e176";
+}
+.icon-avatar:before {
+  content: "\e177";
+}
+.icon-browser:before {
+  content: "\e178";
+}
+.icon-basecamp:before {
+  content: "\e179";
+}
+.icon-avatar2:before {
+  content: "\e17a";
+}
+.icon-chat:before {
+  content: "\e17b";
+}
+.icon-newwindow:before {
+  content: "\e17c";
+}
+.icon-closewindow:before {
+  content: "\e17d";
+}
+.icon-newtab:before {
+  content: "\e17e";
+}
+.icon-closetab:before {
+  content: "\e17f";
+}
+.icon-archive:before {
+  content: "\e180";
+}
+.icon-draft:before {
+  content: "\e181";
+}
+.icon-reademail:before {
+  content: "\e182";
+}
+.icon-emailrefresh:before {
+  content: "\e183";
+}
+.icon-emailforward:before {
+  content: "\e184";
+}
+.icon-emailexport:before {
+  content: "\e185";
+}
+.icon-emailimport:before {
+  content: "\e186";
+}
+.icon-outbox:before {
+  content: "\e187";
+}
+.icon-draft2:before {
+  content: "\e188";
+}
+.icon-rss:before {
+  content: "\e189";
+}
+.icon-video:before {
+  content: "\e18a";
+}
+.icon-headphones:before {
+  content: "\e18b";
+}
+.icon-music:before {
+  content: "\e18c";
+}
+.icon-fastforward:before {
+  content: "\e18d";
+}
+.icon-rewind:before {
+  content: "\e18e";
+}
+.icon-play:before {
+  content: "\e18f";
+}
+.icon-stop:before {
+  content: "\e190";
+}
+.icon-pause:before {
+  content: "\e191";
+}
+.icon-repeat:before {
+  content: "\e192";
+}
+.icon-shuffle:before {
+  content: "\e193";
+}
+.icon-record:before {
+  content: "\e194";
+}
+.icon-next:before {
+  content: "\e195";
+}
+.icon-previous:before {
+  content: "\e196";
+}
+.icon-voice:before {
+  content: "\e197";
+}
+.icon-music2:before {
+  content: "\e198";
+}
+.icon-equalizer:before {
+  content: "\e199";
+}
+.icon-equalizer2:before {
+  content: "\e19a";
+}
+.icon-ipod:before {
+  content: "\e19b";
+}
+.icon-microphone:before {
+  content: "\e19c";
+}
+.icon-vlc:before {
+  content: "\e19d";
+}
+.icon-movie5:before {
+  content: "\e19e";
+}
+.icon-soundwave:before {
+  content: "\e19f";
+}
+.icon-boombox:before {
+  content: "\e1a0";
+}
+.icon-repeatone:before {
+  content: "\e1a1";
+}
+.icon-previous2:before {
+  content: "\e1a2";
+}
+.icon-eject:before {
+  content: "\e1a3";
+}
+.icon-next2:before {
+  content: "\e1a4";
+}
+.icon-guitar:before {
+  content: "\e1a5";
+}
+.icon-camera:before {
+  content: "\e1a6";
+}
+.icon-videocamera:before {
+  content: "\e1a7";
+}
+.icon-video3:before {
+  content: "\e1a8";
+}
+.icon-piano:before {
+  content: "\e1a9";
+}
+.icon-album:before {
+  content: "\e1aa";
+}
+.icon-hdtv:before {
+  content: "\e1ab";
+}
+.icon-radio:before {
+  content: "\e1ac";
+}
+.icon-podcast:before {
+  content: "\e1ad";
+}
+.icon-headphones2:before {
+  content: "\e1ae";
+}
+.icon-tv:before {
+  content: "\e1af";
+}
+.icon-violin:before {
+  content: "\e1b0";
+}
+.icon-transform:before {
+  content: "\e1b1";
+}
+.icon-twocolumnright2:before {
+  content: "\e1b2";
+}
+.icon-twocolumnright:before {
+  content: "\e1b3";
+}
+.icon-twocolumnleft:before {
+  content: "\e1b4";
+}
+.icon-twocolumnleft2:before {
+  content: "\e1b5";
+}
+.icon-threecolumn:before {
+  content: "\e1b6";
+}
+.icon-inkpen:before {
+  content: "\e1b7";
+}
+.icon-eyedropper:before {
+  content: "\e1b8";
+}
+.icon-font:before {
+  content: "\e1b9";
+}
+.icon-crop:before {
+  content: "\e1ba";
+}
+.icon-rectangleselection:before {
+  content: "\e1bb";
+}
+.icon-circleselection:before {
+  content: "\e1bc";
+}
+.icon-selectionadd:before {
+  content: "\e1bd";
+}
+.icon-selectionrmove:before {
+  content: "\e1be";
+}
+.icon-selectionintersect:before {
+  content: "\e1bf";
+}
+.icon-bucket:before {
+  content: "\e1c0";
+}
+.icon-edit:before {
+  content: "\e1c1";
+}
+.icon-brush:before {
+  content: "\e1c2";
+}
+.icon-palette:before {
+  content: "\e1c3";
+}
+.icon-book:before {
+  content: "\e1c4";
+}
+.icon-wacom:before {
+  content: "\e1c5";
+}
+.icon-elipse:before {
+  content: "\e1c6";
+}
+.icon-roundedrectangle:before {
+  content: "\e1c7";
+}
+.icon-polygon:before {
+  content: "\e1c8";
+}
+.icon-line:before {
+  content: "\e1c9";
+}
+.icon-lineheight:before {
+  content: "\e1ca";
+}
+.icon-sortbynameascending:before {
+  content: "\e1cb";
+}
+.icon-sortbynamedescending:before {
+  content: "\e1cc";
+}
+.icon-sortbysizeascending:before {
+  content: "\e1cd";
+}
+.icon-sortbysizedescending:before {
+  content: "\e1ce";
+}
+.icon-insertpiechart:before {
+  content: "\e1cf";
+}
+.icon-insertbarchart:before {
+  content: "\e1d0";
+}
+.icon-pin:before {
+  content: "\e1d1";
+}
+.icon-temperature2:before {
+  content: "\e1d2";
+}
+.icon-temperature:before {
+  content: "\e1d3";
+}
+.icon-clock:before {
+  content: "\e1d4";
+}
+.icon-truck:before {
+  content: "\e1d5";
+}
+.icon-stopwatch:before {
+  content: "\e1d6";
+}
+.icon-roadsign:before {
+  content: "\e1d7";
+}
+.icon-port:before {
+  content: "\e1d8";
+}
+.icon-gpsoff:before {
+  content: "\e1d9";
+}
+.icon-gpson:before {
+  content: "\e1da";
+}
+.icon-place:before {
+  content: "\e1db";
+}
+.icon-placeadd:before {
+  content: "\e1dc";
+}
+.icon-placedelete:before {
+  content: "\e1dd";
+}
+.icon-place2:before {
+  content: "\e1de";
+}
+.icon-checkin:before {
+  content: "\e1df";
+}
+.icon-place2add:before {
+  content: "\e1e0";
+}
+.icon-place2delete:before {
+  content: "\e1e1";
+}
+.icon-checkin2:before {
+  content: "\e1e2";
+}
+.icon-trafficlight:before {
+  content: "\e1e3";
+}
+.icon-clock2:before {
+  content: "\e1e4";
+}
+.icon-storm2:before {
+  content: "\e1e5";
+}
+.icon-alarm:before {
+  content: "\e1e6";
+}
+.icon-bag:before {
+  content: "\e1e7";
+}
+.icon-scope2:before {
+  content: "\e1e8";
+}
+.icon-roadsignleft:before {
+  content: "\e1e9";
+}
+.icon-bus:before {
+  content: "\e1ea";
+}
+.icon-metro:before {
+  content: "\e1eb";
+}
+.icon-building:before {
+  content: "\e1ec";
+}
+.icon-emergency:before {
+  content: "\e1ed";
+}
+.icon-road:before {
+  content: "\e1ee";
+}
+.icon-freeway:before {
+  content: "\e1ef";
+}
+.icon-cup:before {
+  content: "\e1f0";
+}
+.icon-men:before {
+  content: "\e1f1";
+}
+.icon-women:before {
+  content: "\e1f2";
+}
+.icon-stocks:before {
+  content: "\e1f3";
+}
+.icon-stockup:before {
+  content: "\e1f4";
+}
+.icon-stockdown:before {
+  content: "\e1f5";
+}
+.icon-timeline:before {
+  content: "\e1f6";
+}
+.icon-coupon:before {
+  content: "\e1f7";
+}
+.icon-playstore:before {
+  content: "\e1f8";
+}
+.icon-news:before {
+  content: "\e1f9";
+}
+.icon-calculator:before {
+  content: "\e1fa";
+}
+.icon-briefcase2:before {
+  content: "\e1fb";
+}
+.icon-briefcase3:before {
+  content: "\e1fc";
+}
+.icon-gift:before {
+  content: "\e1fd";
+}
+.icon-abacus:before {
+  content: "\e1fe";
+}
+.icon-bank:before {
+  content: "\e1ff";
+}
+.icon-law:before {
+  content: "\e200";
+}
+.icon-price2:before {
+  content: "\e201";
+}
+.icon-officechair:before {
+  content: "\e202";
+}
+.icon-rubberstamp:before {
+  content: "\e203";
+}
+.icon-qrcode:before {
+  content: "\e204";
+}
+.icon-barcode:before {
+  content: "\e205";
+}
+.icon-shredder:before {
+  content: "\e206";
+}
+.icon-flask:before {
+  content: "\e207";
+}
+.icon-flaskfull:before {
+  content: "\e208";
+}
+.icon-eye:before {
+  content: "\e209";
+}
+.icon-paperclip:before {
+  content: "\e20a";
+}
+.icon-paperclip2:before {
+  content: "\e20b";
+}
+.icon-paperclip3:before {
+  content: "\e20c";
+}
+.icon-megaphone:before {
+  content: "\e20d";
+}
+.icon-student:before {
+  content: "\e20e";
+}
+.icon-crown:before {
+  content: "\e20f";
+}
+.icon-recycle:before {
+  content: "\e210";
+}
+.icon-woman:before {
+  content: "\e211";
+}
+.icon-man:before {
+  content: "\e212";
+}
+.icon-sheriff:before {
+  content: "\e213";
+}
+.icon-police:before {
+  content: "\e214";
+}
+.icon-lightning2:before {
+  content: "\e215";
+}
+.icon-visible:before {
+  content: "\e216";
+}
+.icon-podium:before {
+  content: "\e217";
+}
+.icon-trophy:before {
+  content: "\e218";
+}
+.icon-warmedal:before {
+  content: "\e219";
+}
+.icon-medal:before {
+  content: "\e21a";
+}
+.icon-medalgold:before {
+  content: "\e21b";
+}
+.icon-medalsilver:before {
+  content: "\e21c";
+}
+.icon-medalbronze:before {
+  content: "\e21d";
+}
+.icon-down:before {
+  content: "\e21e";
+}
+.icon-downleft:before {
+  content: "\e21f";
+}
+.icon-downright:before {
+  content: "\e220";
+}
+.icon-up:before {
+  content: "\e221";
+}
+.icon-upleft:before {
+  content: "\e222";
+}
+.icon-upright:before {
+  content: "\e223";
+}
+.icon-right:before {
+  content: "\e224";
+}
+.icon-left:before {
+  content: "\e225";
+}
+.icon-settings2:before {
+  content: "\e226";
+}
+.icon-settings3:before {
+  content: "\e227";
+}
+.icon-settings4:before {
+  content: "\e228";
+}
+.icon-settings5:before {
+  content: "\e229";
+}
+.icon-bigger:before {
+  content: "\e22a";
+}
+.icon-smaller:before {
+  content: "\e22b";
+}
+.icon-equals:before {
+  content: "\e22c";
+}
+.icon-restore:before {
+  content: "\e22d";
+}
+.icon-minimize:before {
+  content: "\e22e";
+}
+.icon-checkbox:before {
+  content: "\e22f";
+}
+.icon-maximize:before {
+  content: "\e230";
+}
+.icon-checkbox2:before {
+  content: "\e231";
+}
+.icon-radiobutton:before {
+  content: "\e232";
+}
+.icon-forbidden:before {
+  content: "\e233";
+}
+.icon-forbidden2:before {
+  content: "\e234";
+}
+.icon-info:before {
+  content: "\e235";
+}
+.icon-asterisk2:before {
+  content: "\e236";
+}
+.icon-resizeh:before {
+  content: "\e237";
+}
+.icon-resizev:before {
+  content: "\e238";
+}
+.icon-fastleft:before {
+  content: "\e239";
+}
+.icon-fastright:before {
+  content: "\e23a";
+}
+.icon-fastup:before {
+  content: "\e23b";
+}
+.icon-fastdown:before {
+  content: "\e23c";
+}
+.icon-back:before {
+  content: "\e23d";
+}
+.icon-forward:before {
+  content: "\e23e";
+}
+.icon-zoomin:before {
+  content: "\e23f";
+}
+.icon-zoomout:before {
+  content: "\e240";
+}
+.icon-move:before {
+  content: "\e241";
+}
+.icon-enter:before {
+  content: "\e242";
+}
+.icon-exit:before {
+  content: "\e243";
+}
+.icon-scaleup:before {
+  content: "\e244";
+}
+.icon-scaledown:before {
+  content: "\e245";
+}
+.icon-undo:before {
+  content: "\e246";
+}
+.icon-redo:before {
+  content: "\e247";
+}
+.icon-importfile:before {
+  content: "\e248";
+}
+.icon-exportfile:before {
+  content: "\e249";
+}
+.icon-preview:before {
+  content: "\e24a";
+}
+.icon-pagesetup:before {
+  content: "\e24b";
+}
+.icon-opennewwindow:before {
+  content: "\e24c";
+}
+.icon-merge:before {
+  content: "\e24d";
+}
+.icon-link2:before {
+  content: "\e24e";
+}
+.icon-split:before {
+  content: "\e24f";
+}
+.icon-lightbulb:before {
+  content: "\e250";
+}
+.icon-synckeeponserver:before {
+  content: "\e251";
+}
+.icon-synckeeplocal:before {
+  content: "\e252";
+}
+.icon-percent:before {
+  content: "\e253";
+}
+.icon-asterisk:before {
+  content: "\e254";
+}
+.icon-plus:before {
+  content: "\e255";
+}
+.icon-copyright:before {
+  content: "\e256";
+}
+.badge-notification {
+  background-color: #d9534f;
+}
+/**
+ * Account for counters in navs
+ */
+a.list-group-item.active > .badge-notification,
+.nav-pills > .active > a > .badge-notification {
+  background-color: #c12e2a;
+  /* 1 */
+
+}
+/**
+ * 1. Disable inherited text-shadow for badges inside buttons
+ */
+.btn-default .badge-notification,
+.btn-primary .badge-notification,
+.btn-info .badge-notification,
+.btn-success .badge-notification,
+.btn-warning .badge-notification,
+.btn-danger .badge-notification {
+  text-shadow: none;
+  /* 1 */
+
+}
+/*
+ * 1. Removes the "not-allowed" cursor
+ */
+.nav > li.disabled > a:hover,
+.nav > li.disabled > a:focus {
+  cursor: default;
+  /* 1 */
+
+}
+/*
+ * 1. Removes the "not-allowed" cursor
+ */
+.pagination > .disabled > span,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  cursor: default;
+  /* 1 */
+
+}
+/*
+ * 1. Removes the "not-allowed" cursor
+ */
+.pager .disabled > a,
+.pager .disabled > a:hover,
+.pager .disabled > a:focus,
+.pager .disabled > span {
+  cursor: default;
+  /* 1 */
+
+}
+/*
+ * 1. Removed the "not-allowed" cursor
+ */
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus {
+  cursor: default;
+  /* 1 */
+
+}
+/* =============================================================================================
+   Heading
+   ============================================================================================= */
+.multiselect-heading input {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-color: #DDD;
+}
+.multiselect-heading h5 {
+  border: 1px solid #DDD;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-weight: bold;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* =============================================================================================
+   Select body
+   ============================================================================================= */
+.multiselect-body {
+  border-bottom: 1px solid #DDD;
+  border-left: 1px solid #DDD;
+  border-right: 1px solid #DDD;
+  min-height: 200px;
+  max-height: 200px;
+  list-style-type: none;
+  padding: 5px 0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+}
+.multiselect-body label {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 5px 10px 5px 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  font-weight: normal;
+}
+.multiselect-body li.active {
+  color: #FFF;
+  background-color: #428bca;
+}
+.multiselect-body li:last-child label {
+  margin-bottom: 0;
+}
+.multiselect-body li {
+  margin-bottom: 1px;
+}
+.multiselect-body li:last-child {
+  margin-bottom: 0;
+}
+.multiselect-empty {
+  padding-left: 10px;
+  font-style: italic;
+}
+/*
+ * 1. There is no need for form-group margin inside multiselect elements
+ */
+.multiselect .form-group {
+  margin-bottom: 0;
+  /* 1 */
+
+}
+/* =============================================================================================
+   Checked body
+   ============================================================================================= */
+.multiselect-body-selected li {
+  color: #FFF;
+  background-color: #428bca;
+}
+.modal.fade .modal-dialog {
+  -webkit-transform: translate(0, 5%);
+  -ms-transform: translate(0, 5%);
+  transform: translate(0, 5%);
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+@media screen and (min-width: 768px) {
+  .modal.fade .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  .modal.in .modal-dialog {
+    -webkit-transform: translate(0, -5%);
+    -ms-transform: translate(0, -5%);
+    transform: translate(0, -5%);
+  }
+  .modal-dialog {
+    padding-top: 50px;
+  }
+}
+/**
+ * 1. In chrome "whitespace: nowrap" put any label below the text in tabs
+ */
+.label {
+  white-space: normal;
+  /* 1 */
+
+}
+.tooltip-inner {
+  padding: 8px;
+}
+.breadcumb-clear {
+  background: none;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+/*
+ * 1. Fix the horizontal scroll for not to break the footer background when moved to the right.
+ */
+.footer {
+  text-align: center;
+  background: #444444;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  -webkit-box-shadow: 0 8px 8px -8px #000000 inset;
+  box-shadow: 0 8px 8px -8px #000000 inset;
+}
+.footer .container {
+  -webkit-box-shadow: 0 8px 8px -8px #000000 inset;
+  box-shadow: 0 8px 8px -8px #000000 inset;
+  background: #444444;
+  /* 1 */
+
+}
+.credits {
+  margin: 0;
+  padding: 10px;
+  color: #FFF;
+}
+.credits a {
+  color: #FFF;
+}
+.credits a:hover {
+  color: #CCC;
+}
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(359deg);
+  }
+}
+@-ms-keyframes spin {
+  0% {
+    -ms-transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+.icon-spin {
+  display: inline-block;
+  -webkit-animation: spin 2s infinite linear;
+  /* Chrome, Safari 5+ */
+
+  -moz-animation: spin 2s infinite linear;
+  /* Firefox 5-15 */
+
+  -o-animation: spin 2s infinite linear;
+  /* Opera 12.00 */
+
+  animation: spin 2s infinite linear;
+  /* Chrome, Firefox 16+, IE 10+, Opera 12.10+ */
+
+}
+.valign-container {
+  display: table;
+}
+.valign-content {
+  display: table-cell;
+  vertical-align: middle;
+}

@@ -1,0 +1,25 @@
+package org.webstories.dao.invitation;
+
+import javax.ejb.Stateless;
+
+import org.webstories.dao.Queries;
+
+import com.mysema.query.jpa.impl.JPAQuery;
+
+@Stateless
+public class InviteQueries extends Queries {
+	public boolean exists( String inviteCode ) {
+		QInviteEntity tableInvite = QInviteEntity.inviteEntity;
+		JPAQuery query = queryFrom( tableInvite ).where(
+			tableInvite.cod_invite.eq( inviteCode )
+		);
+		return query.exists();
+	}
+	public InviteEntity findByInviteCode( String inviteCode ) {
+		QInviteEntity tableInvite = QInviteEntity.inviteEntity;
+		JPAQuery query = queryFrom( tableInvite ).where(
+			tableInvite.cod_invite.eq( inviteCode )
+		);
+		return query.singleResult( tableInvite );
+	}
+}

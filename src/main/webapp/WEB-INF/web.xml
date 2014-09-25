@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<!--
+		1. Desabilita o uso de scriplets nos JSPs
+		2. Define o charset padrão de todos os JSPs (evita utilizar a diretiva em cada arquivo)
+	-->
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<scripting-invalid>true</scripting-invalid> <!-- 1 -->
+			<page-encoding>UTF-8</page-encoding> <!-- 2 -->
+		</jsp-property-group>
+	</jsp-config>
+	
+	<!-- Rewrites the static resources folder for unversioned files -->
+	<filter-mapping>
+		<filter-name>resources-folder</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Read the application properties and make it available for all JSPs -->
+	<filter-mapping>
+		<filter-name>application-properties</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Adjust the UTF-8 encoding for every page -->
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- URL mapping for the file system -->
+	<filter-mapping>
+		<filter-name>url-convention</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>

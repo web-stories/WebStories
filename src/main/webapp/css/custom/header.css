@@ -1,0 +1,14 @@
+body {
+  padding-top: 66px;
+}
+.header-navbar {
+  background: #FFF;
+}
+.header-navbar .header-navbar-toggle {
+  border: 1px solid transparent;
+}
+.header-navbar .header-navbar-toggle:hover,
+.header-navbar .header-navbar-toggle:focus {
+  background: none;
+  border: 1px solid #DDD;
+}
