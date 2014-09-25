@@ -8,7 +8,7 @@
     </p>
     <p>
       <c:if test="${canPublish}">
-        <facebook:login className="btn btn-primary btn-lg" invite="${param.invite}">
+        <facebook:login className="btn btn-primary btn-lg" invite="${param.invite}" redirect="${pageContext.request.contextPath}/">
           Publique a sua história
         </facebook:login>
       </c:if>

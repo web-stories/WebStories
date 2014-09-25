@@ -10,10 +10,6 @@ public class FacebookOAuth2DataFactory extends OAuth2DataFactory {
 	private String data[];
 	public FacebookOAuth2DataFactory( HttpServletRequest request ) {
 		String state = request.getParameter("state" );
-		// No invitation code
-		if ( state == null ) {
-			state = "";
-		}
 		this.data = Base64.decode( state ).split( Pattern.quote( "||" ) );
 	}
 	@Override
@@ -23,5 +19,9 @@ public class FacebookOAuth2DataFactory extends OAuth2DataFactory {
 			return null;
 		}
 		return code;
+	}
+	@Override
+	protected String retrieveRedirect() {
+		return data[ 1 ];
 	}
 }
