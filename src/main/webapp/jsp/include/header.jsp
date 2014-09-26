@@ -7,7 +7,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/">WebStories</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/">
+        WebStories
+        <small>beta</small>
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="main-navbar">
       <form class="navbar-form navbar-right" name="headerSearchForm" method="get" action="https://www.google.com/search">

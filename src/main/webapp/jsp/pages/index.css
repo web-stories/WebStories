@@ -3,6 +3,9 @@
   background-color: #3C3C3C;
   box-shadow: 0 0 150px #000 inset;
 }
+.index-banner-container {
+  margin-bottom: 50px;"
+}
 .index-banner .index-banner-closed {
   margin: 0 auto;
   font-size: 15px;
@@ -16,6 +19,9 @@
 .index-banner-paragraph {
   color: #FFF;
 }
-.index-story-thumb-summary {
+.index-stories-container {
+  margin-top: -75px;
+}
+.index-stories-thumb-summary {
   margin-bottom: 0;
 }
