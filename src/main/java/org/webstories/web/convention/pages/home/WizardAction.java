@@ -1,7 +1,5 @@
 package org.webstories.web.convention.pages.home;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,12 +10,8 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 
 @ConventionServlet
 @AuthForwarded
-public class IndexAction extends BaseServlet {
+public class WizardAction extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	@Override
-	protected void doGet( HttpServletRequest request, HttpServletResponse response )
-	throws IOException {
-		// If user has no story...
-		response.sendRedirect( request.getContextPath() + "/home/wizard" );
-	}
+	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {}
 }

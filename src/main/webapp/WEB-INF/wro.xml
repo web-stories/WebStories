@@ -10,6 +10,7 @@
 	<group name="app">
 		<css>/css/custom/app.css</css>
 		<css>/css/custom/header.css</css>
+		<css>/css/custom/wizard.css</css>
 	</group>
 	<!-- Vendor -->
 	<group name="jquery-2.1.1">
