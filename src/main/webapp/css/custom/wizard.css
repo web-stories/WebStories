@@ -85,11 +85,11 @@
    
 .wizard-pane {
   display: none;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 .wizard-pane.active {
   display: block;
-  padding-left: 25px;
-  padding-right: 25px;
 }
 
 /* =============================================================================================
