@@ -18,6 +18,6 @@ public class IndexAction extends BaseServlet {
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 	throws IOException {
 		// If user has no story...
-		response.sendRedirect( request.getContextPath() + "/home/wizard" );
+		request.setAttribute( "nostory", true );
 	}
 }

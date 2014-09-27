@@ -1,4 +1,5 @@
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags/bootstrap" %>
+<div id="meta" data-nostory="${nostory}"></div>
 <bs:modal id="new-story-wizard-modal" title="Inicie uma história">
   <bs:wizard id="new-story-wizard">
     <bs:modal-body>
@@ -21,7 +22,14 @@
       </bs:wizard-panes>
     </bs:modal-body>
     <bs:modal-footer>
-      <bs:wizard-footer last="Finalizar"/>
+      <bs:wizard-footer>
+        <bs:wizard-footer-control-prev firstPane="true">
+          Anterior
+        </bs:wizard-footer-control-prev>
+        <bs:wizard-footer-control-next last="Criar">
+          Próximo
+        </bs:wizard-footer-control-next>
+      </bs:wizard-footer>
     </bs:modal-footer>
   </bs:wizard>
 </bs:modal>

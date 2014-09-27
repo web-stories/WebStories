@@ -1,8 +1,11 @@
 require( ["jquery", "bootstrap", "bootstrap.wizard"], function( $ ) {
-	$( "#new-story-wizard-modal" ).modal();
+	var nostory = $( "#meta" ).data( "nostory" ) === true;
+	var modal = $( "#new-story-wizard-modal" ).modal({
+		show: nostory
+	});
 	$( "#new-story-wizard" ).wizard({
 		finish: function() {
-			alert( "finished!" );
+			modal.modal( "hide" );
 		}
 	});
 });
