@@ -19,6 +19,9 @@
 	<group name="jquery-2.1.1">
 		<js>/js/vendor/jquery-2.1.1.js</js>
 	</group>
+	<group name="jquery.validate-1.13.0">
+		<js>/js/vendor/jquery.validate-1.13.0.js</js>
+	</group>
 	<group name="jquery.ui.widget-1.11.1">
 		<js>/js/vendor/jquery.ui.widget-1.11.1.js</js>
 	</group>

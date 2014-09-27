@@ -20,3 +20,8 @@ require( ["jquery"], function( $ ) {
 		$( ".remaining-chars" ).text( remaining );
 	});
 });
+
+require( ["jquery", "jquery.validate"], function( $ ) {
+	var form = document.wizardForm;
+	// TODO validate the form
+});
