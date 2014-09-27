@@ -34,7 +34,7 @@
           </bs:wizard-pane>
           <bs:wizard-pane>
             <div class="form-group">
-              <label for="story-sinopsis">
+              <label for="story-synopsis">
                 Sinopse
                 <small>
                   &mdash; Descrição curta do tema principal
