@@ -6,7 +6,7 @@
       <bs:wizard-steps>
         <bs:wizard-step number="1" title="Título e Resumo" active="true"/>
         <bs:wizard-step number="2" title="Sinopse"/>
-        <bs:wizard-step number="3" title="Pronto"/>
+        <bs:wizard-step number="3" title="Começar"/>
       </bs:wizard-steps>
       <hr>
       <form>
