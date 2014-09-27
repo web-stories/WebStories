@@ -1,5 +1,6 @@
 require( ["jquery", "bootstrap", "bootstrap.wizard"], function( $ ) {
-	$( ".wizard" ).wizard({
+	$( "#new-story-wizard-modal" ).modal();
+	$( "#new-story-wizard" ).wizard({
 		finish: function() {
 			alert( "finished!" );
 		}
