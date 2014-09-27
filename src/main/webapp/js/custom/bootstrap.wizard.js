@@ -57,17 +57,22 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 		_refresh: function() {
 			this._prevControl= this.element.find( ".wizard-control-prev" );
 			this._nextControl = this.element.find( ".wizard-control-next" );
+			this._jumpControl = this.element.find( ".wizard-control-jump" );
 			this._currentStep = this.element.find( ".wizard-steps .active" ).index();
 			this._stepsNumber = this.element.find( ".wizard-steps li" ).length;
 			
 			this._off( this._prevControl, "click" );
 			this._off( this._nextControl, "click" );
+			this._off( this._jumpControl, "click" );
 			
 			this._on( this._prevControl, {
 				"click": this.prev
 			});
 			this._on( this._nextControl, {
 				"click": this.next
+			});
+			this._on( this._jumpControl, {
+				"click": this.jump
 			});
 		},
 		_beforeStepChange: function() {
@@ -76,16 +81,22 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 			}
 		},
 		_stepChange: function() {
-			var disablePrevControl = $.proxy(function() {
-				if ( this._currentStep === 0 ) {
-					this._prevControl.blur();
-					return true;
-				}
-				return false;
-			}, this );
-			this._prevControl
-				.prop( "disabled", disablePrevControl );
+			this._handleFirstStep();
 			this._handleLastStep();
+		},
+		_handleFirstStep: function() {
+			if ( this._firstStep() ) {
+				this._prevControl
+					.blur()
+					.prop( "disabled", true );
+				this._jumpControl
+					.removeClass( "hidden" );
+			} else {
+				this._prevControl
+					.prop( "disabled", false );
+				this._jumpControl
+					.addClass( "hidden" );
+			}
 		},
 		_handleLastStep: function() {
 			var dataLast = this._nextControl.data( "last" );
@@ -149,6 +160,9 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 			} else {
 				this._trigger( "finish" );
 			}
+		},
+		jump: function() {
+			this._trigger( "jump" );
 		}
 	});
 });
