@@ -29,6 +29,9 @@
         <bs:wizard-footer-control-next last="Criar">
           Próximo
         </bs:wizard-footer-control-next>
+        <button class="btn btn-link" data-dismiss="modal">
+          Pular
+        </button>
       </bs:wizard-footer>
     </bs:modal-footer>
   </bs:wizard>
