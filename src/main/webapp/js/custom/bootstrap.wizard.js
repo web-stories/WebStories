@@ -23,7 +23,6 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 				.addClass( "active" )
 				.one( "bsTransitionEnd", activate )
 				.emulateTransitionEnd( 150 );
-				
 			this._transitioning.pane = true;
 		},
 		_activatePrevStep: function( prev ) {
