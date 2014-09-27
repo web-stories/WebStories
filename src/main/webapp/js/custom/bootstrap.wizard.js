@@ -17,7 +17,6 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 				activePane.addClass( "in" );
 				this._transitioning.pane = false;
 			}, this );
-			
 			oldPane
 				.removeClass( "active in" );
 			activePane
@@ -32,7 +31,6 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 			var transitionEnd = $.proxy(function() {
 				this._transitioning.step = false;
 			}, this );
-			
 			this.element.find( ".wizard-steps > li" ).eq( prev )
 				.removeClass( "complete" )
 				.addClass( "active" );
