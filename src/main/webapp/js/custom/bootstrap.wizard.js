@@ -74,6 +74,17 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 				return false;
 			}
 		},
+		_stepChange: function() {
+			var disablePrevControl = $.proxy(function() {
+				if ( this._currentStep === 0 ) {
+					this._prevControl.blur();
+					return true;
+				}
+				return false;
+			}, this );
+			this._prevControl
+				.prop( "disabled", disablePrevControl );
+		},
 		prev: function() {
 			if ( this._beforeStepChange() === false ) {
 				return;
@@ -84,6 +95,7 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 				this._activatePane( current, prev );
 				this._activatePrevStep( prev );
 				this._currentStep = prev;
+				this._stepChange();
 			}
 		},
 		next: function() {
@@ -97,6 +109,7 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 				this._activatePane( current, next );
 				this._activateNextStep( next );
 				this._currentStep = next;
+				this._stepChange();
 			}
 		}
 	});
