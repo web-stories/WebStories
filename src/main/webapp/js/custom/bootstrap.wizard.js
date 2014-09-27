@@ -9,7 +9,8 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 			step: false,
 			pane: false
 		},
-		_activatePane: function( oldStep, activeStep ) {
+		_activatePane: function( activeStep ) {
+			var oldStep = this._currentStep;
 			var oldPane = this.element.find( ".wizard-pane" ).eq( oldStep );
 			var activePane = this.element.find( ".wizard-pane" ).eq( activeStep );
 			var activate = $.proxy(function() {
@@ -36,7 +37,7 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 			activeElement
 				.removeClass( "active" )
 				.one( "bsTransitionEnd", transitionEnd )
-				.emulateTransitionEnd( 500 );
+				.emulateTransitionEnd( 300 );
 			this._transitioning.step = true;
 		},
 		_activateNextStep: function( next ) {
@@ -50,7 +51,7 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 			nextElement
 				.addClass( "active" )
 				.one( "bsTransitionEnd", transitionEnd )
-				.emulateTransitionEnd( 500 );
+				.emulateTransitionEnd( 300 );
 			this._transitioning.step = true;
 		},
 		_refresh: function() {
@@ -84,29 +85,64 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 			}, this );
 			this._prevControl
 				.prop( "disabled", disablePrevControl );
+			this._handleLastStep();
+		},
+		_handleLastStep: function() {
+			var dataLast = this._nextControl.data( "last" );
+			var dataContent = this._nextControl.data( "content" );
+			var content = this._nextControl.html();
+			if ( this._lastStep() ) {
+				this._nextControl
+					.removeClass( "btn-default" )
+					.addClass( "btn-success" );
+				if ( dataLast ) {
+					this._nextControl
+						.data( "content", content )
+						.text( dataLast );
+				}
+			} else {
+				this._nextControl
+					.removeClass( "btn-success" )
+					.addClass( "btn-default" );
+				if ( dataContent ) {
+					this._nextControl
+						.html( dataContent );
+				}
+			}
+		},
+		_lastStep: function() {
+			var last = this._stepsNumber - 1;
+			var current = this._currentStep;
+			return current === last;
+		},
+		_firstStep: function() {
+			return this._currentStep === 0;
+		},
+		_destroy: function() {
+			this._nextControl
+				.removeData( "content" );
 		},
 		prev: function() {
+			var prev;
 			if ( this._beforeStepChange() === false ) {
 				return;
 			}
-			var current = this._currentStep;
-			var prev = current - 1;
-			if ( current ) {
-				this._activatePane( current, prev );
+			if ( !this._firstStep() ) {
+				prev = this._currentStep - 1;
+				this._activatePane( prev );
 				this._activatePrevStep( prev );
 				this._currentStep = prev;
 				this._stepChange();
 			}
 		},
 		next: function() {
+			var next;
 			if ( this._beforeStepChange() === false ) {
 				return;
 			}
-			var last = this._stepsNumber - 1;
-			var current = this._currentStep;
-			var next = current + 1;
-			if ( current < last ) {
-				this._activatePane( current, next );
+			if ( !this._lastStep() ) {
+				next = this._currentStep + 1;
+				this._activatePane( next );
 				this._activateNextStep( next );
 				this._currentStep = next;
 				this._stepChange();

@@ -28,14 +28,14 @@
     </div>
     <hr>
     <div class="wizard-footer">
-      <div class="btn-group">
-        <button class="btn btn-default wizard-control-prev" type="button" disabled>
-          <span class="icon-left"></span>
-        </button>
-        <button class="btn btn-default wizard-control-next" type="button" >
-          <span class="icon-right"></span>
-        </button>
-      </div>
+      <button class="btn btn-default wizard-control-prev" type="button" disabled>
+        <span class="icon-left"></span>
+        Anterior
+      </button>
+      <button class="btn btn-default wizard-control-next" data-last="Finalizar" type="button">
+        Próximo
+        <span class="icon-right"></span>
+      </button>
     </div>
   </div>
 </div>

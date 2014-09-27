@@ -65,7 +65,7 @@
    ============================================================================================= */
    
 .wizard-steps li:before {
-  transition: width 0.5s;
+  transition: width 0.3s;
   width: 0%;
 }
 .wizard-steps .active:first-child:before,
