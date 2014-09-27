@@ -146,6 +146,8 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 				this._activateNextStep( next );
 				this._currentStep = next;
 				this._stepChange();
+			} else {
+				this._trigger( "finish" );
 			}
 		}
 	});

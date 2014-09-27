@@ -1,3 +1,7 @@
-require( ["jquery", "bootstrap.wizard"], function( $ ) {
-	$( ".wizard" ).wizard();
+require( ["jquery", "bootstrap", "bootstrap.wizard"], function( $ ) {
+	$( ".wizard" ).wizard({
+		finish: function() {
+			alert( "finished!" );
+		}
+	});
 });
