@@ -151,6 +151,9 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 			if ( this._beforeStepChange() === false ) {
 				return;
 			}
+			if ( this._trigger( "beforeNext" ) === false ) {
+				return;
+			}
 			if ( !this._lastStep() ) {
 				next = this._currentStep + 1;
 				this._activatePane( next );
