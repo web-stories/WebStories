@@ -25,7 +25,7 @@ public class StoryEntity implements NumerableEntity {
 	private Long id_story;
 	
 	@ManyToOne( optional = false )
-	@JoinColumn( name = "id_user", nullable = false )
+	@JoinColumn( name = "id_author", nullable = false )
 	private UserEntity author;
 	
 	public UserEntity getAuthor() {
