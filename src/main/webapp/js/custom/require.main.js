@@ -27,7 +27,11 @@ require = (function( require ) {
 	
 	FilesConfig.prototype.files = [
 		"bootstrap-3.2.0",
-		"bootstrap.custom-0.1.0"
+		"bootstrap.custom-0.1.0",
+		"bootstrap.wizard",
+		"jquery.ui.widget-1.11.1",
+		"jquery.validate-1.13.0",
+		"jquery.validate.extend"
 	];
 	
 	FilesConfig.prototype.createMap = function() {

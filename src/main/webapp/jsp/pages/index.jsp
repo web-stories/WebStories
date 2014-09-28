@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="facebook" tagdir="/WEB-INF/tags/facebook" %>
 <div class="jumbotron index-banner">
   <div class="container index-banner-container">
@@ -8,7 +8,7 @@
     </p>
     <p>
       <c:if test="${canPublish}">
-        <facebook:login className="btn btn-primary btn-lg" invite="${param.invite}" redirect="${pageContext.request.contextPath}/">
+        <facebook:login className="btn btn-primary btn-lg" invite="${param.invite}" redirect="${pageContext.request.contextPath}/home/">
           Publique a sua história
         </facebook:login>
       </c:if>
