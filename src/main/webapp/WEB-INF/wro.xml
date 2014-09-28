@@ -7,6 +7,9 @@
 	<group name="jquery.private">
 		<js>/js/custom/jquery.private.js</js>
 	</group>
+	<group name="jquery.validate.extend">
+		<js>/js/custom/jquery.validate.extend.js</js>
+	</group>
 	<group name="bootstrap.wizard">
 		<js>/js/custom/bootstrap.wizard.js</js>
 	</group>
