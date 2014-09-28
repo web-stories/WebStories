@@ -6,7 +6,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.webstories.core.story.StoryMeta;
+import org.webstories.core.story.StoryMetaInput;
 
 @Entity
 @Table( name = "ws_meta" )
@@ -24,7 +24,7 @@ public class MetaEntity {
 	@JoinColumn( name = "id_story", nullable = false )
 	private StoryEntity story;
 	
-	public static MetaEntity from( StoryMeta input ) {
+	public static MetaEntity from( StoryMetaInput input ) {
 		MetaEntity meta = new MetaEntity();
 		meta.ds_title = input.getTitle();
 		meta.ds_summary = input.getSummary();

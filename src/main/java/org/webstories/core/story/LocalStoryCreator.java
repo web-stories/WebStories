@@ -6,5 +6,5 @@ import org.webstories.core.validation.ValidationException;
 
 @Local
 public interface LocalStoryCreator {
-	void createMeta( StoryMeta input ) throws ValidationException;
+	void createMeta( StoryMetaInput input ) throws ValidationException;
 }

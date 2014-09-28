@@ -14,7 +14,7 @@ public class StoryCreator implements LocalStoryCreator {
 	EntityManager entityManager;
 	
 	@Override
-	public void createMeta( StoryMeta input ) throws ValidationException {
+	public void createMeta( StoryMetaInput input ) throws ValidationException {
 		if ( !input.validate() ) {
 			throw new ValidationException();
 		}
