@@ -1,5 +1,16 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags/bootstrap" %>
 <div id="meta" data-nostory="${nostory}"></div>
+<div class="container">
+  <c:forEach items="${userStories}" var="story">
+    <ul>
+      <li> ${story.title}
+      <li> ${story.summary}
+      <li> ${story.synopsis}
+    </ul>
+    <hr>
+  </c:forEach>
+</div>
 <bs:modal id="new-story-wizard-modal" title="Minha primeira história" closeable="false">
   <bs:wizard id="new-story-wizard">
     <bs:modal-body>

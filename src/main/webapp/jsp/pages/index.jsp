@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="facebook" tagdir="/WEB-INF/tags/facebook" %>
 <div class="jumbotron index-banner">
   <div class="container index-banner-container">
