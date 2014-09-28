@@ -2,12 +2,12 @@ require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ )
 	var form = document.wizardForm;
 	var validate = $( form ).validate();
 	var nostory = $( "#meta" ).data( "nostory" ) === true;
-	var modal = $( "#new-story-wizard-modal" ).modal({
+	var modal = $( "#first-story-wizard-modal" ).modal({
 		show: nostory,
 		keyboard: false,
 		backdrop: "static"
 	});
-	$( "#new-story-wizard" ).wizard({
+	$( "#first-story-wizard" ).wizard({
 		finish: function() {
 			form.submit();
 		},

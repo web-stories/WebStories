@@ -30,5 +30,6 @@ public class IndexAction extends BaseServlet {
 		List<StoryMeta> userStories = storyReader.userStories( logged );
 		request.setAttribute( "userStories", userStories );
 		request.setAttribute( "nostory", userStories.isEmpty() );
+		request.setAttribute( "firstStory", userStories.isEmpty() );
 	}
 }

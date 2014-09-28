@@ -11,13 +11,13 @@
     <hr>
   </c:forEach>
 </div>
-<bs:modal id="new-story-wizard-modal" title="Minha primeira história" closeable="false">
-  <bs:wizard id="new-story-wizard">
+<bs:modal id="first-story-wizard-modal" title="${modalTitle}" closeable="false">
+  <bs:wizard id="first-story-wizard">
     <bs:modal-body>
       <bs:wizard-steps>
         <bs:wizard-step number="1" title="Título e Resumo" active="true"/>
         <bs:wizard-step number="2" title="Sinopse"/>
-        <bs:wizard-step number="3" title="Começar"/>
+        <bs:wizard-step number="3" title="Pronto"/>
       </bs:wizard-steps>
       <hr>
       <form name="wizardForm" action="${pageContext.request.contextPath}/home/create" method="post">
@@ -33,7 +33,7 @@
                 <label for="story-summary">
                   Resumo
                   <small>
-                    &mdash; Aspectos mais chamativos da história
+                    &mdash; Descrição curta do tema principal
                   </small>
                 </label>
                 <textarea class="form-control" id="story-summary" name="summary" data-rule-maxlength="140" type="text"
@@ -50,7 +50,7 @@
               <label for="story-synopsis">
                 Sinopse
                 <small>
-                  &mdash; Descrição curta do tema principal
+                  &mdash; Aspectos mais chamativos da história
                 </small>
               </label>
               <textarea class="form-control story-synopsis" id="story-synopsis" name="synopsis" type="text"
@@ -60,10 +60,10 @@
           </bs:wizard-pane>
           <bs:wizard-pane>
             <h2>
-              Parabéns!
+              Pronto!
             </h2>
             <p>
-              Você está pronto para começar a sua primeira história.
+              Clique em <strong class="text-success">começar</strong> para iniciar a sua primeira história.
             </p>
           </bs:wizard-pane>
         </bs:wizard-panes>
