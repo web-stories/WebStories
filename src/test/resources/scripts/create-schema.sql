@@ -27,3 +27,25 @@ CREATE TABLE facebook_sequences (
 	next_val BIGINT
 );
 INSERT INTO facebook_sequences VALUES ( 'facebook_sequence', 1 );
+
+-------------------------------------------------------------------------------
+-- ws_story
+-------------------------------------------------------------------------------
+CREATE TABLE ws_story (
+	id_story BIGINT NOT NULL PRIMARY KEY
+);
+CREATE TABLE story_sequences (
+	sequence_name VARCHAR( 255 ) NOT NULL PRIMARY KEY,
+	next_val BIGINT
+);
+INSERT INTO story_sequences VALUES ( 'story_sequence', 1 );
+
+-------------------------------------------------------------------------------
+-- ws_meta
+-------------------------------------------------------------------------------
+CREATE TABLE ws_meta (
+	id_story BIGINT NOT NULL PRIMARY KEY,
+	ds_title VARCHAR( 255 ) NOT NULL,
+	ds_summary VARCHAR( 255 ) NOT NULL,
+	ds_synopsis TEXT NOT NULL
+);
