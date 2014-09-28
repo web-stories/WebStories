@@ -16,7 +16,7 @@
                 <label for="story-title">
                   Título principal
                 </label>
-                <input class="form-control" id="story-title" type="email" placeholder="Ex.: &quot;Pinóquio&quot;">
+                <input class="form-control" id="story-title" name="title" type="text" placeholder="Ex.: &quot;Pinóquio&quot;" required>
               </div>
               <div class="form-group">
                 <label for="story-summary">
@@ -25,9 +25,9 @@
                     &mdash; Aspectos mais chamativos da história
                   </small>
                 </label>
-                <textarea class="form-control" id="story-summary" type="email"
+                <textarea class="form-control" id="story-summary" name="summary" data-rule-maxlength="140" type="text"
                           placeholder="Ex.: &quot;A jornada de um boneco de madeira querendo se tornar um garoto de verdade&quot;"
-                          ></textarea>
+                          required></textarea>
                 <div>
                   <span class="remaining-chars">140</span>
                   caracteres restantes
@@ -42,9 +42,9 @@
                   &mdash; Descrição curta do tema principal
                 </small>
               </label>
-              <textarea class="form-control story-synopsis" id="story-synopsis" type="email"
+              <textarea class="form-control story-synopsis" id="story-synopsis" name="synopsis" type="text"
                         placeholder="Ex.: &quot;Pinóquio conta a história de um boneco de madeira que dedica toda a sua infância desejando se tornar um garoto de verdade, entretanto é enganado por colegas de escola e dois vigaristas. Através de suas aventuras, Pinóquio passa a entender como ele era ingênuo e travesso. Através de compaixão e gratidão, acaba aprendendo a superar as suas atitudes e decisões equivocadas.&quot;"
-                        ></textarea>
+                        required></textarea>
             </div>
           </bs:wizard-pane>
           <bs:wizard-pane>

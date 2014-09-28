@@ -1,4 +1,5 @@
-require( ["jquery", "bootstrap", "bootstrap.wizard"], function( $ ) {
+require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ ) {
+	var validate = $( document.wizardForm ).validate();
 	var nostory = $( "#meta" ).data( "nostory" ) === true;
 	var modal = $( "#new-story-wizard-modal" ).modal({
 		show: nostory,
@@ -10,6 +11,9 @@ require( ["jquery", "bootstrap", "bootstrap.wizard"], function( $ ) {
 		},
 		jump: function() {
 			modal.modal( "hide" );
+		},
+		beforeNext: function() {
+			return validate.form();
 		}
 	});
 });
@@ -19,9 +23,4 @@ require( ["jquery"], function( $ ) {
 		var remaining = 140 - $( this ).val().length;
 		$( ".remaining-chars" ).text( remaining );
 	});
-});
-
-require( ["jquery", "jquery.validate"], function( $ ) {
-	var form = document.wizardForm;
-	// TODO validate the form
 });
