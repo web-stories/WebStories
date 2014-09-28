@@ -2,25 +2,22 @@ package org.webstories.dao.integration;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 
 import org.webstories.dao.NumerableEntity;
+import org.webstories.dao.user.UserEntity;
+
+import com.restfb.types.User;
 
 @Entity
 @Table( name = "ws_facebook" )
 public class FacebookEntity implements NumerableEntity {
 	@Id
-	@TableGenerator(
-		name = "facebook_sequence",
-		pkColumnValue = "facebook_sequence",
-		table = "facebook_sequences"
-	)
-	@GeneratedValue( strategy = GenerationType.TABLE, generator = "facebook_sequence" )
-	private Long id_facebook;
+	@Column( nullable = false )
+	private Long id_user;
 	
 	@Column( nullable = false, unique = true, length = 255 )
 	private String cod_uid;
@@ -34,12 +31,31 @@ public class FacebookEntity implements NumerableEntity {
 	@Column( nullable = false, length = 255 )
 	private String nm_last;
 	
+	@OneToOne
+	@JoinColumn( name = "id_user", nullable = false )
+	private UserEntity user;
+	
+	public static FacebookEntity from( User facebookUser ) {
+		FacebookEntity facebook = new FacebookEntity();
+		facebook.cod_uid = facebookUser.getId();
+		facebook.ds_email = facebookUser.getEmail();
+		facebook.nm_first = facebookUser.getFirstName();
+		facebook.nm_last = facebookUser.getLastName();
+		return facebook;
+	}
+	
+	public UserEntity getUser() {
+		return user;
+	}
+	public void setUser( UserEntity user ) {
+		this.user = user;
+	}
 	@Override
 	public Long getId() {
-		return id_facebook;
+		return id_user;
 	}
-	public void setId( Long id_facebook ) {
-		this.id_facebook = id_facebook;
+	public void setId( Long id_user ) {
+		this.id_user = id_user;
 	}
 	
 	public String getFacebookId() {

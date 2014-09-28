@@ -11,6 +11,7 @@ import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.integration.FacebookQueries;
 import org.webstories.dao.invitation.InviteEntity;
 import org.webstories.dao.invitation.InviteQueries;
+import org.webstories.dao.user.UserEntity;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -59,13 +60,11 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			throw new AuthenticationException( "E-mail does not match invitation" );
 		}
 		
-		FacebookEntity facebook = new FacebookEntity();
-		facebook.setFacebookId( facebookUser.getId() );
-		facebook.setEmail( facebookUser.getEmail() );
-		facebook.setFirstName( facebookUser.getFirstName() );
-		facebook.setLastName( facebookUser.getLastName() );
+		UserEntity user = UserEntity.from( facebookUser );
+		entityManager.persist( user );
 		
-		// Populate the Id
+		FacebookEntity facebook = FacebookEntity.from( facebookUser );
+		facebook.setUser( user );
 		entityManager.persist( facebook );
 		
 		return Logged.from( facebook );
