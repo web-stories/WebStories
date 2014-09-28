@@ -48,6 +48,7 @@ public class FacebookEntity implements NumerableEntity {
 		return user;
 	}
 	public void setUser( UserEntity user ) {
+		this.id_user = user.getId();
 		this.user = user;
 	}
 	@Override
