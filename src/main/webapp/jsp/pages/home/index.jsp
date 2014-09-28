@@ -1,6 +1,6 @@
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags/bootstrap" %>
 <div id="meta" data-nostory="${nostory}"></div>
-<bs:modal id="new-story-wizard-modal" title="Minha primeira história">
+<bs:modal id="new-story-wizard-modal" title="Minha primeira história" closeable="false">
   <bs:wizard id="new-story-wizard">
     <bs:modal-body>
       <bs:wizard-steps>
