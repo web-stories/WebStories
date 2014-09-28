@@ -2,15 +2,21 @@ package org.webstories.dao.story;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.webstories.core.story.StoryMetaInput;
+import org.webstories.dao.NumerableEntity;
 
 @Entity
 @Table( name = "ws_meta" )
-public class MetaEntity {
+public class MetaEntity implements NumerableEntity {
+	@Id
+	@Column( nullable = false )
+	private Long id_story;
+	
 	@Column( nullable = false, length = 255 )
 	private String ds_title;
 	
@@ -32,6 +38,10 @@ public class MetaEntity {
 		return meta;
 	}
 	
+	public Long getId() {
+		return id_story;
+	}
+	
 	public String getTitle() {
 		return ds_title;
 	}
@@ -46,6 +56,7 @@ public class MetaEntity {
 		return story;
 	}
 	public void setStory( StoryEntity story ) {
+		this.id_story = story.getId();
 		this.story = story;
 	}
 }

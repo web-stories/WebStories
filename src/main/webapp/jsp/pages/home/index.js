@@ -1,5 +1,6 @@
 require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ ) {
-	var validate = $( document.wizardForm ).validate();
+	var form = document.wizardForm;
+	var validate = $( form ).validate();
 	var nostory = $( "#meta" ).data( "nostory" ) === true;
 	var modal = $( "#new-story-wizard-modal" ).modal({
 		show: nostory,
@@ -8,7 +9,7 @@ require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ )
 	});
 	$( "#new-story-wizard" ).wizard({
 		finish: function() {
-			modal.modal( "hide" );
+			form.submit();
 		},
 		jump: function() {
 			modal.modal( "hide" );

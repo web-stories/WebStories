@@ -1,7 +1,5 @@
 package org.webstories.web.convention.pages.home;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,8 +13,7 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 public class IndexAction extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	@Override
-	protected void doGet( HttpServletRequest request, HttpServletResponse response )
-	throws IOException {
+	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {
 		// If user has no story...
 		request.setAttribute( "nostory", true );
 	}
