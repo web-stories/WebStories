@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.webstories.core.auth.Logged;
 import org.webstories.core.story.LocalStoryCreator;
 import org.webstories.core.story.StoryMetaInput;
 import org.webstories.core.validation.ValidationException;
@@ -30,9 +31,10 @@ public class CreateAction extends BaseServlet {
 	protected void doPost( HttpServletRequest request, HttpServletResponse response )
 	throws HttpInternalServerErrorException, IOException {
 		RequestParams params = RequestParams.from( request );
+		Logged logged = getLogged( request );
 		StoryMetaInput input = StoryMetaInput.from( params );
 		try {
-			creator.createMeta( input );
+			creator.createMeta( input, logged );
 			response.sendRedirect( request.getHeader( "referer" ) );
 		} catch ( ValidationException | IOException e ) {
 			throw new HttpInternalServerErrorException( e );

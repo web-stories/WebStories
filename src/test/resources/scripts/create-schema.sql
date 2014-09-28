@@ -39,7 +39,8 @@ CREATE TABLE ws_facebook (
 -- ws_story
 -------------------------------------------------------------------------------
 CREATE TABLE ws_story (
-	id_story BIGINT NOT NULL PRIMARY KEY
+	id_story BIGINT NOT NULL PRIMARY KEY,
+	id_author BIGINT NOT NULL REFERENCES ws_user
 );
 CREATE TABLE story_sequences (
 	sequence_name VARCHAR( 255 ) NOT NULL PRIMARY KEY,
