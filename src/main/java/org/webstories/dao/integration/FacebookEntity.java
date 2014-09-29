@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.NumerableEntity;
 import org.webstories.dao.user.UserEntity;
 
@@ -14,7 +15,7 @@ import com.restfb.types.User;
 
 @Entity
 @Table( name = "ws_facebook" )
-public class FacebookEntity implements NumerableEntity {
+public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 	@Id
 	@Column( nullable = false )
 	private Long id_user;
@@ -62,28 +63,16 @@ public class FacebookEntity implements NumerableEntity {
 	public String getFacebookId() {
 		return cod_uid;
 	}
-	public void setFacebookId( String cod_uid ) {
-		this.cod_uid = cod_uid;
-	}
-	
+	@Override
 	public String getEmail() {
 		return ds_email;
 	}
-	public void setEmail( String ds_email ) {
-		this.ds_email = ds_email;
-	}
-	
+	@Override
 	public String getFirstName() {
 		return nm_first;
 	}
-	public void setFirstName( String nm_first ) {
-		this.nm_first = nm_first;
-	}
-	
+	@Override
 	public String getLastName() {
 		return nm_last;
-	}
-	public void setLastName( String nm_last ) {
-		this.nm_last = nm_last;
 	}
 }

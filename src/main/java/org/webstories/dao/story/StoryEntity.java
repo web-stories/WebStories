@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -28,6 +29,9 @@ public class StoryEntity implements NumerableEntity {
 	@JoinColumn( name = "id_author", nullable = false )
 	private UserEntity author;
 	
+	@OneToOne( mappedBy = "story", optional = false )
+	private MetaEntity meta;
+	
 	public UserEntity getAuthor() {
 		return author;
 	}
@@ -41,5 +45,9 @@ public class StoryEntity implements NumerableEntity {
 	}
 	public void setId( Long id_story ) {
 		this.id_story = id_story;
+	}
+	
+	public MetaEntity getMeta() {
+		return meta;
 	}
 }

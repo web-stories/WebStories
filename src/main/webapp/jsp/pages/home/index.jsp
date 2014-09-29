@@ -25,10 +25,10 @@
                   ${story.title}
                 </a>
                 <p class="story-thumb-summary">
-                  ${story.summary}
+                  ${story.description}
                 </p>
                 <div class="story-thumb-author">
-                  por <cite>Fulano dos Santos</cite>
+                  por <cite>${story.author}</cite>
                 </div>
               </div>
             </div>

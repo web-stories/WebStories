@@ -4,10 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import org.webstories.dao.NumerableEntity;
+import org.webstories.dao.integration.FacebookEntity;
 
 import com.restfb.types.User;
 
@@ -23,6 +25,9 @@ public class UserEntity implements NumerableEntity {
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "user_sequence" )
 	private Long id_user;
 	
+	@OneToOne( mappedBy = "user", optional = false )
+	private FacebookEntity facebook;
+	
 	public static UserEntity from( User facebookUser ) {
 		return new UserEntity();
 	}
@@ -33,5 +38,9 @@ public class UserEntity implements NumerableEntity {
 	}
 	public void setId( Long id_user ) {
 		this.id_user = id_user;
+	}
+	
+	public FacebookEntity getFacebook() {
+		return facebook;
 	}
 }

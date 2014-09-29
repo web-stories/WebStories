@@ -10,11 +10,11 @@ import com.mysema.query.jpa.impl.JPAQuery;
 
 @Stateless
 public class StoryQueries extends Queries {
-	public List<MetaEntity> listAuthorStories( long idAuthor ) {
-		QMetaEntity tableMeta = QMetaEntity.metaEntity;
-		JPAQuery query = queryFrom( tableMeta ).where(
-			tableMeta.story.author.id_user.eq( idAuthor )
+	public List<StoryEntity> listAuthorStories( long idAuthor ) {
+		QStoryEntity tableStory = QStoryEntity.storyEntity;
+		JPAQuery query = queryFrom( tableStory ).where(
+			tableStory.author.id_user.eq( idAuthor )
 		);
-		return query.list( tableMeta );
+		return query.list( tableStory );
 	}
 }
