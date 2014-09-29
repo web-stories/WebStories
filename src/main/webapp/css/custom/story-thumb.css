@@ -1,0 +1,13 @@
+.story-thumb-summary,
+.story-thumb-author,
+.story-thumb-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.story-thumb-summary {
+  margin-bottom: 0;
+}
+.story-thumb-author {
+  color: #777;
+}

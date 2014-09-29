@@ -8,14 +8,35 @@
       Nova história
     </button>
   </div>
-  <c:forEach items="${userStories}" var="story">
-    <ul>
-      <li> ${story.title}
-      <li> ${story.summary}
-      <li> ${story.synopsis}
-    </ul>
-    <hr>
-  </c:forEach>
+  <div class="row">
+    <c:forEach items="${userStories}" var="story">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <a href="#">
+            <img src="http://placehold.it/800x300" alt="história">
+          </a>
+          <div class="caption">
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object" src="http://placehold.it/60x60" alt="Placeholder">
+              </a>
+              <div class="media-body">
+                <a class="story-thumb-title" href="#">
+                  ${story.title}
+                </a>
+                <p class="story-thumb-summary">
+                  ${story.summary}
+                </p>
+                <div class="story-thumb-author">
+                  por <cite>Fulano dos Santos</cite>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </c:forEach>
+  </div>
 </div>
 <bs:modal title="Nova história" id="new-story-wizard-modal">
   <bs:wizard id="new-story-wizard">
