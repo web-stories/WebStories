@@ -1,7 +1,7 @@
 /*
- * 1. Tamanho mínimo de todas as páginas do sistema
- *    Evita desestruturação de layout em dispositivos muito pequenos
- *    320px: Android portrait (4.2.2)
+ * 1. Minimum size for all pages
+      Avoid layout disruption in small devices
+ *    320px: Android default browser portrait (4.2.2)
  */
 body {
   min-width: 320px; /* 1 */
