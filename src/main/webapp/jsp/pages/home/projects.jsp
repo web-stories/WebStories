@@ -1,13 +1,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags/bootstrap" %>
 <div id="meta" data-nostory="${nostory}"></div>
-<div class="container">
-  <div class="page-component page-component-toolbar">
-    <button class="btn btn-success" id="new-story-btn">
-      <span class="icon-draft"></span>
-      Nova história
-    </button>
+<div class="container toolbar">
+  <div class="row">
+    <div class="col-sm-3 col-xs-6">
+      <ol class="breadcrumb breadcumb-clear">
+        <li class="active">
+          <span class="icon-draft"></span>
+          Meus projetos
+        </li>
+      </ol>
+    </div>
+    <div class="col-sm-9 col-xs-6">
+      <div class="text-right">
+        <button class="btn btn-success" id="new-story-btn">
+          <span class="icon-draft"></span>
+          Nova história
+        </button>
+      </div>
+    </div>
   </div>
+</div>
+<div class="container">
   <div class="row">
     <c:forEach items="${userStories}" var="story">
       <div class="col-sm-6 col-md-4">
