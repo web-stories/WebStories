@@ -60,10 +60,12 @@
                 <label for="new-story-summary">
                   Resumo
                 </label>
-                <textarea class="form-control" id="new-story-summary" name="summary" data-rule-maxlength="140" type="text" required></textarea>
-                <div>
-                  <span class="remaining-chars">140</span>
-                  caracteres restantes
+                <div class="remaining">
+                  <textarea class="form-control remaining-input" id="new-story-summary" name="summary" data-rule-maxlength="140" type="text" required></textarea>
+                  <div>
+                    <span class="remaining-chars">140</span>
+                    caracteres restantes
+                  </div>
                 </div>
               </div>
           </bs:wizard-pane>
@@ -123,12 +125,14 @@
                     &mdash; Descrição curta do tema principal
                   </small>
                 </label>
-                <textarea class="form-control" id="first-story-summary" name="summary" data-rule-maxlength="140" type="text"
-                          placeholder="Ex.: &quot;A jornada de um boneco de madeira querendo se tornar um garoto de verdade&quot;"
-                          required></textarea>
-                <div>
-                  <span class="remaining-chars">140</span>
-                  caracteres restantes
+                <div class="remaining">
+                  <textarea class="form-control remaining-input" id="first-story-summary" name="summary" data-rule-maxlength="140" type="text"
+                            placeholder="Ex.: &quot;A jornada de um boneco de madeira querendo se tornar um garoto de verdade&quot;"
+                            required></textarea>
+                  <div>
+                    <span class="remaining-chars">140</span>
+                    caracteres restantes
+                  </div>
                 </div>
               </div>
           </bs:wizard-pane>
