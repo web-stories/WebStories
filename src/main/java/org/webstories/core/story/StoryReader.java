@@ -27,4 +27,15 @@ public class StoryReader implements LocalStoryReader {
 		}
 		return result;
 	}
+	
+	@Override
+	public List<FeaturedStoryItem> featuredStories() {
+		List<FeaturedStoryItem> result = new ArrayList<FeaturedStoryItem>();
+		for ( StoryEntity story : storyQueries.listLastStories( 3 ) ) {
+			MetaEntity meta = story.getMeta();
+			FacebookEntity author = story.getAuthor().getFacebook();
+			result.add( FeaturedStoryItem.from( author, meta ) );
+		}
+		return result;
+	}
 }

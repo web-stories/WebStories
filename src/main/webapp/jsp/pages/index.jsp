@@ -22,110 +22,39 @@
     </c:if>
   </div>
 </div>
-<div class="container index-stories-container">
-  <div class="row">
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <a href="#">
-          <img src="http://placehold.it/800x300" alt="história">
-        </a>
-        <div class="caption">
-          <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="http://placehold.it/60x60" alt="Placeholder">
+<c:if test="${not empty featuredStories}">
+  <div class="container index-stories-container">
+    <div class="row">
+      <c:forEach items="${featuredStories}" var="story">
+        <div class="col-sm-4">
+          <div class="thumbnail">
+            <a href="#">
+              <img src="http://placehold.it/800x300" alt="história">
             </a>
-            <div class="media-body">
-              <a class="story-thumb-title" href="#">
-                A Fábula
-              </a>
-              <p class="story-thumb-summary">
-                Uma fábula perdida no continuum do espaço-tempo
-              </p>
-              <div class="story-thumb-author">
-                por <cite>Fernando Fernandes</cite>
+            <div class="caption">
+              <div class="media">
+                <a class="pull-left" href="#">
+                  <img class="media-object" src="http://placehold.it/60x60" alt="Placeholder">
+                </a>
+                <div class="media-body" title="${story.description}">
+                  <a class="story-thumb-title" href="#">
+                    ${story.title}
+                  </a>
+                  <p class="story-thumb-summary">
+                    ${story.description}
+                  </p>
+                  <div class="story-thumb-author">
+                    por <cite>${story.author}</cite>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <a href="#">
-          <img src="http://placehold.it/800x300" alt="história">
-        </a>
-        <div class="caption">
-          <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="http://placehold.it/60x60" alt="Placeholder">
-            </a>
-            <div class="media-body">
-              <a class="story-thumb-title" href="#">
-                O Monstro
-              </a>
-              <p class="story-thumb-summary">
-                Um monstro buscando o significado para a vida
-              </p>
-              <div class="story-thumb-author">
-                por <cite>Mariana Gonçalves</cite>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <a href="#">
-          <img src="http://placehold.it/800x300" alt="história">
-        </a>
-        <div class="caption">
-          <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="http://placehold.it/60x60" alt="Placeholder">
-            </a>
-            <div class="media-body">
-              <a class="story-thumb-title" href="#">
-                A Saga da Sétima Pedra
-              </a>
-              <p class="story-thumb-summary">
-                Uma busca incansável para desvendar a imortalidade
-              </p>
-              <div class="story-thumb-author">
-                por <cite>Carlos Cardoso</cite>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-4 hidden-md hidden-lg">
-      <div class="thumbnail">
-        <a href="#">
-          <img src="http://placehold.it/800x300" alt="história">
-        </a>
-        <div class="caption">
-          <div class="media">
-            <a href="#" class="pull-left">
-              <img class="media-object" src="http://placehold.it/60x60" alt="Placeholder">
-            </a>
-            <div class="media-body">
-              <a class="story-thumb-title" href="#">
-                O Homem Que Não Falava
-              </a>
-              <p class="story-thumb-summary">
-                Uma pessoa mostra uma forma diferente de se comunicar
-              </p>
-              <div class="story-thumb-author">
-                por <cite>João Pereira</cite>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </c:forEach>
     </div>
   </div>
-</div>
+</c:if>
 <div class="container">
   <div class="page-header">
     <h1>Planos futuros</h1>

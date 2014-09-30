@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.invitation.LocalInviteAuthorization;
+import org.webstories.core.story.LocalStoryReader;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.BaseServlet;
 
@@ -19,11 +20,13 @@ public class IndexAction extends BaseServlet {
 	@EJB
 	LocalInviteAuthorization inviteAuthorization;
 	
+	@EJB
+	LocalStoryReader storyReader;
+	
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {
-		boolean isLogged = isLogged( request );
-		boolean isInvited = isInvited( request );
-		request.setAttribute( "canPublish", isLogged || isInvited );
+		request.setAttribute( "canPublish", isLogged( request ) || isInvited( request ) );
+		request.setAttribute( "featuredStories", storyReader.featuredStories() );
 	}
 	
 	private boolean isInvited( HttpServletRequest request ) {

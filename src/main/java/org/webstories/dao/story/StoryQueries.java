@@ -17,4 +17,11 @@ public class StoryQueries extends Queries {
 		);
 		return query.list( tableStory );
 	}
+	public List<StoryEntity> listLastStories( int limit ) {
+		QStoryEntity tableStory = QStoryEntity.storyEntity;
+		JPAQuery query = queryFrom( tableStory )
+			.orderBy( tableStory.id_story.desc() )
+			.limit( limit );
+		return query.list( tableStory );
+	}
 }
