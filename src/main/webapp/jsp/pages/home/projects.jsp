@@ -2,7 +2,7 @@
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags/bootstrap" %>
 <div id="meta" data-nostory="${nostory}"></div>
 <div class="container">
-  <div class="text-right">
+  <div class="page-component page-component-toolbar">
     <button class="btn btn-success" id="new-story-btn">
       <span class="icon-draft"></span>
       Nova história
@@ -20,7 +20,7 @@
               <a class="pull-left" href="#">
                 <img class="media-object" src="http://placehold.it/60x60" alt="Placeholder">
               </a>
-              <div class="media-body">
+              <div class="media-body" title="${story.description}">
                 <a class="story-thumb-title" href="#">
                   ${story.title}
                 </a>

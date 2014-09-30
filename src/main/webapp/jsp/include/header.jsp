@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="uri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 <nav class="navbar navbar-default navbar-fixed-top header-navbar">
   <div class="container">
     <div class="navbar-header">
@@ -13,7 +16,17 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="main-navbar">
-      <form class="navbar-form navbar-right" name="headerSearchForm" method="get" action="https://www.google.com/search">
+      <c:if test="${isLogged}">
+        <ul class="nav navbar-nav">
+          <li class="${ fn:indexOf( uri, '/home/projects' ) > -1 ? 'active' : '' }">
+            <a href="${pageContext.request.contextPath}/home/projects">
+              <span class="icon-draft"></span>
+              Meus projetos
+            </a>
+          </li>
+        </ul>
+      </c:if>
+      <form class="navbar-form navbar-right header-navbar-search-form" name="headerSearchForm" method="get" action="https://www.google.com/search">
         <div class="form-group">
           <input name="q" type="hidden" value="site:webstories.org ">
           <input class="form-control header-search-input" name="search" type="text" placeholder="Buscar">

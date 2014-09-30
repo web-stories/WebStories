@@ -2,7 +2,9 @@ body {
   padding-top: 66px;
 }
 .header-navbar {
+  border-bottom: 1px solid #BCBCBC;
   background: #FFF;
+  box-shadow: 0 1px 4px rgba( 0, 0, 0, 0.1 );
 }
 .header-navbar .header-navbar-toggle {
   border: 1px solid transparent;
@@ -11,4 +13,10 @@ body {
 .header-navbar .header-navbar-toggle:focus {
   background: none;
   border: 1px solid #DDD;
+}
+/*
+ * 1. Removes the border for the last item in the navbar for mobile screens 
+ */
+.header-navbar-search-form {
+  border-bottom: none; /* 1 */
 }

@@ -5,3 +5,9 @@
 textarea.story-synopsis {
   height: 165px;
 }
+.page-component {
+  margin-bottom: 20px;
+}
+.page-component-toolbar {
+  text-align: right;
+}

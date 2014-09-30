@@ -23,7 +23,11 @@
         <convention:include-stylesheet/>
       </div>
     </div>
-    <jsp:include page="/jsp/include/header.jsp"/>
+    <div id="header-wrapper" data-senna-surface>
+      <div id="header-wrapper-default">
+        <jsp:include page="/jsp/include/header.jsp"/>
+      </div>
+    </div>
     <div id="wrapper" data-senna-surface>
       <div id="wrapper-default">
         <convention:include/>

@@ -18,7 +18,7 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 @WebServlet
 @ConventionServlet
 @AuthForwarded
-public class IndexAction extends BaseServlet {
+public class ProjectsAction extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	
 	@EJB
