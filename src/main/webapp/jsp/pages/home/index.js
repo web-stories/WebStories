@@ -43,9 +43,24 @@ require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ )
 	});
 });
 
-require( ["jquery"], function( $ ) {
-	$( "#story-summary" ).keyup(function() {
-		var remaining = 140 - $( this ).val().length;
-		$( ".remaining-chars" ).text( remaining );
+require( ["jquery", "jquery.ui.widget"], function( $ ) {
+	$.widget( "ws.remaining", {
+		options: {
+			limit: 140
+		},
+		_create: function() {
+			this._textarea = this.element.find( ".remaining-input" );
+			this._on( this._textarea, {
+				"keyup": this._type
+			});
+		},
+		_type: function() {
+			var remaining = this.options.limit - this._textarea.val().length;
+			this.element.find( ".remaining-chars" )
+				.text( remaining );
+		}
+	});
+	$( ".remaining" ).remaining({
+		limit: 140
 	});
 });
