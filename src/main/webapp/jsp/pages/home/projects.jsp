@@ -26,7 +26,7 @@
     <c:forEach items="${userStories}" var="story">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <a href="#">
+          <a href="${pageContext.request.contextPath}/home/projects/?id=${story.id}">
             <img src="http://placehold.it/800x300" alt="história">
           </a>
           <div class="caption">
@@ -35,7 +35,7 @@
                 <img class="media-object" src="http://placehold.it/60x60" alt="Placeholder">
               </a>
               <div class="media-body" title="${story.description}">
-                <a class="story-thumb-title" href="#">
+                <a class="story-thumb-title" href="${pageContext.request.contextPath}/home/projects/?id=${story.id}">
                   ${story.title}
                 </a>
                 <p class="story-thumb-summary">
