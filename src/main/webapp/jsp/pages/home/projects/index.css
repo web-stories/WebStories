@@ -31,3 +31,40 @@ textarea.editor-synopsis {
     height: 149px;
   }
 }
+
+/* =============================================================================================
+   Story
+   ============================================================================================= */
+   
+.editor {
+  font-family: "Trebuchet MS", "Times New Roman";
+}
+.editor-title {
+  margin-top: 20px;
+}
+.editor-title-header {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+.editor-chapter {
+  display: inline-block;
+  padding-bottom: 2px;
+  padding-right: 50px;
+  border-bottom: 1px solid #EEE;
+}
+.editor-chapter-title {
+  display: block;
+  margin-top: 10px;
+  vertical-align: middle;
+}
+/* sm */
+@media ( min-width: 768px ) {
+  .editor-chapter-title {
+    display: inline; 
+    margin-top: 0;
+    white-space: nowrap;
+  }
+}

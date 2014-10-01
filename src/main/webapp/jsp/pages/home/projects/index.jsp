@@ -45,3 +45,16 @@
     </div>
   </div>
 </div>
+<div class="container editor">
+  <div class="editor-title">
+    <h1 class="editor-title-header">A Saga da Sétima Pedra</h1>
+  </div>
+  <div class="editor-chapter">
+    <h2>
+      Capítulo 1
+      <small class="editor-chapter-title">
+        O feiticeiro e a dama de honra
+      </small>
+    </h2>
+  </div>
+</div>
