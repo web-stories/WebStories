@@ -64,6 +64,7 @@ textarea.editor-synopsis {
   height: 80px;
   margin-right: 5px;
   margin-bottom: 10px;
+  border: 1px solid #CCC;
   box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.075 );
 }
 /* sm */
@@ -100,7 +101,4 @@ textarea.editor-synopsis {
 }.editor-chapter-text {
   margin-bottom: 10px;
   resize: none;
-}
-.editor-chapter-content textarea {
-  border-radius: 0;
 }
