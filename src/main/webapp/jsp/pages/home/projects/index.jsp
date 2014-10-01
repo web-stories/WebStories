@@ -11,3 +11,37 @@
     </li>
   </ol>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="editor-meta-block">
+        <label>
+          Capa
+        </label>
+        <img class="img-thumbnail" id="editor-cover" src="//placehold.it/800x300" alt="Imagem da capa">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="editor-meta-block">
+        <div class="form-group">
+          <label for="editor-summary">
+            Resumo
+          </label>
+          <div class="remaining">
+            <textarea class="form-control remaining-input editor-summary" id="editor-synopsis" type="text"></textarea>
+            <div>
+              <span class="remaining-chars">140</span>
+              caracteres restantes
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="editor-synopsis">
+            Sinopse
+          </label>
+          <textarea class="form-control remaining-input editor-synopsis" id="editor-synopsis" type="text"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

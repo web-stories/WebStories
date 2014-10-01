@@ -1,0 +1,33 @@
+/* =============================================================================================
+   Meta
+   ============================================================================================= */
+   
+.editor-meta-block {
+  margin-bottom: 20px;
+}
+textarea.editor-summary {
+  height: 59px;
+  resize: none;
+}
+textarea.editor-synopsis {
+  height: 108px;
+  resize: none;
+}
+/* md */
+@media ( min-width: 992px ) {
+  textarea.editor-summary {
+    height: 74px;
+  }
+  textarea.editor-synopsis {
+    height: 104px;
+  }
+}
+/* lg */
+@media ( min-width: 1200px ) {
+  textarea.editor-summary {
+    height: 79px;
+  }
+  textarea.editor-synopsis {
+    height: 149px;
+  }
+}
