@@ -37,10 +37,12 @@ textarea.editor-synopsis {
    ============================================================================================= */
    
 .editor {
-  font-family: "Trebuchet MS", "Times New Roman";
+  margin-bottom: 50px;
 }
+
 .editor-title {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .editor-title-header {
   margin-top: 0;
@@ -48,23 +50,57 @@ textarea.editor-synopsis {
   padding-left: 10px;
   padding-right: 10px;
   text-align: center;
+  font-family: "Trebuchet MS", "Times New Roman";
 }
-.editor-chapter {
+
+.editor-chapter-thumbs {
+  padding-right: 5px;
+  white-space: nowrap;
+  overflow: auto;
+}
+.editor-chapter-thumb {
   display: inline-block;
+  width: 130px;
+  height: 80px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.075 );
+}
+/* sm */
+@media ( min-width: 768px ) {
+  .editor-chapter-thumb {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+  }
+}
+.editor-chapter-title {
+  display: inline-block;
+  margin-bottom: 10px;
   padding-bottom: 2px;
   padding-right: 50px;
   border-bottom: 1px solid #EEE;
 }
-.editor-chapter-title {
+.editor-chapter-title-header {
+  margin-top: 0;
+  margin-bottom: 3px;
+}
+.editor-chapter-title-header-name {
   display: block;
   margin-top: 10px;
   vertical-align: middle;
 }
 /* sm */
 @media ( min-width: 768px ) {
-  .editor-chapter-title {
+  .editor-chapter-title-header-name {
     display: inline; 
     margin-top: 0;
     white-space: nowrap;
   }
+}.editor-chapter-text {
+  margin-bottom: 10px;
+  resize: none;
+}
+.editor-chapter-content textarea {
+  border-radius: 0;
 }
