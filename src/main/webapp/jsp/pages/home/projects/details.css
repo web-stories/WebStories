@@ -1,0 +1,30 @@
+.details-cover,
+.details-meta {
+  margin-bottom: 20px;
+}
+textarea.details-meta-summary {
+  height: 59px;
+  resize: none;
+}
+textarea.details-meta-synopsis {
+  height: 108px;
+  resize: none;
+}
+/* md */
+@media ( min-width: 992px ) {
+  textarea.details-meta-summary {
+    height: 74px;
+  }
+  textarea.details-meta-synopsis {
+    height: 104px;
+  }
+}
+/* lg */
+@media ( min-width: 1200px ) {
+  textarea.details-meta-summary {
+    height: 79px;
+  }
+  textarea.details-meta-synopsis {
+    height: 149px;
+  }
+}

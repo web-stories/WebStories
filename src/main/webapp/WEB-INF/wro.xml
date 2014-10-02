@@ -23,6 +23,7 @@
 		<css>/css/custom/authentication.css</css>
 		<css>/css/custom/story-thumb.css</css>
 		<css>/css/custom/toolbar.css</css>
+		<css>/css/custom/editor-tabs.css</css>
 	</group>
 	<!-- Vendor -->
 	<group name="jquery-2.1.1">
