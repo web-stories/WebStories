@@ -3,13 +3,13 @@ package org.webstories.core.story;
 import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.story.MetaEntity;
 
-public class FeaturedStoryItem implements StoryThumb {
+public class HomeStory implements StoryThumb {
 	private Long id;
 	private String title;
 	private String description;
 	private String author;
-	public static FeaturedStoryItem from( IdentifiableEntity author, MetaEntity meta ) {
-		FeaturedStoryItem product = new FeaturedStoryItem();
+	public static HomeStory from( IdentifiableEntity author, MetaEntity meta ) {
+		HomeStory product = new HomeStory();
 		product.id = meta.getId();
 		product.title = meta.getTitle();
 		product.description = meta.getSummary();

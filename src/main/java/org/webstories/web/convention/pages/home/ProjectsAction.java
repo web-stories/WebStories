@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.auth.Logged;
-import org.webstories.core.story.HomeStoryItem;
+import org.webstories.core.story.HomeStory;
 import org.webstories.core.story.LocalStoryReader;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
@@ -27,7 +27,7 @@ public class ProjectsAction extends BaseServlet {
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {
 		Logged logged = getLogged( request );
-		List<HomeStoryItem> userStories = storyReader.userStories( logged );
+		List<HomeStory> userStories = storyReader.userStories( logged );
 		request.setAttribute( "userStories", userStories );
 		request.setAttribute( "nostory", userStories.isEmpty() );
 		request.setAttribute( "firstStory", userStories.isEmpty() );

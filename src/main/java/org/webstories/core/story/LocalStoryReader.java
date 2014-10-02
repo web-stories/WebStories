@@ -8,6 +8,6 @@ import org.webstories.core.auth.Logged;
 
 @Local
 public interface LocalStoryReader {
-	List<HomeStoryItem> userStories( Logged logged );
-	List<FeaturedStoryItem> featuredStories();
+	List<HomeStory> userStories( Logged logged );
+	List<FeaturedStory> featuredStories();
 }

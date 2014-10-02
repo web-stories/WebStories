@@ -18,23 +18,23 @@ public class StoryReader implements LocalStoryReader {
 	StoryQueries storyQueries;
 	
 	@Override
-	public List<HomeStoryItem> userStories( Logged logged ) {
-		List<HomeStoryItem> result = new ArrayList<HomeStoryItem>();
+	public List<HomeStory> userStories( Logged logged ) {
+		List<HomeStory> result = new ArrayList<HomeStory>();
 		for ( StoryEntity story : storyQueries.listAuthorStories( logged.getId() ) ) {
 			MetaEntity meta = story.getMeta();
 			FacebookEntity author = story.getAuthor().getFacebook();
-			result.add( HomeStoryItem.from( author, meta ) );
+			result.add( HomeStory.from( author, meta ) );
 		}
 		return result;
 	}
 	
 	@Override
-	public List<FeaturedStoryItem> featuredStories() {
-		List<FeaturedStoryItem> result = new ArrayList<FeaturedStoryItem>();
+	public List<FeaturedStory> featuredStories() {
+		List<FeaturedStory> result = new ArrayList<FeaturedStory>();
 		for ( StoryEntity story : storyQueries.listLastStories( 3 ) ) {
 			MetaEntity meta = story.getMeta();
 			FacebookEntity author = story.getAuthor().getFacebook();
-			result.add( FeaturedStoryItem.from( author, meta ) );
+			result.add( FeaturedStory.from( author, meta ) );
 		}
 		return result;
 	}
