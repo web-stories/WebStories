@@ -80,15 +80,15 @@
     </div>
     <div class="col-sm-3 col-lg-2">
       <div class="editor-chapter-thumbs">
-        <div class="thumbnail editor-chapter-thumb">
+        <button class="thumbnail editor-chapter-thumb">
           Capítulo 1
-        </div>
-        <div class="thumbnail editor-chapter-thumb">
+        </button>
+        <button class="thumbnail editor-chapter-thumb">
           Capítulo 2
-        </div>
-        <div class="thumbnail editor-chapter-thumb">
+        </button>
+        <button class="thumbnail editor-chapter-thumb">
           Capítulo 3
-        </div>
+        </button>
       </div>
     </div>
   </div>
