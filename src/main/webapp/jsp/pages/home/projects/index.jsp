@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="col-sm-3 col-lg-2">
-      <div class="editor-chapter-thumbs">
+      <div class="editor-chapter-thumbs" data-spy="affix" data-offset-top="220">
         <button class="thumbnail editor-chapter-thumb">
           Capítulo 1
         </button>
