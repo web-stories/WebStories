@@ -7,19 +7,19 @@
       </a>
     </li>
     <li class="active">
-      A Saga da Sétima Pedra
+      ${story.title}
     </li>
   </ol>
 </div>
 <div class="container">
   <ul class="nav nav-tabs editor-tabs">
     <li class="active">
-      <a href="${pageContext.request.contextPath}/home/projects/?id=${param.id}">
+      <a href="${pageContext.request.contextPath}/home/projects/?id=${story.id}">
         História
       </a>
     </li>
     <li>
-      <a href="${pageContext.request.contextPath}/home/projects/details?id=${param.id}">
+      <a href="${pageContext.request.contextPath}/home/projects/details?id=${story.id}">
         Detalhes
       </a>
     </li>
@@ -27,7 +27,9 @@
 </div>
 <div class="container editor">
   <div class="editor-title">
-    <h1 class="editor-title-header">A Saga da Sétima Pedra</h1>
+    <h1 class="editor-title-header">
+      ${story.title}
+    </h1>
   </div>
   <div class="row">
     <div class="col-sm-9 col-lg-10">
