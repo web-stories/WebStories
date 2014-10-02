@@ -38,4 +38,11 @@ public class StoryReader implements LocalStoryReader {
 		}
 		return result;
 	}
+	
+	@Override
+	public StoryDetails storyDetails( long idStory ) {
+		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
+		MetaEntity meta = story.getMeta();
+		return StoryDetails.from( meta );
+	}
 }

@@ -10,4 +10,5 @@ import org.webstories.core.auth.Logged;
 public interface LocalStoryReader {
 	List<HomeStory> userStories( Logged logged );
 	List<FeaturedStory> featuredStories();
+	StoryDetails storyDetails( long idStory );
 }

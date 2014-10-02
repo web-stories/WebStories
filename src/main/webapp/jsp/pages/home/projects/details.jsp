@@ -7,19 +7,19 @@
       </a>
     </li>
     <li class="active">
-      A Saga da Sétima Pedra
+      ${story.title}
     </li>
   </ol>
 </div>
 <div class="container">
   <ul class="nav nav-tabs editor-tabs">
     <li>
-      <a href="${pageContext.request.contextPath}/home/projects/?id=${param.id}">
+      <a href="${pageContext.request.contextPath}/home/projects/?id=${story.id}">
         História
       </a>
     </li>
     <li class="active">
-      <a href="${pageContext.request.contextPath}/home/projects/details?id=${param.id}">
+      <a href="${pageContext.request.contextPath}/home/projects/details?id=${story.id}">
         Detalhes
       </a>
     </li>
@@ -42,7 +42,8 @@
             Resumo
           </label>
           <div class="remaining">
-            <textarea class="form-control remaining-input details-meta-summary" id="details-meta-summary" type="text"></textarea>
+            <textarea class="form-control remaining-input details-meta-summary" id="details-meta-summary"
+                      type="text">${story.summary}</textarea>
             <div>
               <span class="remaining-chars">140</span>
               caracteres restantes
@@ -53,7 +54,8 @@
           <label for="details-meta-synopsis">
             Sinopse
           </label>
-          <textarea class="form-control remaining-input details-meta-synopsis" id="details-meta-synopsis" type="text"></textarea>
+          <textarea class="form-control remaining-input details-meta-synopsis" id="details-meta-synopsis"
+                    type="text">${story.synopsis}</textarea>
         </div>
       </div>
     </div>
