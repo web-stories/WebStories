@@ -33,29 +33,39 @@
   </div>
   <div class="row">
     <div class="col-sm-9 col-lg-10">
-      <div class="editor-chapter-title">
-        <h2 class="editor-chapter-title-header">
-          Capítulo 1
-          <small class="editor-chapter-title-header-name">
-            &mdash; O feiticeiro e a dama de honra
-          </small>
-        </h2>
+      <div class="editor-chapter">
+        <div class="editor-chapter-title">
+          <h2 class="editor-chapter-title-header">
+            Capítulo 1
+            <small class="editor-chapter-title-header-name">
+              &mdash; O feiticeiro e a dama de honra
+            </small>
+          </h2>
+        </div>
+        <div class="editor-chapter-content">
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+        </div>
+        <button class="btn btn-primary btn-block btn-lg">
+          <span class="icon-plus"></span>
+        </button>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-9 col-lg-10">
-      <div class="editor-chapter-content">
-        <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-        <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-        <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-        <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-        <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-        <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-        <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-      </div>
-      <div class="editor-chapter-content-add">
-        <button class="btn btn-primary btn-block">
+      <div class="editor-chapter">
+        <div class="editor-chapter-title">
+          <h2 class="editor-chapter-title-header">
+            Capítulo 2
+            <small class="editor-chapter-title-header-name">
+              &mdash; Visões de um passado perturbador
+            </small>
+          </h2>
+        </div>
+        <div class="editor-chapter-content">
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+        </div>
+        <button class="btn btn-primary btn-block btn-lg">
           <span class="icon-plus"></span>
         </button>
       </div>
