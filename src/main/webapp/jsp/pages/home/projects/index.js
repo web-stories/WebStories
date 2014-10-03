@@ -18,3 +18,13 @@ require( ["jquery", "bootstrap"], function( $ ) {
 	$( thumbsNav ).find( "a" )
 		.click( click );
 });
+
+require( ["jquery", "bootstrap"], function( $ ) {
+	$( ".editor-chapter-thumbs" ).affix({
+		offset: {
+			top: function( element ) {
+				return 168;
+			}
+		}
+	});
+});

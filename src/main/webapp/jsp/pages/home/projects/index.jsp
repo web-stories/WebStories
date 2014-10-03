@@ -79,7 +79,7 @@
       </div>
     </div>
     <div class="col-sm-3 col-lg-2 hidden-xs">
-      <div class="editor-chapter-thumbs" data-spy="affix" data-offset-top="168">
+      <div class="editor-chapter-thumbs">
         <ul class="nav">
           <li>
             <a class="editor-chapter-thumb" href="#chapter-1">Capítulo 1</a>
