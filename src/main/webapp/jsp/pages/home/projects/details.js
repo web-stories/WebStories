@@ -3,3 +3,7 @@ require( ["jquery", "jquery.ws.remaining"], function( $ ) {
 		limit: 140
 	});
 });
+
+require( ["jquery", "jquery.validate.extend"], function( $ ) {
+	$( document.metaForm ).validate();
+});
