@@ -25,22 +25,19 @@
     </li>
   </ul>
 </div>
-<form action="${pageContext.request.contextPath}/home/projects/details/save" method="post">
-  <input name="idStory" type="hidden" value="${story.id}">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <div class="details-cover">
-          <label>
-            Capa
-          </label>
-          <div class="thumbnail">
-            <img id="details-cover" src="//placehold.it/800x300" alt="Imagem da capa">
-          </div>
+        <label>
+          Capa
+        </label>
+        <div class="thumbnail">
+          <img id="details-cover" src="//placehold.it/800x300" alt="Imagem da capa">
         </div>
       </div>
       <div class="col-md-4">
-        <div class="details-meta">
+        <form action="${pageContext.request.contextPath}/home/projects/details/save" method="post">
+          <input name="idStory" type="hidden" value="${story.id}">
           <div class="form-group">
             <label for="details-meta-title">
               Título
@@ -70,7 +67,7 @@
           <div class="form-group">
             <button class="btn btn-primary btn-lg btn-block">Salvar</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
