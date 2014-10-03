@@ -22,9 +22,7 @@ require( ["jquery", "bootstrap"], function( $ ) {
 require( ["jquery", "bootstrap"], function( $ ) {
 	$( ".editor-chapter-thumbs" ).affix({
 		offset: {
-			top: function( element ) {
-				return 168;
-			}
+			top: 168
 		}
 	});
 });
