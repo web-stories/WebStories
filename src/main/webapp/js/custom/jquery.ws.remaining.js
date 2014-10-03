@@ -4,13 +4,15 @@ define( ["jquery", "jquery.ui.widget"], function( $ ) {
 			limit: 140
 		},
 		_create: function() {
-			this._textarea = this.element.find( ".remaining-input" );
-			this._on( this._textarea, {
-				"keyup": this._type
+			this._input = this.element.find( ".remaining-input" );
+			this._on( this._input, {
+				"keyup": this._updateText
 			});
+			// Consider when field is not empty prior to initialization
+			this._updateText(); 
 		},
-		_type: function() {
-			var remaining = this.options.limit - this._textarea.val().length;
+		_updateText: function() {
+			var remaining = this.options.limit - this._input.val().length;
 			this.element.find( ".remaining-chars" )
 				.text( remaining );
 		}
