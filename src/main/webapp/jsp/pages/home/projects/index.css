@@ -26,12 +26,13 @@
 }
 .editor-chapter-thumbs {
   width: 154px;
+  margin-top: 49px;
   padding-right: 5px;
   white-space: nowrap;
   overflow: auto;
 }
 .editor-chapter-thumbs.affix {
-  top: 65px;
+  top: 16px;
 }
 .editor-chapter-thumb {
   display: inline-block;
