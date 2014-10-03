@@ -25,7 +25,7 @@ public class SaveAction extends BaseServlet {
 	LocalStoryEditor storyEditor;
 	
 	@Override
-	protected void doGet( HttpServletRequest request, HttpServletResponse response )
+	protected void doPost( HttpServletRequest request, HttpServletResponse response )
 	throws IOException {
 		RequestParams params = RequestParams.from( request );
 		long idStory = params.get( "idStory" ).toLong();
