@@ -8,13 +8,12 @@ require( ["jquery", "bootstrap"], function( $ ) {
 	}
 	function jumpTo( chapterId ) {
 		$( "html, body" ).animate({
-			scrollTop: $( chapterId ).offset().top - offset,
-			duration: 100,
-			easing: "linear"
-		});
+			scrollTop: $( chapterId ).offset().top - offset
+		}, "fast" );
 	}
 	$( "body" ).scrollspy({
-		target: thumbsNav
+		target: thumbsNav,
+		offset: offset + 1
 	});
 	$( thumbsNav ).find( "a" )
 		.click( click );

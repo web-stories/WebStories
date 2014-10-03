@@ -34,20 +34,15 @@
 .editor-chapter-thumb {
   height: 80px;
   margin-bottom: 10px;
+  border: 2px solid #DDD;
   box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.075 );
   transition: border-color 0s;
   cursor: default;
 }
-.editor-chapter-thumb {
-  border-width: 2px;
-}
-a.editor-chapter-thumb:focus {
-  outline: none;
-}
-a.editor-chapter-thumb:hover {
+.editor-chapter-thumb:hover {
   border-color: #CCC;
 }
-a.editor-chapter-thumb:focus {
+.active .editor-chapter-thumb {
   border-color: #428BCA;
 }
 .nav > li > a.editor-chapter-thumb:hover,

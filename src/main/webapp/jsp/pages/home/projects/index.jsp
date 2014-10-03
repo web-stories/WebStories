@@ -82,10 +82,10 @@
       <div class="editor-chapter-thumbs" data-spy="affix" data-offset-top="168">
         <ul class="nav">
           <li>
-            <a class="thumbnail editor-chapter-thumb" href="#chapter-1">Capítulo 1</a>
+            <a class="editor-chapter-thumb" href="#chapter-1">Capítulo 1</a>
           </li>
           <li>
-            <a class="thumbnail editor-chapter-thumb" href="#chapter-2">Capítulo 2</a>
+            <a class="editor-chapter-thumb" href="#chapter-2">Capítulo 2</a>
           </li>
         </ul>
       </div>
