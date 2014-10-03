@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.webstories.core.validation.ValidationException;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryQueries;
 
@@ -17,7 +18,10 @@ public class StoryEditor implements LocalStoryEditor {
 	StoryQueries storyQueries;
 	
 	@Override
-	public void updateMeta( long idStory, StoryMetaInput input ) {
+	public void updateMeta( long idStory, StoryMetaInput input ) throws ValidationException {
+		if ( !input.validate() ) {
+			throw new ValidationException();
+		}
 		MetaEntity meta = storyQueries.findMetaByPrimaryKey( idStory );
 		meta.update( input );
 		entityManager.merge( meta );

@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.story.LocalStoryEditor;
 import org.webstories.core.story.StoryMetaInput;
+import org.webstories.core.validation.ValidationException;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
+import org.webstories.web.util.servlet.HttpInternalServerErrorException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
@@ -26,11 +28,15 @@ public class SaveAction extends BaseServlet {
 	
 	@Override
 	protected void doPost( HttpServletRequest request, HttpServletResponse response )
-	throws IOException {
+	throws HttpInternalServerErrorException {
 		RequestParams params = RequestParams.from( request );
 		long idStory = params.get( "idStory" ).toLong();
 		StoryMetaInput input =  StoryMetaInput.from( params );
-		storyEditor.updateMeta( idStory, input );
-		response.sendRedirect( request.getHeader( "referer" ) );
+		try {
+			storyEditor.updateMeta( idStory, input );
+			response.sendRedirect( request.getHeader( "referer" ) );
+		} catch ( IOException | ValidationException e ) {
+			throw new HttpInternalServerErrorException( e );
+		}
 	}
 }
