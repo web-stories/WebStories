@@ -42,6 +42,12 @@
       <div class="col-md-4">
         <div class="details-meta">
           <div class="form-group">
+            <label for="details-meta-title">
+              Título
+            </label>
+            <input class="form-control" id="details-meta-title" name="title" type="text" value="${story.title}">
+          </div>
+          <div class="form-group">
             <label for="details-meta-summary">
               Resumo
             </label>
