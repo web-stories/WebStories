@@ -25,43 +25,39 @@
   content: "";
 }
 .editor-chapter-thumbs {
-  width: 154px;
-  margin-top: 49px;
+  width: 155px;
   padding-right: 5px;
-  white-space: nowrap;
-  overflow: auto;
 }
 .editor-chapter-thumbs.affix {
-  top: 16px;
+  top: 69px;
 }
 .editor-chapter-thumb {
-  display: inline-block;
-  width: 130px;
   height: 80px;
-  margin-right: 5px;
   margin-bottom: 10px;
-  border: 1px solid #CCC;
   box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.075 );
-  cursor: default;
   transition: border-color 0s;
+  cursor: default;
 }
-.editor-chapter-thumb:hover,
-.editor-chapter-thumb:focus {
+.editor-chapter-thumb {
   border-width: 2px;
 }
-.editor-chapter-thumb:hover {
-  border-color: #BBB;
+a.editor-chapter-thumb:focus {
+  outline: none;
 }
-.editor-chapter-thumb:focus {
+a.editor-chapter-thumb:hover {
+  border-color: #CCC;
+}
+a.editor-chapter-thumb:focus {
   border-color: #428BCA;
 }
-/* sm */
-@media ( min-width: 768px ) {
-  .editor-chapter-thumb {
-    display: block;
-    width: 100%;
-    margin-right: 0;
-  }
+.nav > li > a.editor-chapter-thumb:hover,
+.nav > li > a.editor-chapter-thumb:focus {
+  background-color: #FFF;
+}
+.editor-chapter-thumb,
+.editor-chapter-thumb:hover,
+.editor-chapter-thumb:focus {
+  color: inherit;
 }
 .editor-chapter-title {
   display: inline-block;

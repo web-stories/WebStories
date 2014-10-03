@@ -33,7 +33,7 @@
   </div>
   <div class="row">
     <div class="col-sm-9 col-lg-10">
-      <div class="editor-chapter">
+      <div class="editor-chapter" id="chapter-1">
         <div class="editor-chapter-title">
           <h2 class="editor-chapter-title-header">
             Capítulo 1
@@ -45,12 +45,20 @@
         <div class="editor-chapter-content">
           <textarea class="form-control editor-chapter-text" rows="10"></textarea>
           <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
         </div>
         <button class="btn btn-primary btn-block btn-lg">
           <span class="icon-plus"></span>
         </button>
       </div>
-      <div class="editor-chapter">
+      <div class="editor-chapter" id="chapter-2">
         <div class="editor-chapter-title">
           <h2 class="editor-chapter-title-header">
             Capítulo 2
@@ -71,16 +79,15 @@
       </div>
     </div>
     <div class="col-sm-3 col-lg-2">
-      <div class="editor-chapter-thumbs" data-spy="affix" data-offset-top="220">
-        <button class="thumbnail editor-chapter-thumb">
-          Capítulo 1
-        </button>
-        <button class="thumbnail editor-chapter-thumb">
-          Capítulo 2
-        </button>
-        <button class="thumbnail editor-chapter-thumb">
-          Capítulo 3
-        </button>
+      <div class="editor-chapter-thumbs" data-spy="affix" data-offset-top="168">
+        <ul class="nav">
+          <li>
+            <a class="thumbnail editor-chapter-thumb" href="#chapter-1">Capítulo 1</a>
+          </li>
+          <li>
+            <a class="thumbnail editor-chapter-thumb" href="#chapter-2">Capítulo 2</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
