@@ -38,6 +38,12 @@ public class MetaEntity implements NumerableEntity {
 		return meta;
 	}
 	
+	public void update( StoryMetaInput input ) {
+		this.ds_title = input.getTitle();
+		this.ds_summary = input.getSummary();
+		this.ds_synopsis = input.getSynopsis();
+	}
+	
 	public Long getId() {
 		return id_story;
 	}

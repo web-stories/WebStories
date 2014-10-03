@@ -1,22 +1,23 @@
 package org.webstories.core.story;
 
-import org.webstories.dao.story.MetaEntity;
+import javax.ejb.EJB;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-public class StoryEditor implements Story {
-	private Long id;
-	private String title;
-	public static StoryEditor from( MetaEntity meta ) {
-		StoryEditor editor = new StoryEditor();
-		editor.id = meta.getId();
-		editor.title = meta.getTitle();
-		return editor;
-	}
+import org.webstories.dao.story.MetaEntity;
+import org.webstories.dao.story.StoryQueries;
+
+public class StoryEditor implements LocalStoryEditor {
+	@PersistenceContext
+	EntityManager entityManager;
+	
+	@EJB
+	StoryQueries storyQueries;
+	
 	@Override
-	public Long getId() {
-		return id;
-	}
-	@Override
-	public String getTitle() {
-		return title;
+	public void updateMeta( long idStory, StoryMetaInput input ) {
+		MetaEntity meta = storyQueries.findMetaByPrimaryKey( idStory );
+		meta.update( input );
+		entityManager.merge( meta );
 	}
 }

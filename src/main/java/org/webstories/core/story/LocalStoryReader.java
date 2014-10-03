@@ -11,5 +11,5 @@ public interface LocalStoryReader {
 	List<HomeStory> userStories( Logged logged );
 	List<FeaturedStory> featuredStories();
 	StoryDetails storyDetails( long idStory );
-	StoryEditor storyEditor( long idStory );
+	StoryEditorData storyEditor( long idStory );
 }
