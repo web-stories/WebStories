@@ -78,7 +78,7 @@
         </button>
       </div>
     </div>
-    <div class="col-sm-3 col-lg-2">
+    <div class="col-sm-3 col-lg-2 hidden-xs">
       <div class="editor-chapter-thumbs" data-spy="affix" data-offset-top="168">
         <ul class="nav">
           <li>
