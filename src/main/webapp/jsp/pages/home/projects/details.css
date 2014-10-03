@@ -1,7 +1,3 @@
-.details-cover,
-.details-meta {
-  margin-bottom: 20px;
-}
 textarea.details-meta-summary {
   height: 114px;
   resize: none;
@@ -31,9 +27,9 @@ textarea.details-meta-synopsis {
 /* lg */
 @media ( min-width: 1200px ) {
   textarea.details-meta-summary {
-    height: 140px;
+    height: 94px;
   }
   textarea.details-meta-synopsis {
-    height: 286px;
+    height: 194px;
   }
 }
