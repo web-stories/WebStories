@@ -3,7 +3,8 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 		options: {
 			chaptersOffset: 0,
 			menuId: "",
-			loadSection: function() {}
+			loadSection: function() {},
+			loadChapterThumb: function() {}
 		},
 		_create: function() {
 			this._cacheElements();
@@ -20,6 +21,13 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 					var chapterId = $( event.currentTarget ).attr( "href" );
 					event.preventDefault();
 					this._switchChapter( chapterId );
+				},
+				"click .editor-chapter-thumb-add": function( event ) {
+					var container = $( event.currentTarget ).parents( ".editor-chapter-thumbs" );
+					var nextChapter = container.find( "> ul > li" ).length + 1;
+					this._loadChapterThumb( nextChapter ).then(function( html ) {
+						container.find( "> ul" ).append( html );
+					});
 				}
 			});
 			this._on( this._chapters, {
@@ -32,6 +40,12 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 					}
 					this.options.loadSection( loaded );
 				}
+			});
+		},
+		_loadChapterThumb: function( nextChapter ) {
+			var loader = this.options.loadChapterThumb;
+			return new Promise(function( resolve ) {
+				loader( nextChapter, resolve );
 			});
 		},
 		_setupComponents: function() {
@@ -56,8 +70,13 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 		chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
 		menuId: "chapter-menu",
 		loadSection: function( loaded ) {
-			var url = webstories.contextPath + "/components/editor-section";
-			webstories.loadComponent( url, loaded );
+			var uri = webstories.contextPath + "/components/editor-section";
+			webstories.loadComponent( uri, loaded );
+		},
+		loadChapterThumb: function( chapter, loaded ) {
+			var uri = webstories.contextPath + "/components/editor-chapter-thumb";
+			var query = "chapter=" + chapter;
+			webstories.loadComponent( uri + "?" + query, loaded );
 		}
 	});
 });

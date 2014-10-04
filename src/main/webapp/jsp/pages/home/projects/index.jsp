@@ -76,13 +76,12 @@
     <div class="col-sm-3 col-lg-2 hidden-xs">
       <div class="editor-chapter-thumbs" id="chapter-menu">
         <ul class="nav">
-          <li>
-            <a class="editor-chapter-thumb" href="#chapter-1">Capítulo 1</a>
-          </li>
-          <li>
-            <a class="editor-chapter-thumb" href="#chapter-2">Capítulo 2</a>
-          </li>
+          <ws:editor-chapter-thumb chapter="1"/>
+          <ws:editor-chapter-thumb chapter="2"/>
         </ul>
+        <button class="btn btn-primary btn-block editor-chapter-thumb-add">
+          Novo capítulo
+        </button>
       </div>
     </div>
   </div>
