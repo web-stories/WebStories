@@ -1,19 +1,8 @@
 require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, webstories ) {
 	$.widget( "ws.editor", {
-		options: {
-			chaptersOffset: 0,
-			menuId: "",
-			loadSection: function() {},
-			loadChapter: function() {},
-			loadChapterThumb: function() {}
-		},
 		_create: function() {
-			this._cacheElements();
 			this._setupEvents();
 			this._setupComponents();
-		},
-		_cacheElements: function() {
-			this._menu = this.element.find( ".editor-chapter-thumbs" );
 		},
 		_setupEvents: function() {
 			this._on( this.element, {
@@ -40,13 +29,12 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 			});
 			this._on( this.element, {
 				"click .editor-section-add": function( event ) {
-					function loaded( html ) {
+					this._loadSection().then(function( html ) {
 						$( event.currentTarget )
 							.parents( ".editor-chapter" )
 							.find( ".editor-chapter-sections" )
 								.append( html );
-					}
-					this.options.loadSection( loaded );
+					});
 				}
 			});
 		},
@@ -62,10 +50,17 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 				loader( nextChapter, resolve );
 			});
 		},
+		_loadSection: function() {
+			var loader = this.options.loadSection;
+			return new Promise(function( resolve ) {
+				loader( resolve );
+			});
+		},
 		_setupComponents: function() {
-			this._menu.affix({
+			var menu = this.element.find( ".editor-chapter-thumbs" );
+			menu.affix({
 				offset: {
-					top: this._menu.offset().top - this.options.chaptersOffset
+					top: menu.offset().top - this.options.chaptersOffset
 				}
 			});
 			$( "body" ).scrollspy({
