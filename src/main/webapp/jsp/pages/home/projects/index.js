@@ -27,7 +27,7 @@ require( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				}
 			});
 			$( "body" ).scrollspy({
-				target: this.options.menuId,
+				target: "#" + this.options.menuId,
 				offset: this.options.chaptersOffset + 1
 			});
 		},
@@ -39,6 +39,6 @@ require( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 	});
 	$( ".editor" ).editor({
 		chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
-		menuId: "#chapter-menu"
+		menuId: "chapter-menu"
 	});
 });
