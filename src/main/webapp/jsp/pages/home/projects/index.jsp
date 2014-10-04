@@ -38,10 +38,8 @@
         <div class="editor-chapter-title">
           <h2 class="editor-chapter-title-header">
             Capítulo 1
-            <small class="editor-chapter-title-header-name">
-              O feiticeiro e a dama de honra
-            </small>
           </h2>
+          <input class="form-control editor-chapter-title-name" type="text" value="O feiticeiro e a dama de honra">
         </div>
         <div class="editor-chapter-sections">
           <ws:editor-section></ws:editor-section>
@@ -61,10 +59,8 @@
         <div class="editor-chapter-title">
           <h2 class="editor-chapter-title-header">
             Capítulo 2
-            <small class="editor-chapter-title-header-name">
-              Visões de um passado perturbador
-            </small>
           </h2>
+          <input class="form-control editor-chapter-title-name" type="text" value="Visões de um passado perturbador">
         </div>
         <div class="editor-chapter-sections">
           <ws:editor-section></ws:editor-section>

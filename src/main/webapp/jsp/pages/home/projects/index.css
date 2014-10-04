@@ -54,32 +54,13 @@
 .editor-chapter-thumb:focus {
   color: inherit;
 }
-.editor-chapter-title {
-  display: inline-block;
-  margin-bottom: 10px;
-  padding-bottom: 2px;
-  padding-right: 50px;
-  border-bottom: 1px solid #EEE;
-}
 .editor-chapter-title-header {
   margin-top: 0;
-  margin-bottom: 3px;
+  margin-bottom: 0;
 }
-.editor-chapter-title-header-name {
-  display: block;
-  margin-top: 10px;
-  vertical-align: middle;
-}
-.editor-chapter-title-header-name:before {
-  content: "\2014"
-}
-/* sm */
-@media ( min-width: 768px ) {
-  .editor-chapter-title-header-name {
-    display: inline; 
-    margin-top: 0;
-    white-space: nowrap;
-  }
+.editor-chapter-title-header,
+.editor-chapter-title-name {
+  margin-bottom: 10px;
 }
 .editor-chapter-section {
   margin-bottom: 10px;
