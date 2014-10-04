@@ -34,44 +34,23 @@
   </div>
   <div class="row">
     <div class="col-sm-9 col-lg-10 editor-chapters">
-      <div class="editor-chapter" id="chapter-1">
-        <div class="editor-chapter-title">
-          <h2 class="editor-chapter-title-header">
-            Capítulo 1
-          </h2>
-          <input class="form-control editor-chapter-title-name" type="text" value="O feiticeiro e a dama de honra">
-        </div>
-        <div class="editor-chapter-sections">
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-        </div>
-        <button class="btn btn-primary btn-block btn-lg editor-section-add">
-          <span class="icon-plus"></span>
-        </button>
-      </div>
-      <div class="editor-chapter" id="chapter-2">
-        <div class="editor-chapter-title">
-          <h2 class="editor-chapter-title-header">
-            Capítulo 2
-          </h2>
-          <input class="form-control editor-chapter-title-name" type="text" value="Visões de um passado perturbador">
-        </div>
-        <div class="editor-chapter-sections">
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-          <ws:editor-section></ws:editor-section>
-        </div>
-        <button class="btn btn-primary btn-block btn-lg editor-section-add">
-          <span class="icon-plus"></span>
-        </button>
-      </div>
+      <ws:editor-chapter chapter="1">
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+      </ws:editor-chapter>
+      <ws:editor-chapter chapter="2">
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+        <ws:editor-section></ws:editor-section>
+      </ws:editor-chapter>
     </div>
     <div class="col-sm-3 col-lg-2 hidden-xs">
       <div class="editor-chapter-thumbs" id="chapter-menu">

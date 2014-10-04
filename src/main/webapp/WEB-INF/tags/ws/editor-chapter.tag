@@ -8,7 +8,7 @@
     <input class="form-control editor-chapter-title-name" type="text">
   </div>
   <div class="editor-chapter-sections">
-    <ws:editor-section/>
+    <jsp:doBody/>
   </div>
   <button class="btn btn-primary btn-block btn-lg editor-section-add">
     <span class="icon-plus"></span>
