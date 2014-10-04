@@ -70,6 +70,9 @@
   margin-top: 10px;
   vertical-align: middle;
 }
+.editor-chapter-title-header-name:before {
+  content: "\2014"
+}
 /* sm */
 @media ( min-width: 768px ) {
   .editor-chapter-title-header-name {

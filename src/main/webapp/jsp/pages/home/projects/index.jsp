@@ -38,7 +38,7 @@
           <h2 class="editor-chapter-title-header">
             Capítulo 1
             <small class="editor-chapter-title-header-name">
-              &mdash; O feiticeiro e a dama de honra
+              O feiticeiro e a dama de honra
             </small>
           </h2>
         </div>
@@ -63,7 +63,7 @@
           <h2 class="editor-chapter-title-header">
             Capítulo 2
             <small class="editor-chapter-title-header-name">
-              &mdash; Visões de um passado perturbador
+              Visões de um passado perturbador
             </small>
           </h2>
         </div>
