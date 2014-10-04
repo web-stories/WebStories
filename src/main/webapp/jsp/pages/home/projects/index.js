@@ -23,20 +23,17 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 					this._switchChapter( chapterId );
 				},
 				"click .editor-chapter-thumb-add": function( event ) {
-					var container = $( event.currentTarget ).parents( ".editor" );
-					var chaptersParent = container.find( ".editor-chapters" );
-					var thumbsParent = container.find( ".editor-chapter-thumbs > ul" );
-					var nextChapter = thumbsParent.find( "> li" ).length + 1;
-					var appendThumb = $.proxy(function( html ) {
-						thumbsParent.append( html );
-						return this._loadChapter( nextChapter );
-					}, this );
-					var appendChapter = function( html ) {
-						chaptersParent.append( html );
-					};
-					this._loadChapterThumb( nextChapter )
-						.then( appendThumb )
-						.then( appendChapter );
+					var lis = this.element.find( ".editor-chapter-thumbs > ul > li" );
+					var nextChapter = lis.length + 1;
+					Promise.all([
+						this._loadChapterThumb( nextChapter ),
+						this._loadChapter( nextChapter )
+					]).then($.proxy(function( values ) {
+						this.element.find( ".editor-chapter-thumbs > ul" )
+							.append( values[ 0 ] );
+						this.element.find( ".editor-chapters" )
+							.append( values[ 1 ] );
+					}, this ));
 				}
 			});
 			this._on( this.element, {
