@@ -1,3 +1,4 @@
+<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <div class="container">
   <ol class="breadcrumb breadcumb-clear toolbar">
     <li>
@@ -42,19 +43,17 @@
             </small>
           </h2>
         </div>
-        <div class="editor-chapter-content">
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+        <div class="editor-chapter-sections">
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
         </div>
-        <button class="btn btn-primary btn-block btn-lg">
+        <button class="btn btn-primary btn-block btn-lg editor-section-add">
           <span class="icon-plus"></span>
         </button>
       </div>
@@ -67,13 +66,13 @@
             </small>
           </h2>
         </div>
-        <div class="editor-chapter-content">
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
-          <textarea class="form-control editor-chapter-text" rows="10"></textarea>
+        <div class="editor-chapter-sections">
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
+          <ws:editor-section></ws:editor-section>
         </div>
-        <button class="btn btn-primary btn-block btn-lg">
+        <button class="btn btn-primary btn-block btn-lg editor-section-add">
           <span class="icon-plus"></span>
         </button>
       </div>

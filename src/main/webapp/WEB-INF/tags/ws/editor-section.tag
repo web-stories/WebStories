@@ -1,0 +1,1 @@
+<textarea class="form-control editor-chapter-section" rows="10"><jsp:doBody/></textarea>

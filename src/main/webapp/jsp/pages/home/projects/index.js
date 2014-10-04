@@ -1,7 +1,9 @@
-require( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
+require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, webstories ) {
 	$.widget( "ws.editor", {
 		options: {
-			chaptersOffset: 0
+			chaptersOffset: 0,
+			menuId: "",
+			loadSection: function() {}
 		},
 		_create: function() {
 			this._cacheElements();
@@ -9,21 +11,33 @@ require( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			this._setupComponents();
 		},
 		_cacheElements: function() {
-			this._chapters = this.element.find( ".editor-chapter-thumbs" );
+			this._chapters = this.element.find( ".editor-chapter" );
+			this._menu = this.element.find( ".editor-chapter-thumbs" );
 		},
 		_setupEvents: function() {
-			this._on( this._chapters, {
+			this._on( this._menu, {
 				"click a": function( event ) {
 					var chapterId = $( event.currentTarget ).attr( "href" );
 					event.preventDefault();
 					this._switchChapter( chapterId );
 				}
 			});
+			this._on( this._chapters, {
+				"click .editor-section-add": function( event ) {
+					function loaded( html ) {
+						$( event.currentTarget )
+							.parents( ".editor-chapter" )
+							.find( ".editor-chapter-sections" )
+								.append( html );
+					}
+					this.options.loadSection( loaded );
+				}
+			});
 		},
 		_setupComponents: function() {
-			this._chapters.affix({
+			this._menu.affix({
 				offset: {
-					top: this._chapters.offset().top - this.options.chaptersOffset
+					top: this._menu.offset().top - this.options.chaptersOffset
 				}
 			});
 			$( "body" ).scrollspy({
@@ -37,8 +51,13 @@ require( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			}, "fast" );
 		}
 	});
+	
 	$( ".editor" ).editor({
 		chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
-		menuId: "chapter-menu"
+		menuId: "chapter-menu",
+		loadSection: function( loaded ) {
+			var url = webstories.contextPath + "/components/editor-section";
+			webstories.loadComponent( url, loaded );
+		}
 	});
 });
