@@ -1,3 +1,7 @@
+<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<ws:context-alert show="${saved}">
+  Informações salvas!
+</ws:context-alert>
 <div class="container">
   <ol class="breadcrumb breadcumb-clear toolbar">
     <li>

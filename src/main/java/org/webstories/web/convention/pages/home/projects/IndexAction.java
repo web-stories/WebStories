@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.story.LocalStoryReader;
-import org.webstories.core.story.StoryEditorData;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
@@ -26,7 +25,6 @@ public class IndexAction extends BaseServlet {
 	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {
 		RequestParams params = RequestParams.from( request );
 		long idStory = params.get( "id" ).toLong();
-		StoryEditorData editor = storyReader.storyEditor( idStory );
-		request.setAttribute( "story", editor );
+		request.setAttribute( "story", storyReader.storyEditor( idStory ) );
 	}
 }

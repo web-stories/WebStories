@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.webstories.core.story.LocalStoryEditor;
 import org.webstories.core.story.StoryMetaInput;
@@ -30,10 +31,12 @@ public class SaveAction extends BaseServlet {
 	protected void doPost( HttpServletRequest request, HttpServletResponse response )
 	throws HttpInternalServerErrorException {
 		RequestParams params = RequestParams.from( request );
+		HttpSession session = request.getSession();
 		long idStory = params.get( "idStory" ).toLong();
 		StoryMetaInput input =  StoryMetaInput.from( params );
 		try {
 			storyEditor.updateMeta( idStory, input );
+			session.setAttribute( "saved", true );
 			response.sendRedirect( request.getHeader( "referer" ) );
 		} catch ( IOException | ValidationException e ) {
 			throw new HttpInternalServerErrorException( e );
