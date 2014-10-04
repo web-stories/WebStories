@@ -18,9 +18,9 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 		_setupEvents: function() {
 			this._on( this.element, {
 				"click a": function( event ) {
-					var chapterId = $( event.currentTarget ).attr( "href" );
+					var href = $( event.currentTarget ).attr( "href" );
 					event.preventDefault();
-					this._switchChapter( chapterId );
+					this._switchChapter( href );
 				},
 				"click .editor-chapter-thumb-add": function( event ) {
 					var lis = this.element.find( ".editor-chapter-thumbs > ul > li" );
@@ -29,10 +29,12 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 						this._loadChapterThumb( nextChapter ),
 						this._loadChapter( nextChapter )
 					]).then($.proxy(function( values ) {
+						var href = $( values[ 0 ] ).find( ".editor-chapter-thumb" ).attr( "href" );
 						this.element.find( ".editor-chapter-thumbs > ul" )
 							.append( values[ 0 ] );
 						this.element.find( ".editor-chapters" )
 							.append( values[ 1 ] );
+						this._switchChapter( href );
 					}, this ));
 				}
 			});
@@ -71,9 +73,9 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 				offset: this.options.chaptersOffset + 1
 			});
 		},
-		_switchChapter: function( chapterId ) {
+		_switchChapter: function( href ) {
 			$( "html, body" ).animate({
-				scrollTop: $( chapterId ).offset().top - this.options.chaptersOffset
+				scrollTop: $( href ).offset().top - this.options.chaptersOffset
 			}, "fast" );
 		}
 	});
