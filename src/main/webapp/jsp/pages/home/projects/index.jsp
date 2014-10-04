@@ -33,7 +33,7 @@
     </h1>
   </div>
   <div class="row">
-    <div class="col-sm-9 col-lg-10">
+    <div class="col-sm-9 col-lg-10 editor-chapters">
       <div class="editor-chapter" id="chapter-1">
         <div class="editor-chapter-title">
           <h2 class="editor-chapter-title-header">
