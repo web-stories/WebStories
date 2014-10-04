@@ -23,11 +23,11 @@ require( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		_setupComponents: function() {
 			this._chapters.affix({
 				offset: {
-					top: 168 // TODO calculate
+					top: this._chapters.offset().top - this.options.chaptersOffset
 				}
 			});
 			$( "body" ).scrollspy({
-				target: this.options.spyTarget,
+				target: this.options.menuId,
 				offset: this.options.chaptersOffset + 1
 			});
 		},
@@ -39,6 +39,6 @@ require( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 	});
 	$( ".editor" ).editor({
 		chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
-		spyTarget: ".editor .editor-chapter-thumbs"
+		menuId: "#chapter-menu"
 	});
 });

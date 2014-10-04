@@ -79,7 +79,7 @@
       </div>
     </div>
     <div class="col-sm-3 col-lg-2 hidden-xs">
-      <div class="editor-chapter-thumbs">
+      <div class="editor-chapter-thumbs" id="chapter-menu">
         <ul class="nav">
           <li>
             <a class="editor-chapter-thumb" href="#chapter-1">Capítulo 1</a>
