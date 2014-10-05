@@ -65,7 +65,7 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 			});
 			$( "body" ).scrollspy({
 				target: "#" + this.options.menuId,
-				offset: this.options.chaptersOffset + 1
+				offset: this.options.chaptersOffset + 150
 			});
 		},
 		_switchChapter: function( href ) {
