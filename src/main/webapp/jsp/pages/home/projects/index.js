@@ -1,19 +1,38 @@
 require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, webstories ) {
 	$.widget( "ws.editor", {
 		_create: function() {
+			this._refresh();
 			this._setupEvents();
 			this._setupComponents();
+		},
+		_refresh: function() {
+			var make = {
+				chapter: function( chapter, chapterIndex ) {
+					var sections = $( chapter ).find( ".editor-chapter-section" );
+					return {
+						id: chapter.id,
+						number: chapterIndex + 1,
+						sections: $.map( sections, make.section )
+					};
+				},
+				section: function( section, sectionIndex ) {
+					return {
+						id: section.id,
+						number: sectionIndex + 1
+					};
+				}
+			};
+			this._chapters = $.map( this.element.find( ".editor-chapter" ), make.chapter );
 		},
 		_setupEvents: function() {
 			this._on( this.element, {
 				"click a": function( event ) {
 					var href = $( event.currentTarget ).attr( "href" );
 					event.preventDefault();
-					this._switchChapter( href );
+					this._scrollTo( href );
 				},
 				"click .editor-chapter-thumb-add": function( event ) {
-					var lis = this.element.find( ".editor-chapter-thumbs > ul > li" );
-					var nextChapter = lis.length + 1;
+					var nextChapter = this._chapters.length + 1;
 					Promise.all([
 						this._loadChapterThumb( nextChapter ),
 						this._loadChapter( nextChapter )
@@ -23,20 +42,35 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 							.append( values[ 0 ] );
 						this.element.find( ".editor-chapters" )
 							.append( values[ 1 ] );
-						this._switchChapter( href );
+						this._refresh();
+						this._scrollTo( href );
+						$( href ).find( ".editor-chapter-title-name" )
+							.focus();
 					}, this ));
 				}
 			});
 			this._on( this.element, {
 				"click .editor-section-add": function( event ) {
-					this._loadSection().then(function( html ) {
-						$( event.currentTarget )
-							.parents( ".editor-chapter" )
-							.find( ".editor-chapter-sections" )
+					var chapter = $( event.currentTarget ).parents( ".editor-chapter" );
+					var chapterObj = this._getChapter( chapter[ 0 ].id );
+					var currentChapter = chapterObj.number;
+					var nextSection = chapterObj.sections.length + 1;
+					this._loadSection( currentChapter, nextSection )
+						.then($.proxy(function( html ) {
+							var id = $( html ).attr( "id" );
+							chapter.find( ".editor-chapter-sections" )
 								.append( html );
-					});
+							this._refresh();
+							this._scrollTo( "#" + id, 100 );
+							$( "#" + id ).focus();
+						}, this ));
 				}
 			});
+		},
+		_getChapter: function( id ) {
+			return this._chapters.filter(function( chapterObj ) {
+				return chapterObj.id === id;
+			})[ 0 ];
 		},
 		_loadChapterThumb: function( nextChapter ) {
 			var loader = this.options.loadChapterThumb;
@@ -50,10 +84,10 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 				loader( nextChapter, resolve );
 			});
 		},
-		_loadSection: function() {
+		_loadSection: function( chapter, nextSection ) {
 			var loader = this.options.loadSection;
 			return new Promise(function( resolve ) {
-				loader( resolve );
+				loader( chapter, nextSection, resolve );
 			});
 		},
 		_setupComponents: function() {
@@ -68,9 +102,10 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 				offset: this.options.chaptersOffset + 150
 			});
 		},
-		_switchChapter: function( href ) {
+		_scrollTo: function( selector, offset ) {
+			offset = offset || 0;
 			$( "html, body" ).animate({
-				scrollTop: $( href ).offset().top - this.options.chaptersOffset
+				scrollTop: $( selector ).offset().top - this.options.chaptersOffset - offset
 			}, "fast" );
 		}
 	});
@@ -78,19 +113,24 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 	$( ".editor" ).editor({
 		chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
 		menuId: "chapter-menu",
-		loadSection: function( loaded ) {
+		loadSection: function( chapter, nextSection, loaded ) {
 			var uri = webstories.contextPath + "/components/editor-section";
-			webstories.loadComponent( uri, loaded );
+			webstories.loadComponent( uri, {
+				chapter: chapter,
+				section: nextSection
+			}, loaded );
 		},
 		loadChapter: function( nextChapter, loaded ) {
 			var uri = webstories.contextPath + "/components/editor-chapter";
-			var query = "chapter=" + nextChapter;
-			webstories.loadComponent( uri + "?" + query, loaded );
+			webstories.loadComponent( uri, {
+				chapter: nextChapter
+			}, loaded );
 		},
 		loadChapterThumb: function( nextChapter, loaded ) {
 			var uri = webstories.contextPath + "/components/editor-chapter-thumb";
-			var query = "chapter=" + nextChapter;
-			webstories.loadComponent( uri + "?" + query, loaded );
+			webstories.loadComponent( uri, {
+				chapter: nextChapter
+			}, loaded );
 		}
 	});
 });

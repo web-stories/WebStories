@@ -35,21 +35,21 @@
   <div class="row">
     <div class="col-sm-9 col-lg-10 editor-chapters">
       <ws:editor-chapter chapter="1">
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
+        <ws:editor-section chapter="1" section="1"></ws:editor-section>
+        <ws:editor-section chapter="1" section="2"></ws:editor-section>
+        <ws:editor-section chapter="1" section="3"></ws:editor-section>
+        <ws:editor-section chapter="1" section="4"></ws:editor-section>
+        <ws:editor-section chapter="1" section="5"></ws:editor-section>
+        <ws:editor-section chapter="1" section="6"></ws:editor-section>
+        <ws:editor-section chapter="1" section="7"></ws:editor-section>
+        <ws:editor-section chapter="1" section="8"></ws:editor-section>
       </ws:editor-chapter>
       <ws:editor-chapter chapter="2">
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
+        <ws:editor-section chapter="2" section="1"></ws:editor-section>
+        <ws:editor-section chapter="2" section="2"></ws:editor-section>
+        <ws:editor-section chapter="2" section="3"></ws:editor-section>
+        <ws:editor-section chapter="2" section="4"></ws:editor-section>
+        <ws:editor-section chapter="2" section="5"></ws:editor-section>
       </ws:editor-chapter>
     </div>
     <div class="col-sm-3 col-lg-2 hidden-xs">
