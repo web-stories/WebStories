@@ -6,23 +6,45 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 			this._setupComponents();
 		},
 		_refresh: function() {
-			var make = {
-				chapter: function( chapter, chapterIndex ) {
+			this._refreshDataStructure();
+			this._refreshDOM();
+		},
+		_refreshDataStructure: function() {
+			var finder = function( number ) {
+				return this.find(function( object ) {
+					return object.number === number;
+				});
+			};
+			var create = {
+				chapter: function( chapter, index ) {
 					var sections = $( chapter ).find( ".editor-chapter-section" );
 					return {
+						number: index + 1,
 						id: chapter.id,
-						number: chapterIndex + 1,
-						sections: $.map( sections, make.section )
+						sections: $.map( sections, create.section )
 					};
 				},
-				section: function( section, sectionIndex ) {
+				section: function( section, index ) {
 					return {
-						id: section.id,
-						number: sectionIndex + 1
+						number: index + 1
 					};
 				}
 			};
-			this._chapters = $.map( this.element.find( ".editor-chapter" ), make.chapter );
+			this._chapters = $.map( this.element.find( ".editor-chapter" ), create.chapter );
+			this._chapters.get = finder;
+			this._chapters.forEach(function( chapter ) {
+				chapter.sections.get = finder;
+			});
+		},
+		_refreshDOM: function() {
+			var refresh = {
+				chapter: function( chapter ) {
+					$( "#" + chapter.id )
+						.find( ".editor-chapter-title-header" )
+							.text( "Capítulo " + chapter.number );
+				}
+			};
+			this._chapters.forEach( refresh.chapter );
 		},
 		_setupEvents: function() {
 			this._on( this.element, {
@@ -61,13 +83,33 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 									.focus();
 							});
 						}, this ));
+				},
+				"click .editor-section-delete": function( event ) {
+					var section = $( event.currentTarget ).parents( ".editor-chapter-section" );
+					this._dropSection( section );
 				}
 			});
 		},
-		_getChapter: function( id ) {
-			return this._chapters.filter(function( chapterObj ) {
-				return chapterObj.id === id;
-			})[ 0 ];
+		_dropSection: function( section ) {
+			var content = section.find( ".editor-chapter-section-text" ).val().trim();
+			var lastSection = section.siblings().length === 0;
+			if ( lastSection ) {
+				this._dropChapter( section.parents( ".editor-chapter" ) );
+				return;
+			}
+			if ( !content ) {
+				section.remove();
+			} else if ( confirm( "Esta seção será apagada!" ) ) {
+				section.remove();
+			}
+			this._refresh();
+		},
+		_dropChapter: function( chapter ) {
+			var number = chapter.index() + 1;
+			if ( confirm( "O conteúdo deste capítulo será apagado!" ) ) {
+				chapter.remove();
+				this._refresh();
+			}
 		},
 		_loadChapterThumb: function( nextChapter ) {
 			var loader = this.options.loadChapterThumb;
