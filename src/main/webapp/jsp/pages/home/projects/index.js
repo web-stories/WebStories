@@ -2,39 +2,23 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 	$.widget( "ws.editor", {
 		_create: function() {
 			this._refresh();
-			this._setupEvents();
-			this._setupComponents();
+			this._on( this.element, this._setupEvents );
+			this._initComponents();
 		},
 		_refresh: function() {
 			this._refreshDataStructure();
 			this._refreshDOM();
 		},
 		_refreshDataStructure: function() {
-			var finder = function( number ) {
-				return this.find(function( object ) {
-					return object.number === number;
-				});
-			};
 			var create = {
 				chapter: function( chapter, index ) {
-					var sections = $( chapter ).find( ".editor-chapter-section" );
 					return {
 						number: index + 1,
-						id: chapter.id,
-						sections: $.map( sections, create.section )
-					};
-				},
-				section: function( section, index ) {
-					return {
-						number: index + 1
+						id: chapter.id
 					};
 				}
 			};
 			this._chapters = $.map( this.element.find( ".editor-chapter" ), create.chapter );
-			this._chapters.get = finder;
-			this._chapters.forEach(function( chapter ) {
-				chapter.sections.get = finder;
-			});
 		},
 		_refreshDOM: function() {
 			var refresh = {
@@ -46,69 +30,74 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 			};
 			this._chapters.forEach( refresh.chapter );
 		},
-		_setupEvents: function() {
-			this._on( this.element, {
-				"click a": function( event ) {
-					var href = $( event.currentTarget ).attr( "href" );
-					event.preventDefault();
-					this._scrollTo( href );
-				},
-				"click .editor-chapter-thumb-add": function( event ) {
-					var nextChapter = this._chapters.length + 1;
-					Promise.all([
-						this._loadChapterThumb( nextChapter ),
-						this._loadChapter( nextChapter )
-					]).then($.proxy(function( values ) {
-						var href = $( values[ 0 ] ).find( ".editor-chapter-thumb" ).attr( "href" );
-						this.element.find( ".editor-chapter-thumbs > ul" )
-							.append( values[ 0 ] );
-						this.element.find( ".editor-chapters" )
-							.append( values[ 1 ] );
-						this._refresh();
-						this._scrollTo( href );
-						$( href ).find( ".editor-chapter-title-name" )
+		_setupEvents: {
+			"click a": function( event ) {
+				var href = $( event.currentTarget ).attr( "href" );
+				this._scrollTo( href );
+				event.preventDefault();
+			},
+			"click .editor-chapter-thumb-add": function() {
+				var nextChapter = this._chapters.length + 1;
+				Promise.all([
+					this._loadChapterThumb( nextChapter ),
+					this._loadChapter( nextChapter )
+				]).then($.proxy(function( values ) {
+					var thumbnail = $( values[ 0 ] )
+						.appendTo( this.element.find( ".editor-chapter-thumbs > ul" ) );
+					$( values[ 1 ] )
+						.appendTo( this.element.find( ".editor-chapters" ) );
+					var href = thumbnail
+						.find( ".editor-chapter-thumb" )
+						.attr( "href" );
+					this._refresh();
+					this._scrollTo( href, function() {
+						$( href )
+							.find( ".editor-chapter-title-name" )
 							.focus();
+					});
+				}, this ));
+			},
+			"click .editor-section-add": function( event ) {
+				new Promise( this.options.loadSection )
+					.then($.proxy(function( html ) {
+						var previous = $( event.currentTarget )
+							.parents( ".editor-chapter-section" );
+						var section = $( html )
+							.insertAfter( previous );
+						this._refresh();
+						this._scrollTo( section, 100, function() {
+							section
+								.find( ".editor-chapter-section-text" )
+								.focus();
+						});
 					}, this ));
-				}
-			});
-			this._on( this.element, {
-				"click .editor-section-add": function( event ) {
-					var previous = $( event.currentTarget ).parents( ".editor-chapter-section" );
-					this._loadSection()
-						.then($.proxy(function( html ) {
-							var section = $( html ).insertAfter( previous );
+			},
+			"click .editor-section-delete": function( event ) {
+				var drop = {
+					section: $.proxy(function( section ) {
+						var content = section.find( ".editor-chapter-section-text" ).val().trim();
+						var lastSection = section.siblings().length === 0;
+						if ( lastSection ) {
+							drop.chapter( section.parents( ".editor-chapter" ) );
+							return;
+						}
+						if ( !content ) {
+							section.remove();
 							this._refresh();
-							this._scrollTo( section, 100, function() {
-								section.find( ".editor-chapter-section-text" )
-									.focus();
-							});
-						}, this ));
-				},
-				"click .editor-section-delete": function( event ) {
-					var section = $( event.currentTarget ).parents( ".editor-chapter-section" );
-					this._dropSection( section );
-				}
-			});
-		},
-		_dropSection: function( section ) {
-			var content = section.find( ".editor-chapter-section-text" ).val().trim();
-			var lastSection = section.siblings().length === 0;
-			if ( lastSection ) {
-				this._dropChapter( section.parents( ".editor-chapter" ) );
-				return;
-			}
-			if ( !content ) {
-				section.remove();
-			} else if ( confirm( "Esta seção será apagada!" ) ) {
-				section.remove();
-			}
-			this._refresh();
-		},
-		_dropChapter: function( chapter ) {
-			var number = chapter.index() + 1;
-			if ( confirm( "O conteúdo deste capítulo será apagado!" ) ) {
-				chapter.remove();
-				this._refresh();
+						} else if ( confirm( "Esta seção será apagada!" ) ) {
+							section.remove();
+							this._refresh();
+						}
+					}, this ),
+					chapter: $.proxy(function( chapter ) {
+						if ( confirm( "O conteúdo deste capítulo será apagado!" ) ) {
+							chapter.remove();
+							this._refresh();
+						}
+					}, this )
+				};
+				drop
+					.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
 			}
 		},
 		_loadChapterThumb: function( nextChapter ) {
@@ -123,10 +112,7 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 				loader( nextChapter, resolve );
 			});
 		},
-		_loadSection: function() {
-			return new Promise( this.options.loadSection );
-		},
-		_setupComponents: function() {
+		_initComponents: function() {
 			var menu = this.element.find( ".editor-chapter-thumbs" );
 			menu.affix({
 				offset: {
@@ -139,6 +125,10 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 			});
 		},
 		_scrollTo: function( selector, offset, done ) {
+			if ( $.isFunction( offset ) ) {
+				done = offset;
+				offset = undefined;
+			}
 			offset = offset || 0;
 			$( "html, body" ).animate({
 				scrollTop: $( selector ).offset().top - this.options.chaptersOffset - offset
