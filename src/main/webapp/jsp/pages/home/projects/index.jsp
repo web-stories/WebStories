@@ -1,4 +1,14 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<div class="save-feedback container-fluid">
+  <div class="row">
+    <div class="col-xs-6 col-sm-4 col-md-2 col-xs-offset-3 col-sm-offset-4 col-md-offset-5">
+      <div class="alert alert-warning fade in">
+        <button type="button" data-dismiss="alert" class="close">×</button>
+        Salvando...
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
   <ol class="breadcrumb breadcumb-clear toolbar">
     <li>
