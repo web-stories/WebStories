@@ -10,7 +10,4 @@
   <div class="editor-chapter-sections">
     <jsp:doBody/>
   </div>
-  <button class="btn btn-primary btn-block btn-lg editor-section-add">
-    <span class="icon-plus"></span>
-  </button>
 </div>

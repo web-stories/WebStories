@@ -27,6 +27,7 @@
 		<css>/css/custom/story-thumb.css</css>
 		<css>/css/custom/toolbar.css</css>
 		<css>/css/custom/editor-tabs.css</css>
+		<css>/css/custom/editor-section.css</css>
 	</group>
 	<!-- Vendor -->
 	<group name="jquery-2.1.1">
