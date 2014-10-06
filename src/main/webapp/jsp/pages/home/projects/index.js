@@ -51,18 +51,15 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 			});
 			this._on( this.element, {
 				"click .editor-section-add": function( event ) {
-					var chapter = $( event.currentTarget ).parents( ".editor-chapter" );
-					var chapterObj = this._getChapter( chapter[ 0 ].id );
-					var currentChapter = chapterObj.number;
-					var nextSection = chapterObj.sections.length + 1;
-					this._loadSection( currentChapter, nextSection )
+					var previous = $( event.currentTarget ).parents( ".editor-chapter-section" );
+					this._loadSection()
 						.then($.proxy(function( html ) {
-							var id = $( html ).attr( "id" );
-							chapter.find( ".editor-chapter-sections" )
-								.append( html );
+							var section = $( html ).insertAfter( previous );
 							this._refresh();
-							this._scrollTo( "#" + id, 100 );
-							$( "#" + id ).focus();
+							this._scrollTo( section, 100, function() {
+								section.find( ".editor-chapter-section-text" )
+									.focus();
+							});
 						}, this ));
 				}
 			});
@@ -84,11 +81,8 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 				loader( nextChapter, resolve );
 			});
 		},
-		_loadSection: function( chapter, nextSection ) {
-			var loader = this.options.loadSection;
-			return new Promise(function( resolve ) {
-				loader( chapter, nextSection, resolve );
-			});
+		_loadSection: function() {
+			return new Promise( this.options.loadSection );
 		},
 		_setupComponents: function() {
 			var menu = this.element.find( ".editor-chapter-thumbs" );
@@ -102,23 +96,23 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 				offset: this.options.chaptersOffset + 150
 			});
 		},
-		_scrollTo: function( selector, offset ) {
+		_scrollTo: function( selector, offset, done ) {
 			offset = offset || 0;
 			$( "html, body" ).animate({
 				scrollTop: $( selector ).offset().top - this.options.chaptersOffset - offset
-			}, "fast" );
+			}, {
+				duration: "fast",
+				done: done
+			});
 		}
 	});
 	
 	$( ".editor" ).editor({
 		chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
 		menuId: "chapter-menu",
-		loadSection: function( chapter, nextSection, loaded ) {
+		loadSection: function( loaded ) {
 			var uri = webstories.contextPath + "/components/editor-section";
-			webstories.loadComponent( uri, {
-				chapter: chapter,
-				section: nextSection
-			}, loaded );
+			webstories.loadComponent( uri, loaded );
 		},
 		loadChapter: function( nextChapter, loaded ) {
 			var uri = webstories.contextPath + "/components/editor-chapter";
