@@ -90,12 +90,14 @@ require( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $,
 						}
 					}, this ),
 					chapter: $.proxy(function( chapter ) {
+						var prev = chapter.prev();
 						if ( confirm( "O conteúdo deste capítulo será apagado!" ) ) {
 							$( "#" + this.options.menuId + " > ul > li" )
 								.eq( chapter.index() )
 								.remove();
 							chapter.remove();
 							this._refresh();
+							this._scrollTo( prev );
 						}
 					}, this )
 				};
