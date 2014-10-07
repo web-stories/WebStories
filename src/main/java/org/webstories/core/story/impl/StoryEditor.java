@@ -1,10 +1,11 @@
-package org.webstories.core.story;
+package org.webstories.core.story.impl;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.webstories.core.story.LocalStoryEditor;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryQueries;

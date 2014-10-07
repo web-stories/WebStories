@@ -1,4 +1,4 @@
-package org.webstories.core.story;
+package org.webstories.core.story.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import org.webstories.core.auth.Logged;
+import org.webstories.core.story.LocalStoryReader;
 import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryEntity;

@@ -1,5 +1,6 @@
-package org.webstories.core.story;
+package org.webstories.core.story.impl;
 
+import org.webstories.core.story.StoryMeta;
 import org.webstories.dao.story.MetaEntity;
 
 public class StoryDetails implements StoryMeta {

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.webstories.core.story.LocalStoryEditor;
-import org.webstories.core.story.StoryMetaInput;
+import org.webstories.core.story.impl.StoryMetaInput;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.AuthForwarded;

@@ -1,5 +1,6 @@
-package org.webstories.core.story;
+package org.webstories.core.story.impl;
 
+import org.webstories.core.story.StoryThumb;
 import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.story.MetaEntity;
 
