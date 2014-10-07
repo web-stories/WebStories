@@ -101,14 +101,21 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 						}
 					}, this ),
 					chapter: $.proxy(function( chapter ) {
-						var prev = chapter.prev();
+						var prevChapter = chapter.prev();
+						var lastChapter =
+							this._chapters.length === 1 &&
+							this._chapters[ 0 ].sections.length === 1;
+						if ( lastChapter ) {
+							alert( "Este capítulo não pode ser apagado!" );
+							return;
+						}
 						if ( confirm( "O conteúdo deste capítulo será apagado!" ) ) {
 							$( "#" + this.options.menuId + " > ul > li" )
 								.eq( chapter.index() )
 								.remove();
 							chapter.remove();
 							this._refresh();
-							this._scrollTo( prev );
+							this._scrollTo( prevChapter );
 						}
 					}, this )
 				};
