@@ -5,7 +5,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			this._on( this.element, this._clickEvents.call( this ) );
 			this._on( this.element, this._textEvents.call( this ) );
 			this._initComponents();
-			this._initAutosave();
+			this._save();
 		},
 		_refresh: function() {
 			this._refreshDataStructure();
@@ -45,7 +45,9 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		_textEvents: function() {
 			return {
 				"keyup .editor-chapter-section-text": this._type,
-				"keyup .editor-chapter-title-name": this._type
+				"keyup .editor-chapter-title-name": this._type,
+				"blur .editor-chapter-section-text": this._blur,
+				"blur .editor-chapter-title-name": this._blur
 			};
 		},
 		_clickEvents: function() {
@@ -133,7 +135,35 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			}
 		},
 		_type: function( event ) {
-			this._edited = true;
+			var keys = [
+				09, // Tab
+				91, // Win
+				18, // Alt
+				16, // Shift
+				17, // Ctrl
+				27, // Esc
+				33, // Pg up
+				34, // Pg down
+				93  // Context menu
+			];
+			keys.contains = function( current ) {
+				return this.find(function( keyCode ) {
+					return keyCode === current;
+				});
+			};
+			this._edited = !keys.contains( event.keyCode );
+		},
+		_blur: function() {
+			this._refresh();
+			this._save();
+		},
+		_save: function() {
+			if ( this._edited ) {
+				this.options.autosave( this._chapters );
+				delete this._edited;
+			}
+			clearTimeout( this._saveTimeout );
+			this._saveTimeout = this._delay( this._save, 60000 );
 		},
 		_loadChapterThumb: function( nextChapter ) {
 			var loader = this.options.loadChapterThumb;
@@ -158,15 +188,6 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				target: "#" + this.options.menuId,
 				offset: this.options.chaptersOffset + 150
 			});
-		},
-		_initAutosave: function() {
-			var doSave = $.proxy(function() {
-				if ( this._edited ) {
-					this.options.autosave( this._chapters );
-					delete this._edited;
-				}
-			}, this );
-			setInterval( doSave, 30000 );
 		},
 		_scrollTo: function( selector, offset, done ) {
 			if ( $.isFunction( offset ) ) {
