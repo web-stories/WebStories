@@ -4,12 +4,12 @@ import org.webstories.core.story.StoryMeta;
 import org.webstories.core.validation.Validatable;
 import org.webstories.web.util.params.RequestParams;
 
-public class StoryMetaInput implements Validatable, StoryMeta {
+public class EditorStoryDetailsInput implements Validatable, StoryMeta {
 	private String title;
 	private String summary;
 	private String synopsis;
-	public static StoryMetaInput from( RequestParams params ) {
-		StoryMetaInput meta = new StoryMetaInput(  );
+	public static EditorStoryDetailsInput from( RequestParams params ) {
+		EditorStoryDetailsInput meta = new EditorStoryDetailsInput(  );
 		meta.title = params.get( "title" ).toString();
 		meta.summary = params.get( "summary" ).toString();
 		meta.synopsis = params.get( "synopsis" ).toString();

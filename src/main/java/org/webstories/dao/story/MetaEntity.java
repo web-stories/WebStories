@@ -7,7 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.webstories.core.story.impl.StoryMetaInput;
+import org.webstories.core.story.impl.EditorStoryDetailsInput;
 import org.webstories.dao.NumerableEntity;
 
 @Entity
@@ -30,7 +30,7 @@ public class MetaEntity implements NumerableEntity {
 	@JoinColumn( name = "id_story", nullable = false )
 	private StoryEntity story;
 	
-	public static MetaEntity from( StoryMetaInput input ) {
+	public static MetaEntity from( EditorStoryDetailsInput input ) {
 		MetaEntity meta = new MetaEntity();
 		meta.ds_title = input.getTitle();
 		meta.ds_summary = input.getSummary();
@@ -38,7 +38,7 @@ public class MetaEntity implements NumerableEntity {
 		return meta;
 	}
 	
-	public void update( StoryMetaInput input ) {
+	public void update( EditorStoryDetailsInput input ) {
 		this.ds_title = input.getTitle();
 		this.ds_summary = input.getSummary();
 		this.ds_synopsis = input.getSynopsis();

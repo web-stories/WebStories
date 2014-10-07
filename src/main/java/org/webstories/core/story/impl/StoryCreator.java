@@ -22,7 +22,7 @@ public class StoryCreator implements LocalStoryCreator {
 	UserQueries userQueries;
 	
 	@Override
-	public void createMeta( StoryMetaInput input, Logged logged ) throws ValidationException {
+	public void createMeta( EditorStoryDetailsInput input, Logged logged ) throws ValidationException {
 		if ( !input.validate() ) {
 			throw new ValidationException();
 		}

@@ -3,11 +3,11 @@ package org.webstories.core.story.impl;
 import org.webstories.core.story.Story;
 import org.webstories.dao.story.MetaEntity;
 
-public class StoryEditorData implements Story {
+public class EditorStory implements Story {
 	private Long id;
 	private String title;
-	public static StoryEditorData from( MetaEntity meta ) {
-		StoryEditorData editor = new StoryEditorData();
+	public static EditorStory from( MetaEntity meta ) {
+		EditorStory editor = new EditorStory();
 		editor.id = meta.getId();
 		editor.title = meta.getTitle();
 		return editor;
@@ -16,7 +16,6 @@ public class StoryEditorData implements Story {
 	public Long getId() {
 		return id;
 	}
-	@Override
 	public String getTitle() {
 		return title;
 	}

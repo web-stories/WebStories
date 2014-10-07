@@ -41,16 +41,16 @@ public class StoryReader implements LocalStoryReader {
 	}
 	
 	@Override
-	public StoryDetails storyDetails( long idStory ) {
+	public EditorStoryDetails storyDetails( long idStory ) {
 		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
 		MetaEntity meta = story.getMeta();
-		return StoryDetails.from( meta );
+		return EditorStoryDetails.from( meta );
 	}
 	
 	@Override
-	public StoryEditorData storyEditor(long idStory) {
+	public EditorStory storyEditor(long idStory) {
 		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
 		MetaEntity meta = story.getMeta();
-		return StoryEditorData.from( meta );
+		return EditorStory.from( meta );
 	}
 }

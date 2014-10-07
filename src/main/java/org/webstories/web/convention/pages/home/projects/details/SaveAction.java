@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.webstories.core.story.LocalStoryEditor;
-import org.webstories.core.story.impl.StoryMetaInput;
+import org.webstories.core.story.impl.EditorStoryDetailsInput;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.AuthForwarded;
@@ -33,7 +33,7 @@ public class SaveAction extends BaseServlet {
 		RequestParams params = RequestParams.from( request );
 		HttpSession session = request.getSession();
 		long idStory = params.get( "idStory" ).toLong();
-		StoryMetaInput input =  StoryMetaInput.from( params );
+		EditorStoryDetailsInput input =  EditorStoryDetailsInput.from( params );
 		try {
 			storyEditor.updateMeta( idStory, input );
 			session.setAttribute( "saved", true );

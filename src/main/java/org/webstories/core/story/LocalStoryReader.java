@@ -7,13 +7,13 @@ import javax.ejb.Local;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.story.impl.FeaturedStory;
 import org.webstories.core.story.impl.HomeStory;
-import org.webstories.core.story.impl.StoryDetails;
-import org.webstories.core.story.impl.StoryEditorData;
+import org.webstories.core.story.impl.EditorStoryDetails;
+import org.webstories.core.story.impl.EditorStory;
 
 @Local
 public interface LocalStoryReader {
 	List<HomeStory> userStories( Logged logged );
 	List<FeaturedStory> featuredStories();
-	StoryDetails storyDetails( long idStory );
-	StoryEditorData storyEditor( long idStory );
+	EditorStoryDetails storyDetails( long idStory );
+	EditorStory storyEditor( long idStory );
 }

@@ -19,7 +19,7 @@ public class StoryEditor implements LocalStoryEditor {
 	StoryQueries storyQueries;
 	
 	@Override
-	public void updateMeta( long idStory, StoryMetaInput input ) throws ValidationException {
+	public void updateMeta( long idStory, EditorStoryDetailsInput input ) throws ValidationException {
 		if ( !input.validate() ) {
 			throw new ValidationException();
 		}
