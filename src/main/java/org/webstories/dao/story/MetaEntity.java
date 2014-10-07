@@ -44,6 +44,7 @@ public class MetaEntity implements NumerableEntity {
 		this.ds_synopsis = input.getSynopsis();
 	}
 	
+	@Override
 	public Long getId() {
 		return id_story;
 	}

@@ -32,6 +32,11 @@ public class StoryEntity implements NumerableEntity {
 	@OneToOne( mappedBy = "story", optional = false )
 	private MetaEntity meta;
 	
+	@Override
+	public Long getId() {
+		return id_story;
+	}
+	
 	public UserEntity getAuthor() {
 		return author;
 	}
@@ -39,10 +44,6 @@ public class StoryEntity implements NumerableEntity {
 		this.author = author;
 	}
 	
-	@Override
-	public Long getId() {
-		return id_story;
-	}
 	public void setId( Long id_story ) {
 		this.id_story = id_story;
 	}
