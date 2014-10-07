@@ -2,7 +2,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 	$.widget( "ws.editor", {
 		_create: function() {
 			this._refresh();
-			this._on( this.element, this._setupEvents );
+			this._on( this.element, this._clickEvents.call( this ) );
+			this._on( this.element, this._textEvents.call( this ) );
 			this._initComponents();
 			this._initAutosave();
 		},
@@ -41,87 +42,98 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			};
 			this._chapters.forEach( refresh.chapter );
 		},
-		_setupEvents: {
-			"click a": function( event ) {
-				var href = $( event.currentTarget ).attr( "href" );
-				this._scrollTo( href );
-				event.preventDefault();
-			},
-			"click .editor-chapter-thumb-add": function() {
-				var nextChapter = this._chapters.length + 1;
-				Promise.all([
-					this._loadChapterThumb( nextChapter ),
-					this._loadChapter( nextChapter )
-				]).then($.proxy(function( values ) {
-					var thumbnail = $( values[ 0 ] )
-						.appendTo( this.element.find( ".editor-chapter-thumbs > ul" ) );
-					$( values[ 1 ] )
-						.appendTo( this.element.find( ".editor-chapters" ) );
-					var href = thumbnail
-						.find( ".editor-chapter-thumb" )
-						.attr( "href" );
-					this._refresh();
-					this._scrollTo( href, function() {
-						$( href )
-							.find( ".editor-chapter-title-name" )
-							.focus();
-					});
-				}, this ));
-			},
-			"click .editor-section-add": function( event ) {
-				new Promise( this.options.loadSection )
-					.then($.proxy(function( html ) {
-						var previous = $( event.currentTarget )
-							.parents( ".editor-chapter-section" );
-						var section = $( html )
-							.insertAfter( previous );
+		_textEvents: function() {
+			return {
+				"keyup .editor-chapter-section-text": this._type,
+				"keyup .editor-chapter-title-name": this._type
+			};
+		},
+		_clickEvents: function() {
+			return {
+				"click a": function( event ) {
+					var href = $( event.currentTarget ).attr( "href" );
+					this._scrollTo( href );
+					event.preventDefault();
+				},
+				"click .editor-chapter-thumb-add": function() {
+					var nextChapter = this._chapters.length + 1;
+					Promise.all([
+						this._loadChapterThumb( nextChapter ),
+						this._loadChapter( nextChapter )
+					]).then($.proxy(function( values ) {
+						var thumbnail = $( values[ 0 ] )
+							.appendTo( this.element.find( ".editor-chapter-thumbs > ul" ) );
+						$( values[ 1 ] )
+							.appendTo( this.element.find( ".editor-chapters" ) );
+						var href = thumbnail
+							.find( ".editor-chapter-thumb" )
+							.attr( "href" );
 						this._refresh();
-						this._scrollTo( section, 100, function() {
-							section
-								.find( ".editor-chapter-section-text" )
+						this._scrollTo( href, function() {
+							$( href )
+								.find( ".editor-chapter-title-name" )
 								.focus();
 						});
 					}, this ));
-			},
-			"click .editor-section-delete": function( event ) {
-				var drop = {
-					section: $.proxy(function( section ) {
-						var content = section.find( ".editor-chapter-section-text" ).val().trim();
-						var lastSection = section.siblings().length === 0;
-						if ( lastSection ) {
-							drop.chapter( section.parents( ".editor-chapter" ) );
-							return;
-						}
-						if ( !content ) {
-							section.remove();
+				},
+				"click .editor-section-add": function( event ) {
+					new Promise( this.options.loadSection )
+						.then($.proxy(function( html ) {
+							var previous = $( event.currentTarget )
+								.parents( ".editor-chapter-section" );
+							var section = $( html )
+								.insertAfter( previous );
 							this._refresh();
-						} else if ( confirm( "Esta seção será apagada!" ) ) {
-							section.remove();
-							this._refresh();
-						}
-					}, this ),
-					chapter: $.proxy(function( chapter ) {
-						var prevChapter = chapter.prev();
-						var lastChapter =
-							this._chapters.length === 1 &&
-							this._chapters[ 0 ].sections.length === 1;
-						if ( lastChapter ) {
-							alert( "Este capítulo não pode ser apagado!" );
-							return;
-						}
-						if ( confirm( "O conteúdo deste capítulo será apagado!" ) ) {
-							$( "#" + this.options.menuId + " > ul > li" )
-								.eq( chapter.index() )
-								.remove();
-							chapter.remove();
-							this._refresh();
-							this._scrollTo( prevChapter );
-						}
-					}, this )
-				};
-				drop
-					.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
+							this._scrollTo( section, 100, function() {
+								section
+									.find( ".editor-chapter-section-text" )
+									.focus();
+							});
+						}, this ));
+				},
+				"click .editor-section-delete": function( event ) {
+					var drop = {
+						section: $.proxy(function( section ) {
+							var content = section.find( ".editor-chapter-section-text" ).val().trim();
+							var lastSection = section.siblings().length === 0;
+							if ( lastSection ) {
+								drop.chapter( section.parents( ".editor-chapter" ) );
+								return;
+							}
+							if ( !content ) {
+								section.remove();
+								this._refresh();
+							} else if ( confirm( "Esta seção será apagada!" ) ) {
+								section.remove();
+								this._refresh();
+							}
+						}, this ),
+						chapter: $.proxy(function( chapter ) {
+							var prevChapter = chapter.prev();
+							var lastChapter =
+								this._chapters.length === 1 &&
+								this._chapters[ 0 ].sections.length === 1;
+							if ( lastChapter ) {
+								alert( "Este capítulo não pode ser apagado!" );
+								return;
+							}
+							if ( confirm( "O conteúdo deste capítulo será apagado!" ) ) {
+								$( "#" + this.options.menuId + " > ul > li" )
+									.eq( chapter.index() )
+									.remove();
+								chapter.remove();
+								this._refresh();
+								this._scrollTo( prevChapter );
+							}
+						}, this )
+					};
+					drop
+						.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
+				}
 			}
+		},
+		_type: function( event ) {
+			this._edited = true;
 		},
 		_loadChapterThumb: function( nextChapter ) {
 			var loader = this.options.loadChapterThumb;
@@ -149,7 +161,10 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		},
 		_initAutosave: function() {
 			var doSave = $.proxy(function() {
-				this.options.autosave( this._chapters );
+				if ( this._edited ) {
+					this.options.autosave( this._chapters );
+					delete this._edited;
+				}
 			}, this );
 			setInterval( doSave, 30000 );
 		},

@@ -29,7 +29,7 @@ require( ["jquery", "webstories", "jquery.ws.editor"], function( $, webstories )
 					$( ".saving-alert" )
 						.addClass( "in" )
 						.find( ".saving-text" )
-							.html( "Salvando..." );
+							.html( "Salvando a história..." );
 				},
 				saved: function() {
 					$( ".saving-alert" )
