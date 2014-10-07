@@ -28,32 +28,27 @@ require( ["jquery", "webstories", "jquery.ws.editor"], function( $, webstories )
 				saving: function() {
 					$( ".saving-alert" )
 						.addClass( "in" )
-						.find( ".saving-close" )
-							.addClass( "hidden" )
-						.end()
 						.find( ".saving-text" )
 							.html( "Salvando..." );
 				},
 				saved: function() {
 					$( ".saving-alert" )
-						.find( ".saving-close" )
-							.removeClass( "hidden" )
-						.end()
 						.find( ".saving-text" )
-							.html( "Salvo!" );
-						
+							.html( "A história foi salva com sucesso!" );
+					setTimeout(function() {
+						$( ".saving-alert" )
+							.removeClass( "in" );
+					}, 3000 );
 				},
 				error: function() {
+					var content = [
+						"<b>Erro:</b> Não foi possível salvar",
+						"O servidor foi reiniciado ou você está sem conexão com a internet",
+						"<a href='javascript:location.reload()'>clique aqui para recarregar</a>"
+					].join( "<br>" );
 					$( ".saving-alert" )
-					.find( ".saving-close" )
-						.removeClass( "hidden" )
-					.end()
-					.find( ".saving-text" )
-						.html([
-							"<b>Erro:</b> Não foi possível salvar",
-							"O servidor foi reiniciado ou você está sem conexão com a internet",
-							"<a href='javascript:location.reload()'>clique aqui para recarregar</a>"
-						].join( "<br>" ));
+						.find( ".saving-text" )
+						.html( content );
 				}
 			};
 			$.ajax({

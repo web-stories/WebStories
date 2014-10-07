@@ -1,7 +1,6 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <div class="saving">
   <div class="alert alert-warning fade saving-alert">
-    <button class="close saving-close hidden" type="button">×</button>
     <span class="saving-text"></span>
   </div>
 </div>

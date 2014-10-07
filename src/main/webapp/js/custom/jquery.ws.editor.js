@@ -151,7 +151,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			var doSave = $.proxy(function() {
 				this.options.autosave( this._chapters );
 			}, this );
-			setInterval( doSave, 15000 );
+			setInterval( doSave, 30000 );
 		},
 		_scrollTo: function( selector, offset, done ) {
 			if ( $.isFunction( offset ) ) {
