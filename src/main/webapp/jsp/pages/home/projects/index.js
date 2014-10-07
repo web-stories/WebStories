@@ -17,6 +17,7 @@ require( ["jquery", "webstories", "jquery.ws.editor"], function( $, webstories )
 			webstories.loadComponent( uri, {
 				chapter: nextChapter
 			}, loaded );
-		}
+		},
+		autosave: console.log
 	});
 });

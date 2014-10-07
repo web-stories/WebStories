@@ -4,6 +4,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			this._refresh();
 			this._on( this.element, this._setupEvents );
 			this._initComponents();
+			this._initAutosave();
 		},
 		_refresh: function() {
 			this._refreshDataStructure();
@@ -12,9 +13,19 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		_refreshDataStructure: function() {
 			var create = {
 				chapter: function( chapter, index ) {
+					var titleInput = $( chapter ).find( ".editor-chapter-title-name" );
+					var sections = $( chapter ).find( ".editor-chapter-section" );
 					return {
+						name: titleInput.val().trim(),
 						number: index + 1,
-						id: chapter.id
+						id: chapter.id,
+						sections: $.map( sections, create.section )
+					};
+				},
+				section: function( section, index ) {
+					var textInput = $( section ).find( ".editor-chapter-section-text" );
+					return {
+						text: textInput.val().trim()
 					};
 				}
 			};
@@ -128,6 +139,12 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				target: "#" + this.options.menuId,
 				offset: this.options.chaptersOffset + 150
 			});
+		},
+		_initAutosave: function() {
+			var doSave = $.proxy(function() {
+				this.options.autosave( this._chapters );
+			}, this );
+			setInterval( doSave, 15000 );
 		},
 		_scrollTo: function( selector, offset, done ) {
 			if ( $.isFunction( offset ) ) {

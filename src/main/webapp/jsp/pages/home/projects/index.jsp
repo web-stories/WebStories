@@ -46,27 +46,12 @@
     <div class="col-sm-9 col-lg-10 editor-chapters">
       <ws:editor-chapter chapter="1">
         <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-      </ws:editor-chapter>
-      <ws:editor-chapter chapter="2">
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
-        <ws:editor-section></ws:editor-section>
       </ws:editor-chapter>
     </div>
     <div class="col-sm-3 col-lg-2 hidden-xs">
       <div class="editor-chapter-thumbs" id="chapter-menu">
         <ul class="nav">
           <ws:editor-chapter-thumb chapter="1"/>
-          <ws:editor-chapter-thumb chapter="2"/>
         </ul>
         <button class="btn btn-primary btn-block editor-chapter-thumb-add">
           Novo capítulo
