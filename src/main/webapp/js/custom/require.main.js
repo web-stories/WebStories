@@ -32,6 +32,7 @@ require = (function( require ) {
 		"jquery.ui.widget-1.11.1",
 		"jquery.validate-1.13.0",
 		"jquery.validate.extend",
+		"jquery.ws.editor",
 		"jquery.ws.remaining",
 		"webstories"
 	];
