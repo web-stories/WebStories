@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Story {
 	Long getId();
-	List<StoryChapter> getChapters();
+	List<? extends StoryChapter> getChapters();
 }

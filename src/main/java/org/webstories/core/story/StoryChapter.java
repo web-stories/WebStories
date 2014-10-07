@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface StoryChapter {
 	String getTitle();
-	List<StorySection> getSections();
+	List<? extends StorySection> getSections();
 }
