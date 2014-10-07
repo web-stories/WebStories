@@ -1,6 +1,10 @@
 package org.webstories.core.story.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.webstories.core.story.Story;
+import org.webstories.core.story.StoryChapter;
 import org.webstories.dao.story.MetaEntity;
 
 public class EditorStory implements Story {
@@ -18,5 +22,10 @@ public class EditorStory implements Story {
 	}
 	public String getTitle() {
 		return title;
+	}
+	@Override
+	public List<StoryChapter> getChapters() {
+		// TODO read chapters
+		return new ArrayList<StoryChapter>();
 	}
 }
