@@ -30,6 +30,7 @@ public class UsernameGeneratorTest {
 		
 		Assert.assertEquals( "john", generator.next() );
 		Assert.assertEquals( "john1", generator.next() );
+		Assert.assertEquals( "john2", generator.next() );
 	}
 	
 	@Test
