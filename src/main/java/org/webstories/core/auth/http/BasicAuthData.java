@@ -1,16 +1,16 @@
-package org.webstories.core.auth;
+package org.webstories.core.auth.http;
 
 import org.webstories.core.utils.Base64;
 
-public class BasicAuthExtractor implements AuthExtractor {
+public class BasicAuthData implements HttpAuthData {
 	private String username;
 	private String password;
-	public static BasicAuthExtractor from( String header ) {
-		String encoded = header.replaceFirst( "Basic ", "" );
+	public static BasicAuthData from( String authorization ) {
+		String encoded = authorization.replaceFirst( "Basic ", "" );
 		String decoded = Base64.decode( encoded );
 		String[] data = decoded.split( ":" );
 		
-		BasicAuthExtractor extractor = new BasicAuthExtractor();
+		BasicAuthData extractor = new BasicAuthData();
 		extractor.username = data[ 0 ];
 		extractor.password = data[ 1 ];
 		
