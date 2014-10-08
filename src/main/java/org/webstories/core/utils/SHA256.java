@@ -33,7 +33,3 @@ public class SHA256 {
 		}
 	}
 }
-
-class SHA256Exception extends Exception {
-	private static final long serialVersionUID = 1;
-}

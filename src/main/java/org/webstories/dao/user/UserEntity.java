@@ -1,5 +1,6 @@
 package org.webstories.dao.user;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +11,6 @@ import javax.persistence.TableGenerator;
 
 import org.webstories.dao.NumerableEntity;
 import org.webstories.dao.integration.FacebookEntity;
-
-import com.restfb.types.User;
 
 @Entity
 @Table( name = "ws_user" )
@@ -25,19 +24,33 @@ public class UserEntity implements NumerableEntity {
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "user_sequence" )
 	private Long id_user;
 	
+	@Column( nullable = false, length = 255 )
+	private String ds_username;
+	
+	@Column( nullable = false, length = 255 )
+	private String ds_password;
+	
 	@OneToOne( mappedBy = "user", optional = false )
 	private FacebookEntity facebook;
 	
-	public static UserEntity from( User facebookUser ) {
-		return new UserEntity();
+	public static UserEntity from( String ds_username, String ds_password ) {
+		UserEntity user = new UserEntity();
+		user.ds_username = ds_username;
+		user.ds_password = ds_password;
+		return user;
 	}
 	
 	@Override
 	public Long getId() {
 		return id_user;
 	}
-	public void setId( Long id_user ) {
-		this.id_user = id_user;
+	
+	public String getUsername() {
+		return ds_username;
+	}
+	
+	public String getPassword() {
+		return ds_password;
 	}
 	
 	public FacebookEntity getFacebook() {

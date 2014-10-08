@@ -16,7 +16,9 @@ INSERT INTO invite_sequences VALUES ( 'invite_sequence', 1 );
 -- ws_user
 -------------------------------------------------------------------------------
 CREATE TABLE ws_user (
-	id_user BIGINT NOT NULL PRIMARY KEY
+	id_user BIGINT NOT NULL PRIMARY KEY,
+	ds_username VARCHAR( 255 ) NOT NULL,
+	ds_password VARCHAR( 255 ) NOT NULL
 );
 CREATE TABLE user_sequences (
 	sequence_name VARCHAR( 255 ) NOT NULL PRIMARY KEY,
