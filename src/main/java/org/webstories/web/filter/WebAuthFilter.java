@@ -11,7 +11,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.webstories.core.auth.AuthSession;
 import org.webstories.core.auth.Logged;
@@ -24,23 +23,29 @@ import com.fagnerbrack.servlet.convention.ConventionServletRequest;
 @WebFilter( filterName = "auth" )
 public class WebAuthFilter implements Filter {
 	@EJB
-	LocalHttpAuthentication authentication;
+	LocalHttpAuthentication httpAuthentication;
 	
 	@Override
 	public void init( FilterConfig filterConfig ) {}
+	
 	@Override
 	public void doFilter( ServletRequest req, ServletResponse response, FilterChain chain )
 	throws IOException, ServletException {
 		HttpServletRequest request = ( HttpServletRequest )req;
-		String authorization = request.getHeader( "Authorization" );
+		AuthSession session = AuthSession.from( request );
+		ConventionServletRequest convention = new ConventionServletRequest( request );
+		BasicAuthenticationMode basic = new BasicAuthenticationMode( request );
+		ForwardAuthenticationMode forward = new ForwardAuthenticationMode( convention, session );
 		
-		if ( authorization != null ) {
-			BasicAuthData extractor = BasicAuthData.from( authorization );
-			Logged logged = authentication.basic( extractor );
-			AuthSession.from( request ).setLogged( logged );
+		if ( basic.isAvailable() ) {
+			BasicAuthData data = BasicAuthData.from( basic.getAuthorizationHeader() );
+			Logged logged = httpAuthentication.basic( data );
+			session.setLogged( logged );
+			chain.doFilter( request, response );
+			return;
 		}
 		
-		if ( isForwardable( request ) ) {
+		if ( forward.isAvailable() ) {
 			request
 				.getRequestDispatcher( "/identification/auth" )
 				.forward( request, response );
@@ -49,12 +54,25 @@ public class WebAuthFilter implements Filter {
 		
 		chain.doFilter( request, response );
 	}
+	
 	@Override
 	public void destroy() {}
-	
-	private boolean isForwardable( HttpServletRequest request ) {
-		HttpSession session = request.getSession();
-		Class<?> actionClass = new ConventionServletRequest( request ).getActionClass();
+}
+
+abstract class AuthenticationMode {
+	protected abstract boolean isAvailable();
+}
+
+class ForwardAuthenticationMode extends AuthenticationMode {
+	private ConventionServletRequest request;
+	private AuthSession session;
+	protected ForwardAuthenticationMode( ConventionServletRequest request, AuthSession session ) {
+		this.request = request;
+		this.session = session;
+	}
+	@Override
+	protected boolean isAvailable() {
+		Class<?> actionClass = request.getActionClass();
 		
 		// Requires a valid convention action
 		if ( actionClass == null ) {
@@ -67,10 +85,24 @@ public class WebAuthFilter implements Filter {
 		}
 		
 		// If user is logged do nothing
-		if ( Boolean.TRUE.equals( session.getAttribute( "isLogged" ) ) ) {
+		if ( session.isLogged() ) {
 			return false;
 		}
 		
 		return true;
+	}
+}
+
+class BasicAuthenticationMode extends AuthenticationMode {
+	private String authorization;
+	protected BasicAuthenticationMode( HttpServletRequest request ) {
+		this.authorization = request.getHeader( "Authorization" );
+	}
+	@Override
+	protected boolean isAvailable() {
+		return authorization != null;
+	}
+	protected String getAuthorizationHeader() {
+		return authorization;
 	}
 }
