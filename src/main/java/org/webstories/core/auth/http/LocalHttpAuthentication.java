@@ -6,5 +6,5 @@ import org.webstories.core.auth.Logged;
 
 @Local
 public interface LocalHttpAuthentication {
-	Logged basic( BasicAuthData data );
+	Logged authenticate( HttpAuthData data );
 }

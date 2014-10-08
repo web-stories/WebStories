@@ -39,7 +39,7 @@ public class WebAuthFilter implements Filter {
 		
 		if ( basic.isAvailable() ) {
 			BasicAuthData data = BasicAuthData.from( basic.getAuthorizationHeader() );
-			Logged logged = httpAuthentication.basic( data );
+			Logged logged = httpAuthentication.authenticate( data );
 			session.setLogged( logged );
 			chain.doFilter( request, response );
 			return;

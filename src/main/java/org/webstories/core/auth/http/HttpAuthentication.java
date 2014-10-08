@@ -7,7 +7,7 @@ import org.webstories.core.auth.Logged;
 @Stateless
 public class HttpAuthentication implements LocalHttpAuthentication {
 	@Override
-	public Logged basic( BasicAuthData data ) {
+	public Logged authenticate( HttpAuthData data ) {
 		// TODO Create initial password for facebook login
 		return null;
 	}
