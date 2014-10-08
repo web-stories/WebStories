@@ -1,6 +1,7 @@
 package org.webstories.core.auth;
 
 import org.webstories.dao.integration.FacebookEntity;
+import org.webstories.dao.user.UserEntity;
 
 public class Logged {
 	private Long id;
@@ -12,6 +13,9 @@ public class Logged {
 		this.firstName = name.getFirst();
 		this.lastName = name.getLast();
 		this.fullName = name.toString();
+	}
+	public static Logged from( UserEntity user ) {
+		return from( user.getFacebook() );
 	}
 	public static Logged from( FacebookEntity facebook ) {
 		long id = facebook.getId();

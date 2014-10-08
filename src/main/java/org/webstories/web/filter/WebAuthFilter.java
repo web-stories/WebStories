@@ -11,10 +11,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.auth.AuthSession;
+import org.webstories.core.auth.AuthenticationException;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.http.BasicAuthData;
+import org.webstories.core.auth.http.HttpAuthDataException;
 import org.webstories.core.auth.http.LocalHttpAuthentication;
 import org.webstories.web.util.servlet.AuthForwarded;
 
@@ -29,18 +32,25 @@ public class WebAuthFilter implements Filter {
 	public void init( FilterConfig filterConfig ) {}
 	
 	@Override
-	public void doFilter( ServletRequest req, ServletResponse response, FilterChain chain )
+	public void doFilter( ServletRequest req, ServletResponse res, FilterChain chain )
 	throws IOException, ServletException {
 		HttpServletRequest request = ( HttpServletRequest )req;
+		HttpServletResponse response = ( HttpServletResponse )res;
 		AuthSession session = AuthSession.from( request );
 		ConventionServletRequest convention = new ConventionServletRequest( request );
-		BasicAuthenticationMode basic = new BasicAuthenticationMode( request );
+		BasicAuthenticationMode basic = new BasicAuthenticationMode( request, session );
 		ForwardAuthenticationMode forward = new ForwardAuthenticationMode( convention, session );
 		
 		if ( basic.isAvailable() ) {
-			BasicAuthData data = BasicAuthData.from( basic.getAuthorizationHeader() );
-			Logged logged = httpAuthentication.authenticate( data );
-			session.setLogged( logged );
+			try {
+				String authorization = request.getHeader( "Authorization" );
+				BasicAuthData data = BasicAuthData.from( authorization );
+				Logged logged = httpAuthentication.authenticate( data );
+				session.setLogged( logged );
+			} catch ( AuthenticationException | HttpAuthDataException e ) {
+				response.addHeader( "WWW-Authenticate", "Basic" );
+				response.sendError( HttpServletResponse.SC_UNAUTHORIZED );
+			}
 			chain.doFilter( request, response );
 			return;
 		}
@@ -94,15 +104,24 @@ class ForwardAuthenticationMode extends AuthenticationMode {
 }
 
 class BasicAuthenticationMode extends AuthenticationMode {
-	private String authorization;
-	protected BasicAuthenticationMode( HttpServletRequest request ) {
-		this.authorization = request.getHeader( "Authorization" );
+	private String requestedWith;
+	private AuthSession session;
+	protected BasicAuthenticationMode( HttpServletRequest request, AuthSession session ) {
+		this.requestedWith = request.getHeader( "X-Requested-With" );
+		this.session = session;
 	}
 	@Override
 	protected boolean isAvailable() {
-		return authorization != null;
-	}
-	protected String getAuthorizationHeader() {
-		return authorization;
+		// Requires an AJAX request
+		if( !"XMLHttpRequest".equals( requestedWith ) ) {
+			return false;
+		}
+		
+		// If user is logged do nothing
+		if ( session.isLogged() ) {
+			return false;
+		}
+		
+		return true;
 	}
 }
