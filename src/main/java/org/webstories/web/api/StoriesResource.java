@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.webstories.core.story.Story;
 import org.webstories.core.story.impl.EditorStoryInput;
+import org.webstories.web.util.servlet.HttpInternalServerErrorException;
 
 @Path( "/stories" )
 @Consumes( MediaType.APPLICATION_JSON )
@@ -21,8 +22,14 @@ public class StoriesResource {
 	
 	@PUT
 	@Path( "{id}/save" )
-	public Story save( @PathParam( "id" ) Long id, EditorStoryInput story ) {
-		// TODO Insert data into the system
+	public Story save( @PathParam( "id" ) Long id, EditorStoryInput story )
+	throws HttpInternalServerErrorException {
+		try {
+			// TODO Persist the data
+			Thread.sleep( 1000 );
+		} catch ( InterruptedException e ) {
+			throw new HttpInternalServerErrorException( e );
+		}
 		return story;
 	}
 }
