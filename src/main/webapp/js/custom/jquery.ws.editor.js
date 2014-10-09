@@ -1,5 +1,7 @@
 define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
+	"use strict";
 	$.widget( "ws.editor", {
+		_ajaxQueue: $({}),
 		_create: function() {
 			this._refresh();
 			this._on( this.element, this._clickEvents.call( this ) );
@@ -135,7 +137,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		},
 		_type: function( event ) {
 			var keys = [
-				09, // Tab
+				9, // Tab
 				91, // Win
 				18, // Alt
 				16, // Shift
@@ -157,10 +159,23 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			this._save();
 		},
 		_save: function() {
+			var execute;
+			
 			if ( this._edited ) {
-				this.options.autosave( this._chapters );
-				delete this._edited;
+				// Queuing ensures that concurrent calls will be executed in the proper sequence
+				execute = (function( chapters, autosave ) {
+					return function( next ) {
+						var deferred = autosave( chapters )
+						if ( !deferred ) {
+							throw new Error( "autosave option should return a $.Deferred" );
+						}
+						deferred.always( next );
+					};
+				}( this._chapters, this.options.autosave ));
+				this._ajaxQueue.queue( execute );
+				this._edited = false;
 			}
+			
 			clearTimeout( this._saveTimeout );
 			this._saveTimeout = this._delay( this._save, 60000 );
 		},

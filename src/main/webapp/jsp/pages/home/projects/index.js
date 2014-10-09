@@ -53,15 +53,15 @@ require( ["jquery", "webstories", "jquery.ws.editor"], function( $, webstories )
 			};
 			var idStory = $( "#meta" ).data( "idStory" );
 			alert.saving();
-			webstories.api( "/api/stories/" + idStory + "/save", "PUT", {
-				id: idStory,
-				chapters: chapters
-			}).fail(function() {
-				alert.error();
-			}).done(function() {
-				console.log( chapters );
-				alert.saved();
-			});
+			return webstories
+				.api( "/api/stories/" + idStory + "/save", "PUT", {
+					id: idStory,
+					chapters: chapters
+				}).fail(function() {
+					alert.error();
+				}).done(function() {
+					alert.saved();
+				});
 		}
 	});
 });
