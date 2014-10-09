@@ -105,13 +105,20 @@ class ForwardAuthenticationMode extends AuthenticationMode {
 
 class BasicAuthenticationMode extends AuthenticationMode {
 	private String requestedWith;
+	private String authenticate;
 	private AuthSession session;
 	protected BasicAuthenticationMode( HttpServletRequest request, AuthSession session ) {
 		this.requestedWith = request.getHeader( "X-Requested-With" );
+		this.authenticate = request.getHeader( "X-WS-Authenticate" );
 		this.session = session;
 	}
 	@Override
 	protected boolean isAvailable() {
+		// If a custom header enabling basic authentication is not sent, do nothing
+		if ( !"Basic".equals( authenticate ) ) {
+			return false;
+		}
+		
 		// Requires an AJAX request
 		if( !"XMLHttpRequest".equals( requestedWith ) ) {
 			return false;
