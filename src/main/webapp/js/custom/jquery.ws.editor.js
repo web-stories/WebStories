@@ -17,9 +17,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					var titleInput = $( chapter ).find( ".editor-chapter-title-name" );
 					var sections = $( chapter ).find( ".editor-chapter-section" );
 					return {
-						name: titleInput.val().trim(),
-						number: index + 1,
-						id: chapter.id,
+						title: titleInput.val().trim(),
 						sections: $.map( sections, create.section )
 					};
 				},
@@ -34,10 +32,11 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		},
 		_refreshDOM: function() {
 			var refresh = {
-				chapter: function( chapter ) {
-					$( "#" + chapter.id )
+				chapter: function( chapter, index ) {
+					$( ".editor-chapter" )
+						.eq( index )
 						.find( ".editor-chapter-title-header" )
-							.text( "Capítulo " + chapter.number );
+							.text( "Capítulo " + ( index + 1 ) );
 				}
 			};
 			this._chapters.forEach( refresh.chapter );

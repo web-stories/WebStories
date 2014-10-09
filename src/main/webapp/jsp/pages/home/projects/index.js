@@ -51,20 +51,16 @@ require( ["jquery", "webstories", "jquery.ws.editor"], function( $, webstories )
 						.html( content );
 				}
 			};
-			$.ajax({
-				url: webstories.contextPath + "/home/projects/auto-save",
-				type: "PUT",
-				data: chapters,
-				error: function() {
-					alert.error();
-				},
-				beforeSend: function() {
-					alert.saving();
-				},
-				success: function( response ) {
-					console.log( chapters );
-					alert.saved();
-				}
+			var idStory = $( "#meta" ).data( "idStory" );
+			alert.saving();
+			webstories.api( "/api/stories/" + idStory + "/save", "PUT", {
+				id: idStory,
+				chapters: chapters
+			}).fail(function() {
+				alert.error();
+			}).done(function() {
+				console.log( chapters );
+				alert.saved();
 			});
 		}
 	});

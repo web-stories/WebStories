@@ -1,4 +1,5 @@
 define( ["jquery"], function( $ ) {
+	"use strict";
 	return {
 		contextPath: "",
 		loadComponent: function( url, data, success ) {
@@ -17,6 +18,14 @@ define( ["jquery"], function( $ ) {
 				},
 				url: url
 			});
+		},
+		api: function( url, type, data ) {
+			return $.ajax({
+				url: this.contextPath + url,
+				type: type,
+				contentType: "application/json",
+				data: JSON.stringify( data )
+			});
 		}
-	}
+	};
 });

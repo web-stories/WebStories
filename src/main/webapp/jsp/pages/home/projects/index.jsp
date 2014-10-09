@@ -1,4 +1,5 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<div id="meta" data-id-story="${story.id}"></div>
 <div class="saving">
   <div class="alert alert-warning fade saving-alert">
     <span class="saving-text"></span>
