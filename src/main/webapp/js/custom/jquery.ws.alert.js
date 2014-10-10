@@ -6,18 +6,14 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		open: function() {
 			this._opened = true;
 			this.element
-				.parents( ".alert-container" )
-				.removeClass( "hidden" )
-			.end()
-				.removeClass( "hidden" )
-				.addClass( "in" );
+				.addClass( "in" )
+					.parents( ".alert-container" )
+					.removeClass( "hidden" );
 		},
 		close: function() {
 			function closed( event ) {
 				$( event.currentTarget )
 					.parents( ".alert-container" )
-					.addClass( "hidden" )
-				.end()
 					.addClass( "hidden" );
 				this._opened = false;
 			}
