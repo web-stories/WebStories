@@ -1,9 +1,4 @@
 require( ["jquery", "webstories", "jquery.ws.editor"], function( $, webstories ) {
-	$( ".saving-close" ).click(function() {
-		$( this )
-			.parents( ".saving-alert" )
-			.removeClass( "in" );
-	});
 	$( ".editor" ).editor({
 		chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
 		menuId: "chapter-menu",
@@ -24,43 +19,16 @@ require( ["jquery", "webstories", "jquery.ws.editor"], function( $, webstories )
 			}, loaded );
 		},
 		autosave: function( chapters ) {
-			var alert = {
-				saving: function() {
-					$( ".saving-alert" )
-						.addClass( "in" )
-						.find( ".saving-text" )
-							.html( "Salvando a história..." );
-				},
-				saved: function() {
-					$( ".saving-alert" )
-						.find( ".saving-text" )
-							.html( "A história foi salva com sucesso!" );
-					setTimeout(function() {
-						$( ".saving-alert" )
-							.removeClass( "in" );
-					}, 3000 );
-				},
-				error: function() {
-					var content = [
-						"<b>Erro:</b> Não foi possível salvar",
-						"O servidor foi reiniciado ou você está sem conexão com a internet",
-						"<a href='javascript:location.reload()'>clique aqui para recarregar</a>"
-					].join( "<br>" );
-					$( ".saving-alert" )
-						.find( ".saving-text" )
-						.html( content );
-				}
-			};
-			var idStory = $( "#meta" ).data( "idStory" );
-			alert.saving();
+			var feedback = $( "#saving-feedback" ).saving();
+			var id = $( "#meta" ).data( "story-id" );
 			return webstories
-				.api( "/api/stories/" + idStory + "/save", "PUT", {
-					id: idStory,
+				.api( "/api/stories/" + id + "/save", "PUT", {
+					id: id,
 					chapters: chapters
 				}).fail(function() {
-					alert.error();
+					feedback.saving( "error" );
 				}).done(function() {
-					alert.saved();
+					feedback.saving( "saved" );
 				});
 		}
 	});

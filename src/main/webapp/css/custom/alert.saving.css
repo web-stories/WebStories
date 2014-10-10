@@ -1,4 +1,4 @@
-.saving {
+.alert-saving {
   position: fixed;
   z-index: 99999;
   width: 100%;
@@ -8,7 +8,7 @@
 }
 /* sm */
 @media ( min-width: 768px ) {
-  .saving {
+  .alert-saving {
     left: 50%;
     margin-left: -250px;
     width: 500px;

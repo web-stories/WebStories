@@ -1,10 +1,6 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
-<div id="meta" data-id-story="${story.id}"></div>
-<div class="saving">
-  <div class="alert alert-warning fade saving-alert">
-    <span class="saving-text"></span>
-  </div>
-</div>
+<div id="meta" data-story-id="${story.id}"></div>
+<ws:alert-saving id="saving-feedback"></ws:alert-saving>
 <div class="container">
   <ol class="breadcrumb breadcumb-clear toolbar">
     <li>

@@ -19,6 +19,9 @@
 	<group name="jquery.ws.editor">
 		<js>/js/custom/jquery.ws.editor.js</js>
 	</group>
+	<group name="jquery.ws.alert.saving">
+		<js>/js/custom/jquery.ws.alert.saving.js</js>
+	</group>
 	<group name="bootstrap.wizard">
 		<js>/js/custom/bootstrap.wizard.js</js>
 	</group>
@@ -34,7 +37,9 @@
 		<css>/css/custom/editor-tabs.css</css>
 		<css>/css/custom/editor-section.css</css>
 		<css>/css/custom/editor-chapter.css</css>
+		<css>/css/custom/alert.saving.css</css>
 	</group>
+	
 	<!-- Vendor -->
 	<group name="jquery-2.1.1">
 		<js>/js/vendor/jquery-2.1.1.js</js>
