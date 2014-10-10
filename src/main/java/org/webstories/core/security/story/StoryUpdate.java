@@ -7,10 +7,10 @@ import org.webstories.core.story.impl.EditorStoryInput;
 import org.webstories.dao.story.StoryEntity;
 
 public class StoryUpdate {
-	public static class Editor implements PrivilegedUpdate<StoryEntity> {
+	public static class EditorUpdate implements PrivilegedUpdate<StoryEntity> {
 		private EditorStoryInput story;
 		private EntityManager entityManager;
-		public Editor( EditorStoryInput story, EntityManager entityManager ) {
+		public EditorUpdate( EditorStoryInput story, EntityManager entityManager ) {
 			this.story = story;
 			this.entityManager = entityManager;
 		}

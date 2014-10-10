@@ -42,8 +42,8 @@ public class StoryEditor implements LocalStoryEditor {
 			throw new ValidationException();
 		}
 		security.updatePrivileged(
-			new StoryRead.Default( story.getId(), storyQueries ),
-			new StoryUpdate.Editor( story, entityManager )
+			new StoryRead.DefaultRead( story.getId(), storyQueries ),
+			new StoryUpdate.EditorUpdate( story, entityManager )
 		);
 	}
 }
