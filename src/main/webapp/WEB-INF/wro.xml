@@ -19,6 +19,9 @@
 	<group name="jquery.ws.editor">
 		<js>/js/custom/jquery.ws.editor.js</js>
 	</group>
+	<group name="jquery.ws.alert">
+		<js>/js/custom/jquery.ws.alert.js</js>
+	</group>
 	<group name="jquery.ws.alert.saving">
 		<js>/js/custom/jquery.ws.alert.saving.js</js>
 	</group>
