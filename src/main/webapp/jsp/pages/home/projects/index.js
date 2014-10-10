@@ -24,8 +24,8 @@
 					.api( "/api/stories/" + id + "/save", "PUT", {
 						id: id,
 						chapters: chapters
-					}).fail(function() {
-						feedback.saving( "error" );
+					}).fail(function( jqXHR ) {
+						feedback.saving( "error", jqXHR );
 					}).done(function() {
 						feedback.saving( "saved" );
 					});

@@ -16,15 +16,18 @@ define( ["jquery", "jquery.ui.widget", "jquery.ws.alert"], function( $ ) {
 				.html( "A história foi salva com sucesso!" );
 			this._closingTimeout = this._delay( this.close, 3000 );
 		},
-		error: function() {
-			var msg = [
+		error: function( jqXHR ) {
+			var statusMessage = {
+				500: "Ocorreu um erro interno no servidor",
+				404: "O servidor foi reiniciado ou você está sem conexão com a internet"
+			};
+			var content = [
 				"<b>Erro:</b> Não foi possível salvar",
-				"O servidor foi reiniciado ou você está sem conexão com a internet",
-				"<a href='javascript:location.reload()'>clique aqui para recarregar</a>"
+				statusMessage[ jqXHR.status ]
 			].join( "<br>" );
 			this.element
 				.find( ".alert-saving-text" )
-				.html( msg );
+				.html( content );
 		}
 	});
 });
