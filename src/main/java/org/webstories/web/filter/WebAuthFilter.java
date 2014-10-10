@@ -47,12 +47,13 @@ public class WebAuthFilter implements Filter {
 				BasicAuthData data = BasicAuthData.from( authorization );
 				Logged logged = httpAuthentication.authenticate( data );
 				session.setLogged( logged );
+				chain.doFilter( request, response );
+				return;
 			} catch ( AuthenticationException | HttpAuthDataException e ) {
 				response.addHeader( "WWW-Authenticate", "Basic" );
 				response.sendError( HttpServletResponse.SC_UNAUTHORIZED );
+				return;
 			}
-			chain.doFilter( request, response );
-			return;
 		}
 		
 		if ( forward.isAvailable() ) {
