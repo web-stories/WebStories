@@ -1,5 +1,6 @@
 package org.webstories.web.api;
 
+import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
@@ -9,8 +10,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import org.webstories.core.auth.AuthSession;
+import org.webstories.core.auth.Logged;
+import org.webstories.core.story.LocalStoryEditor;
 import org.webstories.core.story.Story;
 import org.webstories.core.story.impl.EditorStoryInput;
+import org.webstories.core.validation.ValidationException;
 import org.webstories.web.util.servlet.HttpInternalServerErrorException;
 
 @Path( "/stories" )
@@ -18,18 +23,21 @@ import org.webstories.web.util.servlet.HttpInternalServerErrorException;
 @Produces( MediaType.APPLICATION_JSON )
 public class StoriesResource {
 	@Context
-	private HttpServletRequest request;
+	HttpServletRequest request;
+	
+	@EJB
+	LocalStoryEditor storyEditor;
 	
 	@PUT
 	@Path( "{id}/save" )
 	public Story save( @PathParam( "id" ) Long id, EditorStoryInput story )
 	throws HttpInternalServerErrorException {
+		Logged logged = AuthSession.from( request ).getLogged();
 		try {
-			// TODO Persist the data
-			Thread.sleep( 1000 );
-		} catch ( InterruptedException e ) {
+			storyEditor.updateStory( story, logged );
+			return story;
+		} catch ( ValidationException e ) {
 			throw new HttpInternalServerErrorException( e );
 		}
-		return story;
 	}
 }

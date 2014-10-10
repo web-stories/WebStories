@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.webstories.core.auth.Logged;
 import org.webstories.core.story.LocalStoryEditor;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.dao.story.MetaEntity;
@@ -19,12 +20,22 @@ public class StoryEditor implements LocalStoryEditor {
 	StoryQueries storyQueries;
 	
 	@Override
-	public void updateMeta( long idStory, EditorStoryDetailsInput input ) throws ValidationException {
+	public void updateMeta( long idStory, EditorStoryDetailsInput input )
+	throws ValidationException {
 		if ( !input.validate() ) {
 			throw new ValidationException();
 		}
 		MetaEntity meta = storyQueries.findMetaByPrimaryKey( idStory );
 		meta.update( input );
 		entityManager.merge( meta );
+	}
+	
+	@Override
+	public void updateStory( EditorStoryInput story, Logged logged )
+	throws ValidationException {
+		if ( !story.validate() ) {
+			throw new ValidationException();
+		}
+		// TODO save story
 	}
 }
