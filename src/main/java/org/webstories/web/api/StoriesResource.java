@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.webstories.core.auth.AuthSession;
 import org.webstories.core.auth.Logged;
+import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.LocalStoryEditor;
 import org.webstories.core.story.Story;
 import org.webstories.core.story.impl.EditorStoryInput;
@@ -36,7 +37,7 @@ public class StoriesResource {
 		try {
 			storyEditor.updateStory( story, logged );
 			return story;
-		} catch ( ValidationException e ) {
+		} catch ( ValidationException | AccessDeniedException e ) {
 			throw new HttpInternalServerErrorException( e );
 		}
 	}

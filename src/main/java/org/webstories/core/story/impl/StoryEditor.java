@@ -6,6 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.webstories.core.auth.Logged;
+import org.webstories.core.security.AccessDeniedException;
+import org.webstories.core.security.story.StoryOwnerSecurity;
+import org.webstories.core.security.story.StoryRead;
+import org.webstories.core.security.story.StoryUpdate;
 import org.webstories.core.story.LocalStoryEditor;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.dao.story.MetaEntity;
@@ -32,10 +36,14 @@ public class StoryEditor implements LocalStoryEditor {
 	
 	@Override
 	public void updateStory( EditorStoryInput story, Logged logged )
-	throws ValidationException {
+	throws ValidationException, AccessDeniedException {
+		StoryOwnerSecurity security = new StoryOwnerSecurity( logged );
 		if ( !story.validate() ) {
 			throw new ValidationException();
 		}
-		// TODO save story
+		security.updatePrivileged(
+			new StoryRead.Default( story.getId(), storyQueries ),
+			new StoryUpdate.Editor( story, entityManager )
+		);
 	}
 }
