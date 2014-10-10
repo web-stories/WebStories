@@ -8,7 +8,7 @@ define( ["jquery"], function( $ ) {
 				data = undefined;
 			}
 			$.ajax({
-				url: url,
+				url: this.contextPath + url,
 				dataType: "html",
 				data: data,
 				success: function() {

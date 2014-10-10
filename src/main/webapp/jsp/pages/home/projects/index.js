@@ -3,18 +3,15 @@ require( ["jquery", "webstories", "jquery.ws.editor"], function( $, webstories )
 		chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
 		menuId: "chapter-menu",
 		loadSection: function( loaded ) {
-			var uri = webstories.contextPath + "/components/editor-section";
-			webstories.loadComponent( uri, loaded );
+			webstories.loadComponent( "/components/editor-section", loaded );
 		},
 		loadChapter: function( nextChapter, loaded ) {
-			var uri = webstories.contextPath + "/components/editor-chapter";
-			webstories.loadComponent( uri, {
+			webstories.loadComponent( "/components/editor-chapter", {
 				chapter: nextChapter
 			}, loaded );
 		},
 		loadChapterThumb: function( nextChapter, loaded ) {
-			var uri = webstories.contextPath + "/components/editor-chapter-thumb";
-			webstories.loadComponent( uri, {
+			webstories.loadComponent( "/components/editor-chapter-thumb", {
 				chapter: nextChapter
 			}, loaded );
 		},
