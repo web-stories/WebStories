@@ -8,6 +8,7 @@ define( ["jquery"], function( $ ) {
 				data = undefined;
 			}
 			$.ajax({
+				url: url,
 				dataType: "html",
 				data: data,
 				success: function() {
@@ -15,8 +16,7 @@ define( ["jquery"], function( $ ) {
 					var container = $( "<div>" ).append( args[ 0 ] );
 					args[ 0 ] = container.find( "#wrapper-default" ).html();
 					success.apply( this, args );
-				},
-				url: url
+				}
 			});
 		},
 		api: function( url, type, data ) {
