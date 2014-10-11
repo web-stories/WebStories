@@ -14,6 +14,7 @@ import org.webstories.core.auth.AuthSession;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.LocalStoryEditor;
+import org.webstories.core.story.LocalStoryReader;
 import org.webstories.core.story.Story;
 import org.webstories.core.story.impl.EditorStoryInput;
 import org.webstories.core.validation.ValidationException;
@@ -29,16 +30,19 @@ public class StoriesResource {
 	@EJB
 	LocalStoryEditor storyEditor;
 	
+	@EJB
+	LocalStoryReader storyReader;
+	
 	@PUT
 	@Path( "{id}/save" )
-	public Story save( @PathParam( "id" ) Long id, EditorStoryInput story )
+	public Story save( @PathParam( "id" ) Long idStory, EditorStoryInput story )
 	throws HttpInternalServerErrorException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
 			storyEditor.updateStory( story, logged );
-			return story;
 		} catch ( ValidationException | AccessDeniedException e ) {
 			throw new HttpInternalServerErrorException( e );
 		}
+		return storyReader.storyEditor( idStory );
 	}
 }

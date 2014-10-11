@@ -38,7 +38,7 @@
   <div class="row">
     <div class="col-sm-9 col-lg-10 editor-chapters">
       <c:forEach items="${story.chapters}" var="chapter" varStatus="loop">
-        <ws:editor-chapter chapter="${loop.index + 1}" title="${chapter.title}">
+        <ws:editor-chapter chapter="${loop.index + 1}" title="${chapter.title}" chapterId="${chapter.id}">
           <c:forEach items="${chapter.sections}" var="section">
             <ws:editor-section>${section.text}</ws:editor-section>
           </c:forEach>

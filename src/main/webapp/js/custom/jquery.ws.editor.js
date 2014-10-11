@@ -19,6 +19,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					var titleInput = $( chapter ).find( ".editor-chapter-title-name" );
 					var sections = $( chapter ).find( ".editor-chapter-section" );
 					return {
+						id: $( chapter ).data( "chapter-id" ),
 						title: titleInput.val().trim(),
 						sections: $.map( sections, create.section )
 					};
@@ -164,8 +165,12 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			if ( this._edited ) {
 				// Queuing ensures that concurrent calls will be executed in the proper sequence
 				execute = (function( chapters, autosave ) {
+					function resolved( json ) {
+						console.log( json );
+						// TODO update json structure
+					}
 					return function( next ) {
-						var deferred = autosave( chapters )
+						var deferred = autosave( chapters, resolved );
 						if ( !deferred ) {
 							throw new Error( "autosave option should return a $.Deferred" );
 						}

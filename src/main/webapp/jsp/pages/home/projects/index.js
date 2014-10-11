@@ -17,7 +17,7 @@
 					chapter: nextChapter
 				}, loaded );
 			},
-			autosave: function( chapters ) {
+			autosave: function( chapters, resolve ) {
 				var feedback = $( "#saving-feedback" ).saving();
 				var id = $( "#meta" ).data( "story-id" );
 				return webstories
@@ -26,8 +26,9 @@
 						chapters: chapters
 					}).fail(function( jqXHR ) {
 						feedback.saving( "error", jqXHR );
-					}).done(function() {
+					}).done(function( json ) {
 						feedback.saving( "saved" );
+						resolve( json );
 					});
 			}
 		});
