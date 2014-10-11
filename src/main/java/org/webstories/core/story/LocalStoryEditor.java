@@ -10,7 +10,8 @@ import org.webstories.core.validation.ValidationException;
 
 @Local
 public interface LocalStoryEditor {
-	void updateMeta( long idStory, EditorStoryDetailsInput input ) throws ValidationException;
+	void updateMeta( long idStory, EditorStoryDetailsInput input, Logged logged )
+		throws ValidationException, AccessDeniedException;
 	void updateStory( EditorStoryInput story, Logged logged )
 		throws ValidationException, AccessDeniedException;
 }

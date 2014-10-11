@@ -7,12 +7,14 @@ import javax.persistence.PersistenceContext;
 
 import org.webstories.core.auth.Logged;
 import org.webstories.core.security.AccessDeniedException;
+import org.webstories.core.security.PrivilegedUpdate;
 import org.webstories.core.security.story.StoryOwnerSecurity;
 import org.webstories.core.security.story.StoryRead;
 import org.webstories.core.security.story.StoryUpdate;
 import org.webstories.core.story.LocalStoryEditor;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.dao.story.MetaEntity;
+import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
 
 @Stateless
@@ -24,14 +26,23 @@ public class StoryEditor implements LocalStoryEditor {
 	StoryQueries storyQueries;
 	
 	@Override
-	public void updateMeta( long idStory, EditorStoryDetailsInput input )
-	throws ValidationException {
+	public void updateMeta( long idStory, final EditorStoryDetailsInput input, Logged logged )
+	throws ValidationException, AccessDeniedException {
+		StoryOwnerSecurity security = new StoryOwnerSecurity( logged );
 		if ( !input.validate() ) {
 			throw new ValidationException();
 		}
-		MetaEntity meta = storyQueries.findMetaByPrimaryKey( idStory );
-		meta.update( input );
-		entityManager.merge( meta );
+		security.updatePrivileged(
+			new StoryRead.DefaultRead( idStory, storyQueries ),
+			new PrivilegedUpdate<StoryEntity>() {
+				@Override
+				public void run( StoryEntity story ) {
+					MetaEntity meta = story.getMeta();
+					meta.update( input );
+					entityManager.merge( meta );
+				}
+			}
+		);
 	}
 	
 	@Override

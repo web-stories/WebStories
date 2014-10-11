@@ -27,7 +27,4 @@ public class StoryQueries extends Queries {
 	public StoryEntity findByPrimaryKey( long idStory ) {
 		return entityManager.find( StoryEntity.class, idStory );
 	}
-	public MetaEntity findMetaByPrimaryKey( long idStory ) {
-		return entityManager.find( MetaEntity.class, idStory );
-	}
 }
