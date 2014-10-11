@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-import org.webstories.core.story.impl.EditorStoryChapterInput;
 import org.webstories.dao.NumerableEntity;
 
 @Entity
@@ -38,24 +37,26 @@ public class ChapterEntity implements NumerableEntity {
 	@JoinColumn( name = "id_chapter" )
 	private List<SectionEntity> sections = new ArrayList<SectionEntity>();
 	
-	public static ChapterEntity from( long idStory, EditorStoryChapterInput chapterInput ) {
-		ChapterEntity chapter = new ChapterEntity();
-		chapter.id_chapter = chapterInput.getId();
-		chapter.id_story = idStory;
-		chapter.ds_title = chapterInput.getTitle();
-		return chapter;
-	}
-	
 	@Override
 	public Long getId() {
 		return id_chapter;
+	}
+	public void setId( Long id_chapter ) {
+		this.id_chapter = id_chapter;
 	}
 	
 	public String getTitle() {
 		return ds_title;
 	}
+	public void setTitle( String ds_title ) {
+		this.ds_title = ds_title;
+	}
 	
-	public void addSection( SectionEntity section ) {
-		this.sections.add( section );
+	public void setIdStory( Long id_story ) {
+		this.id_story = id_story;
+	}
+	
+	public List<SectionEntity> getSections() {
+		return sections;
 	}
 }

@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-import org.webstories.core.story.impl.EditorStorySectionInput;
 import org.webstories.dao.NumerableEntity;
 
 @Entity
@@ -29,13 +28,6 @@ public class SectionEntity implements NumerableEntity {
 	@Column( nullable = false )
 	private Long id_chapter;
 	
-	public static SectionEntity from( long idChapter, EditorStorySectionInput sectionInput ) {
-		SectionEntity section = new SectionEntity();
-		section.id_chapter = idChapter;
-		section.ds_text = sectionInput.getText();
-		return section;
-	}
-	
 	@Override
 	public Long getId() {
 		return id_section;
@@ -43,5 +35,12 @@ public class SectionEntity implements NumerableEntity {
 	
 	public String getText() {
 		return ds_text;
+	}
+	public void setText( String ds_text ) {
+		this.ds_text = ds_text;
+	}
+	
+	public void setIdChapter( Long id_chapter ) {
+		this.id_chapter = id_chapter;
 	}
 }

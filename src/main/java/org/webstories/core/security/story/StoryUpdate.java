@@ -1,5 +1,6 @@
 package org.webstories.core.security.story;
 
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,8 +8,11 @@ import javax.persistence.EntityManager;
 import org.webstories.core.security.PrivilegedUpdate;
 import org.webstories.core.story.impl.EditorStoryChapterInput;
 import org.webstories.core.story.impl.EditorStoryInput;
+import org.webstories.core.story.impl.EditorStorySectionInput;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.ChapterListUpdater;
+import org.webstories.dao.story.SectionEntity;
+import org.webstories.dao.story.SectionListUpdater;
 import org.webstories.dao.story.StoryEntity;
 
 public class StoryUpdate {
@@ -20,15 +24,27 @@ public class StoryUpdate {
 			this.entityManager = entityManager;
 		}
 		@Override
-		public void run( StoryEntity storyAccessed ) {
-			updateChapters( storyAccessed );
+		public void run( StoryEntity story ) {
+			List<ChapterEntity> updatedChapters = updateChapters( story, storyInput );
+			for ( int index = 0; index < updatedChapters.size(); index += 1 ) {
+				ChapterEntity chapter = updatedChapters.get( index );
+				EditorStoryChapterInput input = storyInput.getChapters().get( index );
+				updateSections( chapter, input );
+			}
 		}
-		private void updateChapters( StoryEntity storyAccessed ) {
-			long idStory = storyAccessed.getId();
-			List<ChapterEntity> persistent = storyAccessed.getChapters();
-			List<EditorStoryChapterInput> modified = storyInput.getChapters();
-			ChapterListUpdater updater = new ChapterListUpdater( idStory, modified, persistent );
-			updater.update( entityManager );
+		private List<ChapterEntity> updateChapters( StoryEntity story, EditorStoryInput input ) {
+			long idStory = story.getId();
+			List<ChapterEntity> persistent = story.getChapters();
+			List<EditorStoryChapterInput> modified = input.getChapters();
+			return new ChapterListUpdater( idStory, modified, persistent )
+				.update( entityManager );
+		}
+		private void updateSections( ChapterEntity chapter, EditorStoryChapterInput input ) {
+			long idChapter = chapter.getId();
+			List<SectionEntity> persistent = chapter.getSections();
+			List<EditorStorySectionInput> modified = input.getSections();
+			new SectionListUpdater( idChapter, modified, persistent )
+				.update( entityManager );
 		}
 	}
 }

@@ -1,9 +1,13 @@
 package org.webstories.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 
 /**
  * Systematically updates a "numerable" list for Create, Update and Delete operations.<br>
@@ -32,9 +36,16 @@ public abstract class DBListUpdater<M extends NumerableEntity, P extends Numerab
 		
 		// Add or update each modified item, removing from the persistent list
 		for ( M modified : modifiedItems ) {
-			P persistent = createPersistent( modified );
-			P merged = entityManager.merge( persistent );
-			result.add( merged );
+			P persistent;
+			if ( modified.getId() == null ) {
+				persistent = create( modified );
+				entityManager.persist( persistent );
+			} else {
+				persistent = find( modified.getId(), itemsLeft );
+				update( modified, persistent );
+				persistent = entityManager.merge( persistent );
+			}
+			result.add( persistent );
 			itemsLeft.remove( persistent );
 		}
 		
@@ -46,10 +57,28 @@ public abstract class DBListUpdater<M extends NumerableEntity, P extends Numerab
 		return result;
 	}
 	
+	private P find( final long id, List<P> items ) {
+		Iterator<P> iterator = Iterables.filter( items, new Predicate<P>() {
+			@Override
+			public boolean apply( P input ) {
+				return input.getId().equals( id );
+			}
+		}).iterator();
+		if ( iterator.hasNext() ) {
+			return iterator.next();
+		}
+		throw new RuntimeException( "Failed to update entity, id not found: " + id );
+	}
+	
 	/**
 	 * Create the persistent object according to the data of the modified object.<br>
 	 * 
-	 * @return  The object to be merged into the database
+	 * @return  The object to be persisted into the database
 	 */
-	protected abstract P createPersistent( M modified );
+	protected abstract P create( M modified );
+	
+	/**
+	 * Update the persistent object according to the data of the modified object.<br>
+	 */
+	protected abstract void update( M modified, P persistent );
 }
