@@ -1,15 +1,19 @@
 package org.webstories.dao.story;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.webstories.core.story.impl.EditorStoryChapterInput;
 import org.webstories.dao.NumerableEntity;
 
 @Entity
@@ -27,22 +31,31 @@ public class ChapterEntity implements NumerableEntity {
 	@Column( nullable = false, length = 255 )
 	private String ds_title;
 	
-	@ManyToOne
-	@JoinColumn( name = "id_story", nullable = false )
-	private StoryEntity story;
+	@Column( nullable = false )
+	private Long id_story;
+	
+	@OneToMany
+	@JoinColumn( name = "id_chapter" )
+	private List<SectionEntity> sections = new ArrayList<SectionEntity>();
+	
+	public static ChapterEntity from( long idStory, EditorStoryChapterInput chapterInput ) {
+		ChapterEntity chapter = new ChapterEntity();
+		chapter.id_chapter = chapterInput.getId();
+		chapter.id_story = idStory;
+		chapter.ds_title = chapterInput.getTitle();
+		return chapter;
+	}
 	
 	@Override
 	public Long getId() {
 		return id_chapter;
 	}
+	
 	public String getTitle() {
 		return ds_title;
 	}
 	
-	public StoryEntity getStory() {
-		return story;
-	}
-	public void setStory( StoryEntity story ) {
-		this.story = story;
+	public void addSection( SectionEntity section ) {
+		this.sections.add( section );
 	}
 }

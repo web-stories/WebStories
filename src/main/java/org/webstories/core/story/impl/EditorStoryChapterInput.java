@@ -8,7 +8,12 @@ import org.webstories.core.validation.Validatable;
 
 public class EditorStoryChapterInput implements StoryChapter, Validatable {
 	private String title;
+	private Long id;
 	private List<EditorStorySectionInput> sections = new ArrayList<EditorStorySectionInput>();
+	@Override
+	public Long getId() {
+		return id;
+	}
 	@Override
 	public String getTitle() {
 		return title;
