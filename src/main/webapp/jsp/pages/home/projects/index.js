@@ -28,6 +28,7 @@
 						feedback.saving( "error", jqXHR );
 					}).done(function( json ) {
 						feedback.saving( "saved" );
+						console.log( json );
 						resolve( json );
 					});
 			}

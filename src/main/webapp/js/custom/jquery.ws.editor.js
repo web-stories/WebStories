@@ -164,25 +164,28 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			
 			if ( this._edited ) {
 				// Queuing ensures that concurrent calls will be executed in the proper sequence
-				execute = (function( chapters, autosave ) {
-					function resolved( json ) {
-						console.log( json );
-						// TODO update json structure
-					}
+				execute = (function( chapters ) {
+					var autosave = this.options.autosave;
+					var resolved = this._updateIds.bind( this );
 					return function( next ) {
-						var deferred = autosave( chapters, resolved );
-						if ( !deferred ) {
-							throw new Error( "autosave option should return a $.Deferred" );
-						}
-						deferred.always( next );
+						autosave( chapters, resolved )
+							.always( next );
 					};
-				}( this._chapters, this.options.autosave ));
+				}.call( this, this._chapters ));
 				this._ajaxQueue.queue( execute );
 				this._edited = false;
 			}
 			
 			clearTimeout( this._saveTimeout );
 			this._saveTimeout = this._delay( this._save, 60000 );
+		},
+		_updateIds: function( story ) {
+			$.each( story.chapters, function( index, chapter ) {
+				$( ".editor-chapter" )
+					.eq( index )
+					.attr( "chapter-id", chapter.id );
+			}.bind( this ));
+			this._refresh();
 		},
 		_loadChapterThumb: function( nextChapter ) {
 			var loader = this.options.loadChapterThumb;
