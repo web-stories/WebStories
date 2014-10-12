@@ -33,17 +33,15 @@ public class StoryUpdate {
 			}
 		}
 		private List<ChapterEntity> updateChapters( StoryEntity story, EditorStoryInput input ) {
-			long idStory = story.getId();
 			List<ChapterEntity> persistent = story.getChapters();
 			List<EditorStoryChapterInput> modified = input.getChapters();
-			return new ChapterListUpdater( idStory, modified, persistent )
+			return new ChapterListUpdater( story, modified, persistent )
 				.update( entityManager );
 		}
 		private void updateSections( ChapterEntity chapter, EditorStoryChapterInput input ) {
-			long idChapter = chapter.getId();
 			List<SectionEntity> persistent = chapter.getSections();
 			List<EditorStorySectionInput> modified = input.getSections();
-			new SectionListUpdater( idChapter, modified, persistent )
+			new SectionListUpdater( chapter, modified, persistent )
 				.update( entityManager );
 		}
 	}

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -25,8 +27,9 @@ public class SectionEntity implements NumerableEntity {
 	@Column( nullable = false )
 	private String ds_text;
 	
-	@Column( nullable = false )
-	private Long id_chapter;
+	@ManyToOne
+	@JoinColumn( name = "id_chapter", nullable = true )
+	private ChapterEntity chapter;
 	
 	@Override
 	public Long getId() {
@@ -40,7 +43,7 @@ public class SectionEntity implements NumerableEntity {
 		this.ds_text = ds_text;
 	}
 	
-	public void setIdChapter( Long id_chapter ) {
-		this.id_chapter = id_chapter;
+	public void setChapter( ChapterEntity chapter ) {
+		this.chapter = chapter;
 	}
 }

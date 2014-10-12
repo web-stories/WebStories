@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -30,11 +31,11 @@ public class ChapterEntity implements NumerableEntity {
 	@Column( nullable = false, length = 255 )
 	private String ds_title;
 	
-	@Column( nullable = false )
-	private Long id_story;
+	@ManyToOne
+	@JoinColumn( name = "id_story", nullable = true )
+	private StoryEntity story;
 	
-	@OneToMany
-	@JoinColumn( name = "id_chapter" )
+	@OneToMany( mappedBy = "chapter", orphanRemoval = true )
 	private List<SectionEntity> sections = new ArrayList<SectionEntity>();
 	
 	@Override
@@ -52,8 +53,8 @@ public class ChapterEntity implements NumerableEntity {
 		this.ds_title = ds_title;
 	}
 	
-	public void setIdStory( Long id_story ) {
-		this.id_story = id_story;
+	public void setStory( StoryEntity story ) {
+		this.story = story;
 	}
 	
 	public List<SectionEntity> getSections() {

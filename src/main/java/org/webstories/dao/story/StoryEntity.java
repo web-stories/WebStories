@@ -36,8 +36,7 @@ public class StoryEntity implements NumerableEntity {
 	@OneToOne( mappedBy = "story", optional = false )
 	private MetaEntity meta;
 	
-	@OneToMany
-	@JoinColumn( name = "id_story", referencedColumnName = "id_story" )
+	@OneToMany( mappedBy = "story", orphanRemoval = true )
 	private List<ChapterEntity> chapters = new ArrayList<ChapterEntity>();
 	
 	@Override

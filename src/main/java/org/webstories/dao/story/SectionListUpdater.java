@@ -6,19 +6,19 @@ import org.webstories.core.story.impl.EditorStorySectionInput;
 import org.webstories.dao.DBListUpdater;
 
 public class SectionListUpdater extends DBListUpdater<EditorStorySectionInput, SectionEntity> {
-	private long idChapter;
+	private ChapterEntity chapter;
 	public SectionListUpdater(
-		long idChapter,
+		ChapterEntity persistentChapter,
 		List<EditorStorySectionInput> modified,
 		List<SectionEntity> persistent
 	) {
 		super( modified, persistent );
-		this.idChapter = idChapter;
+		this.chapter = persistentChapter;
 	}
 	@Override
 	protected SectionEntity create( EditorStorySectionInput modified ) {
 		SectionEntity section = new SectionEntity();
-		section.setIdChapter( idChapter );
+		section.setChapter( chapter );
 		section.setText( modified.getText() );
 		return section;
 	}
