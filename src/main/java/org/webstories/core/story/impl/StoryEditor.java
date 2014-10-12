@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.webstories.core.auth.Logged;
+import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.security.PrivilegedUpdate;
 import org.webstories.core.security.story.StoryOwnerSecurity;
@@ -47,12 +48,14 @@ public class StoryEditor implements LocalStoryEditor {
 	
 	@Override
 	public void updateStory( EditorStoryInput story, Logged logged )
-	throws ValidationException, AccessDeniedException {
-		StoryOwnerSecurity security = new StoryOwnerSecurity( logged );
+	throws ValidationException, AccessDeniedException, UserNotLoggedException {
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
 		if ( !story.validate() ) {
 			throw new ValidationException();
 		}
-		security.updatePrivileged(
+		new StoryOwnerSecurity( logged ).updatePrivileged(
 			new StoryRead.DefaultRead( story.getId(), storyQueries ),
 			new StoryUpdate.EditorUpdate( story, entityManager )
 		);
