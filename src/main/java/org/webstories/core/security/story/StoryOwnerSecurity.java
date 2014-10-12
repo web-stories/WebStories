@@ -13,6 +13,11 @@ public class StoryOwnerSecurity extends DefaultSecurity<StoryEntity> {
 	@Override
 	public boolean isAccessible( StoryEntity storyAccessed ) {
 		UserEntity owner = storyAccessed.getAuthor();
-		return owner.getId().equals( logged.getId() );
+		
+		if ( !logged.getId().equals( owner.getId() ) ) {
+			return false;
+		}
+		
+		return true;
 	}
 }
