@@ -6,6 +6,7 @@ module.exports = function( grunt ) {
 			files: [
 				"Gruntfile.js",
 				"src/main/webapp/js/custom/**/*.js",
+				"src/main/webapp/jsp/pages/**/*.js",
 				"src/test/javascript/**/*.js"
 			],
 			options: {
