@@ -15,5 +15,7 @@ module.exports = function( grunt ) {
 	require( "load-grunt-tasks" )( grunt );
 	
 	// Tasks aliases
-	grunt.registerTask( "default", ["concat", "jshint", "copy"] );
+	grunt.registerTask( "default", ["files", "validate"] );
+	grunt.registerTask( "files", ["concat", "copy"] );
+	grunt.registerTask( "validate", ["jshint"] );
 };
