@@ -3,8 +3,8 @@ module.exports = function( grunt ) {
 		files: [
 			"Gruntfile.js",
 			"grunt/**/*.js",
-			"src/main/webapp/js/custom/**/*.js"
-			//"src/main/webapp/jsp/pages/**/*.js"
+			"src/main/webapp/js/custom/**/*.js",
+			"src/main/webapp/jsp/pages/**/*.js"
 		]
 	};
 };
