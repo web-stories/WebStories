@@ -1,5 +1,4 @@
-module.exports = function( grunt, options ) {
-	var webapp = options.webapp;
+module.exports = function( grunt ) {
 	return {
 		files: [
 			"Gruntfile.js",
