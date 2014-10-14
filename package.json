@@ -1,0 +1,9 @@
+{
+  "name": "web-stories",
+  "version": "0.0.0",
+  "dependencies": {
+    "grunt": "0.4.x",
+    "grunt-cli": "0.1.x",
+    "grunt-contrib-jshint": "0.10.x"
+  }
+}
