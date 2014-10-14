@@ -4,6 +4,7 @@
   "dependencies": {
     "grunt": "0.4.x",
     "grunt-cli": "0.1.x",
-    "grunt-contrib-jshint": "0.10.x"
+    "grunt-contrib-jshint": "0.10.x",
+    "load-grunt-tasks": "0.6.x"
   }
 }

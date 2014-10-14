@@ -1,6 +1,6 @@
 module.exports = function( grunt ) {
 	"use strict";
-	grunt.loadNpmTasks( "grunt-contrib-jshint" );
+	
 	grunt.initConfig({
 		jshint: {
 			files: [
@@ -14,5 +14,9 @@ module.exports = function( grunt ) {
 			}
 		}
 	});
+	
+	// Load grunt tasks from NPM packages
+	require( "load-grunt-tasks" )( grunt );
+	
 	grunt.registerTask( "default", ["jshint"] );
 };
