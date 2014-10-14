@@ -135,7 +135,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					drop
 						.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
 				}
-			}
+			};
 		},
 		_type: function( event ) {
 			var keys = [
