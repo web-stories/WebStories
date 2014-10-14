@@ -5,7 +5,7 @@ module.exports = function( grunt ) {
 		config: {
 			src: "grunt/options/*.js"
 		}
-	};
+	}
 	
 	// Load grunt tasks configurations
 	var configs = require( "load-grunt-configs" )( grunt, options );
@@ -14,8 +14,10 @@ module.exports = function( grunt ) {
 	// Load grunt tasks from NPM packages
 	require( "load-grunt-tasks" )( grunt );
 	
-	// Tasks aliases
 	grunt.registerTask( "default", ["files", "validate"] );
+	
 	grunt.registerTask( "files", ["concat", "copy"] );
 	grunt.registerTask( "validate", ["jshint"] );
+	
+	grunt.registerTask( "eclipse", ["concat", "copy"] );
 };
