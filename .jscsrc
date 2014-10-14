@@ -1,5 +1,6 @@
 {
 	"preset": "jquery",
 	"disallowTrailingWhitespace": null,
-	"requireMultipleVarDecl": null
+	"requireMultipleVarDecl": null,
+	"requireSpacesInsideArrayBrackets": null
 }
