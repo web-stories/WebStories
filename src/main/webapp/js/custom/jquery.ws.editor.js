@@ -99,7 +99,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				"click .editor-section-delete": function( event ) {
 					var drop = {
 						section: $.proxy(function( section ) {
-							var content = section.find( ".editor-chapter-section-text" ).val().trim();
+							var textInput = section.find( ".editor-chapter-section-text" );
+							var content = $( textInput ).val().trim();
 							var lastSection = section.siblings().length === 0;
 							if ( lastSection ) {
 								drop.chapter( section.parents( ".editor-chapter" ) );
