@@ -27,6 +27,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				section: function( section, index ) {
 					var textInput = $( section ).find( ".editor-chapter-section-text" );
 					return {
+						id: $( section ).data( "sectionId" ),
 						text: textInput.val().trim()
 					};
 				}

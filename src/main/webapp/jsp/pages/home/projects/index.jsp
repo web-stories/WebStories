@@ -40,7 +40,7 @@
       <c:forEach items="${story.chapters}" var="chapter" varStatus="loop">
         <ws:editor-chapter chapter="${loop.index + 1}" title="${chapter.title}" chapterId="${chapter.id}">
           <c:forEach items="${chapter.sections}" var="section">
-            <ws:editor-section>${section.text}</ws:editor-section>
+            <ws:editor-section sectionId="${section.id}">${section.text}</ws:editor-section>
           </c:forEach>
         </ws:editor-chapter>
       </c:forEach>
