@@ -39,8 +39,8 @@ require = (function( require ) {
 					"jquery.ws.alert.saving": "js/jquery.ws.alert.saving",
 					"jquery.ws.editor": "js/jquery.ws.editor",
 					"jquery.ws.remaining": "js/jquery.ws.remaining",
-					"webstories": "js/webstories","jquery":
-					"js/jquery.private"
+					"webstories": "js/webstories",
+					"jquery": "js/jquery.private"
 				},
 				"js/jquery.private": {
 					"jquery":"jquery"
