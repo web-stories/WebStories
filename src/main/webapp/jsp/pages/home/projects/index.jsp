@@ -29,33 +29,27 @@
     </li>
   </ul>
 </div>
-<div class="container editor">
-  <div class="editor-title">
-    <h1 class="editor-title-header">
-      ${story.title}
-    </h1>
-  </div>
-  <div class="row">
-    <div class="col-sm-9 col-lg-10 editor-chapters">
-      <c:forEach items="${story.chapters}" var="chapter" varStatus="loop">
-        <ws:editor-chapter chapter="${loop.index + 1}" title="${chapter.title}" chapterId="${chapter.id}">
-          <c:forEach items="${chapter.sections}" var="section">
-            <ws:editor-section sectionId="${section.id}">${section.text}</ws:editor-section>
+<div class="container">
+  <ws:editor title="${story.title}">
+    <div class="row">
+      <div class="col-sm-9 col-lg-10">
+        <ws:editor-chapters>
+          <c:forEach items="${story.chapters}" var="chapter" varStatus="loop">
+            <ws:editor-chapter chapter="${loop.index + 1}" title="${chapter.title}" chapterId="${chapter.id}">
+              <c:forEach items="${chapter.sections}" var="section">
+                <ws:editor-section sectionId="${section.id}">${section.text}</ws:editor-section>
+              </c:forEach>
+            </ws:editor-chapter>
           </c:forEach>
-        </ws:editor-chapter>
-      </c:forEach>
-    </div>
-    <div class="col-sm-3 col-lg-2 hidden-xs">
-      <div class="editor-chapter-thumbs" id="chapter-menu">
-        <ul class="nav">
+        </ws:editor-chapters>
+      </div>
+      <div class="col-sm-3 col-lg-2 hidden-xs">
+        <ws:editor-chapter-thumbs id="chapter-menu">
           <c:forEach items="${story.chapters}" var="chapter" varStatus="loop">
             <ws:editor-chapter-thumb chapter="${loop.index + 1}"/>
           </c:forEach>
-        </ul>
-        <button class="btn btn-primary btn-block editor-chapter-thumb-add">
-          Novo capítulo
-        </button>
+        </ws:editor-chapter-thumbs>
       </div>
     </div>
-  </div>
+  </ws:editor>
 </div>

@@ -1,3 +1,2 @@
 define( ["jquery"], function( $ ) {
-	return $.noConflict( true );
-});
+	var jQuery = $;
