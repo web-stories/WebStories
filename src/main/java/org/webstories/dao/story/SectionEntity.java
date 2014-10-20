@@ -27,6 +27,9 @@ public class SectionEntity implements NumerableEntity {
 	@Column( nullable = false )
 	private String ds_text;
 	
+	@Column( nullable = false )
+	private Integer no_position;
+	
 	@ManyToOne
 	@JoinColumn( name = "id_chapter", nullable = true )
 	private ChapterEntity chapter;
@@ -41,6 +44,13 @@ public class SectionEntity implements NumerableEntity {
 	}
 	public void setText( String ds_text ) {
 		this.ds_text = ds_text;
+	}
+	
+	public Integer getPosition() {
+		return no_position;
+	}
+	public void setPosition( Integer no_position ) {
+		this.no_position = no_position;
 	}
 	
 	public void setChapter( ChapterEntity chapter ) {

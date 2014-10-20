@@ -33,6 +33,11 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				}
 			};
 			this._chapters = $.map( this.element.find( ".editor-chapter" ), create.chapter );
+			this._chapters.forEach(function( chapter ) {
+				chapter.sections.forEach(function( section, index ) {
+					section.position = index;
+				});
+			});
 		},
 		_refreshDOM: function() {
 			var refresh = {

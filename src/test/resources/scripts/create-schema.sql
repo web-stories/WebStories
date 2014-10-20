@@ -80,6 +80,7 @@ INSERT INTO chapter_sequences VALUES ( 'chapter_sequence', 1 );
 CREATE TABLE ws_section (
 	id_section BIGINT NOT NULL PRIMARY KEY,
 	ds_text TEXT NOT NULL,
+	no_position INTEGER NOT NULL,
 	id_chapter BIGINT NOT NULL REFERENCES ws_chapter
 );
 CREATE TABLE section_sequences (

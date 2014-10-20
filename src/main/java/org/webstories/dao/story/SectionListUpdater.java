@@ -20,10 +20,12 @@ public class SectionListUpdater extends DBListUpdater<EditorStorySectionInput, S
 		SectionEntity section = new SectionEntity();
 		section.setChapter( chapter );
 		section.setText( modified.getText() );
+		section.setPosition( modified.getPosition() );
 		return section;
 	}
 	@Override
 	protected void update( EditorStorySectionInput modified, SectionEntity persistent ) {
 		persistent.setText( modified.getText() );
+		persistent.setPosition( modified.getPosition() );
 	}
 }
