@@ -32,6 +32,7 @@ require = (function( require ) {
 					"bootstrap": "../js/bootstrap-3.2.0",
 					"bootstrap.custom": "../js/bootstrap.custom-0.1.0",
 					"bootstrap.wizard": "js/bootstrap.wizard",
+					"jquery.simulate": "../js/jquery.simulate-1.0.0",
 					"jquery.ui.widget": "../js/jquery.ui.widget-1.11.1",
 					"jquery.validate": "../js/jquery.validate-1.13.0",
 					"jquery.validate.extend": "js/jquery.validate.extend",
