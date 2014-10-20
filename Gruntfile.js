@@ -14,11 +14,13 @@ module.exports = function( grunt ) {
 	// Load grunt tasks from NPM packages
 	require( "load-grunt-tasks" )( grunt );
 	
-	grunt.registerTask( "default", ["files", "validate"] );
 	
-	grunt.registerTask( "files", ["concat", "copy"] );
-	grunt.registerTask( "validate", ["jshint", "jscs"] );
+	// Main tasks
+	grunt.registerTask( "files", [ "concat", "copy" ] );
+	grunt.registerTask( "validate", [ "jshint", "jscs" ] );
+	grunt.registerTask( "integration", [ "servers:wildfly", "qunit" ] );
 	
-	grunt.registerTask( "integration", ["servers:wildfly", "qunit"] );
-	grunt.registerTask( "eclipse", ["concat", "copy"] );
+	// Special tasks
+	grunt.registerTask( "eclipse", [ "files" ] );
+	grunt.registerTask( "default", [ "files", "validate", "integration" ] );
 };

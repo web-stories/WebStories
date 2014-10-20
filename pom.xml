@@ -214,6 +214,9 @@
 								<goals>
 									<goal>grunt</goal>
 								</goals>
+								<configuration>
+									<arguments>--verbose --debug --stack</arguments>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
