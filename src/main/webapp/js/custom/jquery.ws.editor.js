@@ -106,12 +106,10 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 								drop.chapter( section.parents( ".editor-chapter" ) );
 								return;
 							}
-							if ( !content ) {
+							if ( !content || confirm( "Esta seção será apagada!" ) ) {
 								section.remove();
 								this._refresh();
-							} else if ( confirm( "Esta seção será apagada!" ) ) {
-								section.remove();
-								this._refresh();
+								this._edited = true;
 							}
 						}, this ),
 						chapter: $.proxy(function( chapter ) {
@@ -129,6 +127,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 									.remove();
 								chapter.remove();
 								this._refresh();
+								this._edited = true;
 								this._scrollTo( prevChapter );
 							}
 						}, this )
