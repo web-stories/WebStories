@@ -24,9 +24,6 @@ public class EditorStoryChapterInput implements StoryChapter, Validatable {
 	}
 	@Override
 	public boolean validate() {
-		if ( title.trim().isEmpty() ) {
-			return false;
-		}
 		for ( Validatable section : sections ) {
 			if ( !section.validate() ) {
 				return false;

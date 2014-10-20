@@ -16,6 +16,6 @@ public class EditorStorySectionInput implements StorySection, Validatable {
 	}
 	@Override
 	public boolean validate() {
-		return !text.trim().isEmpty();
+		return true;
 	}
 }
