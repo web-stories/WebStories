@@ -12,6 +12,10 @@ module.exports = function( grunt ) {
 				expand: true,
 				cwd: "src",
 				src: [ "main/webapp/static/js/**/*" ]
+			}, {
+				expand: true,
+				cwd: "src/main/webapp/",
+				src: [ "WEB-INF/tags/**/*" ]
 			}]
 		}
 	};

@@ -1,3 +1,4 @@
+<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,7 +17,9 @@
   </head>
   <body>
     <div id="qunit"></div>
-    <div id="qunit-fixture"></div>
+    <div id="qunit-fixture">
+      <ws:editor-chapter chapter="1"/>
+    </div>
     <script src="../../js/custom/editor.js"></script>
   </body>
 </html>
