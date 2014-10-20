@@ -1,6 +1,6 @@
 module.exports = function( grunt ) {
 	return {
-		all: {
+		css: {
 			files: {
 				"src/main/webapp/static/css/app.css": [
 					"src/main/webapp/css/custom/app.css",
