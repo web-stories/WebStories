@@ -1,0 +1,16 @@
+.alert-container {
+  position: fixed;
+  z-index: 99999;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+/* sm */
+@media ( min-width: 768px ) {
+  .alert-container {
+    left: 50%;
+    margin-left: -250px;
+    width: 500px;
+  }
+}

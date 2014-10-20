@@ -4,8 +4,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Base64 {
 	/**
-	 * Faz o encode em Base64 de uma string.<br>
-	 * Utiliza o charset UTF-8 para todas as operações com os bytes da string.
+	 * Encode using UTF-8 for all string operations
 	 */
 	public static String encode( String plain ) {
 		byte[] string = plain.getBytes( StandardCharsets.UTF_8 );
@@ -13,8 +12,7 @@ public class Base64 {
 		return new String( encodedBytes, StandardCharsets.UTF_8 );
 	}
 	/**
-	 * Faz o decode de uma string previamente codificada em Base64.<br>
-	 * Utiliza o charset UTF-8 para a criação do valor decodificado
+	 * Decode into a UTF-8 encoded string
 	 */
 	public static String decode( String encoded ) {
 		byte[] decodedBytes = org.apache.commons.codec.binary.Base64.decodeBase64( encoded );

@@ -7,11 +7,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.webstories.core.auth.PersonName;
 import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.NumerableEntity;
 import org.webstories.dao.user.UserEntity;
-
-import com.restfb.types.User;
 
 @Entity
 @Table( name = "ws_facebook" )
@@ -36,30 +35,26 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 	@JoinColumn( name = "id_user", nullable = false )
 	private UserEntity user;
 	
-	public static FacebookEntity from( User facebookUser ) {
+	public static FacebookEntity from(
+		PersonName name,
+		String email,
+		String uid,
+		UserEntity user
+	) {
 		FacebookEntity facebook = new FacebookEntity();
-		facebook.cod_uid = facebookUser.getId();
-		facebook.ds_email = facebookUser.getEmail();
-		facebook.nm_first = facebookUser.getFirstName();
-		facebook.nm_last = facebookUser.getLastName();
+		facebook.cod_uid = uid;
+		facebook.ds_email = email;
+		facebook.nm_first = name.getFirst();
+		facebook.nm_last = name.getLast();
+		facebook.id_user = user.getId();
+		facebook.user = user;
 		return facebook;
 	}
 	
-	public UserEntity getUser() {
-		return user;
-	}
-	public void setUser( UserEntity user ) {
-		this.id_user = user.getId();
-		this.user = user;
-	}
 	@Override
 	public Long getId() {
 		return id_user;
 	}
-	public void setId( Long id_user ) {
-		this.id_user = id_user;
-	}
-	
 	public String getFacebookId() {
 		return cod_uid;
 	}
@@ -74,5 +69,8 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 	@Override
 	public String getLastName() {
 		return nm_last;
+	}
+	public UserEntity getUser() {
+		return user;
 	}
 }

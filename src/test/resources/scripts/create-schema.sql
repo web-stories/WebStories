@@ -16,7 +16,9 @@ INSERT INTO invite_sequences VALUES ( 'invite_sequence', 1 );
 -- ws_user
 -------------------------------------------------------------------------------
 CREATE TABLE ws_user (
-	id_user BIGINT NOT NULL PRIMARY KEY
+	id_user BIGINT NOT NULL PRIMARY KEY,
+	ds_username VARCHAR( 255 ) NOT NULL,
+	ds_password VARCHAR( 255 ) NOT NULL
 );
 CREATE TABLE user_sequences (
 	sequence_name VARCHAR( 255 ) NOT NULL PRIMARY KEY,
@@ -57,3 +59,31 @@ CREATE TABLE ws_meta (
 	ds_summary VARCHAR( 255 ) NOT NULL,
 	ds_synopsis TEXT NOT NULL
 );
+
+-------------------------------------------------------------------------------
+-- ws_chapter
+-------------------------------------------------------------------------------
+CREATE TABLE ws_chapter (
+	id_chapter BIGINT NOT NULL PRIMARY KEY,
+	ds_title VARCHAR( 255 ) NOT NULL,
+	id_story BIGINT NOT NULL REFERENCES ws_story
+);
+CREATE TABLE chapter_sequences (
+	sequence_name VARCHAR( 255 ) NOT NULL PRIMARY KEY,
+	next_val BIGINT
+);
+INSERT INTO chapter_sequences VALUES ( 'chapter_sequence', 1 );
+
+-------------------------------------------------------------------------------
+-- ws_section
+-------------------------------------------------------------------------------
+CREATE TABLE ws_section (
+	id_section BIGINT NOT NULL PRIMARY KEY,
+	ds_text TEXT NOT NULL,
+	id_chapter BIGINT NOT NULL REFERENCES ws_chapter
+);
+CREATE TABLE section_sequences (
+	sequence_name VARCHAR( 255 ) NOT NULL PRIMARY KEY,
+	next_val BIGINT
+);
+INSERT INTO section_sequences VALUES ( 'section_sequence', 1 );

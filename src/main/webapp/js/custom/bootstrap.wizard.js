@@ -55,7 +55,7 @@ define( ["jquery", "bootstrap", "jquery.ui.widget"], function( $ ) {
 			this._transitioning.step = true;
 		},
 		_refresh: function() {
-			this._prevControl= this.element.find( ".wizard-control-prev" );
+			this._prevControl = this.element.find( ".wizard-control-prev" );
 			this._nextControl = this.element.find( ".wizard-control-next" );
 			this._jumpControl = this.element.find( ".wizard-control-jump" );
 			this._currentStep = this.element.find( ".wizard-steps .active" ).index();

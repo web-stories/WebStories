@@ -1,4 +1,4 @@
-package org.webstories.core.story;
+package org.webstories.core.story.impl;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.webstories.core.auth.Logged;
+import org.webstories.core.story.LocalStoryCreator;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryEntity;
@@ -21,7 +22,7 @@ public class StoryCreator implements LocalStoryCreator {
 	UserQueries userQueries;
 	
 	@Override
-	public void createMeta( StoryMetaInput input, Logged logged ) throws ValidationException {
+	public void createMeta( EditorStoryDetailsInput input, Logged logged ) throws ValidationException {
 		if ( !input.validate() ) {
 			throw new ValidationException();
 		}
