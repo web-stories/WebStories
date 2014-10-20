@@ -4,7 +4,7 @@ module.exports = function( grunt ) {
 		wildfly: {
 			options: {
 				urls: [
-					baseURL + "/test/webapp/html/index.html"
+					baseURL + "/test/webapp/html/index.jsp"
 				]
 			}
 		}
