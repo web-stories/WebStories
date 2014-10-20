@@ -151,9 +151,9 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				93  // Context menu
 			];
 			keys.contains = function( current ) {
-				return this.find(function( keyCode ) {
+				return this.filter(function( keyCode ) {
 					return keyCode === current;
-				});
+				})[ 0 ];
 			};
 			this._edited = !keys.contains( event.keyCode );
 		},
