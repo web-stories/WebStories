@@ -1,5 +1,5 @@
 /*!
- * Megafone Bootstrap v0.1.0
+ * Megafone Bootstrap v0.1.1
  * https://github.com/FagnerMartinsBrack/MegafoneBOOTSTRAP
  */
 
@@ -530,8 +530,8 @@ select[multiple] {
 }
 @font-face {
   font-family: 'icomoon';
-  src: url('../fonts/Icon.eot');
-  src: url('../fonts/Icon.eot?#iefix') format('embedded-opentype'), url('../fonts/Icon.woff') format('woff'), url('../fonts/Icon.ttf') format('truetype'), url('../fonts/Icon.svg#Icon') format('svg');
+  src: url('../fonts/Icon-0.1.1.eot');
+  src: url('../fonts/Icon-0.1.1.eot?#iefix') format('embedded-opentype'), url('../fonts/Icon-0.1.1.woff') format('woff'), url('../fonts/Icon-0.1.1.ttf') format('truetype'), url('../fonts/Icon-0.1.1.svg#Icon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -2585,7 +2585,11 @@ a.list-group-item.active > .badge-notification,
 .tooltip-inner {
   padding: 8px;
 }
-.breadcumb-clear {
+/*
+ * 1. Typo, but kept for compatibility purposes
+ */
+.breadcumb-clear,
+.breadcrumb-clear {
   background: none;
 }
 html {
