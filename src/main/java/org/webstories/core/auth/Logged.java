@@ -1,9 +1,12 @@
 package org.webstories.core.auth;
 
+import java.io.Serializable;
+
 import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.user.UserEntity;
 
-public class Logged {
+public class Logged implements Serializable {
+	private static final long serialVersionUID = 1;
 	private Long id;
 	private String fullName;
 	private String firstName;

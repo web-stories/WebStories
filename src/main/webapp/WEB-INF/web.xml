@@ -12,6 +12,9 @@
 		</jsp-property-group>
 	</jsp-config>
 	
+	<!-- Enables session replication -->
+	<distributable/>
+	
 	<!-- Rewrites the static resources folder for unversioned files -->
 	<filter-mapping>
 		<filter-name>resources-folder</filter-name>
