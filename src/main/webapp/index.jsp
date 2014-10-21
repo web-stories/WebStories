@@ -11,7 +11,7 @@
     <convention:include-head/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-3.2.0.css" media="screen">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.custom-0.1.1.css" media="screen">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/${build}/css/app.css" media="screen">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/${build}/css/webstories.css" media="screen">
     <script>var require = { baseUrl: "${pageContext.request.contextPath}/static/${build}" };</script>
     <script src="${pageContext.request.contextPath}/static/${build}/js/require.main.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/require-2.1.15.js"></script>

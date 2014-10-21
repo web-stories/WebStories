@@ -3,7 +3,7 @@ module.exports = function( grunt ) {
 	return {
 		css: {
 			files: {
-				"src/main/webapp/static/css/app.css": [
+				"src/main/webapp/static/css/webstories.css": [
 					"src/main/webapp/css/custom/app.css",
 					"src/main/webapp/css/custom/header.css",
 					"src/main/webapp/css/custom/bootstrap.wizard.css",
