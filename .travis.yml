@@ -1,5 +1,5 @@
 language: java
-install: true # disable travis default mvn install before running the tests
+install: true # disable travis default mvn install
 jdk:
   - oraclejdk7
 script: mvn clean install
