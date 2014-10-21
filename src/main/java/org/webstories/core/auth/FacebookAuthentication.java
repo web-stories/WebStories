@@ -12,6 +12,7 @@ import org.webstories.dao.integration.FacebookQueries;
 import org.webstories.dao.invitation.InviteEntity;
 import org.webstories.dao.invitation.InviteQueries;
 import org.webstories.dao.user.UserEntity;
+import org.webstories.dao.user.UserQueries;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -26,7 +27,13 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 	FacebookQueries facebookQueries;
 	
 	@EJB
+	UserQueries userQueries;
+	
+	@EJB
 	InviteQueries inviteQueries;
+	
+	@EJB
+	LocalDefaultAuthentication authentication;
 	
 	@Override
 	public Logged authenticate( OAuth2Token token, OAuth2Data data )
@@ -60,11 +67,13 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			throw new AuthenticationException( "E-mail does not match invitation" );
 		}
 		
-		UserEntity user = UserEntity.from( facebookUser );
-		entityManager.persist( user );
+		// Register user
+		PersonName name = PersonName.from( facebookUser );
+		long idUser = authentication.register( name );
+		UserEntity webstoriesUser = userQueries.findByPrimaryKey( idUser );
 		
-		FacebookEntity facebook = FacebookEntity.from( facebookUser );
-		facebook.setUser( user );
+		FacebookEntity facebook =
+			FacebookEntity.from( name, facebookEmail, facebookId, webstoriesUser );
 		entityManager.persist( facebook );
 		
 		return Logged.from( facebook );

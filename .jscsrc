@@ -1,0 +1,7 @@
+{
+	"preset": "jquery",
+	"disallowTrailingWhitespace": null,
+	"requireMultipleVarDecl": null,
+	"requireSpacesInsideArrayBrackets": null,
+	"validateLineBreaks": null
+}

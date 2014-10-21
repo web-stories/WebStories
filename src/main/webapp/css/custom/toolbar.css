@@ -1,0 +1,18 @@
+.toolbar {
+  margin-bottom: 20px;
+}
+.toolbar .breadcrumb {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*
+ * 1. Override bootstrap's ".breadcrumb > li" selector using the "inline-block" property to allow
+ *    ellipsis to be appended using CSS
+ */
+.toolbar .breadcrumb li {
+  display: inline; /* 1 */
+}
+.toolbar .breadcrumb {
+  margin-bottom: 0;
+}

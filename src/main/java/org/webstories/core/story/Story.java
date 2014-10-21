@@ -1,5 +1,8 @@
 package org.webstories.core.story;
 
-public abstract class Story {
-	
+import java.util.List;
+
+public interface Story {
+	Long getId();
+	List<? extends StoryChapter> getChapters();
 }

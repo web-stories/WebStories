@@ -1,0 +1,35 @@
+textarea.details-meta-summary {
+  height: 114px;
+  resize: none;
+}
+textarea.details-meta-synopsis {
+  height: 214px;
+  resize: none;
+}
+/* sm */
+@media ( min-width: 768px ) {
+  textarea.details-meta-summary {
+    height: 54px;
+  }
+  textarea.details-meta-synopsis {
+    height: 94px;
+  }
+}
+/* md */
+@media ( min-width: 992px ) {
+  textarea.details-meta-summary {
+    height: 114px;
+  }
+  textarea.details-meta-synopsis {
+    height: 214px;
+  }
+}
+/* lg */
+@media ( min-width: 1200px ) {
+  textarea.details-meta-summary {
+    height: 94px;
+  }
+  textarea.details-meta-synopsis {
+    height: 194px;
+  }
+}
