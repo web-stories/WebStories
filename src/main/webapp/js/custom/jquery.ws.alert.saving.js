@@ -1,4 +1,5 @@
 define( ["jquery", "jquery.ui.widget", "jquery.ws.alert"], function( $ ) {
+	"use strict";
 	$.widget( "ws.saving", $.ws.fixedAlert, {
 		_saving: function() {
 			clearTimeout( this._closingTimeout );

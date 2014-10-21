@@ -1,4 +1,5 @@
 define( ["jquery", "jquery.ui.widget"], function( $ ) {
+	"use strict";
 	$.widget( "ws.remaining", {
 		options: {
 			limit: 140

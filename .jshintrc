@@ -1,3 +1,5 @@
 {
-	"expr": true
+	"expr": true,
+	"strict": true,
+	"validthis": true
 }

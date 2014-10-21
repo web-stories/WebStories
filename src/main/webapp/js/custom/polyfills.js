@@ -2,6 +2,7 @@
 // * PhantomJS
 if ( !Function.prototype.bind ) {
 	Function.prototype.bind = function( oThis ) {
+		"use strict";
 		if ( typeof this !== "function" ) {
 			// closest thing possible to the ECMAScript 5
 			// internal IsCallable function
@@ -11,15 +12,15 @@ if ( !Function.prototype.bind ) {
 		}
 		var aArgs = Array.prototype.slice.call( arguments, 1 ),
 			fToBind = this,
-			fNOP = function() {},
+			NOP = function() {},
 			fBound	= function() {
 				return fToBind.apply(
-					this instanceof fNOP && oThis ? this : oThis,
+					this instanceof NOP && oThis ? this : oThis,
 					aArgs.concat( Array.prototype.slice.call( arguments ) )
 				);
 			};
-		fNOP.prototype = this.prototype;
-		fBound.prototype = new fNOP();
+		NOP.prototype = this.prototype;
+		fBound.prototype = new NOP();
 		return fBound;
 	};
 }

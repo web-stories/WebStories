@@ -1,4 +1,5 @@
 require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ ) {
+	"use strict";
 	var form = document.firstStoryForm;
 	var validate = $( form ).validate();
 	var nostory = $( "#meta" ).data( "nostory" ) === true;
@@ -21,6 +22,7 @@ require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ )
 });
 
 require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ ) {
+	"use strict";
 	var form = document.newStoryForm;
 	var validate = $( form ).validate();
 	var modal = $( "#new-story-wizard-modal" ).modal({
@@ -44,6 +46,7 @@ require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ )
 });
 
 require( ["jquery", "jquery.ws.remaining"], function( $ ) {
+	"use strict";
 	$( ".remaining" ).remaining({
 		limit: 140
 	});

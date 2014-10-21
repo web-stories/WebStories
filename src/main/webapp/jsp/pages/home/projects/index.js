@@ -1,4 +1,5 @@
 (function() {
+	"use strict";
 	var deps = [ "jquery", "webstories", "jquery.ws.editor", "jquery.ws.alert.saving"];
 	require( deps, function( $, webstories ) {
 		$( ".editor" ).editor({

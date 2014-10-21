@@ -1,4 +1,5 @@
 (function() {
+	"use strict";
 	var contact = document.querySelector( ".index-banner-contact" );
 	if ( !contact ) {
 		return; // If valid invitation

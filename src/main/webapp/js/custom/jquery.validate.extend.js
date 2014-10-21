@@ -1,4 +1,5 @@
 define( ["jquery", "jquery.validate"], function( $ ) {
+	"use strict";
 	$.validator.setDefaults({
 		highlight: function( element ) {
 			$( element ).parents( ".form-group:first" )

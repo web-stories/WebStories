@@ -1,5 +1,6 @@
 QUnit.config.autostart = false;
 require( ["jquery", "jquery.simulate", "jquery.ws.editor"], function( $ ) {
+	"use strict";
 	start();
 	module( "autosave", {
 		setup: function() {
