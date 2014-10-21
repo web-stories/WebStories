@@ -10,6 +10,7 @@
 		<querydsl.version>3.2.4</querydsl.version>
 		<httpcomponents.version>4.3.4</httpcomponents.version>
 		<main.webapp>${basedir}/src/main/webapp</main.webapp>
+		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
 	</properties>
 	<repositories>
 		<repository>
