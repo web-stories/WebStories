@@ -23,7 +23,8 @@ public class ChapterEntity implements NumerableEntity {
 	@TableGenerator(
 		name = "chapter_sequence",
 		pkColumnValue = "chapter_sequence",
-		table = "chapter_sequences"
+		table = "chapter_sequences",
+		allocationSize = 1
 	)
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "chapter_sequence" )
 	private Long id_chapter;

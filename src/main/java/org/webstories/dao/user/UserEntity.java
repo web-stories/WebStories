@@ -19,7 +19,8 @@ public class UserEntity implements NumerableEntity {
 	@TableGenerator(
 		name = "user_sequence",
 		pkColumnValue = "user_sequence",
-		table = "user_sequences"
+		table = "user_sequences",
+		allocationSize = 1
 	)
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "user_sequence" )
 	private Long id_user;

@@ -19,7 +19,8 @@ public class SectionEntity implements NumerableEntity {
 	@TableGenerator(
 		name = "section_sequence",
 		pkColumnValue = "section_sequence",
-		table = "section_sequences"
+		table = "section_sequences",
+		allocationSize = 1
 	)
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "section_sequence" )
 	private Long id_section;

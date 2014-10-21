@@ -17,7 +17,8 @@ public class InviteEntity implements NumerableEntity {
 	@TableGenerator(
 		name = "invite_sequence",
 		pkColumnValue = "invite_sequence",
-		table = "invite_sequences"
+		table = "invite_sequences",
+		allocationSize = 1
 	)
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "invite_sequence" )
 	private Long id_invite;

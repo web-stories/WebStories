@@ -24,7 +24,8 @@ public class StoryEntity implements NumerableEntity {
 	@TableGenerator(
 		name = "story_sequence",
 		pkColumnValue = "story_sequence",
-		table = "story_sequences"
+		table = "story_sequences",
+		allocationSize = 1
 	)
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "story_sequence" )
 	private Long id_story;
