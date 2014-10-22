@@ -16,6 +16,11 @@ module.exports = function( grunt ) {
 				cwd: "src/main/webapp/js/amdify/jquery",
 				src: [ "**/*.js" ],
 				dest: "src/main/webapp/static/js/"
+			}, {
+				expand: true,
+				cwd: "src/main/webapp/js/amdify/default",
+				src: [ "**/*.js" ],
+				dest: "src/main/webapp/static/js/"
 			}]
 		},
 		js: {

@@ -1,2 +1,2 @@
 define( ["jquery"], function( $ ) {
-	var jQuery = $;
+	var jQuery = window.jQuery = window.$ = $;
