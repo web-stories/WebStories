@@ -36,6 +36,7 @@ require = (function( require ) {
 					"jquery.ws.alert.saving": "js/jquery.ws.alert.saving",
 					"jquery.ws.editor": "js/jquery.ws.editor",
 					"jquery.ws.remaining": "js/jquery.ws.remaining",
+					"jquery.ws.story": "js/jquery.ws.story",
 					"webstories": "js/webstories",
 					
 					// Vendor modules
