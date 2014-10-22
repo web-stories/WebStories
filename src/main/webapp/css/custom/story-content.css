@@ -1,0 +1,26 @@
+.story .step {
+  opacity: 0;
+  -webkit-transition: opacity .3s;
+     -moz-transition: opacity .3s;
+      -ms-transition: opacity .3s;
+       -o-transition: opacity .3s;
+          transition: opacity .3s;
+}
+.story .step.active {
+  opacity: 1;
+}
+.story-chapter {
+  text-align: center;
+}
+.story-chapter-title {
+  font-size: 55px;
+}
+.story-chapter-name {
+  white-space: nowrap;
+}
+.story-credits {
+  font-size: 30px;
+}
+.story-credits-title {
+  font-size: 45px;
+}
