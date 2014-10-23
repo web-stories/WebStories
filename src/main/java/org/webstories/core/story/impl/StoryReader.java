@@ -8,10 +8,12 @@ import javax.ejb.Stateless;
 
 import org.webstories.core.auth.Logged;
 import org.webstories.core.story.LocalStoryReader;
+import org.webstories.core.validation.ValidationException;
 import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
+import org.webstories.web.util.params.RequestParam;
 
 @Stateless
 public class StoryReader implements LocalStoryReader {
@@ -51,5 +53,15 @@ public class StoryReader implements LocalStoryReader {
 	public EditorStory storyEditor( long idStory ) {
 		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
 		return EditorStory.from( story );
+	}
+	
+	@Override
+	public StoryViewer storyViewer( RequestParam id ) throws ValidationException {
+		if ( id.isEmpty() ) {
+			throw new ValidationException();
+		}
+		long idStory = id.toLong();
+		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
+		return StoryViewer.from( story );
 	}
 }
