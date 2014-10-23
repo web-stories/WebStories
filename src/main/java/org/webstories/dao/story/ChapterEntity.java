@@ -32,6 +32,9 @@ public class ChapterEntity implements NumerableEntity {
 	@Column( nullable = false, length = 255 )
 	private String ds_title;
 	
+	@Column( nullable = false )
+	private Integer no_position;
+	
 	@ManyToOne
 	@JoinColumn( name = "id_story", nullable = true )
 	private StoryEntity story;
@@ -52,6 +55,13 @@ public class ChapterEntity implements NumerableEntity {
 	}
 	public void setTitle( String ds_title ) {
 		this.ds_title = ds_title;
+	}
+	
+	public Integer getPosition() {
+		return no_position;
+	}
+	public void setPosition( Integer no_position ) {
+		this.no_position = no_position;
 	}
 	
 	public void setStory( StoryEntity story ) {

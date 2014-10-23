@@ -11,11 +11,13 @@ import org.webstories.dao.story.SectionEntity;
 public class StoryViewerChapter implements StoryChapter {
 	private Long id;
 	private String title;
+	private Integer position;
 	private List<StoryViewerSection> sections = new ArrayList<StoryViewerSection>();
 	public static StoryViewerChapter from( ChapterEntity chapter ) {
 		StoryViewerChapter result = new StoryViewerChapter();
 		result.id = chapter.getId();
 		result.title = chapter.getTitle();
+		result.position = chapter.getPosition();
 		for ( SectionEntity section : chapter.getSections() ) {
 			result.sections.add( StoryViewerSection.from( section ) );
 		}
@@ -28,6 +30,10 @@ public class StoryViewerChapter implements StoryChapter {
 	@Override
 	public String getTitle() {
 		return title;
+	}
+	@Override
+	public Integer getPosition() {
+		return position;
 	}
 	@Override
 	public List<? extends StorySection> getSections() {
