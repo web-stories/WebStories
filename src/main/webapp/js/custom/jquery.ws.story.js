@@ -17,16 +17,10 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 						.find( ".step" )
 						.width( docWidth )
 						.each(function( index, slide ) {
-							slide = $( slide );
-							var credit = slide.hasClass( "story-credits" );
-							slide
+							 $( slide )
 								.attr( "data-x", x )
 								.attr( "data-z", z );
-							if ( credit ) {
-								z -= 3000;
-							} else {
-								x += docWidth + 300;
-							}
+							z -= 3000;
 						});
 				}
 			};
