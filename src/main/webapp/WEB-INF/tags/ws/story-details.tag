@@ -6,8 +6,4 @@
     ${title}
     <small class="story-details-summary">${summary}</small>
   </h1>
-  <hr>
-  <div class="story-details-synopsis">
-    ${synopsis}
-  </div>
 </div>
