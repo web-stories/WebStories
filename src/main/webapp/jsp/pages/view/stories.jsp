@@ -2,6 +2,11 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <ws:story>
   <ws:story-content>
+    <ws:story-details
+      summary="${details.summary}"
+      title="${details.title}"
+      synopsis="${details.synopsis}"
+    />
     <c:forEach items="${story.chapters}" var="chapter">
       <ws:story-chapter chapter="${chapter.position}" title="${chapter.title}">
         <c:forEach items="${chapter.sections}" var="section">

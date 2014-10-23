@@ -1,3 +1,6 @@
+/* Steps
+   ========================================================================== */
+   
 .story .step {
   opacity: 0;
   -webkit-transition: opacity .3s;
@@ -9,6 +12,24 @@
 .story .step.active {
   opacity: 1;
 }
+
+/* Details
+   ========================================================================== */
+   
+.story-details-title {
+  font-size: 60px;
+  text-align: center;
+}
+.story-details-summary {
+  display: block;
+}
+.story-details-synopsis {
+  font-size: 30px;
+}
+
+/* Chapter
+   ========================================================================== */
+   
 .story-chapter {
   text-align: center;
 }
@@ -17,10 +38,4 @@
 }
 .story-chapter-name {
   white-space: nowrap;
-}
-.story-credits {
-  font-size: 30px;
-}
-.story-credits-title {
-  font-size: 45px;
 }

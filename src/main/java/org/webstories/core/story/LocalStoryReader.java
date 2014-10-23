@@ -10,7 +10,7 @@ import org.webstories.core.story.impl.EditorStoryDetails;
 import org.webstories.core.story.impl.FeaturedStory;
 import org.webstories.core.story.impl.HomeStory;
 import org.webstories.core.story.impl.StoryViewer;
-import org.webstories.core.validation.ValidationException;
+import org.webstories.core.story.impl.StoryViewerDetails;
 
 @Local
 public interface LocalStoryReader {
@@ -18,5 +18,6 @@ public interface LocalStoryReader {
 	List<FeaturedStory> featuredStories();
 	EditorStoryDetails storyDetails( long idStory );
 	EditorStory storyEditor( long idStory );
-	StoryViewer storyViewer( long idStory ) throws ValidationException;
+	StoryViewer storyViewer( long idStory );
+	StoryViewerDetails storyViewerDetails( long idStory );
 }
