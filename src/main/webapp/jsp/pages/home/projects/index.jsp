@@ -34,8 +34,8 @@
     <div class="row">
       <div class="col-sm-9 col-lg-10">
         <ws:editor-chapters>
-          <c:forEach items="${story.chapters}" var="chapter" varStatus="loop">
-            <ws:editor-chapter chapter="${loop.index + 1}" title="${chapter.title}" chapterId="${chapter.id}">
+          <c:forEach items="${story.chapters}" var="chapter">
+            <ws:editor-chapter chapter="${chapter.position}" title="${chapter.title}" chapterId="${chapter.id}">
               <c:forEach items="${chapter.sections}" var="section">
                 <ws:editor-section sectionId="${section.id}">${section.text}</ws:editor-section>
               </c:forEach>
@@ -45,8 +45,8 @@
       </div>
       <div class="col-sm-3 col-lg-2 hidden-xs">
         <ws:editor-chapter-thumbs id="chapter-menu">
-          <c:forEach items="${story.chapters}" var="chapter" varStatus="loop">
-            <ws:editor-chapter-thumb chapter="${loop.index + 1}"/>
+          <c:forEach items="${story.chapters}" var="chapter">
+            <ws:editor-chapter-thumb chapter="${chapter.position}"/>
           </c:forEach>
         </ws:editor-chapter-thumbs>
       </div>

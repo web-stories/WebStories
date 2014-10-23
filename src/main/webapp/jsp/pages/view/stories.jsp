@@ -2,10 +2,10 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <ws:story>
   <ws:story-content>
-    <c:forEach items="${story.chapters}" var="chapter" varStatus="loop">
-      <ws:story-chapter chapter="${loop.index + 1}" title="${chapter.title}">
+    <c:forEach items="${story.chapters}" var="chapter">
+      <ws:story-chapter chapter="${chapter.position}" title="${chapter.title}">
         <c:forEach items="${chapter.sections}" var="section">
-          <ws:story-section chapter="${loop.index + 1}" section="${section.position + 1}">
+          <ws:story-section chapter="${chapter.position}" section="${section.position}">
             ${section.text}
           </ws:story-section>
         </c:forEach>
