@@ -27,5 +27,4 @@ public class StoryViewer implements Story {
 	public List<? extends StoryChapter> getChapters() {
 		return chapters;
 	}
-
 }
