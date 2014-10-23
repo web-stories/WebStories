@@ -13,7 +13,6 @@ import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
-import org.webstories.web.util.params.RequestParam;
 
 @Stateless
 public class StoryReader implements LocalStoryReader {
@@ -56,11 +55,7 @@ public class StoryReader implements LocalStoryReader {
 	}
 	
 	@Override
-	public StoryViewer storyViewer( RequestParam id ) throws ValidationException {
-		if ( id.isEmpty() ) {
-			throw new ValidationException();
-		}
-		long idStory = id.toLong();
+	public StoryViewer storyViewer( long idStory ) throws ValidationException {
 		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
 		return StoryViewer.from( story );
 	}

@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.story.LocalStoryReader;
-import org.webstories.core.story.impl.StoryViewer;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.BaseServlet;
@@ -26,9 +25,9 @@ public class StoriesAction extends BaseServlet {
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 	throws HttpInternalServerErrorException {
 		RequestParams params = RequestParams.from( request );
+		long idStory = params.get( "id" ).toLong();
 		try {
-			StoryViewer viewer = storyReader.storyViewer( params.get( "id" ) );
-			request.setAttribute( "story", viewer );
+			request.setAttribute( "story", storyReader.storyViewer( idStory ) );
 		} catch ( ValidationException e ) {
 			throw new HttpInternalServerErrorException( e );
 		}
