@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<context-param>
+		<param-name>liquibase.changelog</param-name>
+		<param-value>db-changelog.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>liquibase.datasource</param-name>
+		<param-value>java:jboss/datasources/WebStoriesDS</param-value>
+	</context-param>
 	<!--
 		1. Desabilita o uso de scriplets nos JSPs
 		2. Define o charset padrão de todos os JSPs (evita utilizar a diretiva em cada arquivo)
