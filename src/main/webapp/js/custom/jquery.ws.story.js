@@ -10,17 +10,15 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 			var refresh = {
 				slideData: function() {
 					var x = 0;
-					var z = 0;
 					var docWidth = $( document ).width();
 					var docHeight = $( document ).height();
 					element
 						.find( ".step" )
 						.width( docWidth )
 						.each(function( index, slide ) {
-							 $( slide )
-								.attr( "data-x", x )
-								.attr( "data-z", z );
-							z -= 3000;
+							$( slide )
+								.attr( "data-x", x );
+							x += docWidth + 300;
 						});
 				}
 			};
