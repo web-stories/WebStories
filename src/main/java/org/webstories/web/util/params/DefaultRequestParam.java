@@ -46,4 +46,11 @@ public class DefaultRequestParam implements RequestParam {
 	public String toString() {
 		return value;
 	}
+	@Override
+	public boolean isEmpty() {
+		if ( value == null ) {
+			return true;
+		}
+		return value.isEmpty();
+	}
 }

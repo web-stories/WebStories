@@ -52,4 +52,17 @@ public class StoryReader implements LocalStoryReader {
 		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
 		return EditorStory.from( story );
 	}
+	
+	@Override
+	public StoryViewer storyViewer( long idStory ) {
+		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
+		return StoryViewer.from( story );
+	}
+	
+	@Override
+	public StoryViewerDetails storyViewerDetails( long idStory ) {
+		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
+		MetaEntity meta = story.getMeta();
+		return StoryViewerDetails.from( meta );
+	}
 }

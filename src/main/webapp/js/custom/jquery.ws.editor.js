@@ -21,6 +21,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					return {
 						id: $( chapter ).data( "chapter-id" ),
 						title: titleInput.val().trim(),
+						position: index + 1,
 						sections: $.map( sections, create.section )
 					};
 				},
@@ -28,16 +29,12 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					var textInput = $( section ).find( ".editor-chapter-section-text" );
 					return {
 						id: $( section ).data( "sectionId" ),
+						position: index + 1,
 						text: textInput.val().trim()
 					};
 				}
 			};
 			this._chapters = $.map( this.element.find( ".editor-chapter" ), create.chapter );
-			this._chapters.forEach(function( chapter ) {
-				chapter.sections.forEach(function( section, index ) {
-					section.position = index;
-				});
-			});
 		},
 		_refreshDOM: function() {
 			var refresh = {
@@ -45,7 +42,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					$( ".editor-chapter" )
 						.eq( index )
 						.find( ".editor-chapter-title-header" )
-							.text( "Capítulo " + ( index + 1 ) );
+							.text( "Capítulo " + chapter.position );
 				}
 			};
 			this._chapters.forEach( refresh.chapter );

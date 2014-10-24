@@ -18,13 +18,21 @@ define( ["jquery", "jquery.ui.widget", "jquery.ws.alert"], function( $ ) {
 			this._closingTimeout = this._delay( this.close, 3000 );
 		},
 		error: function( jqXHR ) {
-			var statusMessage = {
-				500: "Ocorreu um erro interno no servidor",
-				404: "O servidor foi reiniciado ou você está sem conexão com a internet"
+			var createMessage = function( status ) {
+				var msg = ({
+					401: "Você não está logado.",
+					403: "Acesso negado.",
+					404: "O sistema não encontrou o caminho especificado.",
+					500: "Ocorreu um erro interno no servidor."
+				})[ status ];
+				if ( !msg ) {
+					msg = "Falha de conexão com o servidor.";
+				}
+				return msg;
 			};
 			var content = [
 				"<b>Erro:</b> Não foi possível salvar",
-				statusMessage[ jqXHR.status ]
+				createMessage( jqXHR.status )
 			].join( "<br>" );
 			this.element
 				.find( ".alert-saving-text" )

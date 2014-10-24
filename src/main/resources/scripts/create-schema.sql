@@ -66,6 +66,7 @@ CREATE TABLE ws_meta (
 CREATE TABLE ws_chapter (
 	id_chapter BIGINT NOT NULL PRIMARY KEY,
 	ds_title VARCHAR( 255 ) NOT NULL,
+	no_position INTEGER NOT NULL,
 	id_story BIGINT NOT NULL REFERENCES ws_story
 );
 CREATE TABLE chapter_sequences (

@@ -6,4 +6,5 @@ public interface RequestParam {
 	Boolean toBoolean();
 	Double toDouble();
 	String toString();
+	boolean isEmpty();
 }

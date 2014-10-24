@@ -29,19 +29,25 @@ require = (function( require ) {
 		defaultConfigs = {
 			"map": {
 				"*": {
-					"bootstrap": "../js/bootstrap-3.2.0",
-					"bootstrap.custom": "../js/bootstrap.custom-0.1.1",
+					// Custom modules
 					"bootstrap.wizard": "js/bootstrap.wizard",
-					"impress": "../js/impress-0.5.3",
-					"jquery.simulate": "../js/jquery.simulate-1.0.0",
-					"jquery.ui.widget": "../js/jquery.ui.widget-1.11.1",
-					"jquery.validate": "../js/jquery.validate-1.13.0",
 					"jquery.validate.extend": "js/jquery.validate.extend",
 					"jquery.ws.alert": "js/jquery.ws.alert",
 					"jquery.ws.alert.saving": "js/jquery.ws.alert.saving",
 					"jquery.ws.editor": "js/jquery.ws.editor",
 					"jquery.ws.remaining": "js/jquery.ws.remaining",
+					"jquery.ws.story": "js/jquery.ws.story",
 					"webstories": "js/webstories",
+					
+					// Vendor modules
+					"bootstrap": "../js/bootstrap-3.2.0",
+					"bootstrap.custom": "../js/bootstrap.custom-0.1.1",
+					"impress": "../js/impress-0.5.3",
+					"jquery.simulate": "../js/jquery.simulate-1.0.0",
+					"jquery.ui.widget": "../js/jquery.ui.widget-1.11.1",
+					"jquery.validate": "../js/jquery.validate-1.13.0",
+					
+					// Make jQuery method private
 					"jquery": "js/jquery.private"
 				},
 				"js/jquery.private": {

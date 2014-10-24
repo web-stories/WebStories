@@ -1,0 +1,38 @@
+/* Steps
+   ========================================================================== */
+   
+.story .step {
+  opacity: 0;
+  -webkit-transition: opacity .3s;
+     -moz-transition: opacity .3s;
+      -ms-transition: opacity .3s;
+       -o-transition: opacity .3s;
+          transition: opacity .3s;
+}
+.story .step.active {
+  opacity: 1;
+}
+
+/* Details
+   ========================================================================== */
+   
+.story-details-title {
+  font-size: 60px;
+  text-align: center;
+}
+.story-details-summary {
+  display: block;
+}
+
+/* Chapter
+   ========================================================================== */
+   
+.story-chapter {
+  text-align: center;
+}
+.story-chapter-title {
+  font-size: 55px;
+}
+.story-chapter-name {
+  white-space: nowrap;
+}

@@ -9,6 +9,7 @@ import org.webstories.core.validation.Validatable;
 public class EditorStoryChapterInput implements StoryChapter, Validatable {
 	private String title;
 	private Long id;
+	private Integer position;
 	private List<EditorStorySectionInput> sections = new ArrayList<EditorStorySectionInput>();
 	@Override
 	public Long getId() {
@@ -17,6 +18,10 @@ public class EditorStoryChapterInput implements StoryChapter, Validatable {
 	@Override
 	public String getTitle() {
 		return title;
+	}
+	@Override
+	public Integer getPosition() {
+		return position;
 	}
 	@Override
 	public List<EditorStorySectionInput> getSections() {
