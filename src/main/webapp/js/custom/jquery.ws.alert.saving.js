@@ -20,8 +20,10 @@ define( ["jquery", "jquery.ui.widget", "jquery.ws.alert"], function( $ ) {
 		error: function( jqXHR ) {
 			var createMessage = function( status ) {
 				var msg = ({
-					500: "Ocorreu um erro interno no servidor.",
-					404: "O servidor foi reiniciado ou você está sem conexão com a internet."
+					401: "Você não está logado.",
+					403: "Acesso negado.",
+					404: "O sistema não encontrou o caminho especificado.",
+					500: "Ocorreu um erro interno no servidor."
 				})[ status ];
 				if ( !msg ) {
 					msg = "Falha de conexão com o servidor.";

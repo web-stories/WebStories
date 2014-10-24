@@ -19,7 +19,9 @@ import org.webstories.core.story.LocalStoryReader;
 import org.webstories.core.story.Story;
 import org.webstories.core.story.impl.EditorStoryInput;
 import org.webstories.core.validation.ValidationException;
+import org.webstories.web.util.servlet.HttpForbiddenException;
 import org.webstories.web.util.servlet.HttpInternalServerErrorException;
+import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
 @Path( "/stories" )
 @Consumes( MediaType.APPLICATION_JSON )
@@ -37,12 +39,16 @@ public class StoriesResource {
 	@PUT
 	@Path( "{id}/save" )
 	public Story save( @PathParam( "id" ) Long idStory, EditorStoryInput story )
-	throws HttpInternalServerErrorException {
+	throws HttpInternalServerErrorException, HttpUnauthorizedException, HttpForbiddenException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
 			storyEditor.updateStory( story, logged );
-		} catch ( ValidationException | AccessDeniedException | UserNotLoggedException e ) {
+		} catch ( UserNotLoggedException e ) {
+			throw new HttpUnauthorizedException( e );
+		} catch ( ValidationException e ) {
 			throw new HttpInternalServerErrorException( e );
+		} catch ( AccessDeniedException e ) {
+			throw new HttpForbiddenException( e );
 		}
 		return storyReader.storyEditor( idStory );
 	}
