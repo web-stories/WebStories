@@ -2,16 +2,41 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 	"use strict";
 	$.widget( "ws.editor", {
 		_ajaxQueue: $({}),
-		_keyCode: {
-			ALT: 18,
-			CTRL: 17,
-			ESC: 27,
-			MENU_KEY: 93,
-			PAGE_DOWN: 34,
-			PAGE_UP: 33,
-			SHIFT: 16,
-			TAB: 9,
-			WIN: 91
+		_key: function( event ) {
+			var keyCode = event.keyCode;
+			var notChars = {
+				ALT: 18,
+				ARROW_DOWN: 40,
+				ARROW_LEFT: 37,
+				ARROW_RIGHT: 39,
+				ARROW_UP: 38,
+				BACKSPACE: 8,
+				CONTROL: 17,
+				DELETE: 46,
+				END: 35,
+				ESC: 27,
+				HOME: 36,
+				MENU_KEY: 93,
+				PAGE_DOWN: 34,
+				PAGE_UP: 33,
+				SHIFT: 16,
+				TAB: 9,
+				WINDOWS_KEY: 91
+			};
+			return {
+				isCharacter: function() {
+					var key;
+					for ( key in notChars ) {
+						if ( !notChars.hasOwnProperty( key ) ) {
+							continue;
+						}
+						if ( notChars[ key ] === keyCode ) {
+							return false;
+						}
+					}
+					return true;
+				}
+			};
 		},
 		_create: function() {
 			this._refresh();
@@ -59,12 +84,16 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			this._chapters.forEach( refresh.chapter );
 		},
 		_textEvents: function() {
-			return {
-				"keyup .editor-chapter-section-text": this._type,
-				"keyup .editor-chapter-title-name": this._type,
-				"blur .editor-chapter-section-text": this._blur,
-				"blur .editor-chapter-title-name": this._blur
-			};
+			var events = {};
+			$.each([
+				".editor-chapter-section-text",
+				".editor-chapter-title-name"
+			], function( index, selector ) {
+				events[ "keydown " + selector ] = this._type.down;
+				events[ "keyup " + selector ] = this._type.up;
+				events[ "blur " + selector ] = this._blur;
+			}.bind( this ));
+			return events;
 		},
 		_clickEvents: function() {
 			return {
@@ -150,28 +179,57 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				}
 			};
 		},
-		_type: function( event ) {
-			var editableKeyCode = function() {
-				var invalid = [
-					this.keyCode.ALT,
-					this.keyCode.CTRL,
-					this.keyCode.ESC,
-					this.keyCode.MENU_KEY,
-					this.keyCode.PAGE_UP,
-					this.keyCode.PAGE_DOWN,
-					this.keyCode.SHIFT,
-					this.keyCode.TAB,
-					this.keyCode.WIN
-				];
-				invalid.contains = function( typedCode ) {
-					return this.filter(function( invalidCode ) {
-						return invalidCode === typedCode;
-					})[ 0 ];
-				};
-				return !invalid.contains( event.keyCode );
-			}.bind( this );
-			
-			this._edited = editableKeyCode();
+		_section: function( textarea ) {
+			return {
+				markValid: function() {
+					$( textarea )
+						.parents( ".editor-chapter-section" )
+						.removeClass( "has-error" );
+				},
+				markInvalid: function() {
+					$( textarea )
+						.parents( ".editor-chapter-section" )
+						.addClass( "has-error" );
+				},
+				validLength: function() {
+					var char;
+					var i = 0;
+					var count = 0;
+					var text = textarea.value.trim();
+					for ( ; i < text.length; i += 1 ) {
+						char = text.charAt( i );
+						if ( char === "\n" ) {
+							count += 55;
+						} else {
+							count += 1;
+						}
+					}
+					return count <= 660;
+				}
+			};
+		},
+		_type: {
+			down: function( event ) {
+				var section = this._section( event.currentTarget );
+				var key = this._key( event );
+				
+				// Character related behavior
+				if ( key.isCharacter() ) {
+					// Just mark to save in the next auto saving attempt
+					this._edited = true;
+					// Disable further editing if limit has reached
+					if ( !section.validLength() ) {
+						section.markInvalid();
+						return false;
+					}
+				}
+			},
+			up: function( event ) {
+				var section = this._section( event.currentTarget );
+				if ( section.validLength() ) {
+					section.markValid();
+				}
+			}
 		},
 		_blur: function() {
 			this._refresh();
