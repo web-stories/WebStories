@@ -4,7 +4,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		_ajaxQueue: $({}),
 		_key: function( event ) {
 			var keyCode = event.keyCode;
-			var notChars = {
+			var invalidCharacters = {
 				ALT: 18,
 				ARROW_DOWN: 40,
 				ARROW_LEFT: 37,
@@ -26,15 +26,24 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			return {
 				isCharacter: function() {
 					var key;
-					for ( key in notChars ) {
-						if ( !notChars.hasOwnProperty( key ) ) {
+					var valid = true;
+					
+					// Check if character is invalid
+					for ( key in invalidCharacters ) {
+						if ( !invalidCharacters.hasOwnProperty( key ) ) {
 							continue;
 						}
-						if ( notChars[ key ] === keyCode ) {
-							return false;
+						if ( invalidCharacters[ key ] === keyCode ) {
+							valid = false;
 						}
 					}
-					return true;
+					
+					// Invalidate any character if ctrl is pressed, ctrl means a command
+					if ( valid && event.ctrlKey ) {
+						valid = false;
+					}
+					
+					return valid;
 				}
 			};
 		},
