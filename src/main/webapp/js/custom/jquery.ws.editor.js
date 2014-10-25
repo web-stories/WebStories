@@ -189,16 +189,16 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			};
 		},
 		_section: function( textarea ) {
+			var sectionElement = $( textarea ).parents( ".editor-chapter-section" );
+			var messageElement = sectionElement.find( ".editor-section-footer-msg" );
 			return {
 				markValid: function() {
-					$( textarea )
-						.parents( ".editor-chapter-section" )
-						.removeClass( "has-error" );
+					sectionElement.removeClass( "has-warning" );
+					messageElement.empty();
 				},
 				markInvalid: function() {
-					$( textarea )
-						.parents( ".editor-chapter-section" )
-						.addClass( "has-error" );
+					sectionElement.addClass( "has-warning" );
+					messageElement.text( "Alcançado o limite da seção." );
 				},
 				validLength: function() {
 					var char;
