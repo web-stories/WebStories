@@ -44,6 +44,9 @@
   display: block;
   margin-top: 4px;
   font-size: 15px;
+}
+.wizard-step-title,
+.wizard-step-num {
   color: #C2C2C2;
 }
 
@@ -54,6 +57,7 @@
 .wizard-steps .active .wizard-step-num,
 .wizard-steps .complete .wizard-step-num {
   border-color: #357EBD;
+  color: #000;
 }
 .wizard-steps .active .wizard-step-title,
 .wizard-steps .complete .wizard-step-title {
