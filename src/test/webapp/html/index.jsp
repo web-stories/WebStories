@@ -12,7 +12,8 @@
     <div id="qunit"></div>
     <script>
       QUnit.testSuites( "All", [
-        "pages/editor.jsp"
+        "pages/editor.jsp",
+        "pages/editor-unit.jsp"
       ]);
     </script>
   </body>

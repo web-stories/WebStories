@@ -7,6 +7,9 @@ require( ["jquery", "jquery.simulate", "jquery.ws.editor"], function( $ ) {
 			this.writeSection = function( text ) {
 				$( "#autosave .editor-chapter-section-text" )
 					.val( text )
+					.simulate( "focus" )
+					.simulate( "keydown" )
+					.simulate( "keypress" )
 					.simulate( "keyup" )
 					.simulate( "blur" );
 			};

@@ -2,6 +2,51 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 	"use strict";
 	$.widget( "ws.editor", {
 		_ajaxQueue: $({}),
+		_keyEvent: function( event ) {
+			var keyCode = event.keyCode;
+			var invalidCharacters = {
+				ALT: 18,
+				ARROW_DOWN: 40,
+				ARROW_LEFT: 37,
+				ARROW_RIGHT: 39,
+				ARROW_UP: 38,
+				BACKSPACE: 8,
+				CONTROL: 17,
+				DELETE: 46,
+				END: 35,
+				ESC: 27,
+				HOME: 36,
+				MENU_KEY: 93,
+				PAGE_DOWN: 34,
+				PAGE_UP: 33,
+				SHIFT: 16,
+				TAB: 9,
+				WINDOWS_KEY: 91
+			};
+			return {
+				isCharacter: function() {
+					var key;
+					var valid = true;
+					
+					// Check if character is invalid
+					for ( key in invalidCharacters ) {
+						if ( !invalidCharacters.hasOwnProperty( key ) ) {
+							continue;
+						}
+						if ( invalidCharacters[ key ] === keyCode ) {
+							valid = false;
+						}
+					}
+					
+					// Invalidate any character if ctrl is pressed, ctrl means a command
+					if ( valid && event.ctrlKey ) {
+						valid = false;
+					}
+					
+					return valid;
+				}
+			};
+		},
 		_create: function() {
 			this._refresh();
 			this._on( this.element, this._clickEvents.call( this ) );
@@ -48,12 +93,16 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			this._chapters.forEach( refresh.chapter );
 		},
 		_textEvents: function() {
-			return {
-				"keyup .editor-chapter-section-text": this._type,
-				"keyup .editor-chapter-title-name": this._type,
-				"blur .editor-chapter-section-text": this._blur,
-				"blur .editor-chapter-title-name": this._blur
-			};
+			var events = {};
+			$.each([
+				".editor-chapter-section-text",
+				".editor-chapter-title-name"
+			], function( index, selector ) {
+				events[ "keydown " + selector ] = this._type.down;
+				events[ "keyup " + selector ] = this._type.up;
+				events[ "blur " + selector ] = this._blur;
+			}.bind( this ));
+			return events;
 		},
 		_clickEvents: function() {
 			return {
@@ -67,7 +116,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					Promise.all([
 						this._loadChapterThumb( nextChapter ),
 						this._loadChapter( nextChapter )
-					]).then($.proxy(function( values ) {
+					]).then(function( values ) {
 						var thumbnail = $( values[ 0 ] )
 							.appendTo( this.element.find( ".editor-chapter-thumbs > ul" ) );
 						$( values[ 1 ] )
@@ -81,11 +130,11 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 								.find( ".editor-chapter-title-name" )
 								.focus();
 						});
-					}, this ));
+					}.bind( this ));
 				},
 				"click .editor-section-add": function( event ) {
 					new Promise( this.options.loadSection )
-						.then($.proxy(function( html ) {
+						.then(function( html ) {
 							var previous = $( event.currentTarget )
 								.parents( ".editor-chapter-section" );
 							var section = $( html )
@@ -96,11 +145,11 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 									.find( ".editor-chapter-section-text" )
 									.focus();
 							});
-						}, this ));
+						}.bind( this ));
 				},
 				"click .editor-section-delete": function( event ) {
 					var drop = {
-						section: $.proxy(function( section ) {
+						section: function( section ) {
 							var textInput = section.find( ".editor-chapter-section-text" );
 							var content = $( textInput ).val().trim();
 							var lastSection = section.siblings().length === 0;
@@ -113,8 +162,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 								this._refresh();
 								this._edited = true;
 							}
-						}, this ),
-						chapter: $.proxy(function( chapter ) {
+						}.bind( this ),
+						chapter: function( chapter ) {
 							var prevChapter = chapter.prev();
 							var lastChapter =
 								this._chapters.length === 1 &&
@@ -132,31 +181,64 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 								this._edited = true;
 								this._scrollTo( prevChapter );
 							}
-						}, this )
+						}.bind( this )
 					};
 					drop
 						.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
 				}
 			};
 		},
-		_type: function( event ) {
-			var keys = [
-				9, // Tab
-				91, // Win
-				18, // Alt
-				16, // Shift
-				17, // Ctrl
-				27, // Esc
-				33, // Pg up
-				34, // Pg down
-				93  // Context menu
-			];
-			keys.contains = function( current ) {
-				return this.filter(function( keyCode ) {
-					return keyCode === current;
-				})[ 0 ];
+		_section: function( textarea ) {
+			var sectionElement = $( textarea ).parents( ".editor-chapter-section" );
+			var messageElement = sectionElement.find( ".editor-section-footer-msg" );
+			return {
+				markValid: function() {
+					sectionElement.removeClass( "has-warning" );
+					messageElement.empty();
+				},
+				markInvalid: function() {
+					sectionElement.addClass( "has-warning" );
+					messageElement.text( "Alcançado o limite da seção." );
+				},
+				validLength: function() {
+					var char;
+					var i = 0;
+					var count = 0;
+					var text = textarea.value.trim();
+					for ( ; i < text.length; i += 1 ) {
+						char = text.charAt( i );
+						if ( char === "\n" ) {
+							count += 55;
+						} else {
+							count += 1;
+						}
+					}
+					return count <= 660;
+				}
 			};
-			this._edited = !keys.contains( event.keyCode );
+		},
+		_type: {
+			down: function( event ) {
+				var section = this._section( event.currentTarget );
+				var keyEvent = this._keyEvent( event );
+				
+				// Character related behavior
+				if ( keyEvent.isCharacter() ) {
+					// Just mark to save in the next auto saving attempt
+					this._edited = true;
+					// Disable further editing if limit has reached
+					if ( !section.validLength() ) {
+						section.markInvalid();
+						return false;
+					}
+				}
+			},
+			up: function( event ) {
+				var section = this._section( event.currentTarget );
+				if ( section.validLength() ) {
+					section.markValid();
+				}
+			}
 		},
 		_blur: function() {
 			this._refresh();
@@ -180,7 +262,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			}
 			
 			clearTimeout( this._saveTimeout );
-			this._saveTimeout = this._delay( this._save, 30000 );
+			this._saveTimeout = this._delay( this._save, 60000 );
 		},
 		_updateIds: function( story ) {
 			$.each( story.chapters, function( index, chapter ) {

@@ -13,7 +13,26 @@
   border-top: 0;
   padding: 10px 15px;
   background: none;
-  text-align: right;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  text-align: center;
+}
+.editor-section-footer-msg {
+  padding: 6px 12px;
+}
+.editor-section-footer-msg:empty {
+  display: none;
+}
+
+/* md */
+@media ( min-width: 992px ) {
+  /*
+   * 1. Bootstrap override
+   */
+  label.editor-section-footer-msg {
+    margin-bottom: 0; /* 1 */
+  }
+  .editor-section-footer-toolbar {
+    text-align: right;
+  }
 }
