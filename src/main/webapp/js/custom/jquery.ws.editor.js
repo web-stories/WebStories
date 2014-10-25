@@ -67,7 +67,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					Promise.all([
 						this._loadChapterThumb( nextChapter ),
 						this._loadChapter( nextChapter )
-					]).then($.proxy(function( values ) {
+					]).then(function( values ) {
 						var thumbnail = $( values[ 0 ] )
 							.appendTo( this.element.find( ".editor-chapter-thumbs > ul" ) );
 						$( values[ 1 ] )
@@ -81,11 +81,11 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 								.find( ".editor-chapter-title-name" )
 								.focus();
 						});
-					}, this ));
+					}.bind( this ));
 				},
 				"click .editor-section-add": function( event ) {
 					new Promise( this.options.loadSection )
-						.then($.proxy(function( html ) {
+						.then(function( html ) {
 							var previous = $( event.currentTarget )
 								.parents( ".editor-chapter-section" );
 							var section = $( html )
@@ -96,11 +96,11 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 									.find( ".editor-chapter-section-text" )
 									.focus();
 							});
-						}, this ));
+						}.bind( this ));
 				},
 				"click .editor-section-delete": function( event ) {
 					var drop = {
-						section: $.proxy(function( section ) {
+						section: function( section ) {
 							var textInput = section.find( ".editor-chapter-section-text" );
 							var content = $( textInput ).val().trim();
 							var lastSection = section.siblings().length === 0;
@@ -113,8 +113,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 								this._refresh();
 								this._edited = true;
 							}
-						}, this ),
-						chapter: $.proxy(function( chapter ) {
+						}.bind( this ),
+						chapter: function( chapter ) {
 							var prevChapter = chapter.prev();
 							var lastChapter =
 								this._chapters.length === 1 &&
@@ -132,7 +132,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 								this._edited = true;
 								this._scrollTo( prevChapter );
 							}
-						}, this )
+						}.bind( this )
 					};
 					drop
 						.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
