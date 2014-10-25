@@ -2,6 +2,17 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 	"use strict";
 	$.widget( "ws.editor", {
 		_ajaxQueue: $({}),
+		_keyCode: {
+			ALT: 18,
+			CTRL: 17,
+			ESC: 27,
+			MENU_KEY: 93,
+			PAGE_DOWN: 34,
+			PAGE_UP: 33,
+			SHIFT: 16,
+			TAB: 9,
+			WIN: 91
+		},
 		_create: function() {
 			this._refresh();
 			this._on( this.element, this._clickEvents.call( this ) );
@@ -140,23 +151,27 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			};
 		},
 		_type: function( event ) {
-			var keys = [
-				9, // Tab
-				91, // Win
-				18, // Alt
-				16, // Shift
-				17, // Ctrl
-				27, // Esc
-				33, // Pg up
-				34, // Pg down
-				93  // Context menu
-			];
-			keys.contains = function( current ) {
-				return this.filter(function( keyCode ) {
-					return keyCode === current;
-				})[ 0 ];
-			};
-			this._edited = !keys.contains( event.keyCode );
+			var editableKeyCode = function() {
+				var invalid = [
+					this.keyCode.ALT,
+					this.keyCode.CTRL,
+					this.keyCode.ESC,
+					this.keyCode.MENU_KEY,
+					this.keyCode.PAGE_UP,
+					this.keyCode.PAGE_DOWN,
+					this.keyCode.SHIFT,
+					this.keyCode.TAB,
+					this.keyCode.WIN
+				];
+				invalid.contains = function( typedCode ) {
+					return this.filter(function( invalidCode ) {
+						return invalidCode === typedCode;
+					})[ 0 ];
+				};
+				return !invalid.contains( event.keyCode );
+			}.bind( this );
+			
+			this._edited = editableKeyCode();
 		},
 		_blur: function() {
 			this._refresh();
