@@ -8,11 +8,11 @@ require( ["jquery", "jquery.ws.editor"], function( $ ) {
 	
 	test( "Invalid character keys", function() {
 		expect( 2 );
-		var ctrlX = methods._key({
+		var ctrlX = methods._keyEvent({
 			ctrlKey: true,
 			keyCode: 88 // "x" character
 		});
-		var ctrlC = methods._key({
+		var ctrlC = methods._keyEvent({
 			ctrlKey: true,
 			keyCode: 67 // "c" character
 		});
