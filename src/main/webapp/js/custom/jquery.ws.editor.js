@@ -2,7 +2,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 	"use strict";
 	$.widget( "ws.editor", {
 		_ajaxQueue: $({}),
-		_key: function( event ) {
+		_keyEvent: function( event ) {
 			var keyCode = event.keyCode;
 			var invalidCharacters = {
 				ALT: 18,
@@ -220,10 +220,10 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		_type: {
 			down: function( event ) {
 				var section = this._section( event.currentTarget );
-				var key = this._key( event );
+				var keyEvent = this._keyEvent( event );
 				
 				// Character related behavior
-				if ( key.isCharacter() ) {
+				if ( keyEvent.isCharacter() ) {
 					// Just mark to save in the next auto saving attempt
 					this._edited = true;
 					// Disable further editing if limit has reached
