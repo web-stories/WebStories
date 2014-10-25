@@ -180,7 +180,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			}
 			
 			clearTimeout( this._saveTimeout );
-			this._saveTimeout = this._delay( this._save, 30000 );
+			this._saveTimeout = this._delay( this._save, 60000 );
 		},
 		_updateIds: function( story ) {
 			$.each( story.chapters, function( index, chapter ) {
