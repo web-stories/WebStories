@@ -6,7 +6,7 @@ public class ElementsProcessor {
 			super( ProcessorAlias.HTML_ELEMENTS );
 		}
 		@Override
-		public String process( Message message ) {
+		public String process( HTMLMessage message ) {
 			String result = message.getCurrent();
 			
 			// Replace LF

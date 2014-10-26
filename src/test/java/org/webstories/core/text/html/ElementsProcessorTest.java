@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ElementsProcessorTest {
 	@Test
 	public void should_convert_linefeed() {
-		Message message = Message.fromPlainText( "\n" );
+		HTMLMessage message = HTMLMessage.fromPlainText( "\n" );
 		message.accept( new ElementsProcessor.Converter() );
 		
 		String expected = "<p><br></p>";
@@ -17,7 +17,7 @@ public class ElementsProcessorTest {
 	
 	@Test
 	public void should_convert_multiple_paragraphs() {
-		Message message = Message.fromPlainText( "paragraph1\n\nparagraph2" );
+		HTMLMessage message = HTMLMessage.fromPlainText( "paragraph1\n\nparagraph2" );
 		message.accept( new ElementsProcessor.Converter() );
 		
 		String expected = "<p>paragraph1</p><p>paragraph2</p>";
@@ -28,7 +28,7 @@ public class ElementsProcessorTest {
 	
 	@Test
 	public void should_convert_paragraphs_from_windows_based_editors() {
-		Message message = Message.fromPlainText( "paragraph1\n\r\n\rparagraph2" );
+		HTMLMessage message = HTMLMessage.fromPlainText( "paragraph1\n\r\n\rparagraph2" );
 		message.accept( new ElementsProcessor.Converter() );
 		
 		String actual = "<p>paragraph1</p><p>paragraph2</p>";
@@ -39,7 +39,7 @@ public class ElementsProcessorTest {
 	
 	@Test
 	public void should_not_convert_paragraph_to_an_empty_string() {
-		Message message = Message.fromPlainText( "" );
+		HTMLMessage message = HTMLMessage.fromPlainText( "" );
 		message.accept( new ElementsProcessor.Converter() );
 		
 		String expected = "";

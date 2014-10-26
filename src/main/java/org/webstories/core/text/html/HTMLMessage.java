@@ -3,15 +3,15 @@ package org.webstories.core.text.html;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-public class Message implements ProcessorVisitable {
+public class HTMLMessage implements ProcessorVisitable {
 	private String original;
 	private String current;
 	private TreeSet<ProcessorVisitor> processors = new TreeSet<ProcessorVisitor>();
-	private Message( String text ) {
+	private HTMLMessage( String text ) {
 		this.original = this.current = text;
 	}
-	public static Message fromPlainText( String text ) {
-		return new Message( text );
+	public static HTMLMessage fromPlainText( String text ) {
+		return new HTMLMessage( text );
 	}
 	protected String getCurrent() {
 		return current;

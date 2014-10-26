@@ -6,7 +6,7 @@ public class EntitiesProcessor {
 			super( ProcessorAlias.HTML_ENTITIES );
 		}
 		@Override
-		public String process( Message message ) {
+		public String process( HTMLMessage message ) {
 			String result = message.getCurrent();
 			
 			// XSS protection
@@ -22,7 +22,7 @@ public class EntitiesProcessor {
 			super( ProcessorAlias.HTML_ENTITIES_REVERT );
 		}
 		@Override
-		public String process( Message message ) {
+		public String process( HTMLMessage message ) {
 			String result = message.getCurrent();
 			
 			result = result
