@@ -10,8 +10,13 @@ public class HTMLMessage implements ProcessorVisitable {
 	private HTMLMessage( String text ) {
 		this.original = this.current = text;
 	}
+	/**
+	 * The resulting message already converts the html entities by default
+	 */
 	public static HTMLMessage fromPlainText( String text ) {
-		return new HTMLMessage( text );
+		HTMLMessage message = new HTMLMessage( text );
+		message.accept( new EntitiesProcessor.Converter() );
+		return message;
 	}
 	protected String getCurrent() {
 		return current;

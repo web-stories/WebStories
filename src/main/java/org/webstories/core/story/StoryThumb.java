@@ -1,8 +1,10 @@
 package org.webstories.core.story;
 
+import org.webstories.core.text.html.HTMLMessage;
+
 public interface StoryThumb {
 	Long getId();
-	String getTitle();
-	String getDescription();
+	HTMLMessage getTitle();
+	HTMLMessage getDescription();
 	String getAuthor();
 }
