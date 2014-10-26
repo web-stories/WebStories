@@ -1,4 +1,4 @@
-package org.webstories.web.convention.pages.view;
+package org.webstories.web.convention.pages.view.stories;
 
 import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 
 @WebServlet
 @ConventionServlet
-public class StoriesAction extends BaseServlet {
+public class IndexAction extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	
 	@EJB
