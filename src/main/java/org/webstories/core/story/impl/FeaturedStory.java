@@ -1,20 +1,20 @@
 package org.webstories.core.story.impl;
 
 import org.webstories.core.story.StoryThumb;
-import org.webstories.core.text.html.HTMLMessage;
+import org.webstories.core.text.html.HTMLText;
 import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.story.MetaEntity;
 
 public class FeaturedStory implements StoryThumb {
 	private Long id;
-	private HTMLMessage title;
-	private HTMLMessage description;
+	private HTMLText title;
+	private HTMLText description;
 	private String author;
 	public static FeaturedStory from( IdentifiableEntity author, MetaEntity meta ) {
 		FeaturedStory product = new FeaturedStory();
 		product.id = meta.getId();
-		product.title = HTMLMessage.fromPlainText( meta.getTitle() ); 
-		product.description = HTMLMessage.fromPlainText( meta.getSummary() );
+		product.title = HTMLText.fromPlainText( meta.getTitle() ); 
+		product.description = HTMLText.fromPlainText( meta.getSummary() );
 		product.author = author.getFirstName();
 		return product;
 	}
@@ -23,11 +23,11 @@ public class FeaturedStory implements StoryThumb {
 		return id;
 	}
 	@Override
-	public HTMLMessage getTitle() {
+	public HTMLText getTitle() {
 		return title;
 	}
 	@Override
-	public HTMLMessage getDescription() {
+	public HTMLText getDescription() {
 		return description;
 	}
 	@Override

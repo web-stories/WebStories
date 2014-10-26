@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.webstories.core.story.StoryChapter;
-import org.webstories.core.text.Message;
+import org.webstories.core.text.Text;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.SectionEntity;
 
 public class EditorStoryChapter implements StoryChapter {
 	private Long id;
-	private Message title;
+	private Text title;
 	private Integer position;
 	private List<EditorStorySection> sections = new ArrayList<EditorStorySection>();
 	public static EditorStoryChapter from( ChapterEntity chapterEntity ) {
 		EditorStoryChapter chapter = new EditorStoryChapter();
 		chapter.id = chapterEntity.getId();
-		chapter.title = Message.from( chapterEntity.getTitle() );
+		chapter.title = Text.from( chapterEntity.getTitle() );
 		chapter.position = chapterEntity.getPosition();
 		for ( SectionEntity section : chapterEntity.getSections() ) {
 			EditorStorySection storySection = EditorStorySection.from( section );
@@ -29,7 +29,7 @@ public class EditorStoryChapter implements StoryChapter {
 		return id;
 	}
 	@Override
-	public Message getTitle() {
+	public Text getTitle() {
 		return title;
 	}
 	@Override

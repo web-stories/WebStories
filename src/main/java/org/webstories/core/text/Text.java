@@ -1,13 +1,13 @@
 package org.webstories.core.text;
 
 
-public class Message {
+public class Text {
 	private String content;
-	protected Message( String content ) {
+	protected Text( String content ) {
 		this.content = content;
 	}
-	public static Message from( String content ) {
-		return new Message( content );
+	public static Text from( String content ) {
+		return new Text( content );
 	}
 	protected String getContent() {
 		return content;

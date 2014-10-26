@@ -3,20 +3,20 @@ package org.webstories.core.text.html;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import org.webstories.core.text.Message;
+import org.webstories.core.text.Text;
 
-public class HTMLMessage extends Message implements ProcessorVisitable {
+public class HTMLText extends Text implements ProcessorVisitable {
 	private String current;
 	private TreeSet<ProcessorVisitor> processors = new TreeSet<ProcessorVisitor>();
-	private HTMLMessage( String text ) {
+	private HTMLText( String text ) {
 		super( text );
 		this.current = text;
 	}
 	/**
 	 * The resulting message already converts the html entities by default
 	 */
-	public static HTMLMessage fromPlainText( String text ) {
-		HTMLMessage message = new HTMLMessage( text );
+	public static HTMLText fromPlainText( String text ) {
+		HTMLText message = new HTMLText( text );
 		message.accept( new EntitiesProcessor.Converter() );
 		return message;
 	}
