@@ -10,6 +10,6 @@
     <jsp:doBody/>
   </ul>
   <button class="btn btn-primary btn-block editor-chapter-thumb-add">
-    Novo capítulo
+    Novo capÃ­tulo
   </button>
 </div>

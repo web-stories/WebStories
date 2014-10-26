@@ -22,7 +22,7 @@
       </div>
       <div class="col-md-6">
         <div class="editor-section-footer-toolbar">
-          <button class="btn btn-primary editor-section-add">Nova seção</button>
+          <button class="btn btn-primary editor-section-add">Nova seÃ§Ã£o</button>
           <button class="btn btn-danger editor-section-delete">
             <span class="icon-trash"></span>
           </button>
