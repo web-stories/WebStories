@@ -1,12 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <ws:story>
-  <ws:story-content title="${details.title}">
-    <ws:story-details
-      summary="${details.summary}"
-      title="${details.title}"
-      synopsis="${details.synopsis}"
-    />
+  <ws:story-content storyTitle="${details.title}" storySummary="${details.summary}">
     <c:forEach items="${story.chapters}" var="chapter">
       <ws:story-chapter chapter="${chapter.position}" title="${chapter.title}">
         <c:forEach items="${chapter.sections}" var="section">
