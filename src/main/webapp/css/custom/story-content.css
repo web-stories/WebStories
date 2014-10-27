@@ -2,6 +2,7 @@
    ========================================================================== */
    
 .story .step {
+  width: 930px;
   opacity: 0;
   -webkit-transition: opacity .3s;
      -moz-transition: opacity .3s;
@@ -11,6 +12,27 @@
 }
 .story .step.active {
   opacity: 1;
+}
+
+/* Samsung Galaxy Gran Neo Duos - Landscape */
+@media ( min-width: 530px ) {
+  .story .step {
+    width: 1586px;
+  }
+}
+
+/* iPad - Portrait */
+@media ( min-width: 768px ) {
+  .story .step {
+    width: 962px;
+  }
+}
+
+/* iPad - Landscape */
+@media ( min-width: 1024px ) {
+  .story .step {
+    width: 943px;
+  }
 }
 
 /* Details
