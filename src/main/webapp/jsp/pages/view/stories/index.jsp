@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <ws:story>
-  <ws:story-content>
+  <ws:story-content title="${details.title}">
     <ws:story-details
       summary="${details.summary}"
       title="${details.title}"
