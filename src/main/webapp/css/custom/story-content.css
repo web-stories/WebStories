@@ -17,7 +17,7 @@
    ========================================================================== */
    
 .story-details-title {
-  font-size: 60px;
+  font-size: 200%;
   text-align: center;
 }
 .story-details-summary {
@@ -31,7 +31,7 @@
   text-align: center;
 }
 .story-chapter-title {
-  font-size: 55px;
+  font-size: 170%;
 }
 .story-chapter-name {
   white-space: nowrap;
