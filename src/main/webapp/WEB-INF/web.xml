@@ -9,14 +9,14 @@
 		<param-value>java:jboss/datasources/WebStoriesDS</param-value>
 	</context-param>
 	<!--
-		1. Desabilita o uso de scriplets nos JSPs
-		2. Define o charset padrão de todos os JSPs (evita utilizar a diretiva em cada arquivo)
+		1. Set the Default encoding for all JSP files, instead of requiring the use of the encoding
+			directive for each file
 	-->
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
-			<scripting-invalid>true</scripting-invalid> <!-- 1 -->
-			<page-encoding>UTF-8</page-encoding> <!-- 2 -->
+			<scripting-invalid>true</scripting-invalid>
+			<page-encoding>UTF-8</page-encoding> <!-- 1 -->
 		</jsp-property-group>
 	</jsp-config>
 	
