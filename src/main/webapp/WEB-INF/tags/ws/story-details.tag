@@ -1,3 +1,4 @@
+<%@ tag pageEncoding="UTF-8" %>
 <%@ attribute name="title" required="true" %>
 <%@ attribute name="summary" required="true" %>
 <%@ attribute name="synopsis" required="true" %>

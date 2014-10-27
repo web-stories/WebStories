@@ -1,3 +1,4 @@
+<%@ tag pageEncoding="UTF-8" %>
 <%@ attribute name="chapter" required="true" %>
 <%@ attribute name="title" required="true" %>
 <div class="step story-chapter" id="section-${chapter}-0">

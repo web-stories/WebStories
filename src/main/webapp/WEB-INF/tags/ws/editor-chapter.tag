@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ tag pageEncoding="UTF-8" %>
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <%@ attribute name="chapter" required="true" %>
 <%@ attribute name="chapterId" %>
@@ -11,7 +12,7 @@
 <div class="editor-chapter" ${dataChapterId} id="chapter-${chapter}">
   <div class="editor-chapter-title">
     <h2 class="editor-chapter-title-header">
-      Capítulo ${chapter}
+      CapÃ­tulo ${chapter}
     </h2>
     <input class="form-control editor-chapter-title-name" type="text" value="${title}">
   </div>
