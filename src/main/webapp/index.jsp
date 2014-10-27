@@ -19,7 +19,9 @@
   <body>
     <convention:include-stylesheet/>
     <jsp:include page="/jsp/include/header.jsp"/>
-    <convention:include/>
+    <div id="wrapper-default">
+      <convention:include/>
+    </div>
     <script>require( ["bootstrap"] );</script>
     <convention:include-script/>
   </body>

@@ -12,4 +12,8 @@ public class Text {
 	protected String getContent() {
 		return content;
 	}
+	@Override
+	public String toString() {
+		return content;
+	}
 }
