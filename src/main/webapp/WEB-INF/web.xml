@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-	<context-param>
-		<param-name>liquibase.changelog</param-name>
-		<param-value>db-changelog.xml</param-value>
-	</context-param>
-	<context-param>
-		<param-name>liquibase.datasource</param-name>
-		<param-value>java:jboss/datasources/WebStoriesDS</param-value>
-	</context-param>
-	<!--
-		1. Set the Default encoding for all JSP files, instead of requiring the use of the encoding
-			directive for each file
-	-->
-	<jsp-config>
-		<jsp-property-group>
-			<url-pattern>*.jsp</url-pattern>
-			<scripting-invalid>true</scripting-invalid>
-			<page-encoding>UTF-8</page-encoding> <!-- 1 -->
-		</jsp-property-group>
-	</jsp-config>
-	
-	<!-- Enables session replication -->
-	<distributable/>
-	
-	<!-- Rewrites the static resources folder for unversioned files -->
-	<filter-mapping>
-		<filter-name>resources-folder</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<!-- Read the application properties and make it available for all JSPs -->
-	<filter-mapping>
-		<filter-name>application-properties</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<!-- Adjust the UTF-8 encoding for every page -->
-	<filter-mapping>
-		<filter-name>encoding</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<!-- Authentication forward system -->
-	<filter-mapping>
-		<filter-name>auth</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<!-- URL mapping for the file system -->
-	<filter-mapping>
-		<filter-name>url-convention</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
+  <context-param>
+    <param-name>liquibase.changelog</param-name>
+    <param-value>db-changelog.xml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>liquibase.datasource</param-name>
+    <param-value>java:jboss/datasources/WebStoriesDS</param-value>
+  </context-param>
+  <!--
+    1. Set the Default encoding for all JSP files, instead of requiring the use of the encoding
+       directive for each file
+  -->
+  <jsp-config>
+    <jsp-property-group>
+      <url-pattern>*.jsp</url-pattern>
+      <scripting-invalid>true</scripting-invalid>
+      <page-encoding>UTF-8</page-encoding> <!-- 1 -->
+    </jsp-property-group>
+  </jsp-config>
+  
+  <!-- Enables session replication -->
+  <distributable/>
+  
+  <!-- Rewrites the static resources folder for unversioned files -->
+  <filter-mapping>
+    <filter-name>resources-folder</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Read the application properties and make it available for all JSPs -->
+  <filter-mapping>
+    <filter-name>application-properties</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Adjust the UTF-8 encoding for every page -->
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Authentication forward system -->
+  <filter-mapping>
+    <filter-name>auth</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- URL mapping for the file system -->
+  <filter-mapping>
+    <filter-name>url-convention</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+  </filter-mapping>
 </web-app>
