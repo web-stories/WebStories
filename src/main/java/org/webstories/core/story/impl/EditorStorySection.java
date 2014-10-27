@@ -6,12 +6,12 @@ import org.webstories.dao.story.SectionEntity;
 
 public class EditorStorySection implements StorySection {
 	private Long id;
-	private Text text;
+	private String text;
 	private Integer position;
 	public static EditorStorySection from( SectionEntity sectionEntity ) {
 		EditorStorySection section = new EditorStorySection();
 		section.id = sectionEntity.getId();
-		section.text = Text.from( sectionEntity.getText() );
+		section.text = Text.from( sectionEntity.getText() ).toString();
 		section.position = sectionEntity.getPosition();
 		return section;
 	}
@@ -20,7 +20,7 @@ public class EditorStorySection implements StorySection {
 		return id;
 	}
 	@Override
-	public Text getText() {
+	public String getText() {
 		return text;
 	}
 	@Override
