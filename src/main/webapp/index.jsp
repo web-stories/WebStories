@@ -18,7 +18,6 @@
   </head>
   <body>
     <convention:include-stylesheet/>
-    <jsp:include page="/jsp/include/header.jsp"/>
     <div id="wrapper-default">
       <convention:include/>
     </div>

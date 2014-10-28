@@ -1,4 +1,5 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<jsp:include page="/jsp/include/header.jsp"/>
 <ws:context-alert show="${saved}">
   Informações salvas!
 </ws:context-alert>

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="facebook" tagdir="/WEB-INF/tags/facebook" %>
+<jsp:include page="/jsp/include/header.jsp"/>
 <div class="jumbotron index-banner">
   <div class="container index-banner-container">
     <h1>Web Stories</h1>
