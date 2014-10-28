@@ -230,13 +230,13 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				
 				// Character related behavior
 				if ( keyEvent.isCharacter() ) {
-					// Just mark to save in the next auto saving attempt
-					this._edited = true;
 					// Disable further editing if limit has reached
 					if ( !section.validLength() ) {
 						section.markInvalid();
 						return false;
 					}
+					// Just mark to save in the next auto saving attempt
+					this._edited = true;
 				}
 			},
 			up: function( event ) {
