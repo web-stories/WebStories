@@ -25,8 +25,7 @@ if ( !Function.prototype.bind ) {
 	};
 }
 
-// Support:
-// * "console.log" is not spec compliant (http://stackoverflow.com/a/14086700/1400037)
+// Avoid "console" errors in browsers that lack a console.
 (function() {
 	"use strict";
 	var method;
