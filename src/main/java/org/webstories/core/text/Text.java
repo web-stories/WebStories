@@ -1,6 +1,5 @@
 package org.webstories.core.text;
 
-
 public class Text {
 	private String content;
 	protected Text( String content ) {
@@ -11,6 +10,9 @@ public class Text {
 	}
 	protected String getContent() {
 		return content;
+	}
+	public boolean isEmpty() {
+		return content.isEmpty();
 	}
 	@Override
 	public String toString() {

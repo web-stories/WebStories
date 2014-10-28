@@ -12,7 +12,8 @@ public class EntitiesProcessor {
 			// XSS protection
 			result = result
 				.replace( "<", "&lt;" )
-				.replace( ">", "&gt;" );
+				.replace( ">", "&gt;" )
+				.replace( "\"", "&quot;" );
 				
 			return result;
 		}

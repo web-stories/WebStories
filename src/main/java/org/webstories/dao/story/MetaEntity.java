@@ -32,16 +32,16 @@ public class MetaEntity implements NumerableEntity {
 	
 	public static MetaEntity from( EditorStoryDetailsInput input ) {
 		MetaEntity meta = new MetaEntity();
-		meta.ds_title = input.getTitle();
-		meta.ds_summary = input.getSummary();
-		meta.ds_synopsis = input.getSynopsis();
+		meta.ds_title = input.getTitle().toString();
+		meta.ds_summary = input.getSummary().toString();
+		meta.ds_synopsis = input.getSynopsis().toString();
 		return meta;
 	}
 	
 	public void update( EditorStoryDetailsInput input ) {
-		this.ds_title = input.getTitle();
-		this.ds_summary = input.getSummary();
-		this.ds_synopsis = input.getSynopsis();
+		this.ds_title = input.getTitle().toString();
+		this.ds_summary = input.getSummary().toString();
+		this.ds_synopsis = input.getSynopsis().toString();
 	}
 	
 	@Override
