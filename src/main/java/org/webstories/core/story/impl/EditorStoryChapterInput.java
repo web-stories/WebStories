@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.webstories.core.story.StoryChapter;
+import org.webstories.core.text.Text;
 import org.webstories.core.validation.Validatable;
 
 public class EditorStoryChapterInput implements StoryChapter, Validatable {
-	private String title;
 	private Long id;
+	private Text title;
 	private Integer position;
 	private List<EditorStorySectionInput> sections = new ArrayList<EditorStorySectionInput>();
 	@Override
@@ -16,7 +17,7 @@ public class EditorStoryChapterInput implements StoryChapter, Validatable {
 		return id;
 	}
 	@Override
-	public String getTitle() {
+	public Text getTitle() {
 		return title;
 	}
 	@Override

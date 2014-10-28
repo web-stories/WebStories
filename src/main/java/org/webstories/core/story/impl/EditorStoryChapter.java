@@ -10,13 +10,13 @@ import org.webstories.dao.story.SectionEntity;
 
 public class EditorStoryChapter implements StoryChapter {
 	private Long id;
-	private String title;
+	private HTMLText title;
 	private Integer position;
 	private List<EditorStorySection> sections = new ArrayList<EditorStorySection>();
 	public static EditorStoryChapter from( ChapterEntity chapterEntity ) {
 		EditorStoryChapter chapter = new EditorStoryChapter();
 		chapter.id = chapterEntity.getId();
-		chapter.title = HTMLText.fromPlainText( chapterEntity.getTitle() ).toString();
+		chapter.title = HTMLText.fromPlainText( chapterEntity.getTitle() );
 		chapter.position = chapterEntity.getPosition();
 		for ( SectionEntity section : chapterEntity.getSections() ) {
 			EditorStorySection storySection = EditorStorySection.from( section );
@@ -29,7 +29,7 @@ public class EditorStoryChapter implements StoryChapter {
 		return id;
 	}
 	@Override
-	public String getTitle() {
+	public HTMLText getTitle() {
 		return title;
 	}
 	@Override
