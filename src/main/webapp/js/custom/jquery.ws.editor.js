@@ -292,6 +292,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		},
 		_initComponents: function() {
 			var menu = this.element.find( ".editor-chapter-thumbs" );
+			// Menu should hold its width after pulled out from the DOM with affix
+			menu.width( menu.width() );
 			menu.affix({
 				offset: {
 					top: menu.offset().top - this.options.chaptersOffset
