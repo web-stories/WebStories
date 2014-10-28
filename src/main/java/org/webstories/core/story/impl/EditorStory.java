@@ -10,12 +10,12 @@ import org.webstories.dao.story.StoryEntity;
 
 public class EditorStory implements Story {
 	private Long id;
-	private String title;
+	private HTMLText title;
 	private List<EditorStoryChapter> chapters = new ArrayList<EditorStoryChapter>();
 	public static EditorStory from( StoryEntity story ) {
 		EditorStory editor = new EditorStory();
 		editor.id = story.getId();
-		editor.title = HTMLText.fromPlainText( story.getMeta().getTitle() ).toString();
+		editor.title = HTMLText.fromPlainText( story.getMeta().getTitle() );
 		for ( ChapterEntity chapter : story.getChapters() ) {
 			EditorStoryChapter storyChapter = EditorStoryChapter.from( chapter );
 			editor.chapters.add( storyChapter );
@@ -26,7 +26,7 @@ public class EditorStory implements Story {
 	public Long getId() {
 		return id;
 	}
-	public String getTitle() {
+	public HTMLText getTitle() {
 		return title;
 	}
 	@Override
