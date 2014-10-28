@@ -27,6 +27,10 @@ public class EditorStoryDetailsInput implements Validatable, StoryMeta {
 		if ( synopsis.isEmpty() ) {
 			return false;
 		}
+		// LF is not allowed for summary
+		if ( summary.toString().contains( "\n" ) ) {
+			return false;
+		}
 		return true;
 	}
 	@Override
