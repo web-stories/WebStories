@@ -13,7 +13,7 @@ public class HTMLText extends Text implements ProcessorVisitable {
 		this.current = text;
 	}
 	/**
-	 * The resulting object already converts the html entities by default
+	 * Create a new HTMLText while escaping the html entities by default
 	 */
 	public static HTMLText fromPlainText( String text ) {
 		HTMLText message = new HTMLText( text );

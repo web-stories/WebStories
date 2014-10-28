@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.webstories.core.story.StoryChapter;
-import org.webstories.core.text.Text;
+import org.webstories.core.text.html.HTMLText;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.SectionEntity;
 
@@ -16,7 +16,7 @@ public class EditorStoryChapter implements StoryChapter {
 	public static EditorStoryChapter from( ChapterEntity chapterEntity ) {
 		EditorStoryChapter chapter = new EditorStoryChapter();
 		chapter.id = chapterEntity.getId();
-		chapter.title = Text.from( chapterEntity.getTitle() ).toString();
+		chapter.title = HTMLText.fromPlainText( chapterEntity.getTitle() ).toString();
 		chapter.position = chapterEntity.getPosition();
 		for ( SectionEntity section : chapterEntity.getSections() ) {
 			EditorStorySection storySection = EditorStorySection.from( section );

@@ -1,7 +1,7 @@
 package org.webstories.core.story.impl;
 
 import org.webstories.core.story.StorySection;
-import org.webstories.core.text.Text;
+import org.webstories.core.text.html.HTMLText;
 import org.webstories.dao.story.SectionEntity;
 
 public class EditorStorySection implements StorySection {
@@ -11,7 +11,7 @@ public class EditorStorySection implements StorySection {
 	public static EditorStorySection from( SectionEntity sectionEntity ) {
 		EditorStorySection section = new EditorStorySection();
 		section.id = sectionEntity.getId();
-		section.text = Text.from( sectionEntity.getText() ).toString();
+		section.text = HTMLText.fromPlainText( sectionEntity.getText() ).toString();
 		section.position = sectionEntity.getPosition();
 		return section;
 	}
