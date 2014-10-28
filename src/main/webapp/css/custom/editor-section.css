@@ -24,6 +24,13 @@
   display: none;
 }
 
+/* sm */
+@media ( min-width: 768px ) {
+  .editor-section-footer-toolbar {
+    text-align: right;
+  }
+}
+
 /* md */
 @media ( min-width: 992px ) {
   /*
