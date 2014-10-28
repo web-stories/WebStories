@@ -15,29 +15,13 @@
     <script>var require = { baseUrl: "${pageContext.request.contextPath}/static/${build}" };</script>
     <script src="${pageContext.request.contextPath}/static/${build}/js/require.main.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/require-2.1.15.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/senna-0.2.1.js"></script>
   </head>
-  <body data-senna>
-    <div id="style-wrapper" data-senna-surface>
-      <div id="style-wrapper-default">
-        <convention:include-stylesheet/>
-      </div>
-    </div>
-    <div id="header-wrapper" data-senna-surface>
-      <div id="header-wrapper-default">
-        <jsp:include page="/jsp/include/header.jsp"/>
-      </div>
-    </div>
-    <div id="wrapper" data-senna-surface>
-      <div id="wrapper-default">
-        <convention:include/>
-      </div>
+  <body>
+    <convention:include-stylesheet/>
+    <div id="wrapper-default">
+      <convention:include/>
     </div>
     <script>require( ["bootstrap"] );</script>
-    <div id="script-wrapper" data-senna-surface>
-      <div id="script-wrapper-default">
-        <convention:include-script/>
-      </div>
-    </div>
+    <convention:include-script/>
   </body>
 </html>

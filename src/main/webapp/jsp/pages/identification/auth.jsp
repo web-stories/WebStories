@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="facebook" tagdir="/WEB-INF/tags/facebook" %>
 <%@ taglib prefix="util" uri="http://java.webstories.org/jsp/jstl/util" %>
+<jsp:include page="/jsp/include/header.jsp"/>
 <c:set var="redirect" value="${util:buildURI( requestScope['javax.servlet.forward.request_uri'], requestScope['javax.servlet.forward.query_string'] )}"/>
 <div class="container">
   <div class="row">

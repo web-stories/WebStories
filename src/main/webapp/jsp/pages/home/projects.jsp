@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags/bootstrap" %>
+<jsp:include page="/jsp/include/header.jsp"/>
 <div id="meta" data-nostory="${nostory}"></div>
 <div class="container toolbar">
   <div class="row">

@@ -1,29 +1,30 @@
 package org.webstories.core.story.impl;
 
 import org.webstories.core.story.StoryMeta;
+import org.webstories.core.text.html.HTMLText;
 import org.webstories.dao.story.MetaEntity;
 
 public class StoryViewerDetails implements StoryMeta {
-	private String title;
-	private String summary;
-	private String synopsis;
+	private HTMLText title;
+	private HTMLText summary;
+	private HTMLText synopsis;
 	public static StoryViewerDetails from( MetaEntity meta ) {
 		StoryViewerDetails result = new StoryViewerDetails();
-		result.title = meta.getTitle();
-		result.summary = meta.getSummary();
-		result.synopsis = meta.getSynopsis();
+		result.title = HTMLText.fromPlainText( meta.getTitle() );
+		result.summary = HTMLText.fromPlainText( meta.getSummary() );
+		result.synopsis = HTMLText.fromPlainText( meta.getSynopsis() );
 		return result;
 	}
 	@Override
-	public String getTitle() {
+	public HTMLText getTitle() {
 		return title;
 	}
 	@Override
-	public String getSummary() {
+	public HTMLText getSummary() {
 		return summary;
 	}
 	@Override
-	public String getSynopsis() {
+	public HTMLText getSynopsis() {
 		return synopsis;
 	}
 }

@@ -1,6 +1,7 @@
+<%@ tag pageEncoding="UTF-8" %>
 <%@ attribute name="chapter" required="true" %>
 <li>
   <a class="editor-chapter-thumb" href="#chapter-${chapter}">
-  Capítulo ${chapter}
+  CapÃ­tulo ${chapter}
   </a>
 </li>
