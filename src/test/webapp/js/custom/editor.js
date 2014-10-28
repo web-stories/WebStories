@@ -6,6 +6,7 @@ require( ["jquery", "jquery.simulate", "jquery.ws.editor"], function( $ ) {
 	asyncTest( "Should execute autosave callback when editing the section", function() {
 		expect( 1 );
 		var count = 0;
+		
 		$( "#simple" ).editor({
 			autosave: function( chapters, resolve ) {
 				count += 1;
