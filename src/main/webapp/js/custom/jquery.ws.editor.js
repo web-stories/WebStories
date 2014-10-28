@@ -39,8 +39,14 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					}
 					
 					// Invalidate any character if ctrl is pressed, ctrl means a command
-					if ( valid && event.ctrlKey ) {
+					if ( event.ctrlKey ) {
 						valid = false;
+					}
+					
+					// But if the command is ctrl + v, then user is pasting content and it is a
+					// character related command
+					if ( event.ctrlKey && keyCode === 86 ) {
+						valid = true;
 					}
 					
 					return valid;
