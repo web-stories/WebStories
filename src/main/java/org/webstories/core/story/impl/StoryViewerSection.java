@@ -7,14 +7,14 @@ import org.webstories.dao.story.SectionEntity;
 
 public class StoryViewerSection implements StorySection {
 	private Long id;
-	private String text;
+	private HTMLText text;
 	private Integer position;
 	public static StoryViewerSection from( SectionEntity section ) {
 		StoryViewerSection result = new StoryViewerSection();
 		
 		HTMLText text = HTMLText.fromPlainText( section.getText() );
 		text.accept( new ElementsProcessor.Converter() );
-		result.text = text.toString();
+		result.text = text;
 		
 		result.id = section.getId();
 		result.position = section.getPosition();
@@ -25,7 +25,7 @@ public class StoryViewerSection implements StorySection {
 		return id;
 	}
 	@Override
-	public String getText() {
+	public HTMLText getText() {
 		return text;
 	}
 	@Override
