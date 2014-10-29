@@ -128,6 +128,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			this._refresh();
 			this._on( this.element, this._clickEvents.call( this ) );
 			this._on( this.element, this._textEvents.call( this ) );
+			this._validate();
 			this._initComponents();
 			this._save();
 		},
@@ -295,6 +296,18 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 						.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
 				}
 			};
+		},
+		_validate: function() {
+			this.element
+				.find( ".editor-chapter-section-text" )
+				.each(function( index, textarea ) {
+					var section = this._section( textarea );
+					if ( section.validLength() ) {
+						section.markValid();
+					} else {
+						section.markInvalid();
+					}
+				}.bind( this ));
 		},
 		_section: function( textarea ) {
 			var sectionElement = $( textarea ).parents( ".editor-chapter-section" );
