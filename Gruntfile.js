@@ -20,6 +20,6 @@ module.exports = function( grunt ) {
 	grunt.registerTask( "integration", [ "servers:wildfly", "qunit" ] );
 	
 	// Special tasks
-	grunt.registerTask( "eclipse", [ "newer:jshint", "newer:jscs", "newer:concat", "newer:copy" ] );
+	grunt.registerTask( "eclipse", [ "newer:concat", "newer:copy", "newer:jshint", "newer:jscs" ] );
 	grunt.registerTask( "default", [ "validate", "files", "integration" ] );
 };
