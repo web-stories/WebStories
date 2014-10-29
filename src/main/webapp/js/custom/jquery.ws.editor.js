@@ -298,9 +298,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					if ( !section.validLength() ) {
 						section.markInvalid();
 						// Only prevent the default behavior if this event is going to add character
-						if ( keyEvent.isCharacter() ) {
-							return false;
-						}
+						return keyEvent.isCharacter() ? false : true;
 					// Only mark to save if a new character was added
 					} else if ( keyEvent.isCharacter() ) {
 						this._edited = true;
