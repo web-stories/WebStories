@@ -201,11 +201,19 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			},
 			keyup: function( event ) {
 				var section = this._section( event.currentTarget );
+				
+				// Check validity after the key was pressed
 				if ( section.validLength() ) {
 					section.markValid();
 					this._edited = true;
 				} else {
 					section.markInvalid();
+				}
+				
+				if ( section.remainingPercent() < 50 ) {
+					section.showRemaining();
+				} else {
+					section.hideRemaining();
 				}
 			},
 			blur: function() {
@@ -302,30 +310,55 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				.find( ".editor-chapter-section-text" )
 				.each(function( index, textarea ) {
 					var section = this._section( textarea );
+					
 					if ( section.validLength() ) {
 						section.markValid();
 					} else {
 						section.markInvalid();
 					}
+					
+					if ( section.remainingChars() <= 0 ) {
+						section.showRemaining();
+					} else {
+						section.hideRemaining();
+					}
+					
 				}.bind( this ));
 		},
 		_section: function( textarea ) {
+			var limitChars = 660;
 			var sectionElement = $( textarea ).parents( ".editor-chapter-section" );
 			var messageElement = sectionElement.find( ".editor-section-footer-msg" );
 			return {
 				markValid: function() {
 					sectionElement.removeClass( "has-warning" );
-					messageElement.empty();
 				},
 				markInvalid: function() {
 					sectionElement.addClass( "has-warning" );
-					messageElement.text( "Alcançado o limite da seção." );
+				},
+				showRemaining: function() {
+					var message;
+					var remainingChars = this.remainingChars();
+					
+					if ( remainingChars < 0 ) {
+						message = "Ultrapassado o limite da seção.";
+					} else {
+						message = remainingChars + " caractere(s) restante(s).";
+					}
+					
+					messageElement.text( message );
+				},
+				hideRemaining: function() {
+					messageElement.empty();
 				},
 				validLength: function() {
+					return this.remainingChars() > 0;
+				},
+				remainingChars: function() {
 					var char;
 					var i = 0;
 					var count = 0;
-					var text = textarea.value.trim();
+					var text = textarea.value;
 					for ( ; i < text.length; i += 1 ) {
 						char = text.charAt( i );
 						if ( char === "\n" ) {
@@ -334,7 +367,11 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 							count += 1;
 						}
 					}
-					return count <= 660;
+					return limitChars - count;
+				},
+				remainingPercent: function() {
+					var current = this.remainingChars();
+					return current * 100 / limitChars;
 				}
 			};
 		},
