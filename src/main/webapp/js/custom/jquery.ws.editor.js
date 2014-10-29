@@ -300,24 +300,23 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				var section = this._section( event.currentTarget );
 				var keyEvent = this._keyEvent( event );
 				
-				if ( section.validLength() ) {
-					section.markValid();
-				}
-				
 				if ( keyEvent.isTextManip() ) {
-					// Disable further editing if limit has reached
-					if ( !section.validLength() ) {
+					if ( section.validLength() ) {
+						section.markValid();
+						this._edited = true;
+					} else {
 						section.markInvalid();
-						// Only prevent the default behavior if this event is going to add character
 						return keyEvent.isCharacter() ? false : true;
 					}
-					this._edited = true;
 				}
 			},
 			up: function( event ) {
 				var section = this._section( event.currentTarget );
 				if ( section.validLength() ) {
 					section.markValid();
+					this._edited = true;
+				} else {
+					section.markInvalid();
 				}
 			}
 		},
