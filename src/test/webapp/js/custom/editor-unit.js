@@ -10,14 +10,14 @@ require( ["jquery", "jquery.ws.editor"], function( $ ) {
 		expect( 3 );
 		var ctrlX = methods._keyEvent({
 			ctrlKey: true,
-			keyCode: 88 // "x" character
+			keyCode: 88
 		});
 		var ctrlC = methods._keyEvent({
 			ctrlKey: true,
-			keyCode: 67 // "c" character
+			keyCode: 67
 		});
 		var F1 = methods._keyEvent({
-			keyCode: 112 // "F1" key
+			keyCode: 112
 		});
 		strictEqual( ctrlX.isCharacter(), false, "ctrl + x should not be considered a character" );
 		strictEqual( ctrlC.isCharacter(), false, "ctrl + c should not be considered a character" );
@@ -28,20 +28,25 @@ require( ["jquery", "jquery.ws.editor"], function( $ ) {
 		expect( 1 );
 		var ctrlV = methods._keyEvent({
 			ctrlKey: true,
-			keyCode: 86 // "v" character
+			keyCode: 86
 		});
 		strictEqual( ctrlV.isCharacter(), true, "ctrl + v should be considered a character" );
 	});
 	
 	test( "Text manip keys", function() {
-		expect( 2 );
+		expect( 3 );
 		var BACKSPACE = methods._keyEvent({
 			keyCode: 8
 		});
 		var DELETE = methods._keyEvent({
 			keyCode: 46
 		});
+		var ctrlX = methods._keyEvent({
+			ctrlKey: true,
+			keyCode: 88
+		});
 		strictEqual( BACKSPACE.isTextManip(), true, "backspace should be considered text manip" );
 		strictEqual( DELETE.isTextManip(), true, "delete should be considered text manip" );
+		strictEqual( ctrlX.isTextManip(), true, "ctrl + x should be considered text manip" );
 	});
 });

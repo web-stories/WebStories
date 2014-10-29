@@ -34,7 +34,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				SHIFT: 16,
 				TAB: 9,
 				V: 86,
-				WINDOWS_KEY: 91
+				WINDOWS_KEY: 91,
+				X: 88
 			};
 			return {
 				// Returns if this key event is supposed to add one or more characters in a text
@@ -114,6 +115,11 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 						}
 					}
 					
+					// If user cut a content, then he is manipulating text
+					if ( event.ctrlKey && typedCode === keyCodes.X ) {
+						return true;
+					}
+					
 					return false;
 				}
 			};
@@ -170,6 +176,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				".editor-chapter-title-name"
 			], function( index, selector ) {
 				events[ "keydown " + selector ] = this._type.down;
+				// keyup is used to validate the section after using the "ctrl + X" command
+				events[ "keyup " + selector ] = this._type.up;
 				events[ "blur " + selector ] = this._blur;
 			}.bind( this ));
 			return events;
@@ -306,6 +314,12 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					} else if ( keyEvent.isCharacter() ) {
 						this._edited = true;
 					}
+				}
+			},
+			up: function( event ) {
+				var section = this._section( event.currentTarget );
+				if ( section.validLength() ) {
+					section.markValid();
 				}
 			}
 		},
