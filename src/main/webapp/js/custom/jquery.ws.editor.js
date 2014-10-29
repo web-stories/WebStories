@@ -3,8 +3,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 	$.widget( "ws.editor", {
 		_ajaxQueue: $({}),
 		_keyEvent: function( event ) {
-			var keyCode = event.keyCode;
-			var invalidCharacters = {
+			var typedCode = event.keyCode;
+			var keyCodes = {
 				ALT: 18,
 				ARROW_DOWN: 40,
 				ARROW_LEFT: 37,
@@ -15,25 +15,68 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				DELETE: 46,
 				END: 35,
 				ESC: 27,
+				F1: 112,
+				F2: 113,
+				F3: 114,
+				F4: 115,
+				F5: 116,
+				F6: 117,
+				F7: 118,
+				F8: 119,
+				F9: 120,
+				F10: 121,
+				F11: 122,
+				F12: 123,
 				HOME: 36,
 				MENU_KEY: 93,
 				PAGE_DOWN: 34,
 				PAGE_UP: 33,
 				SHIFT: 16,
 				TAB: 9,
+				V: 86,
 				WINDOWS_KEY: 91
 			};
 			return {
+				// Returns if this key event is supposed to add one or more characters in a text
+				// field
 				isCharacter: function() {
-					var key;
+					var i = 0;
 					var valid = true;
+					var invalidCharacters = [
+						keyCodes.ALT,
+						keyCodes.ARROW_DOWN,
+						keyCodes.ARROW_LEFT,
+						keyCodes.ARROW_RIGHT,
+						keyCodes.ARROW_UP,
+						keyCodes.BACKSPACE,
+						keyCodes.CONTROL,
+						keyCodes.DELETE,
+						keyCodes.END,
+						keyCodes.ESC,
+						keyCodes.F1,
+						keyCodes.F2,
+						keyCodes.F3,
+						keyCodes.F4,
+						keyCodes.F5,
+						keyCodes.F6,
+						keyCodes.F7,
+						keyCodes.F8,
+						keyCodes.F9,
+						keyCodes.F10,
+						keyCodes.F11,
+						keyCodes.F12,
+						keyCodes.HOME,
+						keyCodes.MENU_KEY,
+						keyCodes.PAGE_DOWN,
+						keyCodes.PAGE_UP,
+						keyCodes.SHIFT,
+						keyCodes.TAB,
+						keyCodes.WINDOWS_KEY
+					];
 					
 					// Check if character is invalid
-					for ( key in invalidCharacters ) {
-						if ( !invalidCharacters.hasOwnProperty( key ) ) {
-							continue;
-						}
-						if ( invalidCharacters[ key ] === keyCode ) {
+					for ( ; i < invalidCharacters.length; i += 1 ) {
+						if ( invalidCharacters[ i ] === typedCode ) {
 							valid = false;
 						}
 					}
@@ -45,11 +88,33 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					
 					// But if the command is ctrl + v, then user is pasting content and it is a
 					// character related command
-					if ( event.ctrlKey && keyCode === 86 ) {
+					if ( event.ctrlKey && typedCode === keyCodes.V ) {
 						valid = true;
 					}
 					
 					return valid;
+				},
+				// Returns if this key event is supposed to manipulate existing characters in a text
+				// field
+				isTextManip: function() {
+					var i = 0;
+					var isCharacter = this.isCharacter();
+					var manipKeys = [
+						keyCodes.BACKSPACE,
+						keyCodes.DELETE
+					];
+					
+					if ( isCharacter ) {
+						return true;
+					}
+					
+					for ( ; i < manipKeys.length; i += 1 ) {
+						if ( manipKeys[ i ] === typedCode ) {
+							return true;
+						}
+					}
+					
+					return false;
 				}
 			};
 		},
@@ -228,15 +293,18 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				var section = this._section( event.currentTarget );
 				var keyEvent = this._keyEvent( event );
 				
-				// Character related behavior
-				if ( keyEvent.isCharacter() ) {
+				if ( keyEvent.isTextManip() ) {
 					// Disable further editing if limit has reached
 					if ( !section.validLength() ) {
 						section.markInvalid();
-						return false;
+						// Only prevent the default behavior if this event is going to add character
+						if ( keyEvent.isCharacter() ) {
+							return false;
+						}
+					// Only mark to save if a new character was added
+					} else if ( keyEvent.isCharacter() ) {
+						this._edited = true;
 					}
-					// Just mark to save in the next auto saving attempt
-					this._edited = true;
 				}
 			},
 			up: function( event ) {
