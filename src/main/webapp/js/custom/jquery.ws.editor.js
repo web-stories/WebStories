@@ -171,16 +171,46 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		},
 		_textEvents: function() {
 			var events = {};
+			
 			$.each([
 				".editor-chapter-section-text",
 				".editor-chapter-title-name"
 			], function( index, selector ) {
-				events[ "keydown " + selector ] = this._type.down;
-				// keyup is used to validate the section after using the "ctrl + X" command
-				events[ "keyup " + selector ] = this._type.up;
-				events[ "blur " + selector ] = this._blur;
+				events[ "keydown " + selector ] = this._textHandlers.keydown;
+				events[ "keyup " + selector ] = this._textHandlers.keyup;
+				events[ "blur " + selector ] = this._textHandlers.blur;
 			}.bind( this ));
+			
 			return events;
+		},
+		_textHandlers: {
+			keydown: function( event ) {
+				var section = this._section( event.currentTarget );
+				var keyEvent = this._keyEvent( event );
+				
+				if ( keyEvent.isTextManip() ) {
+					if ( section.validLength() ) {
+						section.markValid();
+						this._edited = true;
+					} else {
+						section.markInvalid();
+						return keyEvent.isCharacter() ? false : true;
+					}
+				}
+			},
+			keyup: function( event ) {
+				var section = this._section( event.currentTarget );
+				if ( section.validLength() ) {
+					section.markValid();
+					this._edited = true;
+				} else {
+					section.markInvalid();
+				}
+			},
+			blur: function() {
+				this._refresh();
+				this._save();
+			}
 		},
 		_clickEvents: function() {
 			return {
@@ -294,35 +324,6 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					return count <= 660;
 				}
 			};
-		},
-		_type: {
-			down: function( event ) {
-				var section = this._section( event.currentTarget );
-				var keyEvent = this._keyEvent( event );
-				
-				if ( keyEvent.isTextManip() ) {
-					if ( section.validLength() ) {
-						section.markValid();
-						this._edited = true;
-					} else {
-						section.markInvalid();
-						return keyEvent.isCharacter() ? false : true;
-					}
-				}
-			},
-			up: function( event ) {
-				var section = this._section( event.currentTarget );
-				if ( section.validLength() ) {
-					section.markValid();
-					this._edited = true;
-				} else {
-					section.markInvalid();
-				}
-			}
-		},
-		_blur: function() {
-			this._refresh();
-			this._save();
 		},
 		_save: function() {
 			var execute;
