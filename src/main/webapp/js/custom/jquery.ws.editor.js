@@ -170,7 +170,6 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				".editor-chapter-title-name"
 			], function( index, selector ) {
 				events[ "keydown " + selector ] = this._type.down;
-				events[ "keypress " + selector ] = this._type.press;
 				events[ "blur " + selector ] = this._blur;
 			}.bind( this ));
 			return events;
@@ -293,6 +292,10 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				var section = this._section( event.currentTarget );
 				var keyEvent = this._keyEvent( event );
 				
+				if ( section.validLength() ) {
+					section.markValid();
+				}
+				
 				if ( keyEvent.isTextManip() ) {
 					// Disable further editing if limit has reached
 					if ( !section.validLength() ) {
@@ -303,12 +306,6 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					} else if ( keyEvent.isCharacter() ) {
 						this._edited = true;
 					}
-				}
-			},
-			press: function( event ) {
-				var section = this._section( event.currentTarget );
-				if ( section.validLength() ) {
-					section.markValid();
 				}
 			}
 		},
