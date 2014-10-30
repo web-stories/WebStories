@@ -9,8 +9,7 @@
   content: "";
 }
 .editor-chapter-thumbs {
-  width: 155px;
-  padding-right: 5px;
+  width: 100%;
 }
 .editor-chapter-thumbs.affix {
   top: 69px;

@@ -13,7 +13,7 @@
   </c:set>
 </c:if>
 <div class="editor-chapter-section" ${dataSectionId}>
-  <textarea class="form-control editor-chapter-section-text" rows="10" ${textareaId}><jsp:doBody/></textarea>
+  <textarea class="form-control editor-chapter-section-text" ${textareaId}><jsp:doBody/></textarea>
   <div class="editor-chapter-section-footer">
     <div class="row">
       <div class="col-md-6">

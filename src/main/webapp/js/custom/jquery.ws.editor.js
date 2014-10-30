@@ -3,8 +3,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 	$.widget( "ws.editor", {
 		_ajaxQueue: $({}),
 		_keyEvent: function( event ) {
-			var keyCode = event.keyCode;
-			var invalidCharacters = {
+			var typedCode = event.keyCode;
+			var keyCodes = {
 				ALT: 18,
 				ARROW_DOWN: 40,
 				ARROW_LEFT: 37,
@@ -15,35 +15,112 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				DELETE: 46,
 				END: 35,
 				ESC: 27,
+				F1: 112,
+				F2: 113,
+				F3: 114,
+				F4: 115,
+				F5: 116,
+				F6: 117,
+				F7: 118,
+				F8: 119,
+				F9: 120,
+				F10: 121,
+				F11: 122,
+				F12: 123,
 				HOME: 36,
 				MENU_KEY: 93,
 				PAGE_DOWN: 34,
 				PAGE_UP: 33,
 				SHIFT: 16,
 				TAB: 9,
-				WINDOWS_KEY: 91
+				V: 86,
+				WINDOWS_KEY: 91,
+				X: 88
 			};
 			return {
+				// Returns if this key event is supposed to add one or more characters in a text
+				// field
 				isCharacter: function() {
-					var key;
+					var i = 0;
 					var valid = true;
+					var invalidCharacters = [
+						keyCodes.ALT,
+						keyCodes.ARROW_DOWN,
+						keyCodes.ARROW_LEFT,
+						keyCodes.ARROW_RIGHT,
+						keyCodes.ARROW_UP,
+						keyCodes.BACKSPACE,
+						keyCodes.CONTROL,
+						keyCodes.DELETE,
+						keyCodes.END,
+						keyCodes.ESC,
+						keyCodes.F1,
+						keyCodes.F2,
+						keyCodes.F3,
+						keyCodes.F4,
+						keyCodes.F5,
+						keyCodes.F6,
+						keyCodes.F7,
+						keyCodes.F8,
+						keyCodes.F9,
+						keyCodes.F10,
+						keyCodes.F11,
+						keyCodes.F12,
+						keyCodes.HOME,
+						keyCodes.MENU_KEY,
+						keyCodes.PAGE_DOWN,
+						keyCodes.PAGE_UP,
+						keyCodes.SHIFT,
+						keyCodes.TAB,
+						keyCodes.WINDOWS_KEY
+					];
 					
 					// Check if character is invalid
-					for ( key in invalidCharacters ) {
-						if ( !invalidCharacters.hasOwnProperty( key ) ) {
-							continue;
-						}
-						if ( invalidCharacters[ key ] === keyCode ) {
+					for ( ; i < invalidCharacters.length; i += 1 ) {
+						if ( invalidCharacters[ i ] === typedCode ) {
 							valid = false;
 						}
 					}
 					
 					// Invalidate any character if ctrl is pressed, ctrl means a command
-					if ( valid && event.ctrlKey ) {
+					if ( event.ctrlKey ) {
 						valid = false;
 					}
 					
+					// But if the command is ctrl + v, then user is pasting content and it is a
+					// character related command
+					if ( event.ctrlKey && typedCode === keyCodes.V ) {
+						valid = true;
+					}
+					
 					return valid;
+				},
+				// Returns if this key event is supposed to manipulate existing characters in a text
+				// field
+				isTextManip: function() {
+					var i = 0;
+					var isCharacter = this.isCharacter();
+					var manipKeys = [
+						keyCodes.BACKSPACE,
+						keyCodes.DELETE
+					];
+					
+					if ( isCharacter ) {
+						return true;
+					}
+					
+					for ( ; i < manipKeys.length; i += 1 ) {
+						if ( manipKeys[ i ] === typedCode ) {
+							return true;
+						}
+					}
+					
+					// If user cut a content, then he is manipulating text
+					if ( event.ctrlKey && typedCode === keyCodes.X ) {
+						return true;
+					}
+					
+					return false;
 				}
 			};
 		},
@@ -51,6 +128,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			this._refresh();
 			this._on( this.element, this._clickEvents.call( this ) );
 			this._on( this.element, this._textEvents.call( this ) );
+			this._validate();
 			this._initComponents();
 			this._save();
 		},
@@ -94,15 +172,54 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		},
 		_textEvents: function() {
 			var events = {};
+			
 			$.each([
 				".editor-chapter-section-text",
 				".editor-chapter-title-name"
 			], function( index, selector ) {
-				events[ "keydown " + selector ] = this._type.down;
-				events[ "keyup " + selector ] = this._type.up;
-				events[ "blur " + selector ] = this._blur;
+				events[ "keydown " + selector ] = this._textHandlers.keydown;
+				events[ "keyup " + selector ] = this._textHandlers.keyup;
+				events[ "blur " + selector ] = this._textHandlers.blur;
 			}.bind( this ));
+			
 			return events;
+		},
+		_textHandlers: {
+			keydown: function( event ) {
+				var section = this._section( event.currentTarget );
+				var keyEvent = this._keyEvent( event );
+				
+				if ( keyEvent.isTextManip() ) {
+					if ( section.validLength() ) {
+						section.markValid();
+						this._edited = true;
+					} else {
+						section.markInvalid();
+						return keyEvent.isCharacter() ? false : true;
+					}
+				}
+			},
+			keyup: function( event ) {
+				var section = this._section( event.currentTarget );
+				
+				// Check validity after the key was pressed
+				if ( section.validLength() ) {
+					section.markValid();
+					this._edited = true;
+				} else {
+					section.markInvalid();
+				}
+				
+				if ( section.remainingPercent() < 50 ) {
+					section.showRemaining();
+				} else {
+					section.hideRemaining();
+				}
+			},
+			blur: function() {
+				this._refresh();
+				this._save();
+			}
 		},
 		_clickEvents: function() {
 			return {
@@ -188,23 +305,60 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				}
 			};
 		},
+		_validate: function() {
+			this.element
+				.find( ".editor-chapter-section-text" )
+				.each(function( index, textarea ) {
+					var section = this._section( textarea );
+					
+					if ( section.validLength() ) {
+						section.markValid();
+					} else {
+						section.markInvalid();
+					}
+					
+					if ( section.remainingChars() <= 0 ) {
+						section.showRemaining();
+					} else {
+						section.hideRemaining();
+					}
+					
+				}.bind( this ));
+		},
 		_section: function( textarea ) {
+			var limitChars = 660;
 			var sectionElement = $( textarea ).parents( ".editor-chapter-section" );
 			var messageElement = sectionElement.find( ".editor-section-footer-msg" );
 			return {
 				markValid: function() {
 					sectionElement.removeClass( "has-warning" );
-					messageElement.empty();
 				},
 				markInvalid: function() {
 					sectionElement.addClass( "has-warning" );
-					messageElement.text( "Alcançado o limite da seção." );
+				},
+				showRemaining: function() {
+					var message;
+					var remainingChars = this.remainingChars();
+					
+					if ( remainingChars < 0 ) {
+						message = "Ultrapassado o limite da seção.";
+					} else {
+						message = remainingChars + " caractere(s) restante(s).";
+					}
+					
+					messageElement.text( message );
+				},
+				hideRemaining: function() {
+					messageElement.empty();
 				},
 				validLength: function() {
+					return this.remainingChars() > 0;
+				},
+				remainingChars: function() {
 					var char;
 					var i = 0;
 					var count = 0;
-					var text = textarea.value.trim();
+					var text = textarea.value;
 					for ( ; i < text.length; i += 1 ) {
 						char = text.charAt( i );
 						if ( char === "\n" ) {
@@ -213,36 +367,13 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 							count += 1;
 						}
 					}
-					return count <= 660;
+					return limitChars - count;
+				},
+				remainingPercent: function() {
+					var current = this.remainingChars();
+					return current * 100 / limitChars;
 				}
 			};
-		},
-		_type: {
-			down: function( event ) {
-				var section = this._section( event.currentTarget );
-				var keyEvent = this._keyEvent( event );
-				
-				// Character related behavior
-				if ( keyEvent.isCharacter() ) {
-					// Just mark to save in the next auto saving attempt
-					this._edited = true;
-					// Disable further editing if limit has reached
-					if ( !section.validLength() ) {
-						section.markInvalid();
-						return false;
-					}
-				}
-			},
-			up: function( event ) {
-				var section = this._section( event.currentTarget );
-				if ( section.validLength() ) {
-					section.markValid();
-				}
-			}
-		},
-		_blur: function() {
-			this._refresh();
-			this._save();
 		},
 		_save: function() {
 			var execute;
@@ -286,6 +417,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 		},
 		_initComponents: function() {
 			var menu = this.element.find( ".editor-chapter-thumbs" );
+			// Menu should hold its width after pulled out from the DOM with affix
+			menu.width( menu.width() );
 			menu.affix({
 				offset: {
 					top: menu.offset().top - this.options.chaptersOffset

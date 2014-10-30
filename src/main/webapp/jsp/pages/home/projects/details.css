@@ -1,35 +1,35 @@
 textarea.details-meta-summary {
-  height: 114px;
+  height: 134px;
   resize: none;
 }
 textarea.details-meta-synopsis {
-  height: 214px;
+  height: 286px;
   resize: none;
 }
 /* sm */
 @media ( min-width: 768px ) {
   textarea.details-meta-summary {
-    height: 54px;
+    height: 75px;
   }
   textarea.details-meta-synopsis {
-    height: 94px;
+    height: 210px;
   }
 }
 /* md */
 @media ( min-width: 992px ) {
   textarea.details-meta-summary {
-    height: 114px;
+    height: 55px;
   }
   textarea.details-meta-synopsis {
-    height: 214px;
+    height: 275px;
   }
 }
 /* lg */
 @media ( min-width: 1200px ) {
   textarea.details-meta-summary {
-    height: 94px;
+    height: 54px;
   }
   textarea.details-meta-synopsis {
-    height: 194px;
+    height: 254px;
   }
 }

@@ -24,7 +24,7 @@ module.exports = function( grunt ) {
 					"src/main/webapp/css/custom/authentication.css",
 					"src/main/webapp/css/custom/story-thumb.css",
 					"src/main/webapp/css/custom/toolbar.css",
-					"src/main/webapp/css/custom/alert.saving.css"
+					"src/main/webapp/css/custom/alerts.css"
 				]
 			}
 		}
