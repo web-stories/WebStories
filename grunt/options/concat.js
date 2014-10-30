@@ -17,6 +17,7 @@ module.exports = function( grunt ) {
 					// Story viewer
 					"src/main/webapp/css/custom/story.css",
 					"src/main/webapp/css/custom/story-content.css",
+					"src/main/webapp/css/custom/story-footer.css",
 					
 					// Other components
 					"src/main/webapp/css/custom/header.css",
