@@ -50,10 +50,13 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 				chapterNumber = step.chapterIndex + 1;
 				this.element
 					.find( ".story-menu-prev-chapter" )
-					.text( chapterNumber - 1 );
+					.text( chapterNumber - 1 < 1 ? 1 : chapterNumber - 1 );
 				this.element
 					.find( ".story-menu-next-chapter" )
-					.text( chapterNumber + 1 );
+					.text(
+						chapterNumber + 1 > this._chapters.length ?
+							this._chapters.length : chapterNumber + 1
+					);
 			}
 		},
 		_refresh: function() {
