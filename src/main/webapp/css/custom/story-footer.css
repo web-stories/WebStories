@@ -6,6 +6,11 @@
   text-align: center;
   background-color: #FFF;
 }
+.story-footer-column {
+  display: inline-block;
+  float: none;
+  vertical-align: bottom;
+}
 .story-footer-title {
   color: #777;
   text-align: right;
