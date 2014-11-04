@@ -12,16 +12,17 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 		},
 		_menuEvents: {
 			"click .story-next": function() {
-				this._impress.next();
+				this._impress.goto( this._currentStep + 1 );
 			},
 			"click .story-prev": function() {
-				this._impress.prev();
+				this._impress.goto( this._currentStep - 1 );
 			},
 			"click .story-menu-prev-chapter": function() {
 				// TODO
 			},
 			"click .story-menu-next-chapter": function() {
 				// TODO
+				
 			},
 			"click .story-stop": function() {
 				this._impress.goto( 0 );
@@ -30,7 +31,7 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 		_impressEvents: {
 			"impress:stepenter .step": function( event ) {
 				var stepElement = $( event.currentTarget );
-				// TODO
+				this._currentStep = stepElement.index();
 			}
 		},
 		_refresh: function() {
