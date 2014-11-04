@@ -18,11 +18,14 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 				this._impress.goto( this._currentStep - 1 );
 			},
 			"click .story-menu-prev-chapter": function() {
-				// TODO
+				var step = this._steps[ this._currentStep ];
+				var chapter = this._chapters[ step.chapterIndex - 1 ];
+				this._impress.goto( chapter.step );
 			},
 			"click .story-menu-next-chapter": function() {
-				// TODO
-				
+				var step = this._steps[ this._currentStep ];
+				var chapter = this._chapters[ step.chapterIndex + 1 ];
+				this._impress.goto( chapter.step );
 			},
 			"click .story-stop": function() {
 				this._impress.goto( 0 );
@@ -48,20 +51,35 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 						});
 				},
 				stepsData: function() {
-					var currentChapter = 1;
+					var chapterIndex = 0;
 					var steps = this._steps = [];
+					var chapters = this._chapters = [];
+					
+					// steps
 					this.element
 						.find( ".step" )
 						.each(function( index, element ) {
-							var obj = {};
+							var stepObj = {};
+							var step = $( element );
+							if ( step.hasClass( "story-content-step" ) ) {
+								stepObj.chapterIndex = chapterIndex;
+							}
+							if ( step.hasClass( "story-chapter" ) ) {
+								chapterIndex += 1;
+							}
+							steps.push( stepObj );
+						});
+						
+					// chapters
+					this.element
+						.find( ".step" )
+						.each(function( index, element ) {
 							var step = $( element );
 							if ( step.hasClass( "story-chapter" ) ) {
-								currentChapter += 1;
+								chapters.push({
+									step: index
+								});
 							}
-							if ( step.hasClass( "story-content-step" ) ) {
-								obj.chapter = currentChapter;
-							}
-							steps.push( obj );
 						});
 				}
 			};
