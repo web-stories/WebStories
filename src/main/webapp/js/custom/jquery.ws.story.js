@@ -46,23 +46,26 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 							x += width;
 						});
 				},
-				storyData: function() {
-					var story = this._story = {};
-					var steps = this.element.find( ".step" );
+				stepsData: function() {
+					var currentChapter = 1;
+					var steps = this._steps = [];
 					this.element
-						.find( ".story-chapter" )
+						.find( ".step" )
 						.each(function( index, element ) {
-							var chapter = $( element );
-							story.chapters = story.chapters || [];
-							story.chapters.push({
-								number: index + 1,
-								step: steps.index( chapter )
-							});
+							var obj = {};
+							var step = $( element );
+							if ( step.hasClass( "story-chapter" ) ) {
+								currentChapter += 1;
+							}
+							if ( step.hasClass( "story-content-step" ) ) {
+								obj.chapter = currentChapter;
+							}
+							steps.push( obj );
 						});
 				}
 			};
 			refresh.slideData.call( this );
-			refresh.storyData.call( this );
+			refresh.stepsData.call( this );
 		}
 	});
 });
