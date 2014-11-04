@@ -20,11 +20,19 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 			"click .story-menu-prev-chapter": function() {
 				var step = this._steps[ this._currentStep ];
 				var chapter = this._chapters[ step.chapterIndex - 1 ];
+				if ( !chapter ) {
+					// No more chapters
+					return;
+				}
 				this._impress.goto( chapter.step );
 			},
 			"click .story-menu-next-chapter": function() {
 				var step = this._steps[ this._currentStep ];
 				var chapter = this._chapters[ step.chapterIndex + 1 ];
+				if ( !chapter ) {
+					// No more chapters
+					return;
+				}
 				this._impress.goto( chapter.step );
 			},
 			"click .story-stop": function() {
@@ -46,7 +54,7 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 				.find( ".story-menu-prev-chapter, .story-menu-next-chapter" )
 				.toggleClass( "story-menu-visible", stepElement.hasClass( "story-content-step" ) );
 				
-			if ( typeof step.chapterIndex !== undefined ) {
+			if ( step.hasOwnProperty( "chapterIndex" ) ) {
 				chapterNumber = step.chapterIndex + 1;
 				this.element
 					.find( ".story-menu-prev-chapter" )
@@ -73,7 +81,7 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 						});
 				},
 				stepsData: function() {
-					var chapterIndex = 0;
+					var chapterIndex = -1;
 					var steps = this._steps = [];
 					var chapters = this._chapters = [];
 					
@@ -83,11 +91,11 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 						.each(function( index, element ) {
 							var stepObj = {};
 							var step = $( element );
-							if ( step.hasClass( "story-content-step" ) ) {
-								stepObj.chapterIndex = chapterIndex;
-							}
 							if ( step.hasClass( "story-chapter" ) ) {
 								chapterIndex += 1;
+							}
+							if ( step.hasClass( "story-content-step" ) ) {
+								stepObj.chapterIndex = chapterIndex;
 							}
 							steps.push( stepObj );
 						});
