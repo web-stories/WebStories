@@ -35,6 +35,25 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 			"impress:stepenter .step": function( event ) {
 				var stepElement = $( event.currentTarget );
 				this._currentStep = stepElement.index();
+				this._changeMenuState( stepElement );
+			}
+		},
+		_changeMenuState: function( stepElement ) {
+			var chapterNumber;
+			var step = this._steps[ this._currentStep ];
+			
+			this.element
+				.find( ".story-menu-prev-chapter, .story-menu-next-chapter" )
+				.toggleClass( "story-menu-visible", stepElement.hasClass( "story-content-step" ) );
+				
+			if ( typeof step.chapterIndex !== undefined ) {
+				chapterNumber = step.chapterIndex + 1;
+				this.element
+					.find( ".story-menu-prev-chapter" )
+					.text( chapterNumber - 1 );
+				this.element
+					.find( ".story-menu-next-chapter" )
+					.text( chapterNumber + 1 );
 			}
 		},
 		_refresh: function() {
