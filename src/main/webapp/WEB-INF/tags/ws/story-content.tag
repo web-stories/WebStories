@@ -17,7 +17,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-md-8 col-lg-9 story-footer-column">
-        <button class="btn btn-default story-menu-prev-chapter">?</button>
+        <button class="btn btn-default story-controls-prev-chapter">?</button>
         <div class="btn-group">
           <button class="btn btn-default story-prev">
             <span class="icon-previous"></span>
@@ -29,7 +29,7 @@
             <span class="icon-next"></span>
           </button>
         </div>
-        <button class="btn btn-default story-menu-next-chapter">?</button>
+        <button class="btn btn-default story-controls-next-chapter">?</button>
       </div><!--
         inline-block
       --><div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 story-footer-column story-footer-title">
