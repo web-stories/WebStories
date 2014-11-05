@@ -17,14 +17,22 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 			"click .story-prev": function() {
 				this._impress.goto( this._currentStep - 1 );
 			},
-			"click .story-menu-prev-chapter": function() {
+			"click .story-controls-prev-chapter": function() {
 				var step = this._steps[ this._currentStep ];
 				var chapter = this._chapters[ step.chapterIndex - 1 ];
+				if ( !chapter ) {
+					// No chapter left
+					return;
+				}
 				this._impress.goto( chapter.step );
 			},
-			"click .story-menu-next-chapter": function() {
+			"click .story-controls-next-chapter": function() {
 				var step = this._steps[ this._currentStep ];
 				var chapter = this._chapters[ step.chapterIndex + 1 ];
+				if ( !chapter ) {
+					// No chapter left
+					return;
+				}
 				this._impress.goto( chapter.step );
 			},
 			"click .story-stop": function() {
@@ -41,10 +49,11 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 		_changeMenuState: function( stepElement ) {
 			var chapterNumber;
 			var step = this._steps[ this._currentStep ];
+			var visibleChapterControls = stepElement.hasClass( "story-content-step" );
 			
 			this.element
-				.find( ".story-menu-prev-chapter, .story-menu-next-chapter" )
-				.toggleClass( "story-menu-visible", stepElement.hasClass( "story-content-step" ) );
+				.find( ".story-controls-prev-chapter, .story-controls-next-chapter" )
+				.toggleClass( "story-controls-visible", visibleChapterControls );
 				
 			this.element
 				.find( ".story-prev" )
@@ -56,12 +65,10 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 			if ( step.hasOwnProperty( "chapterIndex" ) ) {
 				chapterNumber = step.chapterIndex + 1;
 				this.element
-					.find( ".story-menu-prev-chapter" )
-					.prop( "disabled", chapterNumber <= 1 )
+					.find( ".story-controls-prev-chapter" )
 					.text( chapterNumber - 1 < 1 ? 1 : chapterNumber - 1 );
 				this.element
-					.find( ".story-menu-next-chapter" )
-					.prop( "disabled", chapterNumber >= this._chapters.length )
+					.find( ".story-controls-next-chapter" )
 					.text(
 						chapterNumber + 1 > this._chapters.length ?
 							this._chapters.length : chapterNumber + 1
