@@ -1,6 +1,6 @@
 define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 	"use strict";
-	$.widget( "ws.storyViewer", {
+	$.widget( "ws.story", {
 		_create: function() {
 			this._refresh();
 			
