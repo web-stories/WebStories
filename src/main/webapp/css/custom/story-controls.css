@@ -1,3 +1,6 @@
+.story-controls {
+  text-align: center;
+}
 .story-controls-prev-chapter,
 .story-controls-next-chapter {
   font-weight: bold;

@@ -14,27 +14,19 @@
   </div>
 </div>
 <div class="story-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-4 col-sm-offset-4 story-footer-column">
-        <button class="btn btn-default story-controls-prev-chapter">?</button>
-        <div class="btn-group">
-          <button class="btn btn-default story-prev">
-            <span class="icon-previous"></span>
-          </button>
-          <button class="btn btn-default story-stop">
-            <span class="icon-stop"></span>
-          </button>
-          <button class="btn btn-default story-next">
-            <span class="icon-next"></span>
-          </button>
-        </div>
-        <button class="btn btn-default story-controls-next-chapter">?</button>
-      </div><!--
-        inline-block
-      --><div class="col-xs-12 col-sm-4 story-footer-column story-footer-title hidden-xs">
-        ${storyTitle}
-      </div>
+  <div class="container story-controls">
+    <button class="btn btn-default story-controls-prev-chapter">?</button>
+    <div class="btn-group">
+      <button class="btn btn-default story-prev">
+        <span class="icon-previous"></span>
+      </button>
+      <button class="btn btn-default story-stop">
+        <span class="icon-stop"></span>
+      </button>
+      <button class="btn btn-default story-next">
+        <span class="icon-next"></span>
+      </button>
     </div>
+    <button class="btn btn-default story-controls-next-chapter">?</button>
   </div>
 </div>
