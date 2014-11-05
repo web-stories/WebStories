@@ -46,6 +46,13 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 				.find( ".story-menu-prev-chapter, .story-menu-next-chapter" )
 				.toggleClass( "story-menu-visible", stepElement.hasClass( "story-content-step" ) );
 				
+			this.element
+				.find( ".story-prev" )
+				.prop( "disabled", this._currentStep === 0 );
+			this.element
+				.find( ".story-next" )
+				.prop( "disabled", this._currentStep === this._steps.length - 1 );
+			
 			if ( step.hasOwnProperty( "chapterIndex" ) ) {
 				chapterNumber = step.chapterIndex + 1;
 				this.element
