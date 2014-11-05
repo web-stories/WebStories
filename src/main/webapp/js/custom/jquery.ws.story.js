@@ -20,19 +20,11 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 			"click .story-menu-prev-chapter": function() {
 				var step = this._steps[ this._currentStep ];
 				var chapter = this._chapters[ step.chapterIndex - 1 ];
-				if ( !chapter ) {
-					// No more chapters
-					return;
-				}
 				this._impress.goto( chapter.step );
 			},
 			"click .story-menu-next-chapter": function() {
 				var step = this._steps[ this._currentStep ];
 				var chapter = this._chapters[ step.chapterIndex + 1 ];
-				if ( !chapter ) {
-					// No more chapters
-					return;
-				}
 				this._impress.goto( chapter.step );
 			},
 			"click .story-stop": function() {
@@ -58,9 +50,11 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 				chapterNumber = step.chapterIndex + 1;
 				this.element
 					.find( ".story-menu-prev-chapter" )
+					.prop( "disabled", chapterNumber <= 1 )
 					.text( chapterNumber - 1 < 1 ? 1 : chapterNumber - 1 );
 				this.element
 					.find( ".story-menu-next-chapter" )
+					.prop( "disabled", chapterNumber >= this._chapters.length )
 					.text(
 						chapterNumber + 1 > this._chapters.length ?
 							this._chapters.length : chapterNumber + 1
