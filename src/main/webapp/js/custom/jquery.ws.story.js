@@ -4,6 +4,9 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 		_create: function() {
 			this._refresh();
 			
+			this.element
+				.removeClass( "hidden" );
+			
 			this._impress = impress( "slides-container" );
 			this._impress.init();
 			
