@@ -52,17 +52,22 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 			var chapterNumber;
 			var step = this._steps[ this._currentStep ];
 			var visibleChapterControls = stepElement.hasClass( "story-content-step" );
+			var btnPrev = this.element.find( ".story-prev" );
 			
 			this.element
 				.find( ".story-controls-prev-chapter, .story-controls-next-chapter" )
 				.toggleClass( "story-controls-visible", visibleChapterControls );
 				
-			this.element
-				.find( ".story-prev" )
-				.prop( "disabled", this._currentStep === 0 );
+			btnPrev.prop( "disabled", this._currentStep === 0 );
 			this.element
 				.find( ".story-next" )
 				.prop( "disabled", this._currentStep === this._steps.length - 1 );
+				
+			// When the button is disabled and focused, impress arrows move the screen instead of
+			// the steps
+			if ( btnPrev.is( ":focus" ) ) {
+				btnPrev.blur();
+			}
 			
 			if ( step.hasOwnProperty( "chapterIndex" ) ) {
 				chapterNumber = step.chapterIndex + 1;
