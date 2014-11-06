@@ -1,0 +1,29 @@
+/* Content
+   ========================================================================== */
+   
+.story-content {
+  font-size: 12px;
+}
+/* sm */
+@media ( min-width: 768px ) {
+  .story-content {
+    font-size: 20px;
+  }
+}
+.story-content h1 {
+  font-size: 180%;
+}
+.story-content h2 {
+  font-size: 150%;
+}
+
+/* Steps
+   ========================================================================== */
+   
+.story-home-title,
+.story-chapter-title {
+  text-align: center;
+}
+.story-home-summary {
+  display: block;
+}
