@@ -24,8 +24,7 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 				var step = this._steps[ this._currentStep ];
 				var chapter = this._chapters[ step.chapterIndex - 1 ];
 				if ( !chapter ) {
-					// No chapter left
-					return;
+					chapter = this._chapters[ 0 ];
 				}
 				this._impress.goto( chapter.step );
 			},
