@@ -2,8 +2,34 @@
    Base
    ============================================================================================= */
    
-.story-chapter {
+.story-content {
+  font-size: 35px;
+}
+/* sm */
+@media ( min-width: 768px ) {
+  .story-content {
+    font-size: 30px;
+  }
+}
+/* lg */
+@media ( min-width: 1200px ) {
+  .story-content {
+    font-size: 25px;
+  }
+}
+.story-content h1 {
+  font-size: 130%;
+}
+.story-content h2 {
+  font-size: 120%;
+}
+
+.story-home-title,
+.story-chapter-title {
   text-align: center;
+}
+.story-home-summary {
+  display: block;
 }
 
 /* =============================================================================================
