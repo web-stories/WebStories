@@ -2,13 +2,22 @@
    ========================================================================== */
    
 .impress-supported .story-content {
+  font-size: 40px;
+}
+/* sm */
+@media ( min-width: 768px ) {
+  .impress-supported .story-content {
+    font-size: 30px;
+  }
+}
+.impress-supported .story-content {
   pointer-events: none;
 }
 
 /* Steps
    ========================================================================== */
    
-.impress-supported .story .step {
+.impress-supported .step {
   width: 930px;
   opacity: 0;
   -webkit-transition: opacity .3s;
@@ -17,39 +26,39 @@
        -o-transition: opacity .3s;
           transition: opacity .3s;
 }
-.impress-supported .story .step.active {
+.impress-supported .step.active {
   opacity: 1;
 }
 
 /* Samsung Galaxy Gran Neo Duos - Landscape */
 @media ( min-width: 530px ) {
-  .impress-supported .story .step {
+  .impress-supported .step {
     width: 1586px;
   }
 }
 
 /* iPad - Portrait */
 @media ( min-width: 768px ) {
-  .impress-supported .story .step {
+  .impress-supported .step {
     width: 962px;
   }
 }
 
 /* iPad - Landscape */
 @media ( min-width: 1024px ) {
-  .impress-supported .story .step {
+  .impress-supported .step {
     width: 943px;
   }
 }
 
-/* Details
+/* Home step
    ========================================================================== */
    
 .impress-supported .story-home-title {
   font-size: 200%;
 }
 
-/* Chapter
+/* Chapter step
    ========================================================================== */
    
 .impress-supported .story-chapter-title {
