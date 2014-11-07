@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<jsp:include page="/jsp/include/header.jsp"/>
 <ws:story>
   <ws:story-content storyTitle="${details.title}" storySummary="${details.summary}">
     <c:forEach items="${story.chapters}" var="chapter">
