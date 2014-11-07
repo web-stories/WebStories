@@ -7,4 +7,5 @@ public interface StoryThumb {
 	HTMLText getTitle();
 	HTMLText getDescription();
 	String getAuthor();
+	String getAuthorAvatar();
 }

@@ -29,13 +29,10 @@
       <c:forEach items="${featuredStories}" var="story">
         <div class="col-sm-4">
           <div class="thumbnail">
-            <a href="${pageContext.request.contextPath}/view/stories/?id=${story.id}">
-              <img src="http://placehold.it/800x300" alt="história">
-            </a>
             <div class="caption">
               <div class="media">
                 <a class="pull-left" href="#">
-                  <img class="media-object" src="http://placehold.it/60x60" alt="Placeholder">
+                  <img class="media-object" height="60" width="60" src="${story.authorAvatar}" alt="Placeholder">
                 </a>
                 <div class="media-body" title="${story.description}">
                   <a class="story-thumb-title" href="${pageContext.request.contextPath}/view/stories/?id=${story.id}">
