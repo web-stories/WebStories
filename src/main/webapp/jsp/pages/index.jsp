@@ -7,13 +7,17 @@
     <p class="index-banner-paragraph">
       Uma plataforma para publicação de histórias na Web
     </p>
+    <c:if test="${canPublish}">
     <p>
-      <c:if test="${canPublish}">
-        <facebook:login className="btn btn-primary btn-lg" invite="${param.invite}" redirect="${pageContext.request.contextPath}/home/projects">
-          Publique uma história
-        </facebook:login>
-      </c:if>
+      <facebook:login className="btn btn-primary btn-lg" invite="${param.invite}" redirect="${pageContext.request.contextPath}/home/projects">
+        Publique uma história
+      </facebook:login>
     </p>
+    <p class="index-banner-terms">
+      Ao acessar o site você concorda com os
+      <a href="${pageContext.request.contextPath}/terms">Termos e Condições</a>
+    </p>
+    </c:if>
     <c:if test="${!canPublish}">
       <p class="index-banner-closed">
         Web Stories atualmente está em um beta fechado.

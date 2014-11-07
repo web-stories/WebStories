@@ -6,12 +6,14 @@
 .index-banner-container {
   margin-bottom: 50px;
 }
-.index-banner .index-banner-closed {
+.index-banner .index-banner-closed,
+.index-banner .index-banner-terms {
   margin: 0 auto;
   font-size: 15px;
   color: #FFF;
 }
-.index-banner-contact a {
+.index-banner-contact a,
+.index-banner-terms a {
   color: #FFF;
   text-decoration: underline;
 }
