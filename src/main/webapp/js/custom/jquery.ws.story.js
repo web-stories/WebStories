@@ -2,10 +2,15 @@ define( ["jquery", "jquery.ui.widget", "impress"], function( $ ) {
 	"use strict";
 	$.widget( "ws.story", {
 		_create: function() {
-			this._refresh();
-			
 			this.element
 				.removeClass( "hidden" );
+			
+			// Immediate return if impress is not supported 
+			if ( $( ".impress-not-supported" ).length ) {
+				return;
+			}
+			
+			this._refresh();
 			
 			this._impress = impress( "slides-container" );
 			this._impress.init();

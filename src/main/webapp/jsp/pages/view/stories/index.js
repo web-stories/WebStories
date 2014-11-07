@@ -11,7 +11,5 @@ require( ["jquery", "jquery.ws.story"], function( $ ) {
 			.addClass( "impress-not-supported" );
 	}
 	
-	if ( $( ".impress-supported" ).length ) {
-		$( ".story" ).story();
-	}
+	$( ".story" ).story();
 });

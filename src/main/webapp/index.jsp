@@ -23,5 +23,10 @@
     </div>
     <script>require( ["bootstrap"] );</script>
     <convention:include-script/>
+    <script>
+      require( [ "fastclick" ], function( FastClick ) {
+        FastClick.attach( document.body );
+      });
+    </script>
   </body>
 </html>

@@ -46,6 +46,7 @@ require = (function( require ) {
 					"jquery.simulate": "../js/jquery.simulate-1.0.0",
 					"jquery.ui.widget": "../js/jquery.ui.widget-1.11.1",
 					"jquery.validate": "../js/jquery.validate-1.13.0",
+					"fastclick": "../js/fastclick-1.0.3",
 					
 					// Make jQuery method private
 					"jquery": "js/jquery.private"
