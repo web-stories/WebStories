@@ -5,7 +5,7 @@
   <div class="container index-banner-container">
     <h1>Web Stories</h1>
     <p class="index-banner-paragraph">
-      Uma plataforma para publicação de histórias na Web
+      A sua plataforma para publicação de histórias na Web
     </p>
     <c:if test="${canPublish}">
     <p>
