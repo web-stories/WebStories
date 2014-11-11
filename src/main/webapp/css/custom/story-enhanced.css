@@ -26,6 +26,13 @@
        -o-transition: opacity .3s;
           transition: opacity .3s;
 }
+.impress-supported .step.story-chapter {
+  -webkit-transition: opacity .6s;
+     -moz-transition: opacity .6s;
+      -ms-transition: opacity .6s;
+       -o-transition: opacity .6s;
+          transition: opacity .6s;
+}
 .impress-supported .step.active {
   opacity: 1;
 }
