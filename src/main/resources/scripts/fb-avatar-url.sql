@@ -1,0 +1,1 @@
+ALTER TABLE ws_facebook ADD url_avatar VARCHAR( 255 ) NOT NULL DEFAULT 'https://graph.facebook.com/2/picture?type=large';

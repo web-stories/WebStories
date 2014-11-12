@@ -8,4 +8,5 @@ public interface StoryThumb {
 	HTMLText getDescription();
 	String getAuthor();
 	String getAuthorAvatar();
+	String getAuthorProfile();
 }

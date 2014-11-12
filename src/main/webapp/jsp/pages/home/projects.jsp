@@ -26,12 +26,16 @@
   <div class="row">
     <c:forEach items="${userStories}" var="story">
       <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
+        <div class="thumbnail story-thumb">
+          <c:if test="${story.removable}">
+            <form action="${pageContext.request.contextPath}/home/projects/delete?id=${story.id}" method="post">
+              <button class="btn btn-danger story-thumb-close">&times;</button>
+            </form>
+          </c:if>
           <div class="caption">
             <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object" height="60" width="60" src="${story.authorAvatar}"
-                     alt="Placeholder">
+              <a class="pull-left" href="${story.authorProfile}">
+                <img class="media-object" height="60" width="60" src="${story.authorAvatar}" alt="(Avatar)">
               </a>
               <div class="media-body" title="${story.description}">
                 <a class="story-thumb-title" href="${pageContext.request.contextPath}/home/projects/?id=${story.id}">

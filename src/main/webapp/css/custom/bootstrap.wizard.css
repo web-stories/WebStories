@@ -11,8 +11,12 @@
    Steps
    ============================================================================================= */
    
+/**
+ * 1. There is no need for the browser default list padding
+ */
 .wizard-steps {
   display: table;
+  padding-left: 0; /* 1 */
   width: 100%;
 }
 .wizard-steps li {

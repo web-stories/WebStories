@@ -1,26 +1,31 @@
 package org.webstories.core.story.impl;
 
-import org.webstories.core.story.StoryThumb;
+import org.webstories.core.story.HomeStoryThumb;
+import org.webstories.core.story.StoryUtils;
 import org.webstories.core.text.html.HTMLText;
-import org.webstories.dao.integration.FacebookEntity;
+import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.story.MetaEntity;
+import org.webstories.dao.story.StoryEntity;
 
-public class HomeStory implements StoryThumb {
+public class HomeStory implements HomeStoryThumb {
 	private Long id;
 	private HTMLText title;
 	private HTMLText description;
 	private String author;
 	private String authorAvatar;
-	public static HomeStory from( FacebookEntity author, MetaEntity meta ) {
+	private String authorProfile;
+	private boolean removable;
+	public static HomeStory from( IdentifiableEntity author, StoryEntity story ) {
+		MetaEntity meta = story.getMeta();
 		HomeStory product = new HomeStory();
+		
 		product.id = meta.getId();
 		product.title = HTMLText.fromPlainText( meta.getTitle() );
 		product.description = HTMLText.fromPlainText( meta.getSummary() );
 		product.author = author.getFirstName();
-		
-		String url = "https://graph.facebook.com/" +  author.getFacebookId() + "/picture";
-		String query = "type=large";
-		product.authorAvatar = url + "?" + query;
+		product.authorProfile = author.getProfileURL();
+		product.authorAvatar = author.getAvatarURL();
+		product.removable = StoryUtils.isRemovable( story );
 		
 		return product;
 	}
@@ -43,5 +48,13 @@ public class HomeStory implements StoryThumb {
 	@Override
 	public String getAuthorAvatar() {
 		return authorAvatar;
+	}
+	@Override
+	public String getAuthorProfile() {
+		return authorProfile;
+	}
+	@Override
+	public boolean isRemovable() {
+		return removable;
 	}
 }

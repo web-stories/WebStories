@@ -1,3 +1,6 @@
+.story-thumb {
+  position: relative;
+}
 .story-thumb-summary,
 .story-thumb-author,
 .story-thumb-title {
@@ -10,4 +13,14 @@
 }
 .story-thumb-author {
   color: #777;
+}
+.story-thumb-close {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  font-weight: bold;
 }

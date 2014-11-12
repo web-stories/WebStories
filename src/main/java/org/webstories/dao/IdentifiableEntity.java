@@ -4,4 +4,6 @@ public interface IdentifiableEntity {
 	String getFirstName();
 	String getLastName();
 	String getEmail();
+	String getProfileURL();
+	String getAvatarURL();
 }

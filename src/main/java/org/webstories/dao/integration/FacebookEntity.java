@@ -31,6 +31,12 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 	@Column( nullable = false, length = 255 )
 	private String nm_last;
 	
+	@Column( nullable = false, length = 255 )
+	private String url_avatar;
+	
+	@Column( nullable = false, length = 255 )
+	private String url_profile;
+	
 	@OneToOne
 	@JoinColumn( name = "id_user", nullable = false )
 	private UserEntity user;
@@ -69,6 +75,14 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 	@Override
 	public String getLastName() {
 		return nm_last;
+	}
+	@Override
+	public String getProfileURL() {
+		return url_profile;
+	}
+	@Override
+	public String getAvatarURL() {
+		return url_avatar;
 	}
 	public UserEntity getUser() {
 		return user;

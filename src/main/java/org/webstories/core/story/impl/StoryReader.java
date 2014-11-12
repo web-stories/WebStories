@@ -22,9 +22,8 @@ public class StoryReader implements LocalStoryReader {
 	public List<HomeStory> userStories( Logged logged ) {
 		List<HomeStory> result = new ArrayList<HomeStory>();
 		for ( StoryEntity story : storyQueries.listAuthorStories( logged.getId() ) ) {
-			MetaEntity meta = story.getMeta();
 			FacebookEntity author = story.getAuthor().getFacebook();
-			result.add( HomeStory.from( author, meta ) );
+			result.add( HomeStory.from( author, story ) );
 		}
 		return result;
 	}
