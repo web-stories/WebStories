@@ -1,18 +1,22 @@
 package org.webstories.core.story.impl;
 
-import org.webstories.core.story.StoryThumb;
+import org.webstories.core.story.HomeStoryThumb;
+import org.webstories.core.story.StoryUtils;
 import org.webstories.core.text.html.HTMLText;
 import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.story.MetaEntity;
+import org.webstories.dao.story.StoryEntity;
 
-public class HomeStory implements StoryThumb {
+public class HomeStory implements HomeStoryThumb {
 	private Long id;
 	private HTMLText title;
 	private HTMLText description;
 	private String author;
 	private String authorAvatar;
 	private String authorProfile;
-	public static HomeStory from( IdentifiableEntity author, MetaEntity meta ) {
+	private boolean removable;
+	public static HomeStory from( IdentifiableEntity author, StoryEntity story ) {
+		MetaEntity meta = story.getMeta();
 		HomeStory product = new HomeStory();
 		
 		product.id = meta.getId();
@@ -21,6 +25,7 @@ public class HomeStory implements StoryThumb {
 		product.author = author.getFirstName();
 		product.authorProfile = author.getProfileURL();
 		product.authorAvatar = author.getAvatarURL();
+		product.removable = StoryUtils.isRemovable( story );
 		
 		return product;
 	}
@@ -47,5 +52,9 @@ public class HomeStory implements StoryThumb {
 	@Override
 	public String getAuthorProfile() {
 		return authorProfile;
+	}
+	@Override
+	public boolean isRemovable() {
+		return removable;
 	}
 }

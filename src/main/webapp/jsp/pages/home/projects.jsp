@@ -27,9 +27,11 @@
     <c:forEach items="${userStories}" var="story">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail story-thumb">
-          <form action="${pageContext.request.contextPath}/home/projects/delete?id=${story.id}" method="post">
-            <button class="btn btn-danger story-thumb-close">&times;</button>
-          </form>
+          <c:if test="${story.removable}">
+            <form action="${pageContext.request.contextPath}/home/projects/delete?id=${story.id}" method="post">
+              <button class="btn btn-danger story-thumb-close">&times;</button>
+            </form>
+          </c:if>
           <div class="caption">
             <div class="media">
               <a class="pull-left" href="${story.authorProfile}">

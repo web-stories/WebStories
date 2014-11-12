@@ -13,8 +13,8 @@ import org.webstories.core.security.story.StoryOwnerSecurity;
 import org.webstories.core.security.story.StoryRead;
 import org.webstories.core.security.story.StoryUpdate;
 import org.webstories.core.story.LocalStoryEditor;
+import org.webstories.core.story.StoryUtils;
 import org.webstories.core.validation.ValidationException;
-import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
@@ -71,15 +71,10 @@ public class StoryEditor implements LocalStoryEditor {
 		
 		final StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		
-		if ( story.getChapters().size() > 1 ) {
-			throw new ValidationException( "Story should have no more than 1 chapter" );
-		}
-		
-		if ( story.getChapters().size() == 1 ) {
-			ChapterEntity chapter = story.getChapters().get( 0 );
-			if ( chapter.getSections().size() > 1 ) {
-				throw new ValidationException( "Story should not have more than 1 section" );
-			}
+		if ( !StoryUtils.isRemovable( story ) ) {
+			String msg = "A story cannot be removed unless it contains only 1 chapter and 1 "
+				+ "section";
+			throw new ValidationException( msg );
 		}
 		
 		new StoryOwnerSecurity( logged ).updatePrivileged(
