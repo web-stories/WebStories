@@ -15,4 +15,6 @@ public interface LocalStoryEditor {
 		throws ValidationException, AccessDeniedException;
 	void updateStory( EditorStoryInput story, Logged logged )
 		throws ValidationException, AccessDeniedException, UserNotLoggedException;
+	void removeStory( long idStory, Logged logged )
+		throws ValidationException, AccessDeniedException, UserNotLoggedException;
 }
