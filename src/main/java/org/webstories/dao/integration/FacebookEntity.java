@@ -32,6 +32,9 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 	private String nm_last;
 	
 	@Column( nullable = false, length = 255 )
+	private String url_avatar;
+	
+	@Column( nullable = false, length = 255 )
 	private String url_profile;
 	
 	@OneToOne
@@ -76,6 +79,10 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 	@Override
 	public String getProfileURL() {
 		return url_profile;
+	}
+	@Override
+	public String getAvatarURL() {
+		return url_avatar;
 	}
 	public UserEntity getUser() {
 		return user;

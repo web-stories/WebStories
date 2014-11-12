@@ -2,7 +2,7 @@ package org.webstories.core.story.impl;
 
 import org.webstories.core.story.StoryThumb;
 import org.webstories.core.text.html.HTMLText;
-import org.webstories.dao.integration.FacebookEntity;
+import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.story.MetaEntity;
 
 public class HomeStory implements StoryThumb {
@@ -12,17 +12,15 @@ public class HomeStory implements StoryThumb {
 	private String author;
 	private String authorAvatar;
 	private String authorProfile;
-	public static HomeStory from( FacebookEntity author, MetaEntity meta ) {
+	public static HomeStory from( IdentifiableEntity author, MetaEntity meta ) {
 		HomeStory product = new HomeStory();
+		
 		product.id = meta.getId();
 		product.title = HTMLText.fromPlainText( meta.getTitle() );
 		product.description = HTMLText.fromPlainText( meta.getSummary() );
 		product.author = author.getFirstName();
 		product.authorProfile = author.getProfileURL();
-		
-		String url = "https://graph.facebook.com/" +  author.getFacebookId() + "/picture";
-		String query = "type=large";
-		product.authorAvatar = url + "?" + query;
+		product.authorAvatar = author.getAvatarURL();
 		
 		return product;
 	}
