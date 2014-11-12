@@ -15,6 +15,23 @@
     <script>var require = { baseUrl: "${pageContext.request.contextPath}/static/${build}" };</script>
     <script src="${pageContext.request.contextPath}/static/${build}/js/require.main.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/require-2.1.15.js"></script>
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src="//www.google-analytics.com/analytics.js";
+      r.parentNode.insertBefore(e,r)}(window,document,"script","ga"));
+      ga("create","${application.google.analytics.id}","auto");ga("send","pageview");
+    </script>
+    <script>
+      (function() {
+        var old = alert;
+        window.alert = function( msg ) {
+          ga( "send", "event", "alert", msg );
+          old.apply( this, arguments );
+        };
+      }());
+    </script>
   </head>
   <body>
     <convention:include-stylesheet/>
