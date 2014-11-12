@@ -30,7 +30,7 @@
           <button class="btn btn-danger story-thumb-close">&times;</button>
           <div class="caption">
             <div class="media">
-              <a class="pull-left" href="#">
+              <a class="pull-left" href="${story.authorProfile}">
                 <img class="media-object" height="60" width="60" src="${story.authorAvatar}" alt="(Avatar)">
               </a>
               <div class="media-body" title="${story.description}">

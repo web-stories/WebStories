@@ -3,4 +3,7 @@
   <changeSet author="Fagner Brack" id="create-schema">
     <sqlFile path="scripts/create-schema.sql" relativeToChangelogFile="true"/>
   </changeSet>
+  <changeSet author="Fagner Brack" id="fb-profile-url">
+    <sqlFile path="scripts/fb-profile-url.sql" relativeToChangelogFile="true"/>
+  </changeSet>
 </databaseChangeLog>

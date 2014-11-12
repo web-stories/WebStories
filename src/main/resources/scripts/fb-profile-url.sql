@@ -1,0 +1,1 @@
+ALTER TABLE ws_facebook ADD url_profile VARCHAR( 255 ) NOT NULL DEFAULT '#';

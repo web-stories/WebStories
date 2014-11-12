@@ -11,12 +11,14 @@ public class FeaturedStory implements StoryThumb {
 	private HTMLText description;
 	private String author;
 	private String authorAvatar;
+	private String authorProfile;
 	public static FeaturedStory from( FacebookEntity author, MetaEntity meta ) {
 		FeaturedStory product = new FeaturedStory();
 		product.id = meta.getId();
 		product.title = HTMLText.fromPlainText( meta.getTitle() ); 
 		product.description = HTMLText.fromPlainText( meta.getSummary() );
 		product.author = author.getFirstName();
+		product.authorProfile = author.getProfileURL();
 		
 		String url = "https://graph.facebook.com/" +  author.getFacebookId() + "/picture";
 		String query = "type=large";
@@ -43,5 +45,9 @@ public class FeaturedStory implements StoryThumb {
 	@Override
 	public String getAuthorAvatar() {
 		return authorAvatar;
+	}
+	@Override
+	public String getAuthorProfile() {
+		return authorProfile;
 	}
 }
