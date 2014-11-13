@@ -6,9 +6,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.webstories.core.security.PrivilegedUpdate;
-import org.webstories.core.story.impl.EditorStoryChapterInput;
-import org.webstories.core.story.impl.EditorStoryInput;
-import org.webstories.core.story.impl.EditorStorySectionInput;
+import org.webstories.core.story.editor.EditorStoryChapterInput;
+import org.webstories.core.story.editor.EditorStoryInput;
+import org.webstories.core.story.editor.EditorStorySectionInput;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.ChapterListUpdater;
 import org.webstories.dao.story.SectionEntity;

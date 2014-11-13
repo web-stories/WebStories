@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.webstories.core.story.LocalStoryReader;
+import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;

@@ -7,7 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.webstories.core.story.impl.EditorStoryDetailsInput;
+import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.dao.NumerableEntity;
 
 @Entity

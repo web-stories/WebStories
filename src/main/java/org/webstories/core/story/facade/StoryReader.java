@@ -1,4 +1,4 @@
-package org.webstories.core.story.impl;
+package org.webstories.core.story.facade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,12 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import org.webstories.core.auth.Logged;
-import org.webstories.core.story.LocalStoryReader;
+import org.webstories.core.story.editor.EditorStory;
+import org.webstories.core.story.editor.EditorStoryDetails;
+import org.webstories.core.story.thumb.FeaturedStory;
+import org.webstories.core.story.thumb.HomeStory;
+import org.webstories.core.story.viewer.StoryViewer;
+import org.webstories.core.story.viewer.StoryViewerDetails;
 import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryEntity;

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.auth.Logged;
-import org.webstories.core.story.LocalStoryReader;
-import org.webstories.core.story.impl.HomeStory;
+import org.webstories.core.story.facade.LocalStoryReader;
+import org.webstories.core.story.thumb.HomeStory;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
 

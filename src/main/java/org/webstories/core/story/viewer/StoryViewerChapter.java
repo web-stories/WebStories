@@ -1,4 +1,4 @@
-package org.webstories.core.story.impl;
+package org.webstories.core.story.viewer;
 
 import java.util.ArrayList;
 import java.util.List;

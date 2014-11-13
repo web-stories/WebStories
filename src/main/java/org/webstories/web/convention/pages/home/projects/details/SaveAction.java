@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.webstories.core.auth.Logged;
 import org.webstories.core.security.AccessDeniedException;
-import org.webstories.core.story.LocalStoryEditor;
-import org.webstories.core.story.impl.EditorStoryDetailsInput;
+import org.webstories.core.story.editor.EditorStoryDetailsInput;
+import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.AuthForwarded;

@@ -1,4 +1,4 @@
-package org.webstories.core.story;
+package org.webstories.core.story.thumb;
 
 import org.webstories.core.text.html.HTMLText;
 

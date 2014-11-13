@@ -2,7 +2,7 @@ package org.webstories.dao.story;
 
 import java.util.List;
 
-import org.webstories.core.story.impl.EditorStorySectionInput;
+import org.webstories.core.story.editor.EditorStorySectionInput;
 import org.webstories.dao.DBListUpdater;
 
 public class SectionListUpdater extends DBListUpdater<EditorStorySectionInput, SectionEntity> {

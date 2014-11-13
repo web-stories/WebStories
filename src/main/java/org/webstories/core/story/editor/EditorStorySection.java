@@ -1,4 +1,4 @@
-package org.webstories.core.story.impl;
+package org.webstories.core.story.editor;
 
 import org.webstories.core.story.StorySection;
 import org.webstories.core.text.html.HTMLText;
