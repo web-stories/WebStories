@@ -36,7 +36,7 @@ public class StoryReader implements LocalStoryReader {
 	@Override
 	public List<FeaturedStory> featuredStories() {
 		List<FeaturedStory> result = new ArrayList<FeaturedStory>();
-		for ( StoryEntity story : storyQueries.listLastStories( 3 ) ) {
+		for ( StoryEntity story : storyQueries.listLastPublishedStories( 3 ) ) {
 			MetaEntity meta = story.getMeta();
 			FacebookEntity author = story.getAuthor().getFacebook();
 			result.add( FeaturedStory.from( author, meta ) );
