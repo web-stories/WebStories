@@ -164,8 +164,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				chapter: function( chapter, index ) {
 					$( ".editor-chapter" )
 						.eq( index )
-						.find( ".editor-chapter-title-header" )
-							.text( "Capítulo " + chapter.position );
+						.find( ".editor-chapter-title-header-number" )
+							.text( chapter.position );
 				}
 			};
 			this._chapters.forEach( refresh.chapter );

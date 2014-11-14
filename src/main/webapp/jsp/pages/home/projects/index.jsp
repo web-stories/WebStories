@@ -36,7 +36,7 @@
       <div class="col-sm-9 col-lg-10">
         <ws:editor-chapters>
           <c:forEach items="${story.chapters}" var="chapter">
-            <ws:editor-chapter chapter="${chapter.position}" title="${chapter.title}" chapterId="${chapter.id}">
+            <ws:editor-chapter chapter="${chapter.position}" title="${chapter.title}" chapterId="${chapter.id}" published="${chapter.published}">
               <c:forEach items="${chapter.sections}" var="section">
                 <ws:editor-section sectionId="${section.id}">${section.text}</ws:editor-section>
               </c:forEach>
