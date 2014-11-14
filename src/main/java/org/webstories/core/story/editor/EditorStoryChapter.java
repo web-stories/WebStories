@@ -14,6 +14,7 @@ public class EditorStoryChapter implements StoryChapter {
 	private HTMLText title;
 	private Integer position;
 	private boolean published;
+	private Boolean publishable;
 	private List<EditorStorySection> sections = new ArrayList<EditorStorySection>();
 	public static EditorStoryChapter from( ChapterEntity chapterEntity ) {
 		EditorStoryChapter chapter = new EditorStoryChapter();
@@ -46,5 +47,11 @@ public class EditorStoryChapter implements StoryChapter {
 	@Override
 	public boolean isPublished() {
 		return published;
+	}
+	public Boolean getPublishable() {
+		return publishable;
+	}
+	public void setPublishable( Boolean publishable ) {
+		this.publishable = publishable;
 	}
 }

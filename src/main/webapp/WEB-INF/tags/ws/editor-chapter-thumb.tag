@@ -1,9 +1,9 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ attribute name="published" %>
+<%@ attribute name="publishable" %>
 <%@ attribute name="chapter" required="true" %>
-<c:if test="${published}">
-  <c:set var="publishedDisabledState">
+<c:if test="${not publishable}">
+  <c:set var="publishableDisabledState">
     disabled=""
   </c:set>
 </c:if>
@@ -11,13 +11,13 @@
   <a class="editor-chapter-thumb" href="#chapter-${chapter}">
     Capítulo ${chapter}
   </a>
-  <c:if test="${not empty published}">
-    <button class="btn btn-default btn-sm editor-chapter-thumb-publish" ${publishedDisabledState}>
-      <c:if test="${published}">
+  <c:if test="${not empty publishable}">
+    <button class="btn btn-default btn-sm editor-chapter-thumb-publish" ${publishableDisabledState}>
+      <c:if test="${not publishable}">
         <span class="icon-checkmark"></span>
         Publicado
       </c:if>
-      <c:if test="${not published}">
+      <c:if test="${publishable}">
         Publicar
       </c:if>
     </button>
