@@ -15,7 +15,11 @@ public class StoryViewer implements Story {
 		StoryViewer viewer = new StoryViewer();
 		viewer.id = story.getId();
 		for ( ChapterEntity chapter : story.getChapters() ) {
-			viewer.chapters.add( StoryViewerChapter.from( chapter ) );
+			StoryViewerChapter viewerChapter = StoryViewerChapter.from( chapter );
+			if ( !viewerChapter.isPublished() ) {
+				continue;
+			}
+			viewer.chapters.add( viewerChapter );
 		}
 		return viewer;
 	}
