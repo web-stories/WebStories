@@ -2,7 +2,7 @@
 	"use strict";
 	var deps = [ "jquery", "webstories", "jquery.ws.editor", "jquery.ws.alert.saving"];
 	require( deps, function( $, webstories ) {
-		$( ".editor" ).editor({
+		var editor = $( ".editor" ).editor({
 			chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
 			menuId: "chapter-menu",
 			loadSection: function( loaded ) {
@@ -33,6 +33,16 @@
 						resolve( json );
 					});
 			}
+		});
+		$( ".editor-chapter-thumb-publish" ).click(function() {
+			var button = this;
+			editor
+				.editor( "save" )
+				.then(function() {
+					$( button )
+						.parents( "form" )
+						.submit();
+				});
 		});
 	});
 }());

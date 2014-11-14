@@ -12,14 +12,17 @@
     Capítulo ${chapter}
   </a>
   <c:if test="${not empty publishable}">
-    <button class="btn btn-default btn-sm editor-chapter-thumb-publish" ${publishableDisabledState}>
-      <c:if test="${not publishable}">
-        <span class="icon-checkmark"></span>
-        Publicado
-      </c:if>
-      <c:if test="${publishable}">
-        Publicar
-      </c:if>
-    </button>
+    <form action="${pageContext.request.contextPath}/home/projects/publish?chapter=${chapter}" method="post">
+      <input type="hidden" name="chapter">
+      <button class="btn btn-default btn-sm editor-chapter-thumb-publish" type="button" ${publishableDisabledState}>
+        <c:if test="${not publishable}">
+          <span class="icon-checkmark"></span>
+          Publicado
+        </c:if>
+        <c:if test="${publishable}">
+          Publicar
+        </c:if>
+      </button>
+    </form>
   </c:if>
 </li>

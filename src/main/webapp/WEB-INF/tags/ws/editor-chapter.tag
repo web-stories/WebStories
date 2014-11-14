@@ -10,7 +10,12 @@
     data-chapter-id="${chapterId}"
   </c:set>
 </c:if>
-<div class="editor-chapter" ${dataChapterId} id="chapter-${chapter}">
+<c:if test="${not empty published}">
+  <c:set var="dataPublished">
+    data-published="${published}"
+  </c:set>
+</c:if>
+<div class="editor-chapter" id="chapter-${chapter}" ${dataChapterId} ${dataPublished}>
   <div class="editor-chapter-title">
     <h2 class="editor-chapter-title-header">
       Capítulo
