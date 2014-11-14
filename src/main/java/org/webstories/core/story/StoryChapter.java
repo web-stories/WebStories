@@ -9,5 +9,6 @@ public interface StoryChapter extends NumerableEntity {
 	Long getId();
 	Text getTitle();
 	Integer getPosition();
+	boolean isPublished();
 	List<? extends StorySection> getSections();
 }

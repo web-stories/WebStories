@@ -11,6 +11,7 @@ public class EditorStoryChapterInput implements StoryChapter, Validatable {
 	private Long id;
 	private Text title;
 	private Integer position;
+	private boolean published;
 	private List<EditorStorySectionInput> sections = new ArrayList<EditorStorySectionInput>();
 	@Override
 	public Long getId() {
@@ -36,5 +37,9 @@ public class EditorStoryChapterInput implements StoryChapter, Validatable {
 			}
 		}
 		return true;
+	}
+	@Override
+	public boolean isPublished() {
+		return published;
 	}
 }
