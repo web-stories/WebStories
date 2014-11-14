@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,6 +38,10 @@ public class ChapterEntity implements NumerableEntity {
 	@Column( nullable = false )
 	private Integer no_position;
 	
+	@Column( nullable = false, length = 255 )
+	@Enumerated( EnumType.STRING )
+	private StoryState cd_state;
+	
 	@ManyToOne
 	@JoinColumn( name = "id_story", nullable = true )
 	private StoryEntity story;
@@ -63,6 +69,13 @@ public class ChapterEntity implements NumerableEntity {
 	}
 	public void setPosition( Integer no_position ) {
 		this.no_position = no_position;
+	}
+	
+	public StoryState getState() {
+		return cd_state;
+	}
+	public void setState( StoryState cd_state ) {
+		this.cd_state = cd_state;
 	}
 	
 	public void setStory( StoryEntity story ) {

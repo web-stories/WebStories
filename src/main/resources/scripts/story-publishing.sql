@@ -1,0 +1,1 @@
+ALTER TABLE ws_chapter ADD cd_state VARCHAR( 255 ) NOT NULL DEFAULT 'DRAFT';
