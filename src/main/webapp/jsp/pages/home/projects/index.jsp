@@ -33,7 +33,7 @@
 <div class="container">
   <ws:editor title="${story.title}">
     <div class="row">
-      <div class="col-sm-9 col-lg-10">
+      <div class="col-sm-8 col-lg-9">
         <ws:editor-chapters>
           <c:forEach items="${story.chapters}" var="chapter">
             <ws:editor-chapter chapter="${chapter.position}" title="${chapter.title}" chapterId="${chapter.id}" published="${chapter.published}">
@@ -44,10 +44,10 @@
           </c:forEach>
         </ws:editor-chapters>
       </div>
-      <div class="col-sm-3 col-lg-2 hidden-xs">
+      <div class="col-sm-4 col-lg-3 hidden-xs">
         <ws:editor-chapter-thumbs id="chapter-menu">
           <c:forEach items="${story.chapters}" var="chapter">
-            <ws:editor-chapter-thumb chapter="${chapter.position}"/>
+            <ws:editor-chapter-thumb chapter="${chapter.position}" published=""/>
           </c:forEach>
         </ws:editor-chapter-thumbs>
       </div>
