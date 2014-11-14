@@ -21,7 +21,7 @@ import org.webstories.dao.NumerableEntity;
 
 @Entity
 @Table( name = "ws_chapter" )
-public class ChapterEntity implements NumerableEntity {
+public class ChapterEntity implements NumerableEntity, Comparable<ChapterEntity> {
 	@Id
 	@TableGenerator(
 		name = "chapter_sequence",
@@ -80,6 +80,17 @@ public class ChapterEntity implements NumerableEntity {
 	
 	public void setStory( StoryEntity story ) {
 		this.story = story;
+	}
+	
+	@Override
+	public int compareTo( ChapterEntity other ) {
+		if ( this.getPosition() > other.getPosition() ) {
+			return 1;
+		}
+		if ( this.getPosition() < other.getPosition() ) {
+			return -1;
+		}
+		return 0;
 	}
 	
 	public List<SectionEntity> getSections() {

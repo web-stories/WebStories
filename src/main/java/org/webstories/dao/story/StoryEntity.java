@@ -1,6 +1,7 @@
 package org.webstories.dao.story;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -61,6 +62,7 @@ public class StoryEntity implements NumerableEntity {
 	}
 	
 	public List<ChapterEntity> getChapters() {
+		Collections.sort( chapters );
 		return chapters;
 	}
 }
