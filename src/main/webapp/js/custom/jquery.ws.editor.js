@@ -145,7 +145,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 						id: $( chapter ).data( "chapter-id" ),
 						title: titleInput.val().trim(),
 						position: index + 1,
-						published: $( chapter ).data( "published" ),
+						published: $( chapter ).data( "published" ) || false,
 						sections: $.map( sections, create.section )
 					};
 				},
@@ -409,7 +409,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			$.each( story.chapters, function( index, chapter ) {
 				$( ".editor-chapter" )
 					.eq( index )
-					.attr( "chapter-id", chapter.id );
+					.attr( "data-chapter-id", chapter.id );
 			}.bind( this ));
 			this._refresh();
 		},
