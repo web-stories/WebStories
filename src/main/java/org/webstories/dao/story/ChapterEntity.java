@@ -81,6 +81,9 @@ public class ChapterEntity implements NumerableEntity, Comparable<ChapterEntity>
 	public void setStory( StoryEntity story ) {
 		this.story = story;
 	}
+	public StoryEntity getStory() {
+		return story;
+	}
 	
 	@Override
 	public int compareTo( ChapterEntity other ) {

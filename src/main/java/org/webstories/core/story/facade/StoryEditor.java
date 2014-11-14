@@ -16,9 +16,12 @@ import org.webstories.core.story.StoryUtils;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.validation.ValidationException;
+import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.MetaEntity;
+import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
+import org.webstories.dao.story.StoryState;
 
 @Stateless
 public class StoryEditor implements LocalStoryEditor {
@@ -84,12 +87,47 @@ public class StoryEditor implements LocalStoryEditor {
 				@Override
 				public void run( StoryEntity object ) {
 					// Need to remove the meta entity first.
-					// There is a database level Foreign Key constraint between meta and story,
+					// There is a database-level Foreign Key constraint between meta and story,
 					// if we try to remove the story, a database error occurs because of
-					// this contract.
+					// the constraint.
 					// http://stackoverflow.com/a/15220994/1400037
 					entityManager.remove( story.getMeta() );
 					entityManager.remove( story );
+				}
+			}
+		);
+	}
+	
+	@Override
+	public void publishChapter( long idChapter, Logged logged )
+	throws ValidationException, AccessDeniedException, UserNotLoggedException {
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
+		
+		final ChapterEntity chapter = entityManager.find( ChapterEntity.class, idChapter );
+		StoryEntity story = chapter.getStory();
+		
+		if ( chapter.getTitle().isEmpty() ) {
+			throw new ValidationException( "The chapter title should not be empty" );
+		}
+		
+		if ( chapter.getSections().isEmpty() ) {
+			throw new ValidationException( "The chapter sections should not be empty" );
+		}
+		
+		for( SectionEntity section : chapter.getSections() ) {
+			if ( section.getText().isEmpty() ) {
+				throw new ValidationException( "No section should be empty" );
+			}
+		}
+		
+		new StoryOwnerSecurity( logged ).updatePrivileged(
+			new StoryRead.DefaultRead( story.getId(), storyQueries ),
+			new PrivilegedUpdate<StoryEntity>() {
+				@Override
+				public void run( StoryEntity object ) {
+					chapter.setState( StoryState.PUBLISHED );
 				}
 			}
 		);

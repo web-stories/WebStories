@@ -47,7 +47,7 @@
       <div class="col-sm-4 col-lg-3 hidden-xs">
         <ws:editor-chapter-thumbs id="chapter-menu">
           <c:forEach items="${story.chapters}" var="chapter">
-            <ws:editor-chapter-thumb chapter="${chapter.position}" publishable="${chapter.publishable}"/>
+            <ws:editor-chapter-thumb chapter="${chapter.position}" publishable="${chapter.publishable}" chapterId="${chapter.id}"/>
           </c:forEach>
         </ws:editor-chapter-thumbs>
       </div>

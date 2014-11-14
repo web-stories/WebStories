@@ -1,6 +1,7 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ attribute name="publishable" %>
+<%@ attribute name="chapterId" %>
 <%@ attribute name="chapter" required="true" %>
 <c:if test="${not publishable}">
   <c:set var="publishableDisabledState">
@@ -12,8 +13,8 @@
     Capítulo ${chapter}
   </a>
   <c:if test="${not empty publishable}">
-    <form action="${pageContext.request.contextPath}/home/projects/publish?chapter=${chapter}" method="post">
-      <input type="hidden" name="chapter">
+    <form action="${pageContext.request.contextPath}/home/projects/publish" method="post">
+      <input type="hidden" name="chapterId" value="${chapterId}">
       <button class="btn btn-default btn-sm editor-chapter-thumb-publish" type="button" ${publishableDisabledState}>
         <c:if test="${not publishable}">
           <span class="icon-checkmark"></span>
