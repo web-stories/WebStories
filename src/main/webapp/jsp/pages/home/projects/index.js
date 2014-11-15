@@ -18,7 +18,7 @@
 					chapter: nextChapter
 				}, loaded );
 			},
-			autosave: function( chapters, resolve ) {
+			save: function( chapters, resolve ) {
 				var feedback = $( "#saving-feedback" ).saving();
 				var id = $( "#meta" ).data( "story-id" );
 				return webstories
@@ -32,17 +32,15 @@
 						console.log( json );
 						resolve( json );
 					});
+			},
+			validatePublication: function( chapterId ) {
+				var storyId = $( "#meta" ).data( "story-id" );
+				return webstories
+					.api(
+						"/api/stories/" + storyId + "/chapters/" + chapterId + "/publish",
+						"POST"
+					);
 			}
-		});
-		$( ".editor-chapter-thumb-publish" ).click(function() {
-			var button = this;
-			editor
-				.editor( "save" )
-				.then(function() {
-					$( button )
-						.parents( "form" )
-						.submit();
-				});
 		});
 	});
 }());

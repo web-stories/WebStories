@@ -303,6 +303,25 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					};
 					drop
 						.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
+				},
+				"click .editor-chapter-thumb-publish": function( event ) {
+					var saveStory = new Promise( this._save.bind( this ) );
+					var validatePublication = new Promise(function( resolve, reject ) {
+						var chapterIndex = $( event.currentTarget )
+							.parents( ".editor-chapter-thumbs-item" )
+							.index();
+						var chapterId = this._chapters[ chapterIndex ].id;
+						this.options.validatePublication( chapterId )
+							.done( resolve );
+					}.bind( this ));
+					var publish = function( resolve ) {
+						$( event.currentTarget )
+							.parents( "form" )
+							.submit();
+					};
+					saveStory
+						//.then( validatePublication )
+						.then( publish );
 				}
 			};
 		},
@@ -382,16 +401,15 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			if ( this._edited ) {
 				// Queuing ensures that concurrent calls will be executed in the proper sequence
 				execute = (function( chapters ) {
-					var autosave = this.options.autosave;
-					var updateIds = this._updateIds.bind( this );
 					return function( next ) {
-						var deferred = autosave( chapters, updateIds )
+						var updateIds = this._updateIds.bind( this );
+						var deferred = this.options.save( chapters, updateIds )
 							.always( next );
 						if ( resolve ) {
 							deferred
 								.always( resolve );
 						}
-					};
+					}.bind( this );
 				}.call( this, this._chapters ));
 				this._ajaxQueue.queue( execute );
 				this._edited = false;
@@ -401,9 +419,6 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			
 			clearTimeout( this._saveTimeout );
 			this._saveTimeout = this._delay( this._save, 60000 );
-		},
-		save: function() {
-			return new Promise( this._save.bind( this ) );
 		},
 		_updateIds: function( story ) {
 			$.each( story.chapters, function( index, chapter ) {

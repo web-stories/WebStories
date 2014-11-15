@@ -8,7 +8,7 @@
     disabled=""
   </c:set>
 </c:if>
-<li>
+<li class="editor-chapter-thumbs-item">
   <a class="editor-chapter-thumb" href="#chapter-${chapter}">
     Capítulo ${chapter}
   </a>
