@@ -1,5 +1,9 @@
 package org.webstories.core.story;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.webstories.core.validation.ValidationObject;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.StoryEntity;
 
@@ -19,5 +23,13 @@ public class StoryUtils {
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Check if this chapter is valid for publication
+	 */
+	public static List<ValidationObject> validateChapter( ChapterEntity chapter ) {
+		// TODO
+		return new ArrayList<ValidationObject>();
 	}
 }

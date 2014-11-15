@@ -11,6 +11,7 @@ import org.webstories.core.story.thumb.FeaturedStory;
 import org.webstories.core.story.thumb.HomeStory;
 import org.webstories.core.story.viewer.StoryViewer;
 import org.webstories.core.story.viewer.StoryViewerDetails;
+import org.webstories.core.validation.ValidationObject;
 
 @Local
 public interface LocalStoryReader {
@@ -20,4 +21,5 @@ public interface LocalStoryReader {
 	EditorStory storyEditor( long idStory );
 	StoryViewer storyViewer( long idStory );
 	StoryViewerDetails storyViewerDetails( long idStory );
+	List<ValidationObject> validateChapter( long chapterId );
 }

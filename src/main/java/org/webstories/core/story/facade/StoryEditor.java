@@ -39,7 +39,7 @@ public class StoryEditor implements LocalStoryEditor {
 			throw new ValidationException();
 		}
 		security.updatePrivileged(
-			new StoryRead.DefaultRead( idStory, storyQueries ),
+			new StoryRead.DefaultRead( idStory, entityManager ),
 			new PrivilegedUpdate<StoryEntity>() {
 				@Override
 				public void run( StoryEntity story ) {
@@ -61,7 +61,7 @@ public class StoryEditor implements LocalStoryEditor {
 			throw new ValidationException();
 		}
 		new StoryOwnerSecurity( logged ).updatePrivileged(
-			new StoryRead.DefaultRead( story.getId(), storyQueries ),
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
 			new StoryUpdate.EditorUpdate( story, entityManager )
 		);
 	}
@@ -82,7 +82,7 @@ public class StoryEditor implements LocalStoryEditor {
 		}
 		
 		new StoryOwnerSecurity( logged ).updatePrivileged(
-			new StoryRead.DefaultRead( story.getId(), storyQueries ),
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
 			new PrivilegedUpdate<StoryEntity>() {
 				@Override
 				public void run( StoryEntity object ) {
@@ -123,7 +123,7 @@ public class StoryEditor implements LocalStoryEditor {
 		}
 		
 		new StoryOwnerSecurity( logged ).updatePrivileged(
-			new StoryRead.DefaultRead( story.getId(), storyQueries ),
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
 			new PrivilegedUpdate<StoryEntity>() {
 				@Override
 				public void run( StoryEntity object ) {

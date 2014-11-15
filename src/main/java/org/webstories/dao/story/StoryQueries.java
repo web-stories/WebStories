@@ -28,7 +28,4 @@ public class StoryQueries extends Queries {
 			.limit( limit );
 		return query.list( tableStory );
 	}
-	public StoryEntity findByPrimaryKey( long idStory ) {
-		return entityManager.find( StoryEntity.class, idStory );
-	}
 }

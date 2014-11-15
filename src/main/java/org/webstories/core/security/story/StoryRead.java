@@ -1,20 +1,21 @@
 package org.webstories.core.security.story;
 
+import javax.persistence.EntityManager;
+
 import org.webstories.core.security.PrivilegedRead;
 import org.webstories.dao.story.StoryEntity;
-import org.webstories.dao.story.StoryQueries;
 
 public class StoryRead {
 	public static class DefaultRead implements PrivilegedRead<StoryEntity> {
-		private StoryQueries queries;
+		private EntityManager entityManager;
 		private long idStory;
-		public DefaultRead( long idStory, StoryQueries queries ) {
-			this.queries = queries;
+		public DefaultRead( long idStory, EntityManager entityManager ) {
+			this.entityManager = entityManager;
 			this.idStory = idStory;
 		}
 		@Override
 		public StoryEntity run() {
-			return queries.findByPrimaryKey( idStory );
+			return entityManager.find( StoryEntity.class, idStory );
 		}
 	}
 }

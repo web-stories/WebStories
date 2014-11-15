@@ -37,7 +37,7 @@
 				var storyId = $( "#meta" ).data( "story-id" );
 				return webstories
 					.api(
-						"/api/stories/" + storyId + "/chapters/" + chapterId + "/publish",
+						"/api/stories/" + storyId + "/chapters/" + chapterId + "/validate",
 						"POST"
 					);
 			}
