@@ -2,7 +2,7 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <jsp:include page="/jsp/include/header.jsp"/>
 <div id="meta" data-story-id="${story.id}"></div>
-<ws:alert-saving id="saving-feedback"></ws:alert-saving>
+<ws:alert-saving id="saving-feedback" hidden="true"></ws:alert-saving>
 <div class="container">
   <ol class="breadcrumb breadcumb-clear toolbar">
     <li>
