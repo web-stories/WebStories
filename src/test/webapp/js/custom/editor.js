@@ -3,12 +3,12 @@ require( ["jquery", "jquery.simulate", "jquery.ws.editor"], function( $ ) {
 	"use strict";
 	start();
 	module( "autosave" );
-	asyncTest( "Should execute autosave callback when editing the section", function() {
+	asyncTest( "Should execute save callback when editing the section", function() {
 		expect( 1 );
 		var count = 0;
 		
 		$( "#simple" ).editor({
-			autosave: function( chapters, resolve ) {
+			save: function( chapters, resolve ) {
 				count += 1;
 				resolve({ chapters: chapters });
 				return $.Deferred();
@@ -28,13 +28,13 @@ require( ["jquery", "jquery.simulate", "jquery.ws.editor"], function( $ ) {
 			start();
 		}, 1 );
 	});
-	asyncTest( "Should not execute autosave callback when typing a character after the section " +
+	asyncTest( "Should not execute save callback when typing a character after the section " +
 	"limit has been reached", function() {
 		expect( 1 );
 		var count = 0;
 		
 		$( "#section-overflow" ).editor({
-			autosave: function( chapters, resolve ) {
+			save: function( chapters, resolve ) {
 				count += 1;
 				resolve({ chapters: chapters });
 				return $.Deferred();
@@ -49,7 +49,7 @@ require( ["jquery", "jquery.simulate", "jquery.ws.editor"], function( $ ) {
 			.simulate( "blur" );
 			
 		setTimeout(function() {
-			strictEqual( count, 0, "should not execute autosave callback" );
+			strictEqual( count, 0, "should not execute save callback" );
 			start();
 		}, 1 );
 	});
