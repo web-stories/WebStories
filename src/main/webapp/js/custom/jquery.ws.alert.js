@@ -29,6 +29,7 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 					resolve();
 				}.bind( this ));
 			}.bind( this );
+			
 			this._ajaxQueue.queue( execute );
 		},
 		_render: function( html ) {
@@ -67,7 +68,7 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 		},
 		closeAfter: function( millis ) {
 			console.log( "closeAfter: " + millis + "ms" );
-			this._closingTimeout = setTimeout( this._close.bind( this ), millis );
+			this._closingTimeout = this._delay( this._close, millis );
 		},
 		show: function( text ) {
 			console.log( "message: " + text );
