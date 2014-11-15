@@ -1,5 +1,5 @@
 require(
-	[ "jquery", "webstories", "jquery.ws.editor", "jquery.ws.alert.saving"],
+	[ "jquery", "webstories", "jquery.ws.editor", "jquery.ws.alert"],
 	function( $, webstories ) {
 		"use strict";
 		$( ".editor" ).editor({
@@ -19,18 +19,22 @@ require(
 				}, loaded );
 			},
 			save: function( chapters, resolve ) {
-				var feedback = $( "#saving-feedback" ).saving();
+				var feedback = $( "#action-alert" ).actionAlert();
 				var id = $( "#meta" ).data( "story-id" );
-				return webstories
-					.api( "/api/stories/" + id + "/save", "PUT", {
-						id: id,
-						chapters: chapters
-					}).fail(function( jqXHR ) {
-						feedback.saving( "error", jqXHR );
-					}).done(function( json ) {
-						feedback.saving( "saved" );
-						console.log( json );
-						resolve( json );
+				return feedback.actionAlert( "show", "Salvando..." )
+					.then(function() {
+						webstories
+							.api( "/api/stories/" + id + "/save", "PUT", {
+								id: id,
+								chapters: chapters
+							}).fail(function( jqXHR ) {
+								feedback.actionAlert( "ajaxError", jqXHR );
+							}).done(function( json ) {
+								feedback.actionAlert( "show", "A história foi salva com sucesso!" );
+								feedback.actionAlert( "closeAfter", 3000 );
+								console.log( json );
+								resolve( json );
+							});
 					});
 			},
 			validatePublication: function( chapterId ) {

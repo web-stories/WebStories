@@ -406,11 +406,11 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				execute = (function( chapters ) {
 					return function( next ) {
 						var updateIds = this._updateIds.bind( this );
-						var deferred = this.options.save( chapters, updateIds )
-							.always( next );
+						var promise = this.options.save( chapters, updateIds )
+							.then( next );
 						if ( resolve ) {
-							deferred
-								.always( resolve );
+							promise
+								.then( resolve );
 						}
 					}.bind( this );
 				}.call( this, this._chapters ));
