@@ -1,8 +1,8 @@
-(function() {
-	"use strict";
-	var deps = [ "jquery", "webstories", "jquery.ws.editor", "jquery.ws.alert.saving"];
-	require( deps, function( $, webstories ) {
-		var editor = $( ".editor" ).editor({
+require(
+	[ "jquery", "webstories", "jquery.ws.editor", "jquery.ws.alert.saving"],
+	function( $, webstories ) {
+		"use strict";
+		$( ".editor" ).editor({
 			chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
 			menuId: "chapter-menu",
 			loadSection: function( loaded ) {
@@ -41,5 +41,5 @@
 				);
 			}
 		});
-	});
-}());
+	}
+);
