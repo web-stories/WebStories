@@ -7,19 +7,14 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 			}
 		},
 		_open: function( resolve ) {
-			clearTimeout( this._closingTimeout );
-			this._opened = true;
-			
-			if ( !this._alert ) {
-				this.options.load(function( html ) {
-					this._render( html );
-					this._showElement();
-					resolve();
-				}.bind( this ));
-			} else {
+			this.options.load(function( html ) {
+				clearTimeout( this._closingTimeout );
+				this._opened = true;
+				
+				this._render( html );
 				this._showElement();
 				resolve();
-			}
+			}.bind( this ));
 		},
 		_render: function( html ) {
 			this._alert = $( html )
@@ -54,6 +49,7 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 			this._closingTimeout = this._delay( this._close, millis );
 		},
 		show: function( text ) {
+			console.log( text );
 			return new Promise( this._open.bind( this ) )
 				.then(function() {
 					this.element
@@ -65,6 +61,11 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 			var error = this._ajaxErrorMessages[ jqXHR.status ];
 			var content = [ "<b>Erro:</b> Não consegui salvar", message ].join( "<br>" );
 			this.show( content );
+		},
+		ajaxValidation: function( validation ) {
+			if ( validation.length ) {
+				this.show( validation[ 0 ].message );
+			}
 		}
 	});
 });

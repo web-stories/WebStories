@@ -311,8 +311,9 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 							.parents( ".editor-chapter-thumbs-item" )
 							.index();
 						var chapterId = this._chapters[ chapterIndex ].id;
-						var jQueryDeferred = this.options.validatePublication( chapterId );
-						return Promise.resolve( jQueryDeferred );
+						this.options.validatePublication( chapterId )
+							.done( resolve )
+							.fail( reject );
 					}.bind( this );
 					var publish = function( validation ) {
 						// Do not submit the form if there is a validation problem
