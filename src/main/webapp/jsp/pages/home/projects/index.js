@@ -35,7 +35,6 @@
 			},
 			validatePublication: function( chapterId ) {
 				var storyId = $( "#meta" ).data( "story-id" );
-				// TODO send validation feedback according to the server return
 				return webstories.api(
 					"/api/stories/" + storyId + "/chapters/" + chapterId + "/validate",
 					"POST"

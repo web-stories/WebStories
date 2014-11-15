@@ -305,22 +305,25 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 						.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
 				},
 				"click .editor-chapter-thumb-publish": function( event ) {
-					var saveStory = new Promise( this._save.bind( this ) );
-					var validatePublication = new Promise(function( resolve, reject ) {
+					var saveStory = this._save.bind( this );
+					var validatePublication = function( resolve, reject ) {
 						var chapterIndex = $( event.currentTarget )
 							.parents( ".editor-chapter-thumbs-item" )
 							.index();
 						var chapterId = this._chapters[ chapterIndex ].id;
-						this.options.validatePublication( chapterId )
-							.done( resolve );
-					}.bind( this ));
-					var publish = function( resolve ) {
-						$( event.currentTarget )
-							.parents( "form" )
-							.submit();
+						var jQueryDeferred = this.options.validatePublication( chapterId );
+						return Promise.resolve( jQueryDeferred );
+					}.bind( this );
+					var publish = function( validation ) {
+						// Do not submit the form if there is a validation problem
+						if ( !validation.length ) {
+							$( event.currentTarget )
+								.parents( "form" )
+								.submit();
+						}
 					};
-					saveStory
-						//.then( validatePublication )
+					new Promise( saveStory )
+						.then( validatePublication )
 						.then( publish );
 				}
 			};
