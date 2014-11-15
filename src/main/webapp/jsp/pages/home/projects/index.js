@@ -32,7 +32,6 @@ require(
 							}).done(function( json ) {
 								feedback.actionAlert( "show", "A história foi salva com sucesso!" );
 								feedback.actionAlert( "closeAfter", 3000 );
-								console.log( json );
 								resolve( json );
 							});
 					});
@@ -45,6 +44,7 @@ require(
 					"POST"
 				).done(function( validation ) {
 					feedback.actionAlert( "ajaxValidation", validation );
+					feedback.actionAlert( "closeAfter", 3000 );
 				});
 			}
 		});
