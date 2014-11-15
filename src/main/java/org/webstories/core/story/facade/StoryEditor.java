@@ -1,5 +1,7 @@
 package org.webstories.core.story.facade;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,9 +18,9 @@ import org.webstories.core.story.StoryUtils;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.validation.ValidationException;
+import org.webstories.core.validation.ValidationObject;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.MetaEntity;
-import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
 import org.webstories.dao.story.StoryState;
@@ -108,18 +110,9 @@ public class StoryEditor implements LocalStoryEditor {
 		final ChapterEntity chapter = entityManager.find( ChapterEntity.class, idChapter );
 		StoryEntity story = chapter.getStory();
 		
-		if ( chapter.getTitle().isEmpty() ) {
-			throw new ValidationException( "The chapter title should not be empty" );
-		}
-		
-		if ( chapter.getSections().isEmpty() ) {
-			throw new ValidationException( "The chapter sections should not be empty" );
-		}
-		
-		for( SectionEntity section : chapter.getSections() ) {
-			if ( section.getText().isEmpty() ) {
-				throw new ValidationException( "No section should be empty" );
-			}
+		List<ValidationObject> validation = StoryUtils.validateChapter( chapter );
+		if ( !validation.isEmpty() ) {
+			throw new ValidationException( validation.get( 0 ).toString() );
 		}
 		
 		new StoryOwnerSecurity( logged ).updatePrivileged(
