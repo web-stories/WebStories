@@ -25,11 +25,19 @@
     </script>
     <script>
       (function() {
-        var old = alert;
-        window.alert = function( msg ) {
-          ga( "send", "event", "alert", msg );
-          old.apply( this, arguments );
+        var patchBefore = function( object, property, fn ) {
+          var old = object[ property ];
+          object[ property ] = function() {
+            fn.apply( this, arguments );
+            return old.apply( this, arguments );
+          };
         };
+        patchBefore( window, "confirm", function( msg ) {
+          ga( "send", "event", "confirm", msg );
+        });
+        patchBefore( window, "alert", function( msg ) {
+          ga( "send", "event", "alert", msg );
+        });
       }());
     </script>
   </head>
