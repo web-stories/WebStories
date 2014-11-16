@@ -305,24 +305,35 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 						.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
 				},
 				"click .editor-chapter-thumb-publish": function( event ) {
+					var chapterId;
 					var saveStory = this._save.bind( this );
-					var validatePublication = function( resolve, reject ) {
+					var validatePublication = function() {
 						var chapterIndex = $( event.currentTarget )
 							.parents( ".editor-chapter-thumbs-item" )
 							.index();
-						var chapterId = this._chapters[ chapterIndex ].id;
-						this.options.validatePublication( chapterId )
-							.done( resolve )
-							.fail( reject );
+						chapterId = this._chapters[ chapterIndex ].id;
+						var jQueryPromise = this.options.validatePublication( chapterId );
+						return Promise.resolve( jQueryPromise );
 					}.bind( this );
-					var publish = function( validation ) {
-						// Do not submit the form if there is a validation problem
-						if ( !validation.length ) {
+					var publish = function( validationItems ) {
+						if ( !validationItems.length ) {
 							$( event.currentTarget )
 								.parents( "form" )
 								.submit();
+							return;
 						}
-					};
+						
+						if ( validationItems[ 0 ].data.sectionId ) {
+							this._scrollTo(
+								"[data-section-id='" + validationItems[ 0 ].data.sectionId + "']"
+							);
+						} else {
+							this._scrollTo(
+								"[data-chapter-id='" + chapterId + "']"
+							);
+						}
+						
+					}.bind( this );
 					new Promise( saveStory )
 						.then( validatePublication )
 						.then( publish );

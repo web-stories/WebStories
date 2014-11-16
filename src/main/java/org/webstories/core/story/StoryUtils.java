@@ -49,7 +49,8 @@ public class StoryUtils {
 		for( SectionEntity section : chapter.getSections() ) {
 			if ( section.getText().isEmpty() ) {
 				result.add(new SectionValidationObject(
-					"The chapter should have no empty section"
+					"The chapter should not have any empty section",
+					section.getId()
 				));
 			}
 		}
