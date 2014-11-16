@@ -36,20 +36,20 @@ public class StoryUtils {
 		
 		if ( chapter.getTitle().isEmpty() ) {
 			result.add(new ChapterValidationObject(
-				"The chapter title should not be empty"
+				"O título do capítulo não pode estar vazio!"
 			));
 		}
 		
 		if ( chapter.getSections().isEmpty() ) {
 			result.add(new ChapterValidationObject(
-				"The chapter should have at least one section"
+				"O capítulo deve possuir pelo menos uma seção!"
 			));
 		}
 		
 		for( SectionEntity section : chapter.getSections() ) {
 			if ( section.getText().isEmpty() ) {
 				result.add(new SectionValidationObject(
-					"The chapter should not have any empty section",
+					"O capítulo não deve possuir nenhuma seção em branco!",
 					section.getId()
 				));
 			}
