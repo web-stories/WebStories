@@ -1,8 +1,8 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <jsp:include page="/jsp/include/header.jsp"/>
-<ws:context-alert show="${saved}">
+<ws:alert-action hidden="${!saved}" closeable="true">
   Os detalhes foram salvos!
-</ws:context-alert>
+</ws:alert-action>
 <div class="container">
   <ol class="breadcrumb breadcumb-clear toolbar">
     <li>

@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +21,7 @@ import org.webstories.dao.NumerableEntity;
 
 @Entity
 @Table( name = "ws_chapter" )
-public class ChapterEntity implements NumerableEntity {
+public class ChapterEntity implements NumerableEntity, Comparable<ChapterEntity> {
 	@Id
 	@TableGenerator(
 		name = "chapter_sequence",
@@ -35,6 +37,10 @@ public class ChapterEntity implements NumerableEntity {
 	
 	@Column( nullable = false )
 	private Integer no_position;
+	
+	@Column( nullable = false, length = 255 )
+	@Enumerated( EnumType.STRING )
+	private StoryState cd_state;
 	
 	@ManyToOne
 	@JoinColumn( name = "id_story", nullable = true )
@@ -65,8 +71,29 @@ public class ChapterEntity implements NumerableEntity {
 		this.no_position = no_position;
 	}
 	
+	public StoryState getState() {
+		return cd_state;
+	}
+	public void setState( StoryState cd_state ) {
+		this.cd_state = cd_state;
+	}
+	
 	public void setStory( StoryEntity story ) {
 		this.story = story;
+	}
+	public StoryEntity getStory() {
+		return story;
+	}
+	
+	@Override
+	public int compareTo( ChapterEntity other ) {
+		if ( this.getPosition() > other.getPosition() ) {
+			return 1;
+		}
+		if ( this.getPosition() < other.getPosition() ) {
+			return -1;
+		}
+		return 0;
 	}
 	
 	public List<SectionEntity> getSections() {

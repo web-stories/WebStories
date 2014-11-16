@@ -5,21 +5,29 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.webstories.core.auth.Logged;
+import org.webstories.core.story.StoryUtils;
 import org.webstories.core.story.editor.EditorStory;
 import org.webstories.core.story.editor.EditorStoryDetails;
 import org.webstories.core.story.thumb.FeaturedStory;
 import org.webstories.core.story.thumb.HomeStory;
 import org.webstories.core.story.viewer.StoryViewer;
 import org.webstories.core.story.viewer.StoryViewerDetails;
+import org.webstories.core.validation.ValidationObject;
 import org.webstories.dao.integration.FacebookEntity;
+import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
 
 @Stateless
 public class StoryReader implements LocalStoryReader {
+	@PersistenceContext
+	EntityManager entityManager;
+	
 	@EJB
 	StoryQueries storyQueries;
 	
@@ -36,7 +44,7 @@ public class StoryReader implements LocalStoryReader {
 	@Override
 	public List<FeaturedStory> featuredStories() {
 		List<FeaturedStory> result = new ArrayList<FeaturedStory>();
-		for ( StoryEntity story : storyQueries.listLastStories( 3 ) ) {
+		for ( StoryEntity story : storyQueries.listLastPublishedStories( 3 ) ) {
 			MetaEntity meta = story.getMeta();
 			FacebookEntity author = story.getAuthor().getFacebook();
 			result.add( FeaturedStory.from( author, meta ) );
@@ -46,27 +54,33 @@ public class StoryReader implements LocalStoryReader {
 	
 	@Override
 	public EditorStoryDetails storyDetails( long idStory ) {
-		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		MetaEntity meta = story.getMeta();
 		return EditorStoryDetails.from( meta );
 	}
 	
 	@Override
 	public EditorStory storyEditor( long idStory ) {
-		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		return EditorStory.from( story );
 	}
 	
 	@Override
 	public StoryViewer storyViewer( long idStory ) {
-		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		return StoryViewer.from( story );
 	}
 	
 	@Override
 	public StoryViewerDetails storyViewerDetails( long idStory ) {
-		StoryEntity story = storyQueries.findByPrimaryKey( idStory );
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		MetaEntity meta = story.getMeta();
 		return StoryViewerDetails.from( meta );
+	}
+	
+	@Override
+	public List<ValidationObject> validateChapter( long chapterId ) {
+		ChapterEntity chapter = entityManager.find( ChapterEntity.class, chapterId );
+		return StoryUtils.validateChapter( chapter );
 	}
 }

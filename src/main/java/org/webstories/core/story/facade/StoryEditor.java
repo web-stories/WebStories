@@ -1,5 +1,7 @@
 package org.webstories.core.story.facade;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,9 +18,12 @@ import org.webstories.core.story.StoryUtils;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.validation.ValidationException;
+import org.webstories.core.validation.ValidationObject;
+import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
+import org.webstories.dao.story.StoryState;
 
 @Stateless
 public class StoryEditor implements LocalStoryEditor {
@@ -36,7 +41,7 @@ public class StoryEditor implements LocalStoryEditor {
 			throw new ValidationException();
 		}
 		security.updatePrivileged(
-			new StoryRead.DefaultRead( idStory, storyQueries ),
+			new StoryRead.DefaultRead( idStory, entityManager ),
 			new PrivilegedUpdate<StoryEntity>() {
 				@Override
 				public void run( StoryEntity story ) {
@@ -58,7 +63,7 @@ public class StoryEditor implements LocalStoryEditor {
 			throw new ValidationException();
 		}
 		new StoryOwnerSecurity( logged ).updatePrivileged(
-			new StoryRead.DefaultRead( story.getId(), storyQueries ),
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
 			new StoryUpdate.EditorUpdate( story, entityManager )
 		);
 	}
@@ -79,17 +84,43 @@ public class StoryEditor implements LocalStoryEditor {
 		}
 		
 		new StoryOwnerSecurity( logged ).updatePrivileged(
-			new StoryRead.DefaultRead( story.getId(), storyQueries ),
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
 			new PrivilegedUpdate<StoryEntity>() {
 				@Override
 				public void run( StoryEntity object ) {
 					// Need to remove the meta entity first.
-					// There is a database level Foreign Key constraint between meta and story,
+					// There is a database-level Foreign Key constraint between meta and story,
 					// if we try to remove the story, a database error occurs because of
-					// this contract.
+					// the constraint.
 					// http://stackoverflow.com/a/15220994/1400037
 					entityManager.remove( story.getMeta() );
 					entityManager.remove( story );
+				}
+			}
+		);
+	}
+	
+	@Override
+	public void publishChapter( long idChapter, Logged logged )
+	throws ValidationException, AccessDeniedException, UserNotLoggedException {
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
+		
+		final ChapterEntity chapter = entityManager.find( ChapterEntity.class, idChapter );
+		StoryEntity story = chapter.getStory();
+		
+		List<ValidationObject> validation = StoryUtils.validateChapter( chapter );
+		if ( !validation.isEmpty() ) {
+			throw new ValidationException( validation.get( 0 ).toString() );
+		}
+		
+		new StoryOwnerSecurity( logged ).updatePrivileged(
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
+			new PrivilegedUpdate<StoryEntity>() {
+				@Override
+				public void run( StoryEntity object ) {
+					chapter.setState( StoryState.PUBLISHED );
 				}
 			}
 		);

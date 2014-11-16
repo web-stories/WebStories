@@ -17,14 +17,15 @@ public class StoryQueries extends Queries {
 		);
 		return query.list( tableStory );
 	}
-	public List<StoryEntity> listLastStories( int limit ) {
+	/**
+	 * List the last stories that have at least one chapter published
+	 */
+	public List<StoryEntity> listLastPublishedStories( int limit ) {
 		QStoryEntity tableStory = QStoryEntity.storyEntity;
 		JPAQuery query = queryFrom( tableStory )
+			.where( tableStory.chapters.any().cd_state.eq( StoryState.PUBLISHED ) )
 			.orderBy( tableStory.id_story.desc() )
 			.limit( limit );
 		return query.list( tableStory );
-	}
-	public StoryEntity findByPrimaryKey( long idStory ) {
-		return entityManager.find( StoryEntity.class, idStory );
 	}
 }

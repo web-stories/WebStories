@@ -2,7 +2,7 @@
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <jsp:include page="/jsp/include/header.jsp"/>
 <div id="meta" data-story-id="${story.id}"></div>
-<ws:alert-saving id="saving-feedback"></ws:alert-saving>
+<div id="action-alert"></div>
 <div class="container">
   <ol class="breadcrumb breadcumb-clear toolbar">
     <li>
@@ -33,10 +33,10 @@
 <div class="container">
   <ws:editor title="${story.title}">
     <div class="row">
-      <div class="col-sm-9 col-lg-10">
+      <div class="col-sm-8 col-lg-9">
         <ws:editor-chapters>
           <c:forEach items="${story.chapters}" var="chapter">
-            <ws:editor-chapter chapter="${chapter.position}" title="${chapter.title}" chapterId="${chapter.id}">
+            <ws:editor-chapter chapter="${chapter.position}" title="${chapter.title}" chapterId="${chapter.id}" published="${chapter.published}">
               <c:forEach items="${chapter.sections}" var="section">
                 <ws:editor-section sectionId="${section.id}">${section.text}</ws:editor-section>
               </c:forEach>
@@ -44,10 +44,10 @@
           </c:forEach>
         </ws:editor-chapters>
       </div>
-      <div class="col-sm-3 col-lg-2 hidden-xs">
+      <div class="col-sm-4 col-lg-3 hidden-xs">
         <ws:editor-chapter-thumbs id="chapter-menu">
           <c:forEach items="${story.chapters}" var="chapter">
-            <ws:editor-chapter-thumb chapter="${chapter.position}"/>
+            <ws:editor-chapter-thumb chapter="${chapter.position}" publishable="${chapter.publishable}" chapterId="${chapter.id}"/>
           </c:forEach>
         </ws:editor-chapter-thumbs>
       </div>

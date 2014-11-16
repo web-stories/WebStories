@@ -17,4 +17,6 @@ public interface LocalStoryEditor {
 		throws ValidationException, AccessDeniedException, UserNotLoggedException;
 	void removeStory( long idStory, Logged logged )
 		throws ValidationException, AccessDeniedException, UserNotLoggedException;
+	void publishChapter( long idChapter, Logged logged )
+		throws ValidationException, AccessDeniedException, UserNotLoggedException;
 }

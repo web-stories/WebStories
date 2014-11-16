@@ -21,7 +21,7 @@ textarea.editor-chapter-section-text {
 /* sm */
 @media ( min-width: 768px ) {
   textarea.editor-chapter-section-text {
-    height: 195px;
+    height: 215px;
   }
 }
 /* md */
@@ -33,7 +33,7 @@ textarea.editor-chapter-section-text {
 /* lg */
 @media ( min-width: 1200px ) {
   textarea.editor-chapter-section-text {
-    height: 134px;
+    height: 155px;
   }
 }
 

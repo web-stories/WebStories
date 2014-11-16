@@ -33,7 +33,6 @@ require = (function( require ) {
 					"bootstrap.wizard": "js/bootstrap.wizard",
 					"jquery.validate.extend": "js/jquery.validate.extend",
 					"jquery.ws.alert": "js/jquery.ws.alert",
-					"jquery.ws.alert.saving": "js/jquery.ws.alert.saving",
 					"jquery.ws.editor": "js/jquery.ws.editor",
 					"jquery.ws.remaining": "js/jquery.ws.remaining",
 					"jquery.ws.story": "js/jquery.ws.story",

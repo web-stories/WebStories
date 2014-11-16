@@ -16,10 +16,28 @@ public class EditorStory implements Story {
 		EditorStory editor = new EditorStory();
 		editor.id = story.getId();
 		editor.title = HTMLText.fromPlainText( story.getMeta().getTitle() );
+		
 		for ( ChapterEntity chapter : story.getChapters() ) {
 			EditorStoryChapter storyChapter = EditorStoryChapter.from( chapter );
 			editor.chapters.add( storyChapter );
 		}
+		
+		// Check if a chapter is publishable (if it is enabled to publish it from the interface).
+		// Only one chapter can be publishable: the first chapter after the previous chapters that
+		// were already published.
+		for ( int i = 0; i < editor.chapters.size(); i++ ) {
+			EditorStoryChapter chapter = editor.chapters.get( i );
+			
+			// It is pushable if it was not yet been published
+			chapter.setPublishable( !chapter.isPublished() );
+			
+			// If this chapter cannot be published, then do not test the others and let it be null.
+			// In this context, null represents a chapter whose publishability cannot be determined.
+			if ( chapter.isPublished() == false ) {
+				break;
+			}
+		}
+		
 		return editor;
 	}
 	@Override

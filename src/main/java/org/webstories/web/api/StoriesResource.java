@@ -1,8 +1,11 @@
 package org.webstories.web.api;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -19,6 +22,7 @@ import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.core.validation.ValidationException;
+import org.webstories.core.validation.ValidationObject;
 import org.webstories.web.util.servlet.HttpForbiddenException;
 import org.webstories.web.util.servlet.HttpInternalServerErrorException;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
@@ -51,5 +55,11 @@ public class StoriesResource {
 			throw new HttpForbiddenException( e );
 		}
 		return storyReader.storyEditor( idStory );
+	}
+	
+	@POST
+	@Path( "{storyId}/chapters/{chapterId}/validate" )
+	public List<ValidationObject> validateChapterData( @PathParam( "chapterId" ) Long chapterId ) {
+		return storyReader.validateChapter( chapterId );
 	}
 }

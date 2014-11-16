@@ -145,6 +145,7 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 						id: $( chapter ).data( "chapter-id" ),
 						title: titleInput.val().trim(),
 						position: index + 1,
+						published: $( chapter ).data( "published" ) || false,
 						sections: $.map( sections, create.section )
 					};
 				},
@@ -164,8 +165,8 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				chapter: function( chapter, index ) {
 					$( ".editor-chapter" )
 						.eq( index )
-						.find( ".editor-chapter-title-header" )
-							.text( "Capítulo " + chapter.position );
+						.find( ".editor-chapter-title-header-number" )
+							.text( chapter.position );
 				}
 			};
 			this._chapters.forEach( refresh.chapter );
@@ -302,6 +303,45 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 					};
 					drop
 						.section( $( event.currentTarget ).parents( ".editor-chapter-section" ) );
+				},
+				"click .editor-chapter-thumb-publish": function( event ) {
+					var chapterId;
+					var saveStory = this._save.bind( this );
+					var validatePublication = function() {
+						var chapterIndex = $( event.currentTarget )
+							.parents( ".editor-chapter-thumbs-item" )
+							.index();
+						chapterId = this._chapters[ chapterIndex ].id;
+						var jQueryPromise = this.options.validatePublication( chapterId );
+						return Promise.resolve( jQueryPromise );
+					}.bind( this );
+					var publish = function( validationItems ) {
+						var msg;
+						if ( !validationItems.length ) {
+							msg = "Após publicar o capítulo, você não poderá mais despublicá-lo";
+							if ( !confirm( msg ) ) {
+								return;
+							}
+							$( event.currentTarget )
+								.parents( "form" )
+								.submit();
+							return;
+						}
+						
+						if ( validationItems[ 0 ].data.sectionId ) {
+							this._scrollTo(
+								"[data-section-id='" + validationItems[ 0 ].data.sectionId + "']"
+							);
+						} else {
+							this._scrollTo(
+								"[data-chapter-id='" + chapterId + "']"
+							);
+						}
+						
+					}.bind( this );
+					new Promise( saveStory )
+						.then( validatePublication )
+						.then( publish );
 				}
 			};
 		},
@@ -375,32 +415,45 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 				}
 			};
 		},
-		_save: function() {
+		_save: function( resolve ) {
 			var execute;
 			
 			if ( this._edited ) {
 				// Queuing ensures that concurrent calls will be executed in the proper sequence
 				execute = (function( chapters ) {
-					var autosave = this.options.autosave;
-					var resolved = this._updateIds.bind( this );
 					return function( next ) {
-						autosave( chapters, resolved )
-							.always( next );
-					};
+						var updateIds = this._updateIds.bind( this );
+						var promise = this.options.save( chapters, updateIds )
+							.then( next );
+						if ( resolve ) {
+							promise
+								.then( resolve );
+						}
+					}.bind( this );
 				}.call( this, this._chapters ));
 				this._ajaxQueue.queue( execute );
 				this._edited = false;
+			} else if ( resolve ) {
+				resolve();
 			}
 			
 			clearTimeout( this._saveTimeout );
 			this._saveTimeout = this._delay( this._save, 60000 );
 		},
 		_updateIds: function( story ) {
-			$.each( story.chapters, function( index, chapter ) {
-				$( ".editor-chapter" )
-					.eq( index )
-					.attr( "chapter-id", chapter.id );
-			}.bind( this ));
+			var eachChapter = function( index, chapter ) {
+					$( ".editor-chapter" )
+						.eq( index )
+						.attr( "data-chapter-id", chapter.id );
+				$.each( chapter.sections, eachSection );
+			}.bind( this );
+			var eachSection = function( index, section ) {
+					$( ".editor-chapter-section" )
+						.eq( index )
+						.attr( "data-section-id", section.id );
+			}.bind( this );
+			
+			$.each( story.chapters, eachChapter );
 			this._refresh();
 		},
 		_loadChapterThumb: function( nextChapter ) {

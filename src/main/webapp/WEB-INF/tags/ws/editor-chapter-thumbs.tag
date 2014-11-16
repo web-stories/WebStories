@@ -7,10 +7,10 @@
   </c:set>
 </c:if>
 <div class="editor-chapter-thumbs" ${idAttribute}>
-  <ul class="nav">
+  <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items">
     <jsp:doBody/>
   </ul>
-  <button class="btn btn-primary btn-block editor-chapter-thumb-add">
+  <button class="btn btn-default btn-block editor-chapter-thumb-add">
     Novo capítulo
   </button>
 </div>

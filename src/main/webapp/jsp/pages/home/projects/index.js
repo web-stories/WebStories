@@ -1,7 +1,8 @@
-(function() {
-	"use strict";
-	var deps = [ "jquery", "webstories", "jquery.ws.editor", "jquery.ws.alert.saving"];
-	require( deps, function( $, webstories ) {
+require(
+	[ "jquery", "webstories", "jquery.ws.editor", "jquery.ws.alert"],
+	function( $, webstories ) {
+		"use strict";
+		var feedback = $( "#action-alert" ).actionAlert();
 		$( ".editor" ).editor({
 			chaptersOffset: $( ".header-navbar" ).outerHeight( true ),
 			menuId: "chapter-menu",
@@ -18,21 +19,33 @@
 					chapter: nextChapter
 				}, loaded );
 			},
-			autosave: function( chapters, resolve ) {
-				var feedback = $( "#saving-feedback" ).saving();
+			save: function( chapters, resolve ) {
 				var id = $( "#meta" ).data( "story-id" );
-				return webstories
-					.api( "/api/stories/" + id + "/save", "PUT", {
-						id: id,
-						chapters: chapters
-					}).fail(function( jqXHR ) {
-						feedback.saving( "error", jqXHR );
-					}).done(function( json ) {
-						feedback.saving( "saved" );
-						console.log( json );
-						resolve( json );
+				return feedback.actionAlert( "show", "Salvando..." )
+					.then(function() {
+						return webstories
+							.api( "/api/stories/" + id + "/save", "PUT", {
+								id: id,
+								chapters: chapters
+							}).fail(function( jqXHR ) {
+								feedback.actionAlert( "ajaxError", jqXHR );
+							}).done(function( json ) {
+								feedback.actionAlert( "show", "A história foi salva com sucesso!" );
+								feedback.actionAlert( "closeAfter", 3000 );
+								resolve( json );
+							});
 					});
+			},
+			validatePublication: function( chapterId ) {
+				var storyId = $( "#meta" ).data( "story-id" );
+				return webstories.api(
+					"/api/stories/" + storyId + "/chapters/" + chapterId + "/validate",
+					"POST"
+				).done(function( validation ) {
+					feedback.actionAlert( "ajaxValidation", validation );
+					feedback.actionAlert( "closeAfter", 3000 );
+				});
 			}
 		});
-	});
-}());
+	}
+);
