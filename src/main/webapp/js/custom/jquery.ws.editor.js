@@ -436,11 +436,19 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 			this._saveTimeout = this._delay( this._save, 60000 );
 		},
 		_updateIds: function( story ) {
-			$.each( story.chapters, function( index, chapter ) {
-				$( ".editor-chapter" )
-					.eq( index )
-					.attr( "data-chapter-id", chapter.id );
-			}.bind( this ));
+			var eachChapter = function( index, chapter ) {
+					$( ".editor-chapter" )
+						.eq( index )
+						.attr( "data-chapter-id", chapter.id );
+				$.each( chapter.sections, eachSection );
+			}.bind( this );
+			var eachSection = function( index, section ) {
+					$( ".editor-chapter-section" )
+						.eq( index )
+						.attr( "data-section-id", section.id );
+			}.bind( this );
+			
+			$.each( story.chapters, eachChapter );
 			this._refresh();
 		},
 		_loadChapterThumb: function( nextChapter ) {
