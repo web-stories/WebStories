@@ -316,7 +316,12 @@ define( ["jquery", "jquery.ui.widget", "bootstrap"], function( $ ) {
 						return Promise.resolve( jQueryPromise );
 					}.bind( this );
 					var publish = function( validationItems ) {
+						var msg;
 						if ( !validationItems.length ) {
+							msg = "Após publicar o capítulo, você não poderá mais despublicá-lo";
+							if ( !confirm( msg ) ) {
+								return;
+							}
 							$( event.currentTarget )
 								.parents( "form" )
 								.submit();

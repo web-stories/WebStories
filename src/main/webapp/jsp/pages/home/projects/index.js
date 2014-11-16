@@ -38,7 +38,6 @@ require(
 			},
 			validatePublication: function( chapterId ) {
 				var storyId = $( "#meta" ).data( "story-id" );
-				feedback.actionAlert( "show", "Publicando..." );
 				return webstories.api(
 					"/api/stories/" + storyId + "/chapters/" + chapterId + "/validate",
 					"POST"
