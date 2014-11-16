@@ -45,7 +45,8 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 		PersonName name,
 		String email,
 		String uid,
-		UserEntity user
+		UserEntity user,
+		String profileURL
 	) {
 		FacebookEntity facebook = new FacebookEntity();
 		facebook.cod_uid = uid;
@@ -53,6 +54,8 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 		facebook.nm_first = name.getFirst();
 		facebook.nm_last = name.getLast();
 		facebook.id_user = user.getId();
+		facebook.url_avatar = "https://graph.facebook.com/" + uid + "/picture?type=large";
+		facebook.url_profile = profileURL;
 		facebook.user = user;
 		return facebook;
 	}

@@ -71,9 +71,10 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		PersonName name = PersonName.from( facebookUser );
 		long idUser = authentication.register( name );
 		UserEntity webstoriesUser = userQueries.findByPrimaryKey( idUser );
+		String profileURL = facebookUser.getLink();
 		
 		FacebookEntity facebook =
-			FacebookEntity.from( name, facebookEmail, facebookId, webstoriesUser );
+			FacebookEntity.from( name, facebookEmail, facebookId, webstoriesUser, profileURL );
 		entityManager.persist( facebook );
 		
 		return Logged.from( facebook );
