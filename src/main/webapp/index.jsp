@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-3.2.0.css" media="screen">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.custom-0.1.1.css" media="screen">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/${build}/css/webstories.css" media="screen">
-    <script>var require = { baseUrl: "${pageContext.request.contextPath}/static/${build}" };</script>
-    <script src="${pageContext.request.contextPath}/static/${build}/js/require.main.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/require-2.1.15.js"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -46,12 +43,14 @@
     <div id="wrapper-default">
       <convention:include/>
     </div>
-    <script>require( ["bootstrap"] );</script>
-    <convention:include-script/>
+    <script>var require = { baseUrl: "${pageContext.request.contextPath}/static/${build}" };</script>
+    <script src="${pageContext.request.contextPath}/static/${build}/js/require.main.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/require-2.1.15.js"></script>
     <script>
-      require( [ "fastclick" ], function( FastClick ) {
+      require( ["fastclick", "bootstrap"], function( FastClick ) {
         FastClick.attach( document.body );
       });
     </script>
+    <convention:include-script/>
   </body>
 </html>
