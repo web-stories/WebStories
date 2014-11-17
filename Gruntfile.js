@@ -15,7 +15,7 @@ module.exports = function( grunt ) {
 	require( "load-grunt-tasks" )( grunt );
 	
 	// Main tasks
-	grunt.registerTask( "files", [ "concat", "copy" ] );
+	grunt.registerTask( "files", [ "concat", "copy", "uglify" ] );
 	grunt.registerTask( "validate", [ "jshint", "jscs" ] );
 	grunt.registerTask( "integration", [ "servers:wildfly", "qunit", "servers:wildfly:kill" ] );
 	
