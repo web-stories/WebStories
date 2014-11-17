@@ -95,6 +95,11 @@
       <version>2.3.0-ALPHA</version>
     </dependency>
     <dependency>
+      <groupId>com.fagnerbrack.servlet.gzip</groupId>
+      <artifactId>GZIPCompression</artifactId>
+      <version>0.0.4-ALPHA</version>
+    </dependency>
+    <dependency>
       <groupId>com.mysema.querydsl</groupId>
       <artifactId>querydsl-jpa</artifactId>
       <version>${querydsl.version}</version>
