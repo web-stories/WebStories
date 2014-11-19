@@ -23,6 +23,18 @@
   <!-- Enables session replication -->
   <distributable/>
   
+  <!-- Set custom caching rule for cacheable resources -->
+  <filter-mapping>
+    <filter-name>cache</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Compact relevant resources using GZIP and set the proper headers -->
+  <filter-mapping>
+    <filter-name>gzip</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
   <!-- Rewrites the static resources folder for unversioned files -->
   <filter-mapping>
     <filter-name>resources-folder</filter-name>
