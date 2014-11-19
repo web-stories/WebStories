@@ -23,15 +23,19 @@
   <!-- Enables session replication -->
   <distributable/>
   
-  <!-- Set custom caching rule for cacheable resources -->
+  <!--
+    Compact relevant resources using GZIP and set the proper headers.
+    Should execute before the caching mechanism due to some "content encoding" errors that occurs
+    in the browser (the root cause of this error was not yet identified).
+  -->
   <filter-mapping>
-    <filter-name>cache</filter-name>
+    <filter-name>gzip</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   
-  <!-- Compact relevant resources using GZIP and set the proper headers -->
+  <!-- Set custom caching rule for cacheable resources -->
   <filter-mapping>
-    <filter-name>gzip</filter-name>
+    <filter-name>cache</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   
