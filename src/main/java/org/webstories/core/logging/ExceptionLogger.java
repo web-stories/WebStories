@@ -34,7 +34,7 @@ public class ExceptionLogger implements LocalExceptionLogger {
 		
 		AccessEntity access = new AccessEntity();
 		access.setIp( request.getRemoteAddr() );
-		access.setData( "" ); // TODO
+		access.setData( createAccessData( request ) );
 		
 		access.setLog( log );
 		entityManager.persist( access );
@@ -54,5 +54,11 @@ public class ExceptionLogger implements LocalExceptionLogger {
 		exception.setCause( cause1 );
 		exception.setCause2( cause2 );
 		exception.setCause3( cause3 );
+	}
+	
+	private String createAccessData( HttpServletRequest request ) {
+		AccessDataFactory factory = new AccessDataFactory( request );
+		LogAccessData data = new LogAccessData( factory );
+		return data.toString();
 	}
 }
