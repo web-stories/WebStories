@@ -1,6 +1,7 @@
 package org.webstories.dao.logging;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.TableGenerator;
 import org.webstories.dao.NumerableEntity;
 import org.webstories.dao.user.UserEntity;
 
+@Entity
 @Table( name = "ws_access"  )
 public class AccessEntity implements NumerableEntity {
 	@Id

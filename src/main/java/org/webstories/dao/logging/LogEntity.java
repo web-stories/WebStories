@@ -1,5 +1,6 @@
 package org.webstories.dao.logging;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ import javax.persistence.TableGenerator;
 
 import org.webstories.dao.NumerableEntity;
 
+@Entity
 @Table( name = "ws_log" )
 public class LogEntity implements NumerableEntity {
 	@Id
