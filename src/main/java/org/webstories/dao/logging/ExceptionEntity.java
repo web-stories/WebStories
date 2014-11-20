@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -35,7 +36,8 @@ public class ExceptionEntity implements NumerableEntity {
 	@Column( nullable = false )
 	private Long dt_inc;
 	
-	@OneToOne( mappedBy = "exception" )
+	@OneToOne
+	@JoinColumn( name = "id_log", nullable = false )
 	private LogEntity log;
 	
 	public Long getId() {
@@ -82,5 +84,8 @@ public class ExceptionEntity implements NumerableEntity {
 	
 	public LogEntity getLog() {
 		return log;
+	}
+	public void setLog( LogEntity log ) {
+		this.log = log;
 	}
 }

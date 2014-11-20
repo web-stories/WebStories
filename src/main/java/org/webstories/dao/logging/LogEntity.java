@@ -3,7 +3,6 @@ package org.webstories.dao.logging;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -22,10 +21,11 @@ public class LogEntity implements NumerableEntity {
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "log_sequence" )
 	private Long id_log;
 	
-	// FIXME this is wrong
-	@OneToOne
-	@JoinColumn( name = "id_log", nullable = false )
+	@OneToOne( mappedBy = "log" )
 	private ExceptionEntity exception;
+	
+	@OneToOne( mappedBy = "log" )
+	private AccessEntity access;
 	
 	public Long getId() {
 		return id_log;
@@ -37,7 +37,8 @@ public class LogEntity implements NumerableEntity {
 	public ExceptionEntity getException() {
 		return exception;
 	}
-	public void setException( ExceptionEntity exception ) {
-		this.exception = exception;
+	
+	public AccessEntity getAccess() {
+		return access;
 	}
 }

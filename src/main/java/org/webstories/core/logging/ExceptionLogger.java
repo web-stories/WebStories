@@ -28,15 +28,16 @@ public class ExceptionLogger implements LocalExceptionLogger {
 		exception.setDateInc( System.currentTimeMillis() );
 		exception.setException( e) ;
 		setCauses( exception, e );
+		
+		exception.setLog( log );
 		entityManager.persist( exception );
 		
 		AccessEntity access = new AccessEntity();
 		access.setIp( request.getRemoteAddr() );
 		access.setData( "" ); // TODO
+		
+		access.setLog( log );
 		entityManager.persist( access );
-		
-		log.setException( exception );
-		
 	}
 	
 	private void setCauses( ExceptionEntity exception, Throwable e ) {

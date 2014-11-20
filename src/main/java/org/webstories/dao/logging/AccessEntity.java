@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -27,6 +29,10 @@ public class AccessEntity implements NumerableEntity {
 	@Column( nullable = false )
 	private String ds_data;
 	
+	@OneToOne
+	@JoinColumn( name = "id_log", nullable = false )
+	private LogEntity log;
+	
 	public Long getId() {
 		return id_access;
 	}
@@ -46,5 +52,12 @@ public class AccessEntity implements NumerableEntity {
 	}
 	public void setData( String ds_data ) {
 		this.ds_data = ds_data;
+	}
+	
+	public LogEntity getLog() {
+		return log;
+	}
+	public void setLog( LogEntity log ) {
+		this.log = log;
 	}
 }
