@@ -5,11 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import org.webstories.dao.NumerableEntity;
+import org.webstories.dao.user.UserEntity;
 
 @Table( name = "ws_access"  )
 public class AccessEntity implements NumerableEntity {
@@ -32,6 +34,10 @@ public class AccessEntity implements NumerableEntity {
 	@OneToOne
 	@JoinColumn( name = "id_log", nullable = false )
 	private LogEntity log;
+	
+	@ManyToOne
+	@JoinColumn( name = "id_user" )
+	private UserEntity logged;
 	
 	public Long getId() {
 		return id_access;
@@ -59,5 +65,12 @@ public class AccessEntity implements NumerableEntity {
 	}
 	public void setLog( LogEntity log ) {
 		this.log = log;
+	}
+	
+	public UserEntity getLogged() {
+		return logged;
+	}
+	public void setLogged( UserEntity logged ) {
+		this.logged = logged;
 	}
 }

@@ -11,6 +11,7 @@ import org.webstories.core.utils.ExceptionUtils.EmptyCauseException;
 import org.webstories.dao.logging.AccessEntity;
 import org.webstories.dao.logging.ExceptionEntity;
 import org.webstories.dao.logging.LogEntity;
+import org.webstories.dao.user.UserEntity;
 
 @Stateless
 public class ExceptionLogger implements LocalExceptionLogger {
@@ -35,6 +36,11 @@ public class ExceptionLogger implements LocalExceptionLogger {
 		AccessEntity access = new AccessEntity();
 		access.setIp( request.getRemoteAddr() );
 		access.setData( createAccessData( request ) );
+		
+		if ( logged != null ) {
+			UserEntity loggedUser = entityManager.find( UserEntity.class, logged.getId() );
+			access.setLogged( loggedUser );
+		}
 		
 		access.setLog( log );
 		entityManager.persist( access );
