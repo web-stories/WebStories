@@ -26,7 +26,7 @@ public abstract class ErrorServlet extends BaseServlet {
 		Logged logged = getLogged( request );
 		Throwable e = ( Throwable )request.getAttribute( "javax.servlet.error.exception" );
 		
-		exceptionLogger.logAccessException( logged, e );
+		exceptionLogger.logAccessException( logged, request, e );
 		
 		super.service( request, response );
 	}

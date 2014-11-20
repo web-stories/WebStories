@@ -22,6 +22,7 @@ public class LogEntity implements NumerableEntity {
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "log_sequence" )
 	private Long id_log;
 	
+	// FIXME this is wrong
 	@OneToOne
 	@JoinColumn( name = "id_log", nullable = false )
 	private ExceptionEntity exception;

@@ -3,10 +3,12 @@ package org.webstories.core.logging;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.webstories.core.auth.Logged;
 import org.webstories.core.utils.ExceptionUtils;
 import org.webstories.core.utils.ExceptionUtils.EmptyCauseException;
+import org.webstories.dao.logging.AccessEntity;
 import org.webstories.dao.logging.ExceptionEntity;
 import org.webstories.dao.logging.LogEntity;
 
@@ -16,7 +18,7 @@ public class ExceptionLogger implements LocalExceptionLogger {
 	EntityManager entityManager;
 	
 	@Override
-	public void logAccessException( Logged logged, Throwable e ) {
+	public void logAccessException( Logged logged, HttpServletRequest request, Throwable e ) {
 		e.printStackTrace();
 		
 		LogEntity log = new LogEntity();
@@ -24,11 +26,17 @@ public class ExceptionLogger implements LocalExceptionLogger {
 		
 		ExceptionEntity exception = new ExceptionEntity();
 		exception.setDateInc( System.currentTimeMillis() );
-		exception.setException( e );
+		exception.setException( e) ;
 		setCauses( exception, e );
 		entityManager.persist( exception );
 		
+		AccessEntity access = new AccessEntity();
+		access.setIp( request.getRemoteAddr() );
+		access.setData( "" ); // TODO
+		entityManager.persist( access );
+		
 		log.setException( exception );
+		
 	}
 	
 	private void setCauses( ExceptionEntity exception, Throwable e ) {
