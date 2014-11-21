@@ -66,9 +66,17 @@ public class AppLogger implements LocalAppLogger {
 			cause3 = ExceptionUtils.getCause( cause2 );
 		} catch ( EmptyCauseException ex ) {}
 		
-		exception.setCause( cause1 );
-		exception.setCause2( cause2 );
-		exception.setCause3( cause3 );
+		if ( cause1 != null ) {
+			exception.setCause( cause1 );
+		}
+		
+		if ( cause2 != null ) {
+			exception.setCause2( cause2 );
+		}
+		
+		if ( cause3 != null ) {
+			exception.setCause3( cause3 );
+		}
 	}
 	
 	private String createAccessData( HttpServletRequest request ) {

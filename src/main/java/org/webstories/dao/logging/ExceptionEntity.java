@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.webstories.core.utils.ExceptionUtils;
 import org.webstories.dao.NumerableEntity;
 
@@ -57,21 +58,21 @@ public class ExceptionEntity implements NumerableEntity {
 	public String getCause() {
 		return this.ds_cause;
 	}
-	public void setCause( Throwable ds_cause ) {
+	public void setCause( @NonNull Throwable ds_cause ) {
 		this.ds_cause = ExceptionUtils.toString( ds_cause );
 	}
 	
 	public String getCause2() {
 		return this.ds_cause2;
 	}
-	public void setCause2( Throwable ds_cause2 ) {
+	public void setCause2( @NonNull Throwable ds_cause2 ) {
 		this.ds_cause2 = ExceptionUtils.toString( ds_cause2 );
 	}
 	
 	public String getCause3() {
 		return this.ds_cause3;
 	}
-	public void setCause3( Throwable ds_cause3 ) {
+	public void setCause3( @NonNull Throwable ds_cause3 ) {
 		this.ds_cause3 = ExceptionUtils.toString( ds_cause3 );
 	}
 	
