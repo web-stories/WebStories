@@ -21,9 +21,12 @@ public class HomeStory implements HomeStoryThumb {
 		product.id = meta.getId();
 		product.title = HTMLText.fromPlainText( meta.getTitle() );
 		product.description = HTMLText.fromPlainText( meta.getSummary() );
+		
+		// TODO Add UserInfo object here using thumbnail factory
 		product.author = author.getFirstName();
 		product.authorProfile = author.getProfileURL();
 		product.authorAvatar = author.getAvatarURL();
+		
 		product.removable = StoryUtils.isRemovable( story );
 		
 		return product;

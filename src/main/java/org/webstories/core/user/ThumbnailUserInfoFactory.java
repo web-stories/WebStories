@@ -21,6 +21,7 @@ public class ThumbnailUserInfoFactory extends UserInfoFactory {
 	
 	@Override
 	protected String createAvatarURL() {
+		// TODO avatar image URL should provide a square 60x60 spec
 		return identifiable.getAvatarURL();
 	}
 	
