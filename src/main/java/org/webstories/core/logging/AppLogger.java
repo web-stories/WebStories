@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.eclipse.jdt.annotation.Nullable;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.utils.ExceptionUtils;
 import org.webstories.core.utils.ExceptionUtils.EmptyCauseException;
@@ -20,9 +21,9 @@ public class AppLogger implements LocalAppLogger {
 	
 	@Override
 	public void logAccess(
-		Logged logged,
+		@Nullable Logged logged,
 		HttpServletRequest request,
-		Throwable e
+		@Nullable Throwable e
 	) {
 		LogEntity log = new LogEntity();
 		entityManager.persist( log );
