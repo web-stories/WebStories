@@ -43,6 +43,7 @@
     <div id="wrapper-default">
       <convention:include/>
     </div>
+    <script src="${pageContext.request.contextPath}/static/${build}/js/polyfills.js"></script>
     <script>var require = { baseUrl: "${pageContext.request.contextPath}/static/${build}" };</script>
     <script src="${pageContext.request.contextPath}/static/${build}/js/require.main.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/require-2.1.15.js"></script>

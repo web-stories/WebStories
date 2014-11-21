@@ -28,6 +28,18 @@ module.exports = function( grunt ) {
 					"src/main/webapp/css/custom/alerts.css"
 				]
 			}
+		},
+		js: {
+			files: {
+				"src/main/webapp/static/js/polyfills.js": [
+					// PhantomJS
+					"src/main/webapp/js/polyfills/bind.js",
+					// Browsers that lack a console
+					"src/main/webapp/js/polyfills/console.js",
+					// IE <= 11
+					"src/main/webapp/js/polyfills/promise.js"
+				]
+			}
 		}
 	};
 };
