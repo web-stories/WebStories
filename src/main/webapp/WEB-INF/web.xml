@@ -78,11 +78,6 @@
     <location>/error/sc-404</location>
   </error-page>
   
-  <!-- Catch all -->
-  <error-page>
-    <location>/error/sc-500</location>
-  </error-page>
-  
   <!-- Unhandled codes are delegated to the page of status code 500 -->
   <error-page>
     <error-code>400</error-code>
