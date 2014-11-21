@@ -13,7 +13,7 @@ public class ExceptionUtils {
 		return writer.toString();
 	}
 	/**
-	 * Attempts to get the cause of the given exception. If the cause cannot be retrieved, throws
+	 * Attempts to get the cause of the given throwable. If the cause cannot be retrieved, throws
 	 * an <code>EmptyCauseException</code>
 	 */
 	public static Throwable getCause( Throwable e ) throws EmptyCauseException {
