@@ -7,7 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.webstories.core.auth.PersonName;
+import org.webstories.core.user.PersonName;
 import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.NumerableEntity;
 import org.webstories.dao.user.UserEntity;

@@ -2,6 +2,7 @@ package org.webstories.core.auth;
 
 import java.io.Serializable;
 
+import org.webstories.core.user.PersonName;
 import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.user.UserEntity;
 

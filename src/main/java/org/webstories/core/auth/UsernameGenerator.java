@@ -3,6 +3,8 @@ package org.webstories.core.auth;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 
+import org.webstories.core.user.PersonName;
+
 public class UsernameGenerator {
 	private CurrentUsername current;
 	private PersonName name;
