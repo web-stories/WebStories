@@ -12,9 +12,9 @@
         test: true
       };
     </script>
+    <script src="../../../../main/webapp/static/js/polyfills.js"></script>
     <script src="../../../../main/webapp/static/js/require.main.js"></script>
     <script src="../../../../main/webapp/static/js/require-2.1.15.js"></script>
-    <script src="../../../../main/webapp/static/js/polyfills.js"></script>
   </head>
   <body>
     <div id="qunit"></div>
