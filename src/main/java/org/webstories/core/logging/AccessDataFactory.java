@@ -4,6 +4,7 @@ import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 public class AccessDataFactory {
@@ -22,7 +23,7 @@ public class AccessDataFactory {
 	}
 	
 	public String createOriginalURI() {
-		return ( String )request.getAttribute( "javax.servlet.error.request_uri" );
+		return ( String )request.getAttribute( RequestDispatcher.ERROR_REQUEST_URI );
 	}
 	
 	public String createProtocol() {
