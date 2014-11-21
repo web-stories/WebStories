@@ -12,4 +12,7 @@
   <changeSet author="Fagner Brack" id="story-publishing">
     <sqlFile path="scripts/story-publishing.sql" relativeToChangelogFile="true"/>
   </changeSet>
+  <changeSet author="Fagner Brack" id="exception-logging">
+    <sqlFile path="scripts/exception-logging.sql" relativeToChangelogFile="true"/>
+  </changeSet>
 </databaseChangeLog>
