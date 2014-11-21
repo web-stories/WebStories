@@ -14,32 +14,40 @@ import org.webstories.dao.logging.LogEntity;
 import org.webstories.dao.user.UserEntity;
 
 @Stateless
-public class ExceptionLogger implements LocalExceptionLogger {
+public class AppLogger implements LocalAppLogger {
 	@PersistenceContext
 	EntityManager entityManager;
 	
 	@Override
-	public void logAccessException( Logged logged, HttpServletRequest request, Throwable e ) {
-		e.printStackTrace();
-		
+	public void logAccess(
+		Logged logged,
+		HttpServletRequest request,
+		Throwable e
+	) {
 		LogEntity log = new LogEntity();
 		entityManager.persist( log );
 		
-		ExceptionEntity exception = new ExceptionEntity();
-		exception.setDateInc( System.currentTimeMillis() );
-		exception.setException( e) ;
-		setCauses( exception, e );
+		if ( e != null ) {
+			e.printStackTrace();
+			
+			ExceptionEntity exception = new ExceptionEntity();
+			exception.setDateInc( System.currentTimeMillis() );
+			exception.setException( e) ;
+			setCauses( exception, e );
+			
+			exception.setLog( log );
+			entityManager.persist( exception );
+		}
 		
-		exception.setLog( log );
-		entityManager.persist( exception );
-		
-		AccessEntity access = new AccessEntity();
-		access.setIp( request.getRemoteAddr() );
-		access.setData( createAccessData( request ) );
+		AccessEntity access;
+		String ip = request.getRemoteAddr();
+		String data = createAccessData( request );
 		
 		if ( logged != null ) {
 			UserEntity loggedUser = entityManager.find( UserEntity.class, logged.getId() );
-			access.setLogged( loggedUser );
+			access = AppLoggerUtils.createAccess( ip, data, loggedUser );
+		} else {
+			access = AppLoggerUtils.createAccess( ip, data );
 		}
 		
 		access.setLog( log );

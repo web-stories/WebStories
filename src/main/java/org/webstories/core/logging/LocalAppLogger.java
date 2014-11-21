@@ -6,6 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.webstories.core.auth.Logged;
 
 @Local
-public interface LocalExceptionLogger {
-	void logAccessException( Logged logged, HttpServletRequest request, Throwable e );
+public interface LocalAppLogger {
+	void logAccess( Logged logged, HttpServletRequest request, Throwable e );
 }
