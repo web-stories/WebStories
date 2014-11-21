@@ -1,6 +1,6 @@
 package org.webstories.core.user;
 
-import org.webstories.dao.integration.FacebookEntity;
+import org.webstories.dao.IdentifiableEntity;
 
 import com.restfb.types.User;
 
@@ -24,9 +24,9 @@ public class PersonName {
 		String lastName = facebookUser.getLastName();
 		return from( firstName, lastName );
 	}
-	public static PersonName from( FacebookEntity facebook ) {
-		String firstName = facebook.getFirstName();
-		String lastName = facebook.getLastName();
+	public static PersonName from( IdentifiableEntity identifiable ) {
+		String firstName = identifiable.getFirstName();
+		String lastName = identifiable.getLastName();
 		return from( firstName, lastName );
 	}
 	
