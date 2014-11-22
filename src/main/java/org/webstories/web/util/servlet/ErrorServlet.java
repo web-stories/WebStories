@@ -15,7 +15,7 @@ public abstract class ErrorServlet extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	
 	@EJB
-	LocalAppLogger exceptionLogger;
+	LocalAppLogger logger;
 	
 	@Override
 	protected abstract void doGet( HttpServletRequest request, HttpServletResponse response );
@@ -25,7 +25,7 @@ public abstract class ErrorServlet extends BaseServlet {
 		Logged logged = getLogged( request );
 		Throwable e = ( Throwable )request.getAttribute( RequestDispatcher.ERROR_EXCEPTION );
 		
-		exceptionLogger.logAccess( logged, request, e );
+		logger.logAccess( logged, request, e );
 		
 		super.service( request, response );
 	}
