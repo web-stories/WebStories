@@ -1,5 +1,7 @@
 package org.webstories.core.user;
 
+import java.net.MalformedURLException;
+
 import org.webstories.core.user.avatar.AvatarURL;
 import org.webstories.core.user.avatar.AvatarURLFactory;
 import org.webstories.dao.IdentifiableEntity;
@@ -22,10 +24,12 @@ public class ThumbnailUserInfoFactory extends UserInfoFactory {
 	}
 	
 	@Override
-	protected String createAvatarURL() {
-		// TODO pass the AvatarURL instance here with the proper URL to request 
-		AvatarURL url = AvatarURLFactory.createFrom( identifiable );
-		return identifiable.getAvatarURL();
+	protected AvatarURL createAvatarURL() {
+		try {
+			return AvatarURLFactory.createFrom( identifiable );
+		} catch ( MalformedURLException e ) {
+			throw new RuntimeException( "Failed to create avatar url", e );
+		}
 	}
 	
 	@Override

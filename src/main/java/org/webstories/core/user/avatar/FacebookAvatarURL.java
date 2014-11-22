@@ -1,11 +1,11 @@
 package org.webstories.core.user.avatar;
 
+import java.net.MalformedURLException;
+
 
 public class FacebookAvatarURL extends AvatarURL {
-	private String url;
-	
-	public FacebookAvatarURL( String url ) {
-		this.url = url;
+	public FacebookAvatarURL( String url ) throws MalformedURLException {
+		super( url );
 	}
 	
 	@Override

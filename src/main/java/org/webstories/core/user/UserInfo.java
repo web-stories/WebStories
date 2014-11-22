@@ -1,10 +1,12 @@
 package org.webstories.core.user;
 
+import org.webstories.core.user.avatar.AvatarURL;
+
 public class UserInfo {
 	private PersonName name;
 	private String email;
 	private String profileURL;
-	private String avatarURL;
+	private AvatarURL avatarURL;
 	public UserInfo( UserInfoFactory factory ) {
 		this.name = factory.createName();
 		this.email = factory.createEmail();
@@ -20,7 +22,7 @@ public class UserInfo {
 	public String getProfileURL() {
 		return profileURL;
 	}
-	public String getAvatarURL() {
+	public AvatarURL getAvatarURL() {
 		return avatarURL;
 	}
 	
