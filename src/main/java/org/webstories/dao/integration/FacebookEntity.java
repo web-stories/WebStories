@@ -7,7 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.webstories.core.auth.PersonName;
+import org.webstories.core.user.AccountProvider;
+import org.webstories.core.user.PersonName;
 import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.NumerableEntity;
 import org.webstories.dao.user.UserEntity;
@@ -54,7 +55,7 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 		facebook.nm_first = name.getFirst();
 		facebook.nm_last = name.getLast();
 		facebook.id_user = user.getId();
-		facebook.url_avatar = "https://graph.facebook.com/" + uid + "/picture?type=large";
+		facebook.url_avatar = "https://graph.facebook.com/" + uid + "/picture";
 		facebook.url_profile = profileURL;
 		facebook.user = user;
 		return facebook;
@@ -86,6 +87,10 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 	@Override
 	public String getAvatarURL() {
 		return url_avatar;
+	}
+	@Override
+	public AccountProvider getAccountProvider() {
+		return AccountProvider.FACEBOOK;
 	}
 	public UserEntity getUser() {
 		return user;

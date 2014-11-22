@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.webstories.core.user.PersonName;
 import org.webstories.core.utils.SHA256;
 import org.webstories.core.utils.SHA256Exception;
 import org.webstories.dao.user.UserEntity;

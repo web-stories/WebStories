@@ -2,6 +2,8 @@ package org.webstories.core.auth;
 
 import javax.ejb.Local;
 
+import org.webstories.core.user.PersonName;
+
 @Local
 public interface LocalDefaultAuthentication {
 	/**

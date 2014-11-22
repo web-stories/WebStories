@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.webstories.core.integration.OAuth2Data;
 import org.webstories.core.integration.OAuth2Token;
+import org.webstories.core.user.PersonName;
 import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.integration.FacebookQueries;
 import org.webstories.dao.invitation.InviteEntity;

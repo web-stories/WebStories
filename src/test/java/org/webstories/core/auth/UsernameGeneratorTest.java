@@ -2,6 +2,7 @@ package org.webstories.core.auth;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.webstories.core.user.PersonName;
 
 public class UsernameGeneratorTest {
 	@Test
@@ -40,10 +41,14 @@ public class UsernameGeneratorTest {
 	}
 	
 	private UsernameGenerator generator( String firstName, String lastName ) {
-		return new UsernameGenerator( PersonName.from( firstName, lastName ) );
+		return new UsernameGenerator(
+			PersonName.from( firstName, lastName )
+		);
 	}
 	
 	private UsernameGenerator generator( String firstName ) {
-		return new UsernameGenerator( PersonName.from( firstName ) );
+		return new UsernameGenerator(
+			PersonName.from( firstName )
+		);
 	}
 }
