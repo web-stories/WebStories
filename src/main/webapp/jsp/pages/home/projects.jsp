@@ -34,8 +34,8 @@
           </c:if>
           <div class="caption">
             <div class="media">
-              <a class="pull-left" href="${story.authorProfile}">
-                <img class="media-object" height="60" width="60" src="${story.authorAvatar}" alt="(Avatar)">
+              <a class="pull-left" href="${story.author.profileURL}">
+                <img class="media-object" height="60" width="60" src="${story.author.avatarURL}" alt="(Avatar)">
               </a>
               <div class="media-body" title="${story.description}">
                 <a class="story-thumb-title" href="${pageContext.request.contextPath}/home/projects/?id=${story.id}">
@@ -45,7 +45,7 @@
                   ${story.description}
                 </p>
                 <div class="story-thumb-author">
-                  por <cite>${story.author}</cite>
+                  por <cite>${story.author.name.first}</cite>
                 </div>
               </div>
             </div>

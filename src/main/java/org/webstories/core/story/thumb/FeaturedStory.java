@@ -10,9 +10,7 @@ public class FeaturedStory implements StoryThumb {
 	private Long id;
 	private HTMLText title;
 	private HTMLText description;
-	private String author;
-	private String authorAvatar;
-	private String authorProfile;
+	private UserInfo author;
 	
 	public static FeaturedStory from( IdentifiableEntity author, MetaEntity meta ) {
 		FeaturedStory product = new FeaturedStory();
@@ -23,10 +21,7 @@ public class FeaturedStory implements StoryThumb {
 		
 		ThumbnailUserInfoFactory factory = new ThumbnailUserInfoFactory( author );
 		UserInfo authorInfo = new UserInfo( factory );
-		
-		product.author = authorInfo.toString();
-		product.authorProfile = authorInfo.getProfileURL();
-		product.authorAvatar = authorInfo.getAvatarURL();
+		product.author = authorInfo;
 		
 		return product;
 	}
@@ -44,15 +39,7 @@ public class FeaturedStory implements StoryThumb {
 		return description;
 	}
 	@Override
-	public String getAuthor() {
+	public UserInfo getAuthor() {
 		return author;
-	}
-	@Override
-	public String getAuthorAvatar() {
-		return authorAvatar;
-	}
-	@Override
-	public String getAuthorProfile() {
-		return authorProfile;
 	}
 }

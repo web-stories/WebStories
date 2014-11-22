@@ -8,15 +8,15 @@
       A sua plataforma para publicação de histórias na Web
     </p>
     <c:if test="${canPublish}">
-    <p>
-      <facebook:login className="btn btn-primary btn-lg" invite="${param.invite}" redirect="${pageContext.request.contextPath}/home/projects">
-        Publique uma história
-      </facebook:login>
-    </p>
-    <p class="index-banner-terms">
-      Ao acessar o site você concorda com os
-      <a href="${pageContext.request.contextPath}/terms">Termos e Condições</a>
-    </p>
+      <p>
+        <facebook:login className="btn btn-primary btn-lg" invite="${param.invite}" redirect="${pageContext.request.contextPath}/home/projects">
+          Publique uma história
+        </facebook:login>
+      </p>
+      <p class="index-banner-terms">
+        Ao acessar o site você concorda com os
+        <a href="${pageContext.request.contextPath}/terms">Termos e Condições</a>
+      </p>
     </c:if>
     <c:if test="${!canPublish}">
       <p class="index-banner-closed">
@@ -35,8 +35,8 @@
           <div class="thumbnail story-thumb">
             <div class="caption">
               <div class="media">
-                <a class="pull-left" href="${story.authorProfile}">
-                  <img class="media-object" height="60" width="60" src="${story.authorAvatar}" alt="(Avatar)">
+                <a class="pull-left" href="${story.author.profileURL}">
+                  <img class="media-object" height="60" width="60" src="${story.author.avatarURL}" alt="(Avatar)">
                 </a>
                 <div class="media-body" title="${story.description}">
                   <a class="story-thumb-title" href="${pageContext.request.contextPath}/view/stories/?id=${story.id}#section-0-0">
@@ -46,7 +46,7 @@
                     ${story.description}
                   </p>
                   <div class="story-thumb-author">
-                    por <cite>${story.author}</cite>
+                    por <cite>${story.author.name.first}</cite>
                   </div>
                 </div>
               </div>

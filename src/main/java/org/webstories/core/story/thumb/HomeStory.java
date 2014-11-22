@@ -12,10 +12,9 @@ public class HomeStory implements HomeStoryThumb {
 	private Long id;
 	private HTMLText title;
 	private HTMLText description;
-	private String author;
-	private String authorAvatar;
-	private String authorProfile;
+	private UserInfo author;
 	private boolean removable;
+	
 	public static HomeStory from( IdentifiableEntity author, StoryEntity story ) {
 		MetaEntity meta = story.getMeta();
 		HomeStory product = new HomeStory();
@@ -26,15 +25,13 @@ public class HomeStory implements HomeStoryThumb {
 		
 		ThumbnailUserInfoFactory factory = new ThumbnailUserInfoFactory( author );
 		UserInfo authorInfo = new UserInfo( factory );
-		
-		product.author = authorInfo.toString();
-		product.authorProfile = authorInfo.getProfileURL();
-		product.authorAvatar = authorInfo.getAvatarURL();
+		product.author = authorInfo;
 		
 		product.removable = StoryUtils.isRemovable( story );
 		
 		return product;
 	}
+	
 	@Override
 	public Long getId() {
 		return id;
@@ -48,16 +45,8 @@ public class HomeStory implements HomeStoryThumb {
 		return description;
 	}
 	@Override
-	public String getAuthor() {
+	public UserInfo getAuthor() {
 		return author;
-	}
-	@Override
-	public String getAuthorAvatar() {
-		return authorAvatar;
-	}
-	@Override
-	public String getAuthorProfile() {
-		return authorProfile;
 	}
 	@Override
 	public boolean isRemovable() {
