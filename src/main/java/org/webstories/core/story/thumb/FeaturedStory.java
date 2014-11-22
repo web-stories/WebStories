@@ -1,6 +1,8 @@
 package org.webstories.core.story.thumb;
 
 import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.user.ThumbnailUserInfoFactory;
+import org.webstories.core.user.UserInfo;
 import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.story.MetaEntity;
 
@@ -11,6 +13,7 @@ public class FeaturedStory implements StoryThumb {
 	private String author;
 	private String authorAvatar;
 	private String authorProfile;
+	
 	public static FeaturedStory from( IdentifiableEntity author, MetaEntity meta ) {
 		FeaturedStory product = new FeaturedStory();
 		
@@ -18,13 +21,16 @@ public class FeaturedStory implements StoryThumb {
 		product.title = HTMLText.fromPlainText( meta.getTitle() ); 
 		product.description = HTMLText.fromPlainText( meta.getSummary() );
 		
-		// TODO Add UserInfo object here using thumbnail factory
-		product.author = author.getFirstName();
-		product.authorProfile = author.getProfileURL();
-		product.authorAvatar = author.getAvatarURL();
+		ThumbnailUserInfoFactory factory = new ThumbnailUserInfoFactory( author );
+		UserInfo authorInfo = new UserInfo( factory );
+		
+		product.author = authorInfo.toString();
+		product.authorProfile = authorInfo.getProfileURL();
+		product.authorAvatar = authorInfo.getAvatarURL();
 		
 		return product;
 	}
+	
 	@Override
 	public Long getId() {
 		return id;

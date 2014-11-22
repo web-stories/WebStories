@@ -23,4 +23,9 @@ public class UserInfo {
 	public String getAvatarURL() {
 		return avatarURL;
 	}
+	
+	@Override
+	public String toString() {
+		return name.toString();
+	}
 }
