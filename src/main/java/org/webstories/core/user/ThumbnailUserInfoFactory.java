@@ -1,5 +1,7 @@
 package org.webstories.core.user;
 
+import org.webstories.core.user.avatar.AvatarURL;
+import org.webstories.core.user.avatar.AvatarURLFactory;
 import org.webstories.dao.IdentifiableEntity;
 
 public class ThumbnailUserInfoFactory extends UserInfoFactory {
@@ -21,7 +23,8 @@ public class ThumbnailUserInfoFactory extends UserInfoFactory {
 	
 	@Override
 	protected String createAvatarURL() {
-		// TODO avatar image URL should provide a square 60x60 spec
+		// TODO pass the AvatarURL instance here with the proper URL to request 
+		AvatarURL url = AvatarURLFactory.createFrom( identifiable );
 		return identifiable.getAvatarURL();
 	}
 	

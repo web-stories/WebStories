@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.webstories.core.user.AccountProvider;
 import org.webstories.core.user.PersonName;
 import org.webstories.dao.IdentifiableEntity;
 import org.webstories.dao.NumerableEntity;
@@ -86,6 +87,10 @@ public class FacebookEntity implements NumerableEntity, IdentifiableEntity {
 	@Override
 	public String getAvatarURL() {
 		return url_avatar;
+	}
+	@Override
+	public AccountProvider getAccountProvider() {
+		return AccountProvider.FACEBOOK;
 	}
 	public UserEntity getUser() {
 		return user;
