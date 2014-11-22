@@ -26,7 +26,10 @@ public class ThumbnailUserInfoFactory extends UserInfoFactory {
 	@Override
 	protected AvatarURL createAvatarURL() {
 		try {
-			return AvatarURLFactory.createFrom( identifiable );
+			AvatarURL url = AvatarURLFactory.createFrom( identifiable );
+			url.setWidth( 60 );
+			url.setHeight( 60 );
+			return url;
 		} catch ( MalformedURLException e ) {
 			throw new RuntimeException( "Failed to create avatar url", e );
 		}
