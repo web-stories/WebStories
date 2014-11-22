@@ -26,5 +26,8 @@ body {
 .error-message-description {
   display: block;
   margin-top: 5px;
+}
+.error-message-description,
+.error-message-text {
   color: #888;
 }
