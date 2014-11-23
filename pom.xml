@@ -9,7 +9,6 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <querydsl.version>3.2.4</querydsl.version>
     <httpcomponents.version>4.3.4</httpcomponents.version>
-    <main.webapp>${basedir}/src/main/webapp</main.webapp>
     <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
   </properties>
   <repositories>
@@ -173,7 +172,7 @@
   </dependencies>
   <profiles>
     <profile>
-      <id>default</id>
+      <id>prod</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
@@ -243,10 +242,18 @@
             </executions>
           </plugin>
         </plugins>
+        <resources>
+          <resource>
+            <directory>src/main/resources/all</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources/prod</directory>
+          </resource>
+        </resources>
       </build>
     </profile>
     <profile>
-      <id>eclipse</id>
+      <id>dev</id>
       <build>
         <pluginManagement>
           <plugins>
@@ -311,6 +318,14 @@
             </executions>
           </plugin>
         </plugins>
+        <resources>
+          <resource>
+            <directory>src/main/resources/all</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources/dev</directory>
+          </resource>
+        </resources>
       </build>
     </profile>
   </profiles>

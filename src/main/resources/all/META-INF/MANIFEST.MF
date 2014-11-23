@@ -1,2 +1,2 @@
 Note: MANIFEST.MF should ALWAYS end with a new line
-Build-Revision: 3d7cd5480b
+Build-Revision: 0000000000
