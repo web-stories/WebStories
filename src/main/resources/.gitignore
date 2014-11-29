@@ -1,1 +1,2 @@
-application.properties
+prod/application.properties
+dev/application.properties

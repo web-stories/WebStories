@@ -1,0 +1,10 @@
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="PersistenceUnit">
+    <jta-data-source>java:jboss/datasources/WebStoriesDS</jta-data-source>
+    <properties>
+      <property name="hibernate.show_sql" value="false" />
+      <property name="hibernate.format_sql" value="false" />
+      <property name="hibernate.generate_statistics" value="false" />
+    </properties>
+  </persistence-unit>
+</persistence>
