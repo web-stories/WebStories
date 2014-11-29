@@ -18,8 +18,10 @@ public class ApplicationPropertiesReader implements LocalApplicationPropertiesRe
 			Properties properties = new Properties();
 			properties.load( resource );
 			return ApplicationProperties.from( properties );
-		} catch ( IOException | ResourceNotFoundException e ) {
+		} catch ( IOException e ) {
 			throw new PropertiesException( e );
+		} catch ( ResourceNotFoundException e ) {
+			throw new PropertiesException( "application.properties", e );
 		}
 	}
 }
