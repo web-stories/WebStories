@@ -8,7 +8,7 @@ module.exports = function( grunt ) {
 		files: {
 			expand: true,
 			cwd: "src/main/webapp/static/js/",
-			src: ["*.js"],
+			src: [ "**/*.js" ],
 			dest: "src/main/webapp/static/js/"
 		}
 	};
