@@ -1,9 +1,9 @@
 define(function() {
 	"use strict";
-	function ThumbsService() {
+	function ChaptersService() {
 		return {
 			chapters: []
 		};
 	}
-	return [ ThumbsService ];
+	return [ ChaptersService ];
 });

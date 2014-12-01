@@ -1,13 +1,13 @@
 define(function( webstories ) {
 	"use strict";
-	function ThumbsController( $scope, StoriesResource, ThumbsService ) {
+	function ThumbsController( $scope, StoriesResource, ChaptersService ) {
 		$scope.init = function( storyId ) {
 			var chapters = StoriesResource.chapters.query({
 				storyId: storyId
 			});
-			$scope.thumbs = ThumbsService;
+			$scope.thumbs = ChaptersService;
 			$scope.thumbs.chapters = chapters;
 		};
 	}
-	return [ "$scope", "StoriesResource", "ThumbsService", ThumbsController ];
+	return [ "$scope", "StoriesResource", "ChaptersService", ThumbsController ];
 });
