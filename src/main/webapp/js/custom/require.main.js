@@ -64,6 +64,11 @@ require = (function( require ) {
 					"//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min",
 					"../js/angular-1.3.4"
 				]
+			},
+			"shim": {
+				"angular": {
+					exports: "angular"
+				}
 			}
 		};
 		
