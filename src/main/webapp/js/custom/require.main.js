@@ -46,6 +46,7 @@ require = (function( require ) {
 					"jquery.ui.widget": "../js/jquery.ui.widget-1.11.1",
 					"jquery.validate": "../js/jquery.validate-1.13.0",
 					"fastclick": "../js/fastclick-1.0.3",
+					"angular": "../js/angular-1.3.4",
 					"angular.resource": "../js/angular.resource-1.3.4",
 					
 					// Make jQuery method private
@@ -59,16 +60,7 @@ require = (function( require ) {
 				"jquery": [
 					"//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min",
 					"../js/jquery-2.1.1"
-				],
-				"angular": [
-					"//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min",
-					"../js/angular-1.3.4"
 				]
-			},
-			"shim": {
-				"angular": {
-					exports: "angular"
-				}
 			}
 		};
 		
