@@ -2,9 +2,9 @@ package org.webstories.web.util.servlet;
 
 import javax.servlet.ServletException;
 
-public class HttpValidationException extends ServletException {
+public class HttpUnprocessableEntityException extends ServletException {
 	private static final long serialVersionUID = 1;
-	public HttpValidationException( Throwable cause ) {
+	public HttpUnprocessableEntityException( Throwable cause ) {
 		super( cause );
 	}
 }

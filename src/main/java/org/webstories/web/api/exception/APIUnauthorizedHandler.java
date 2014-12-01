@@ -1,19 +1,12 @@
 package org.webstories.web.api.exception;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
 
-import org.webstories.web.util.servlet.HttpInternalServerErrorException;
+import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
-@Provider
-public class APIUnauthorizedHandler implements ExceptionMapper<HttpInternalServerErrorException> {
+public class APIUnauthorizedHandler extends APIExceptionHandler<HttpUnauthorizedException> {
 	@Override
-	public Response toResponse( HttpInternalServerErrorException exception ) {
-		return Response
-			.status( Status.UNAUTHORIZED )
-			.entity( ErrorObjectFactory.create( exception ) )
-			.build();
+	protected int getStatusCode() {
+		return Status.UNAUTHORIZED.getStatusCode();
 	}
 }
