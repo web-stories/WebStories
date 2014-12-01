@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.story.StoryUtils;
 import org.webstories.core.story.editor.EditorStory;
+import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetails;
 import org.webstories.core.story.thumb.FeaturedStory;
 import org.webstories.core.story.thumb.HomeStory;
@@ -63,6 +64,11 @@ public class StoryReader implements LocalStoryReader {
 	public EditorStory storyEditor( long idStory ) {
 		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		return EditorStory.from( story );
+	}
+	
+	@Override
+	public List<EditorStoryChapter> storyEditorChapters( long idStory ) {
+		return storyEditor( idStory ).getChapters();
 	}
 	
 	@Override

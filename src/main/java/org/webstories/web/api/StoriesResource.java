@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -18,6 +19,7 @@ import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.Story;
+import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
@@ -55,6 +57,12 @@ public class StoriesResource {
 			throw new HttpForbiddenException( e );
 		}
 		return storyReader.storyEditor( idStory );
+	}
+	
+	@GET
+	@Path( "{storyId}/chapters" )
+	public List<EditorStoryChapter> listChapters( @PathParam( "storyId" ) Long storyId ) {
+		return storyReader.storyEditorChapters( storyId );
 	}
 	
 	@POST

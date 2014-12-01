@@ -45,11 +45,36 @@
         </ws:editor-chapters>
       </div>
       <div class="col-sm-4 col-lg-3 hidden-xs">
-        <ws:editor-chapter-thumbs id="chapter-menu">
-          <c:forEach items="${story.chapters}" var="chapter">
-            <ws:editor-chapter-thumb chapter="${chapter.position}" publishable="${chapter.publishable}" chapterId="${chapter.id}"/>
-          </c:forEach>
-        </ws:editor-chapter-thumbs>
+        <div class="editor-chapter-thumbs" id="chapter-menu"
+             ng-controller="ThumbsController"
+             ng-init="init( ${story.id} )"
+             ng-cloak>
+          <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items"
+              ng-repeat="chapter in thumbs.chapters">
+            <li class="editor-chapter-thumbs-item">
+              <a class="editor-chapter-thumb" href="#chapter-{{ chapter.position }}">
+                Capítulo {{ chapter.position }}
+              </a>
+              <form action="${pageContext.request.contextPath}/home/projects/publish" method="post"
+                    ng-show="chapter.publishable">
+                <input type="hidden" name="chapterId" value="{{ chapter.id }}">
+                <button class="btn btn-default btn-sm editor-chapter-thumb-publish" type="button"
+                        ng-disabled="chapter.publishable === false">
+                  <span ng-show="!chapter.publishable">
+                    <span class="icon-checkmark"></span>
+                      Publicado
+                  </span>
+                  <span ng-show="chapter.publishable">
+                    Publicar
+                  </span>
+                </button>
+              </form>
+            </li>
+          </ul>
+          <button class="btn btn-default btn-block editor-chapter-thumb-add">
+            Novo capítulo
+          </button>
+        </div>
       </div>
     </div>
   </ws:editor>

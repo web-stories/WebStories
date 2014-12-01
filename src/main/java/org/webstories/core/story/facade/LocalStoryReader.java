@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import org.webstories.core.auth.Logged;
 import org.webstories.core.story.editor.EditorStory;
+import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetails;
 import org.webstories.core.story.thumb.FeaturedStory;
 import org.webstories.core.story.thumb.HomeStory;
@@ -19,6 +20,7 @@ public interface LocalStoryReader {
 	List<FeaturedStory> featuredStories();
 	EditorStoryDetails storyDetails( long idStory );
 	EditorStory storyEditor( long idStory );
+	List<EditorStoryChapter> storyEditorChapters( long idStory );
 	StoryViewer storyViewer( long idStory );
 	StoryViewerDetails storyViewerDetails( long idStory );
 	List<ValidationObject> validateChapter( long chapterId );
