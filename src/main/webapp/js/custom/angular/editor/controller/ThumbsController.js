@@ -11,6 +11,16 @@ define(function( webstories ) {
 						$scope.refresh( storyId );
 					});
 			};
+			$scope.publish = function( chapterId ) {
+				StoriesResource.publications.publish({
+					storyId: storyId,
+					chapterId: chapterId
+				})
+				.$promise
+					.then(function() {
+						$scope.refresh( storyId );
+					});
+			};
 			$scope.refresh = function( storyId ) {
 				$scope.chapters = StoriesResource.chapters.query({
 					storyId: storyId

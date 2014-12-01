@@ -73,6 +73,22 @@ public class StoriesResource {
 		}
 	}
 	
+	@PUT
+	@Path( "{storyId}/publications/{chapterId}" )
+	public void publishChapter( @PathParam( "chapterId" ) Long chapterId )
+	throws HttpForbiddenException, HttpInternalServerErrorException, HttpUnauthorizedException {
+		Logged logged = AuthSession.from( request ).getLogged();
+		try {
+			storyEditor.publishChapter( chapterId, logged );
+		} catch ( UserNotLoggedException e ) {
+			throw new HttpUnauthorizedException( e );
+		} catch ( ValidationException e ) {
+			throw new HttpInternalServerErrorException( e );
+		} catch ( AccessDeniedException e ) {
+			throw new HttpForbiddenException( e );
+		}
+	}
+	
 	@GET
 	@Path( "{storyId}/chapters" )
 	public List<EditorStoryChapter> queryChapters( @PathParam( "storyId" ) Long storyId ) {

@@ -55,11 +55,11 @@
               <a class="editor-chapter-thumb" href="#chapter-{{ chapter.position }}">
                 Capítulo {{ chapter.position }}
               </a>
-              <form action="${pageContext.request.contextPath}/home/projects/publish" method="post"
-                    ng-show="chapter.publishable">
+              <div ng-show="chapter.publishable !== null">
                 <input type="hidden" name="chapterId" value="{{ chapter.id }}">
                 <button class="btn btn-default btn-sm editor-chapter-thumb-publish" type="button"
-                        ng-disabled="chapter.publishable === false">
+                        ng-disabled="!chapter.publishable"
+                        ng-click="publish( chapter.id )">
                   <span ng-show="!chapter.publishable">
                     <span class="icon-checkmark"></span>
                       Publicado
@@ -68,7 +68,7 @@
                     Publicar
                   </span>
                 </button>
-              </form>
+              </div>
             </li>
           </ul>
           <button class="btn btn-default btn-block editor-chapter-thumb-add"

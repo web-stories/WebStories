@@ -1,23 +1,21 @@
 define( [ "webstories"], function( webstories ) {
 	"use strict";
 	function StoriesResource( $resource ) {
-		var contextPath = webstories.contextPath;
+		var storiesURL = webstories.contextPath + "/api/stories/:storyId";
 		return {
-			stories: $resource( contextPath + "/api/stories/:storyId", {
+			stories: $resource( storiesURL, {
 				storyId: "@storyId"
-			}, {
-				save: {
-					method: "PUT",
-					url: "save"
-				}
 			}),
-			chapters: $resource( contextPath + "/api/stories/:storyId/chapters/:chapterId", {
+			chapters: $resource( storiesURL + "/chapters/:chapterId", {
+				storyId: "@storyId",
+				chapterId: "@chapterId"
+			}),
+			publications: $resource( storiesURL + "/publications/:chapterId", {
 				storyId: "@storyId",
 				chapterId: "@chapterId"
 			}, {
-				validate: {
-					method: "POST",
-					url: "validate"
+				publish: {
+					method: "PUT"
 				}
 			})
 		};
