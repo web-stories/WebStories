@@ -28,6 +28,7 @@ import org.webstories.core.validation.ValidationObject;
 import org.webstories.web.util.servlet.HttpForbiddenException;
 import org.webstories.web.util.servlet.HttpInternalServerErrorException;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
+import org.webstories.web.util.servlet.HttpValidationException;
 
 @Path( "/stories" )
 @Consumes( MediaType.APPLICATION_JSON )
@@ -76,14 +77,14 @@ public class StoriesResource {
 	@PUT
 	@Path( "{storyId}/publications/{chapterId}" )
 	public void publishChapter( @PathParam( "chapterId" ) Long chapterId )
-	throws HttpForbiddenException, HttpInternalServerErrorException, HttpUnauthorizedException {
+	throws HttpForbiddenException, HttpUnauthorizedException, HttpValidationException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
 			storyEditor.publishChapter( chapterId, logged );
 		} catch ( UserNotLoggedException e ) {
 			throw new HttpUnauthorizedException( e );
 		} catch ( ValidationException e ) {
-			throw new HttpInternalServerErrorException( e );
+			throw new HttpValidationException( e );
 		} catch ( AccessDeniedException e ) {
 			throw new HttpForbiddenException( e );
 		}

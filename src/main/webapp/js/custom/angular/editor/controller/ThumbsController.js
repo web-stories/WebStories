@@ -17,9 +17,14 @@ define(function( webstories ) {
 					chapterId: chapterId
 				})
 				.$promise
-					.then(function() {
-						$scope.refresh( storyId );
-					});
+					.then(
+						function resolve() {
+							$scope.refresh( storyId );
+						},
+						function reject( reason ) {
+							alert( reason.data.message );
+						}
+					);
 			};
 			$scope.refresh = function( storyId ) {
 				$scope.chapters = StoriesResource.chapters.query({
