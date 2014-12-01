@@ -17,14 +17,10 @@ public class ChapterListUpdater extends DBListUpdater<EditorStoryChapterInput, C
 	}
 	@Override
 	protected ChapterEntity create( EditorStoryChapterInput modified ) {
-		ChapterEntity chapter = new ChapterEntity();
-		
-		chapter.setStory( story );
-		chapter.setTitle( modified.getTitle().toString() );
-		chapter.setPosition( modified.getPosition() );
-		chapter.setState( modified.isPublished() ? StoryState.PUBLISHED : StoryState.DRAFT );
-		
-		return chapter;
+		String title = modified.getTitle().toString();
+		int position = modified.getPosition();
+		StoryState state = modified.isPublished() ? StoryState.PUBLISHED : StoryState.DRAFT;
+		return ChapterEntity.createContentChapter( story, title, position, state );
 	}
 	@Override
 	protected void update( EditorStoryChapterInput modified, ChapterEntity chapter ) {

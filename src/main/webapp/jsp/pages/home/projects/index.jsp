@@ -50,7 +50,7 @@
              ng-init="init( ${story.id} )"
              ng-cloak>
           <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items"
-              ng-repeat="chapter in thumbs.chapters">
+              ng-repeat="chapter in chapters">
             <li class="editor-chapter-thumbs-item">
               <a class="editor-chapter-thumb" href="#chapter-{{ chapter.position }}">
                 Capítulo {{ chapter.position }}
@@ -71,7 +71,8 @@
               </form>
             </li>
           </ul>
-          <button class="btn btn-default btn-block editor-chapter-thumb-add">
+          <button class="btn btn-default btn-block editor-chapter-thumb-add"
+                  ng-click="addChapter()">
             Novo capítulo
           </button>
         </div>

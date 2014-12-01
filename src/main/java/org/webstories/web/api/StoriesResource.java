@@ -44,7 +44,7 @@ public class StoriesResource {
 	
 	@PUT
 	@Path( "{id}/save" )
-	public Story save( @PathParam( "id" ) Long idStory, EditorStoryInput story )
+	public Story saveStory( @PathParam( "id" ) Long idStory, EditorStoryInput story )
 	throws HttpInternalServerErrorException, HttpUnauthorizedException, HttpForbiddenException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
@@ -59,15 +59,29 @@ public class StoriesResource {
 		return storyReader.storyEditor( idStory );
 	}
 	
+	@POST
+	@Path( "{storyId}/chapters" )
+	public void saveChapter( @PathParam( "storyId" ) Long storyId )
+	throws HttpUnauthorizedException, HttpForbiddenException {
+		Logged logged = AuthSession.from( request ).getLogged();
+		try {
+			storyEditor.addChapter( storyId, logged );
+		} catch ( UserNotLoggedException e ) {
+			throw new HttpUnauthorizedException( e );
+		} catch ( AccessDeniedException e ) {
+			throw new HttpForbiddenException( e );
+		}
+	}
+	
 	@GET
 	@Path( "{storyId}/chapters" )
-	public List<EditorStoryChapter> listChapters( @PathParam( "storyId" ) Long storyId ) {
+	public List<EditorStoryChapter> queryChapters( @PathParam( "storyId" ) Long storyId ) {
 		return storyReader.storyEditorChapters( storyId );
 	}
 	
 	@POST
 	@Path( "{storyId}/chapters/{chapterId}/validate" )
-	public List<ValidationObject> validateChapterData( @PathParam( "chapterId" ) Long chapterId ) {
+	public List<ValidationObject> validateChapter( @PathParam( "chapterId" ) Long chapterId ) {
 		return storyReader.validateChapter( chapterId );
 	}
 }

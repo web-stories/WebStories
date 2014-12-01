@@ -21,6 +21,7 @@ import org.webstories.core.validation.ValidationException;
 import org.webstories.core.validation.ValidationObject;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.MetaEntity;
+import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
 import org.webstories.dao.story.StoryState;
@@ -121,6 +122,31 @@ public class StoryEditor implements LocalStoryEditor {
 				@Override
 				public void run( StoryEntity object ) {
 					chapter.setState( StoryState.PUBLISHED );
+				}
+			}
+		);
+	}
+	
+	@Override
+	public void addChapter( long idStory, Logged logged )
+	throws AccessDeniedException, UserNotLoggedException {
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
+		
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
+		
+		new StoryOwnerSecurity( logged ).updatePrivileged(
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
+			new PrivilegedUpdate<StoryEntity>() {
+				@Override
+				public void run( StoryEntity story ) {
+					int position = story.getChapters().size() + 1;
+					ChapterEntity chapter = ChapterEntity.createEmptyChapter( story, position );
+					entityManager.persist( chapter );
+					
+					SectionEntity section = SectionEntity.createEmptySection( chapter, 1 );
+					entityManager.persist( section );
 				}
 			}
 		);

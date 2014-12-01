@@ -15,6 +15,8 @@ import org.webstories.dao.NumerableEntity;
 @Entity
 @Table( name = "ws_section" )
 public class SectionEntity implements NumerableEntity, Comparable<SectionEntity> {
+	private SectionEntity() {}
+	
 	@Id
 	@TableGenerator(
 		name = "section_sequence",
@@ -26,7 +28,7 @@ public class SectionEntity implements NumerableEntity, Comparable<SectionEntity>
 	private Long id_section;
 	
 	@Column( nullable = false )
-	private String ds_text;
+	private String ds_text = "";
 	
 	@Column( nullable = false )
 	private Integer no_position;
@@ -34,6 +36,41 @@ public class SectionEntity implements NumerableEntity, Comparable<SectionEntity>
 	@ManyToOne
 	@JoinColumn( name = "id_chapter", nullable = true )
 	private ChapterEntity chapter;
+	
+	/**
+	 * Method used for tests only
+	 */
+	public static SectionEntity createTestSection() {
+		return new SectionEntity();
+	}
+	
+	/**
+	 * @param  chapter
+	 *         A managed and persistent chapter instance
+	 */
+	public static SectionEntity createContentSection(
+		ChapterEntity chapter,
+		String text,
+		int position
+	) {
+		SectionEntity section = new SectionEntity();
+		section.setChapter( chapter );
+		section.setText( text );
+		section.setPosition( position );
+		return section;
+	}
+	
+	/**
+	 * @param  chapter
+	 *         A managed and persistent chapter instance
+	 */
+	public static SectionEntity createEmptySection( ChapterEntity chapter, int position ) {
+		SectionEntity section = new SectionEntity();
+	section.setChapter( chapter );
+		section.setPosition( position );
+		return section;
+	}
+	
 	
 	@Override
 	public Long getId() {

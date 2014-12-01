@@ -17,10 +17,9 @@ public class SectionListUpdater extends DBListUpdater<EditorStorySectionInput, S
 	}
 	@Override
 	protected SectionEntity create( EditorStorySectionInput modified ) {
-		SectionEntity section = new SectionEntity();
-		section.setChapter( chapter );
-		section.setText( modified.getText().toString() );
-		section.setPosition( modified.getPosition() );
+		String text = modified.getText().toString();
+		int position = modified.getPosition();
+		SectionEntity section = SectionEntity.createContentSection( chapter, text, position );
 		return section;
 	}
 	@Override
