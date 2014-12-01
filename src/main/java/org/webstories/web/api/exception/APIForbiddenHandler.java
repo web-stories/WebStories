@@ -15,5 +15,5 @@ public class APIForbiddenHandler implements ExceptionMapper<HttpInternalServerEr
 			.status( Status.FORBIDDEN )
 			.entity( ErrorObjectFactory.create( exception ) )
 			.build();
-	}	
+	}
 }

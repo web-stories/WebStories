@@ -15,5 +15,5 @@ public class APIUnauthorizedHandler implements ExceptionMapper<HttpInternalServe
 			.status( Status.UNAUTHORIZED )
 			.entity( ErrorObjectFactory.create( exception ) )
 			.build();
-	}	
+	}
 }

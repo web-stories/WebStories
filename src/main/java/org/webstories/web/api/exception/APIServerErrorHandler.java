@@ -15,5 +15,5 @@ public class APIServerErrorHandler implements ExceptionMapper<HttpInternalServer
 			.status( Status.INTERNAL_SERVER_ERROR )
 			.entity( ErrorObjectFactory.create( exception ) )
 			.build();
-	}	
+	}
 }

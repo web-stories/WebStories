@@ -14,5 +14,5 @@ public class APIValidationHandler implements ExceptionMapper<HttpValidationExcep
 			.status( 422 /* UNPROCESSABLE_ENTITY */ )
 			.entity( ErrorObjectFactory.create( exception ) )
 			.build();
-	}	
+	}
 }
