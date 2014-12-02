@@ -1,6 +1,6 @@
 define(function() {
 	"use strict";
-	function MenuController( $scope, CEditorService ) {
+	function MenuController( $scope, EditorService ) {
 		var storyId = $scope.storyId;
 		$scope.addChapter = function() {
 			EditorService.addChapter( storyId );
