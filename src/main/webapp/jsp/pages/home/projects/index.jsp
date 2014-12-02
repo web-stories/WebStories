@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <jsp:include page="/jsp/include/header.jsp"/>
-<div id="meta" data-story-id="${story.id}"></div>
 <div id="action-alert"></div>
 <div class="container">
   <ol class="breadcrumb breadcumb-clear toolbar">
@@ -46,7 +45,7 @@
         <div class="editor-chapters"
              ng-controller="EditableController"
              ng-cloak>
-          <div class="editor-chapter" id="chapter-{{ chapter.position }}"
+          <div class="editor-chapter" ng-attr-id="chapter-{{ chapter.position }}"
                ng-repeat="chapter in chapters">
             <h2 class="editor-chapter-title-header">
               Capítulo {{ chapter.position }}
@@ -61,12 +60,12 @@
                    ng-model="chapter.title">
             <div class="editor-chapter-section"
                  ng-repeat="section in chapter.sections">
-              <textarea class="form-control editor-chapter-section-text" id="section-{{ section.position }}"
+              <textarea class="form-control editor-chapter-section-text" ng-attr-id="section-{{ section.position }}"
                         ng-model="section.text"></textarea>
               <div class="editor-chapter-section-footer">
                 <div class="row">
                   <div class="col-md-6">
-                    <label class="control-label editor-section-footer-msg" for="section-{{ section.position }}"><!--
+                    <label class="control-label editor-section-footer-msg" ng-attr-for="section-{{ section.position }}"><!--
                       Element should be empty to trigger :empty pseudo selector
                     --></label>
                   </div>
@@ -91,11 +90,10 @@
           <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items">
             <li class="editor-chapter-thumbs-item"
                 ng-repeat="chapter in chapters">
-              <a class="editor-chapter-thumb" href="#chapter-{{ chapter.position }}">
+              <a class="editor-chapter-thumb" ng-attr-href="#chapter-{{ chapter.position }}">
                 Capítulo {{ chapter.position }}
               </a>
               <div ng-show="chapter.publishable !== null">
-                <input type="hidden" name="chapterId" value="{{ chapter.id }}">
                 <button class="btn btn-default btn-sm editor-chapter-thumb-publish" type="button"
                         ng-disabled="!chapter.publishable"
                         ng-click="publish( chapter.id )">
