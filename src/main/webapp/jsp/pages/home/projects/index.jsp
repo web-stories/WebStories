@@ -31,7 +31,12 @@
   </ul>
 </div>
 <div class="container">
-  <ws:editor title="${story.title}">
+  <div class="editor">
+    <div class="editor-title">
+      <h1 class="editor-title-header">
+        ${story.title}
+      </h1>
+    </div>
     <div class="row">
       <div class="col-sm-8 col-lg-9">
         <div class="editor-chapters"
@@ -118,5 +123,5 @@
         </div>
       </div>
     </div>
-  </ws:editor>
+  </div>
 </div>
