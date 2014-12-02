@@ -3,6 +3,7 @@ package org.webstories.web.api;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -55,6 +56,13 @@ public class EditorResource {
 		} catch ( UserNotLoggedException e ) {
 			throw new HttpUnauthorizedException( e );
 		}
+	}
+	
+	@DELETE
+	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
+	public void sectionRemove( @PathParam( "sectionId" ) Long sectionId ) {
+		Logged logged = AuthSession.from( request ).getLogged();
+		// TODO
 	}
 	
 	@POST

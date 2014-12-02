@@ -38,8 +38,10 @@ define(function() {
 				);
 		};
 		
-		this.removeSection = function( sectionId ) {
+		this.removeSection = function( sectionId, chapterId ) {
 			EditorResource.sections.remove({
+				storyId: storyId,
+				chapterId: chapterId,
 				sectionId: sectionId
 			})
 			.$promise

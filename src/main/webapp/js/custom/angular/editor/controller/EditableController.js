@@ -4,8 +4,8 @@ define(function() {
 		$scope.addSection = function( prevSectionId, chapterId ) {
 			service.addSection( prevSectionId, chapterId );
 		};
-		$scope.removeSection = function( sectionId ) {
-			service.removeSection( sectionId );
+		$scope.removeSection = function( sectionId, chapterId ) {
+			service.removeSection( sectionId, chapterId );
 		};
 	}
 	return [ "$scope", "EditorService", EditableController ];
