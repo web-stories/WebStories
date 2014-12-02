@@ -65,4 +65,8 @@ public class StoryEntity implements NumerableEntity {
 		Collections.sort( chapters );
 		return chapters;
 	}
+	
+	public void removeChapter( ChapterEntity chapter ) {
+		chapters.remove( chapter );
+	}
 }

@@ -134,4 +134,8 @@ Comparable<ChapterEntity> {
 		Collections.sort( sections );
 		return sections;
 	}
+	
+	public void removeSection( SectionEntity section ) {
+		sections.remove( section );
+	}
 }

@@ -60,9 +60,16 @@ public class EditorResource {
 	
 	@DELETE
 	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
-	public void sectionRemove( @PathParam( "sectionId" ) Long sectionId ) {
+	public void sectionRemove( @PathParam( "sectionId" ) Long sectionId )
+	throws HttpForbiddenException, HttpUnauthorizedException {
 		Logged logged = AuthSession.from( request ).getLogged();
-		// TODO
+		try {
+			storyEditor.removeSection( sectionId, logged );
+		} catch ( AccessDeniedException e ) {
+			throw new HttpForbiddenException( e );
+		} catch ( UserNotLoggedException e ) {
+			throw new HttpUnauthorizedException( e );
+		}
 	}
 	
 	@POST

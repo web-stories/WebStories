@@ -153,6 +153,47 @@ public class StoryEditor implements LocalStoryEditor {
 	}
 	
 	@Override
+	public void removeSection( long idSection, Logged logged )
+	throws AccessDeniedException, UserNotLoggedException {
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
+		
+		final SectionEntity section = entityManager.find( SectionEntity.class, idSection );
+		final ChapterEntity chapter = section.getChapter();
+		StoryEntity story = chapter.getStory();
+		
+		new StoryOwnerSecurity( logged ).updatePrivileged(
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
+			new PrivilegedUpdate<StoryEntity>() {
+				@Override
+				public void run( StoryEntity story ) {
+					chapter.removeSection( section );
+					entityManager.remove( section );
+					
+					// In case a section was removed from the middle of a chapter
+					StoryUtils.refreshPositions( chapter.getSections() );
+					for ( SectionEntity currentSection : chapter.getSections() ) {
+						entityManager.merge( currentSection );
+					}
+					
+					// If there is no section left in the chapter, remove the chapter too
+					if ( chapter.getSections().isEmpty() ) {
+						story.removeChapter( chapter );
+						entityManager.remove( chapter );
+						
+						// In case a chapter was removed from the middle of a story
+						StoryUtils.refreshPositions( story.getChapters() );
+						for ( ChapterEntity currentChapter : story.getChapters() ) {
+							entityManager.merge( currentChapter );
+						}
+					}
+				}
+			}
+		);
+	}
+	
+	@Override
 	public void addSection( long idPrevSection, Logged logged )
 	throws AccessDeniedException, UserNotLoggedException {
 		if ( logged == null ) {
