@@ -44,6 +44,12 @@ public class EditorResource {
 	}
 	
 	@POST
+	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
+	public void sectionCreate( @PathParam( "sectionId" ) Long sectionId ) {
+		// TODO
+	}
+	
+	@POST
 	@Path( "{storyId}/chapters" )
 	public void chaptersSave( @PathParam( "storyId" ) Long storyId )
 	throws HttpUnauthorizedException, HttpForbiddenException {
@@ -59,7 +65,7 @@ public class EditorResource {
 	
 	@PUT
 	@Path( "{storyId}/publications/{chapterId}" )
-	public void publicationsPublish( @PathParam( "chapterId" ) Long chapterId )
+	public void publicationPublish( @PathParam( "chapterId" ) Long chapterId )
 	throws HttpForbiddenException, HttpUnauthorizedException, HttpUnprocessableEntityException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {

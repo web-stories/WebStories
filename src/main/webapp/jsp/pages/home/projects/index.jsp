@@ -71,8 +71,9 @@
                   </div>
                   <div class="col-md-6">
                     <div class="editor-section-footer-toolbar">
-                      <button class="btn btn-primary editor-section-add">Nova seção</button>
-                      <button class="btn btn-danger editor-section-delete">
+                      <button class="btn btn-primary"
+                              ng-click="addSection( section.id, chapter.id )">Nova seção</button>
+                      <button class="btn btn-danger">
                         <span class="icon-trash"></span>
                       </button>
                     </div>

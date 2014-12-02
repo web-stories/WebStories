@@ -1,9 +1,7 @@
 define(function() {
 	"use strict";
 	function MenuController( $scope, service ) {
-		$scope.addChapter = function() {
-			service.addChapter();
-		};
+		$scope.addChapter = service.addChapter;
 		$scope.publish = function( chapterId ) {
 			service.publish( chapterId )
 				.catch(

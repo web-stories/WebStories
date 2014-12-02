@@ -24,6 +24,20 @@ define(function() {
 				);
 		};
 		
+		this.addSection = function( sectionId, chapterId ) {
+			EditorResource.sections.create({
+				storyId: storyId,
+				chapterId: chapterId,
+				sectionId: sectionId
+			})
+			.$promise
+				.then(
+					function resolve() {
+						refresh( storyId );
+					}
+				);
+		};
+		
 		this.publish = function( chapterId ) {
 			return EditorResource.publications.publish({
 				storyId: storyId,
