@@ -46,7 +46,7 @@
       </div>
       <div class="col-sm-4 col-lg-3 hidden-xs">
         <div class="editor-chapter-thumbs" id="chapter-menu"
-             ng-controller="ThumbsController"
+             ng-controller="MenuController"
              ng-init="init( ${story.id} )"
              ng-cloak>
           <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items"

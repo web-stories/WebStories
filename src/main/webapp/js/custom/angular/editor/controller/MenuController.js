@@ -1,6 +1,6 @@
 define(function( webstories ) {
 	"use strict";
-	function ThumbsController( $scope, ChaptersService ) {
+	function MenuController( $scope, ChaptersService ) {
 		$scope.init = function( storyId ) {
 			$scope.$on( "chapters.update", function() {
 				$scope.chapters = ChaptersService.chapters;
@@ -19,5 +19,5 @@ define(function( webstories ) {
 			ChaptersService.loadChapters( storyId );
 		};
 	}
-	return [ "$scope", "ChaptersService", ThumbsController ];
+	return [ "$scope", "ChaptersService", MenuController ];
 });
