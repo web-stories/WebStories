@@ -1,38 +1,23 @@
 define(function( webstories ) {
 	"use strict";
-	function ThumbsController( $scope, StoriesResource, ChaptersService ) {
+	function ThumbsController( $scope, ChaptersService ) {
 		$scope.init = function( storyId ) {
+			$scope.$on( "chapters.update", function() {
+				$scope.chapters = ChaptersService.chapters;
+			});
 			$scope.addChapter = function() {
-				StoriesResource.chapters.save({
-					storyId: storyId
-				})
-				.$promise
-					.then(function() {
-						$scope.refresh( storyId );
-					});
+				ChaptersService.addChapter( storyId );
 			};
 			$scope.publish = function( chapterId ) {
-				StoriesResource.publications.publish({
-					storyId: storyId,
-					chapterId: chapterId
-				})
-				.$promise
-					.then(
-						function resolve() {
-							$scope.refresh( storyId );
-						},
+				ChaptersService.publish( storyId, chapterId )
+					.catch(
 						function reject( reason ) {
 							alert( reason.data.message );
 						}
 					);
 			};
-			$scope.refresh = function( storyId ) {
-				$scope.chapters = StoriesResource.chapters.query({
-					storyId: storyId
-				});
-			};
-			$scope.refresh( storyId );
+			ChaptersService.loadChapters( storyId );
 		};
 	}
-	return [ "$scope", "StoriesResource", "ChaptersService", ThumbsController ];
+	return [ "$scope", "ChaptersService", ThumbsController ];
 });
