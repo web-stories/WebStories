@@ -31,17 +31,20 @@
   </ul>
 </div>
 <div class="container">
-  <div class="editor">
+  <div class="editor"
+       ng-controller="StoryController"
+       ng-init="init( ${story.id} )">
     <div class="editor-title">
       <h1 class="editor-title-header">
         ${story.title}
+        <br>
+        <small>${story.summary}</small>
       </h1>
     </div>
     <div class="row">
       <div class="col-sm-8 col-lg-9">
         <div class="editor-chapters"
              ng-controller="EditableController"
-             ng-init="init( ${story.id} )"
              ng-cloak>
           <div class="editor-chapter" id="chapter-{{ chapter.position }}"
                ng-repeat="chapter in chapters">
@@ -91,7 +94,6 @@
       <div class="col-sm-4 col-lg-3 hidden-xs">
         <div class="editor-chapter-thumbs" id="chapter-menu"
              ng-controller="MenuController"
-             ng-init="init( ${story.id} )"
              ng-cloak>
           <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items">
             <li class="editor-chapter-thumbs-item"
