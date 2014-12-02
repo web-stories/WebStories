@@ -14,7 +14,8 @@ import org.webstories.dao.NumerableEntity;
 
 @Entity
 @Table( name = "ws_section" )
-public class SectionEntity implements NumerableEntity, Comparable<SectionEntity> {
+public class SectionEntity implements NumerableEntity, PositionableEntity,
+Comparable<SectionEntity> {
 	private SectionEntity() {}
 	
 	@Id
@@ -84,13 +85,18 @@ public class SectionEntity implements NumerableEntity, Comparable<SectionEntity>
 		this.ds_text = ds_text;
 	}
 	
+	@Override
 	public Integer getPosition() {
 		return no_position;
 	}
+	@Override
 	public void setPosition( Integer no_position ) {
 		this.no_position = no_position;
 	}
 	
+	public ChapterEntity getChapter() {
+		return chapter;
+	}
 	public void setChapter( ChapterEntity chapter ) {
 		this.chapter = chapter;
 	}

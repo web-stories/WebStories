@@ -45,8 +45,16 @@ public class EditorResource {
 	
 	@POST
 	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
-	public void sectionCreate( @PathParam( "sectionId" ) Long sectionId ) {
-		// TODO
+	public void sectionCreate( @PathParam( "sectionId" ) Long idPrevSection )
+	throws HttpUnauthorizedException, HttpForbiddenException {
+		Logged logged = AuthSession.from( request ).getLogged();
+		try {
+			storyEditor.addSection( idPrevSection, logged );
+		} catch ( AccessDeniedException e ) {
+			throw new HttpForbiddenException( e );
+		} catch ( UserNotLoggedException e ) {
+			throw new HttpUnauthorizedException( e );
+		}
 	}
 	
 	@POST

@@ -151,4 +151,40 @@ public class StoryEditor implements LocalStoryEditor {
 			}
 		);
 	}
+	
+	@Override
+	public void addSection( long idPrevSection, Logged logged )
+	throws AccessDeniedException, UserNotLoggedException {
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
+		
+		final SectionEntity previousSection =
+			entityManager.find( SectionEntity.class, idPrevSection );
+		final ChapterEntity chapter = previousSection.getChapter();
+		StoryEntity story = chapter.getStory();
+		
+		new StoryOwnerSecurity( logged ).updatePrivileged(
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
+			new PrivilegedUpdate<StoryEntity>() {
+				@Override
+				public void run( StoryEntity story ) {
+					int newSectionPosition = previousSection.getPosition() + 1;
+					int newSectionIndex = newSectionPosition - 1;
+					SectionEntity newSection =
+						SectionEntity.createEmptySection( chapter, newSectionPosition );
+						
+					// Add the section to the correct position
+					List<SectionEntity> sections = chapter.getSections();
+					sections.add( newSectionIndex, newSection );
+					
+					// Update the position of all adjacent items
+					StoryUtils.refreshPositions( sections );
+					for ( SectionEntity currentSection : sections ) {
+						entityManager.merge( currentSection );
+					}
+				}
+			}
+		);
+	}
 }

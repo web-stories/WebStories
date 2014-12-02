@@ -7,6 +7,7 @@ import org.webstories.core.validation.ChapterValidationObject;
 import org.webstories.core.validation.SectionValidationObject;
 import org.webstories.core.validation.ValidationObject;
 import org.webstories.dao.story.ChapterEntity;
+import org.webstories.dao.story.PositionableEntity;
 import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryEntity;
 
@@ -56,5 +57,15 @@ public class StoryUtils {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * Refresh the position of each positionable item in order to keep a consistent crescent number
+	 */
+	public static void refreshPositions( List<? extends PositionableEntity> items ) {
+		int currentPosition = 1;
+		for ( PositionableEntity item : items ) {
+			item.setPosition( currentPosition++ );
+		}
 	}
 }

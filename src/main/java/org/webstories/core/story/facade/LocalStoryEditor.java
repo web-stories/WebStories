@@ -21,4 +21,6 @@ public interface LocalStoryEditor {
 		throws ValidationException, AccessDeniedException, UserNotLoggedException;
 	void addChapter( long idStory, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;
+	void addSection( long idPrevSection, Logged logged )
+		throws AccessDeniedException, UserNotLoggedException;
 }
