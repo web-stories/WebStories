@@ -3,6 +3,10 @@ define( [ "webstories"], function( webstories ) {
 	function EditorResource( $resource ) {
 		var path = webstories.contextPath + "/api/editor/";
 		
+		this.editor = $resource( path + ":storyId", {
+			storyId: "@storyId"
+		});
+		
 		this.chapters = $resource( path + ":storyId/chapters", {
 			storyId: "@storyId"
 		});

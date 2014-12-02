@@ -1,8 +1,7 @@
 define(function() {
 	"use strict";
 	function EditorService( $rootScope, EditorResource ) {
-		var storyId;
-		var chapters = [];
+		var storyId, editor;
 		
 		this.init = function( id ) {
 			storyId = id;
@@ -10,7 +9,7 @@ define(function() {
 		};
 		
 		this.getChapters = function() {
-			return chapters;
+			return editor.chapters;
 		};
 		
 		this.addChapter = function() {
@@ -39,12 +38,12 @@ define(function() {
 		};
 		
 		function refresh( storyId, broadcast ) {
-			return EditorResource.chapters.query({
+			return EditorResource.editor.get({
 				storyId: storyId
 			})
 			.$promise
-				.then(function( arr ) {
-					chapters = arr;
+				.then(function( obj ) {
+					editor = obj;
 					$rootScope.$broadcast( "editor:refresh" );
 				});
 		}

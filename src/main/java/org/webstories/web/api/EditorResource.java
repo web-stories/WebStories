@@ -1,7 +1,5 @@
 package org.webstories.web.api;
 
-import java.util.List;
-
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -18,7 +16,7 @@ import org.webstories.core.auth.AuthSession;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
-import org.webstories.core.story.editor.EditorStoryChapter;
+import org.webstories.core.story.editor.EditorStory;
 import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.core.validation.ValidationException;
@@ -40,9 +38,9 @@ public class EditorResource {
 	LocalStoryReader storyReader;
 	
 	@GET
-	@Path( "{storyId}/chapters" )
-	public List<EditorStoryChapter> chaptersQuery( @PathParam( "storyId" ) Long storyId ) {
-		return storyReader.storyEditorChapters( storyId );
+	@Path( "{storyId}" )
+	public EditorStory editorGet( @PathParam( "storyId" ) Long storyId ) {
+		return storyReader.storyEditor( storyId );
 	}
 	
 	@POST
