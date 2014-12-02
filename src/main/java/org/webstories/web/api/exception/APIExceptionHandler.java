@@ -5,13 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
 
 import org.webstories.core.auth.AuthSession;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.logging.LocalAppLogger;
 
-@Provider
 public abstract class APIExceptionHandler<E extends Throwable> implements ExceptionMapper<E> {
 	@Context
 	private HttpServletRequest request;
