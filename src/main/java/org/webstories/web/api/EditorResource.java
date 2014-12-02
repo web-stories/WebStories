@@ -33,7 +33,7 @@ import org.webstories.web.util.servlet.HttpUnprocessableEntityException;
 @Path( "/stories" )
 @Consumes( MediaType.APPLICATION_JSON )
 @Produces( MediaType.APPLICATION_JSON )
-public class StoriesResource {
+public class EditorResource {
 	@Context
 	HttpServletRequest request;
 	

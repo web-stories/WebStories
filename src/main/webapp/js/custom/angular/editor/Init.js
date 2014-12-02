@@ -1,6 +1,6 @@
 define([
 	"angular", /* 0 */
-	"js/editor/service/StoriesResource", /* 1 */
+	"js/editor/service/EditorResource", /* 1 */
 	"js/editor/service/EditorService", /* 2 */
 	"js/editor/controller/EditorController", /* 3 */
 	"js/editor/controller/MenuController", /* 4 */
@@ -11,14 +11,14 @@ define([
 	
 	var args = [].slice.call( arguments );
 	var angular = args[ 0 ];
-	var StoriesResource = args[ 1 ];
+	var EditorResource = args[ 1 ];
 	var EditorService = args[ 2 ];
 	var EditorController = args[ 3 ];
 	var MenuController = args[ 4 ];
 	var EditableController = args[ 5 ];
 	
 	angular.module( "ws.editor", [ "ngResource" ] )
-		.service( "StoriesResource", StoriesResource )
+		.service( "EditorResource", EditorResource )
 		.service( "EditorService", EditorService )
 		.controller( "EditorController", EditorController )
 		.controller( "MenuController", MenuController )

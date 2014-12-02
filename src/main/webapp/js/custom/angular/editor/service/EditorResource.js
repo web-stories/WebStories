@@ -1,6 +1,6 @@
 define( [ "webstories"], function( webstories ) {
 	"use strict";
-	function StoriesResource( $resource ) {
+	function EditorResource( $resource ) {
 		var storiesURL = webstories.contextPath + "/api/stories/:storyId";
 		return {
 			stories: $resource( storiesURL, {
@@ -20,5 +20,5 @@ define( [ "webstories"], function( webstories ) {
 			})
 		};
 	}
-	return [ "$resource", StoriesResource ];
+	return [ "$resource", EditorResource ];
 });

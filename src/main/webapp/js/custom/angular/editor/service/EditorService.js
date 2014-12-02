@@ -1,10 +1,10 @@
 define(function() {
 	"use strict";
-	function EditorService( $rootScope, StoriesResource ) {
+	function EditorService( $rootScope, EditorResource ) {
 		var service = {
 			chapters: [],
 			addChapter: function( storyId ) {
-				StoriesResource.chapters.save({
+				EditorResource.chapters.save({
 					storyId: storyId
 				})
 				.$promise
@@ -15,7 +15,7 @@ define(function() {
 					);
 			},
 			publish: function( storyId, chapterId ) {
-				return StoriesResource.publications.publish({
+				return EditorResource.publications.publish({
 					storyId: storyId,
 					chapterId: chapterId
 				})
@@ -31,7 +31,7 @@ define(function() {
 			}
 		};
 		function refresh( storyId ) {
-			return StoriesResource.chapters.query({
+			return EditorResource.chapters.query({
 				storyId: storyId
 			})
 			.$promise
@@ -42,5 +42,5 @@ define(function() {
 		}
 		return service;
 	}
-	return [ "$rootScope", "StoriesResource", EditorService ];
+	return [ "$rootScope", "EditorResource", EditorService ];
 });
