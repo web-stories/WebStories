@@ -24,10 +24,22 @@ define(function() {
 				);
 		};
 		
-		this.addSection = function( sectionId, chapterId ) {
+		this.addSection = function( prevSectionId, chapterId ) {
 			EditorResource.sections.create({
 				storyId: storyId,
 				chapterId: chapterId,
+				sectionId: prevSectionId
+			})
+			.$promise
+				.then(
+					function resolve() {
+						refresh( storyId );
+					}
+				);
+		};
+		
+		this.removeSection = function( sectionId ) {
+			EditorResource.sections.remove({
 				sectionId: sectionId
 			})
 			.$promise
