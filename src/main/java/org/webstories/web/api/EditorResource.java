@@ -18,15 +18,12 @@ import org.webstories.core.auth.AuthSession;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
-import org.webstories.core.story.Story;
 import org.webstories.core.story.editor.EditorStoryChapter;
-import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.core.validation.ValidationObject;
 import org.webstories.web.util.servlet.HttpForbiddenException;
-import org.webstories.web.util.servlet.HttpInternalServerErrorException;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
 import org.webstories.web.util.servlet.HttpUnprocessableEntityException;
 
@@ -42,23 +39,6 @@ public class EditorResource {
 	
 	@EJB
 	LocalStoryReader storyReader;
-	
-	@PUT
-	@Path( "{id}/save" )
-	public Story saveStory( @PathParam( "id" ) Long idStory, EditorStoryInput story )
-	throws HttpInternalServerErrorException, HttpUnauthorizedException, HttpForbiddenException {
-		Logged logged = AuthSession.from( request ).getLogged();
-		try {
-			storyEditor.updateStory( story, logged );
-		} catch ( UserNotLoggedException e ) {
-			throw new HttpUnauthorizedException( e );
-		} catch ( ValidationException e ) {
-			throw new HttpInternalServerErrorException( e );
-		} catch ( AccessDeniedException e ) {
-			throw new HttpForbiddenException( e );
-		}
-		return storyReader.storyEditor( idStory );
-	}
 	
 	@POST
 	@Path( "{storyId}/chapters" )
