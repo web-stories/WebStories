@@ -1,4 +1,4 @@
-define(function( webstories ) {
+define(function() {
 	"use strict";
 	function MenuController( $scope, ChaptersService ) {
 		$scope.init = function( storyId ) {

@@ -34,15 +34,55 @@
   <ws:editor title="${story.title}">
     <div class="row">
       <div class="col-sm-8 col-lg-9">
-        <ws:editor-chapters>
-          <c:forEach items="${story.chapters}" var="chapter">
-            <ws:editor-chapter chapter="${chapter.position}" title="${chapter.title}" chapterId="${chapter.id}" published="${chapter.published}">
-              <c:forEach items="${chapter.sections}" var="section">
-                <ws:editor-section sectionId="${section.id}">${section.text}</ws:editor-section>
-              </c:forEach>
-            </ws:editor-chapter>
-          </c:forEach>
-        </ws:editor-chapters>
+        <div class="editor-chapters"
+             ng-controller="EditableController"
+             ng-init="init( ${story.id} )"
+             ng-cloak>
+          <div ng-repeat="chapter in chapters">
+            <div class="editor-chapter" id="chapter-{{ chapter.position }}">
+              <div class="editor-chapter-title">
+                <h2 class="editor-chapter-title-header">
+                  Capítulo
+                  <span class="editor-chapter-title-header-number">
+                    {{ chapter.position }}
+                  </span>
+                  <small class="text-success" ng-show="chapter.published">
+                    publicado
+                  </small>
+                  <small ng-show="!chapter.published">
+                    rascunho
+                  </small>
+                </h2>
+                <input class="form-control editor-chapter-title-name" type="text"
+                       ng-model="chapter.title">
+              </div>
+              <div class="editor-chapter-sections"
+                   ng-repeat="section in chapter.sections">
+                <div class="editor-chapter-section">
+                  <textarea class="form-control editor-chapter-section-text" id="section-{{ section.position }}"
+                            ng-model="section.text"></textarea>
+                  <div class="editor-chapter-section-footer">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="control-label editor-section-footer-msg" for="section-{{ section.position }}"><!--
+                          Element should be empty to trigger :empty pseudo selector
+                        --></label>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="editor-section-footer-toolbar">
+                          <button class="btn btn-primary editor-section-add">Nova seção</button>
+                          <button class="btn btn-danger editor-section-delete">
+                            <span class="icon-trash"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-sm-4 col-lg-3 hidden-xs">
         <div class="editor-chapter-thumbs" id="chapter-menu"
