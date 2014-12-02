@@ -20,11 +20,11 @@ define(function() {
 					chapterId: chapterId
 				})
 				.$promise
-				.then(
-					function resolve() {
-						refresh( storyId );
-					}
-				);
+					.then(
+						function resolve() {
+							refresh( storyId );
+						}
+					);
 			},
 			loadChapters: function( storyId ) {
 				return refresh( storyId );
