@@ -31,7 +31,7 @@
 </div>
 <div class="container">
   <div class="editor"
-       ng-controller="StoryController"
+       ng-controller="EditorController"
        ng-init="init( ${story.id} )">
     <div class="editor-title">
       <h1 class="editor-title-header">

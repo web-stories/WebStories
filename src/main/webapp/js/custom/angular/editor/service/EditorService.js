@@ -1,6 +1,6 @@
 define(function() {
 	"use strict";
-	function ChaptersService( $rootScope, StoriesResource ) {
+	function EditorService( $rootScope, StoriesResource ) {
 		var service = {
 			chapters: [],
 			addChapter: function( storyId ) {
@@ -42,5 +42,5 @@ define(function() {
 		}
 		return service;
 	}
-	return [ "$rootScope", "StoriesResource", ChaptersService ];
+	return [ "$rootScope", "StoriesResource", EditorService ];
 });
