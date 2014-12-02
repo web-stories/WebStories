@@ -1,7 +1,7 @@
 define(function() {
 	"use strict";
-	function EditableController( $scope, EditorService ) {
-		var storyId = $scope.storyId;
+	function EditableController( $scope, service ) {
+		// TODO
 	}
 	return [ "$scope", "EditorService", EditableController ];
 });

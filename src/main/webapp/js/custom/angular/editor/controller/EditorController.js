@@ -1,12 +1,11 @@
 define(function() {
 	"use strict";
-	function EditorController( $scope, EditorService ) {
+	function EditorController( $scope, service ) {
 		$scope.init = function( storyId ) {
-			$scope.storyId = storyId;
-			$scope.$on( "chapters.update", function() {
-				$scope.chapters = EditorService.chapters;
+			$scope.$on( "editor:refresh", function() {
+				$scope.chapters = service.getChapters();
 			});
-			EditorService.loadChapters( storyId );
+			service.init( storyId );
 		};
 	}
 	return [ "$scope", "EditorService", EditorController ];

@@ -1,46 +1,53 @@
 define(function() {
 	"use strict";
 	function EditorService( $rootScope, EditorResource ) {
-		var service = {
-			chapters: [],
-			addChapter: function( storyId ) {
-				EditorResource.chapters.save({
-					storyId: storyId
-				})
-				.$promise
-					.then(
-						function resolve() {
-							refresh( storyId );
-						}
-					);
-			},
-			publish: function( storyId, chapterId ) {
-				return EditorResource.publications.publish({
-					storyId: storyId,
-					chapterId: chapterId
-				})
-				.$promise
-					.then(
-						function resolve() {
-							refresh( storyId );
-						}
-					);
-			},
-			loadChapters: function( storyId ) {
-				return refresh( storyId );
-			}
+		var storyId;
+		var chapters = [];
+		
+		this.init = function( id ) {
+			storyId = id;
+			refresh( storyId );
 		};
-		function refresh( storyId ) {
+		
+		this.getChapters = function() {
+			return chapters;
+		};
+		
+		this.addChapter = function() {
+			EditorResource.chapters.save({
+				storyId: storyId
+			})
+			.$promise
+				.then(
+					function resolve() {
+						refresh( storyId );
+					}
+				);
+		};
+		
+		this.publish = function( chapterId ) {
+			return EditorResource.publications.publish({
+				storyId: storyId,
+				chapterId: chapterId
+			})
+			.$promise
+				.then(
+					function resolve() {
+						refresh( storyId );
+					}
+				);
+		};
+		
+		function refresh( storyId, broadcast ) {
 			return EditorResource.chapters.query({
 				storyId: storyId
 			})
 			.$promise
-				.then(function( chapters ) {
-					service.chapters = chapters;
-					$rootScope.$broadcast( "chapters.update" );
+				.then(function( arr ) {
+					chapters = arr;
+					$rootScope.$broadcast( "editor:refresh" );
 				});
 		}
-		return service;
 	}
 	return [ "$rootScope", "EditorResource", EditorService ];
 });

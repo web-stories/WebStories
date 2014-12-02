@@ -1,12 +1,11 @@
 define(function() {
 	"use strict";
-	function MenuController( $scope, EditorService ) {
-		var storyId = $scope.storyId;
+	function MenuController( $scope, service ) {
 		$scope.addChapter = function() {
-			EditorService.addChapter( storyId );
+			service.addChapter();
 		};
 		$scope.publish = function( chapterId ) {
-			EditorService.publish( storyId, chapterId )
+			service.publish( chapterId )
 				.catch(
 					function reject( reason ) {
 						alert( reason.data.message );
