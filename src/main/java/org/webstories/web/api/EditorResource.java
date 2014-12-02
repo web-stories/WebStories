@@ -22,12 +22,11 @@ import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.core.validation.ValidationException;
-import org.webstories.core.validation.ValidationObject;
 import org.webstories.web.util.servlet.HttpForbiddenException;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
 import org.webstories.web.util.servlet.HttpUnprocessableEntityException;
 
-@Path( "/stories" )
+@Path( "/editor" )
 @Consumes( MediaType.APPLICATION_JSON )
 @Produces( MediaType.APPLICATION_JSON )
 public class EditorResource {
@@ -40,9 +39,15 @@ public class EditorResource {
 	@EJB
 	LocalStoryReader storyReader;
 	
+	@GET
+	@Path( "{storyId}/chapters" )
+	public List<EditorStoryChapter> chaptersQuery( @PathParam( "storyId" ) Long storyId ) {
+		return storyReader.storyEditorChapters( storyId );
+	}
+	
 	@POST
 	@Path( "{storyId}/chapters" )
-	public void saveChapter( @PathParam( "storyId" ) Long storyId )
+	public void chaptersSave( @PathParam( "storyId" ) Long storyId )
 	throws HttpUnauthorizedException, HttpForbiddenException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
@@ -56,7 +61,7 @@ public class EditorResource {
 	
 	@PUT
 	@Path( "{storyId}/publications/{chapterId}" )
-	public void publishChapter( @PathParam( "chapterId" ) Long chapterId )
+	public void publicationsPublish( @PathParam( "chapterId" ) Long chapterId )
 	throws HttpForbiddenException, HttpUnauthorizedException, HttpUnprocessableEntityException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
@@ -68,17 +73,5 @@ public class EditorResource {
 		} catch ( AccessDeniedException e ) {
 			throw new HttpForbiddenException( e );
 		}
-	}
-	
-	@GET
-	@Path( "{storyId}/chapters" )
-	public List<EditorStoryChapter> queryChapters( @PathParam( "storyId" ) Long storyId ) {
-		return storyReader.storyEditorChapters( storyId );
-	}
-	
-	@POST
-	@Path( "{storyId}/chapters/{chapterId}/validate" )
-	public List<ValidationObject> validateChapter( @PathParam( "chapterId" ) Long chapterId ) {
-		return storyReader.validateChapter( chapterId );
 	}
 }
