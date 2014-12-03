@@ -56,7 +56,10 @@ define(function() {
 			.$promise
 				.then(
 					function resolve() {
-						refresh( storyId );
+						refresh( storyId )
+							.then(function( editor ) {
+								$rootScope.$broadcast( "editor:updated", editor );
+							});
 					}
 				);
 		};
