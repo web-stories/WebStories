@@ -47,7 +47,11 @@
              ng-cloak>
           <div class="editor-chapter"
                ng-attr-id="chapter-{{ chapter.position }}"
-               ng-repeat="chapter in data.editor.chapters">
+               ng-repeat="chapter in data.editor.chapters"
+               smooth-scroll
+                 scroll-if="{{ data.scrollable.chapterId === chapter.id }}"
+                 callback-before="clearScrollable()"
+                 offset="71">
             <h2 class="editor-chapter-title-header">
               Capítulo {{ chapter.position }}
               <small class="text-success" ng-show="chapter.published">
