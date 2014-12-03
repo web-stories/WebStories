@@ -64,7 +64,11 @@
             <input class="form-control editor-chapter-title-name" type="text"
                    ng-model="chapter.title">
             <div class="editor-chapter-section"
-                 ng-repeat="section in chapter.sections">
+                 ng-repeat="section in chapter.sections"
+                 smooth-scroll
+                   scroll-if="{{ data.scrollable.sectionId === section.id }}"
+                   callback-before="clearScrollable()"
+                   offset="80">
               <textarea class="form-control editor-chapter-section-text" ng-attr-id="section-{{ section.position }}"
                         ng-model="section.text"></textarea>
               <div class="editor-chapter-section-footer">
@@ -102,7 +106,7 @@
                 ng-repeat="chapter in data.editor.chapters">
               <a class="editor-chapter-thumb" href="#"
                  scroll-to="chapter-{{ chapter.position }}"
-                 offset="71">
+                   offset="71">
                 Capítulo {{ chapter.position }}
               </a>
               <div ng-show="chapter.publishable !== null">

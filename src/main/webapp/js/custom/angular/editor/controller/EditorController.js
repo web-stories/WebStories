@@ -16,6 +16,10 @@ define(function() {
 			$scope.data.scrollable.chapterId = chapter.id;
 		});
 		
+		$scope.$on( "editor:section-add", function( event, section ) {
+			$scope.data.scrollable.sectionId = section.id;
+		});
+		
 		$scope.clearScrollable = function() {
 			$scope.data.scrollable = {};
 		};
