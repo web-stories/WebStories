@@ -11,10 +11,6 @@ define(function() {
 				});
 		};
 		
-		this.getEditor = function() {
-			return editor;
-		};
-		
 		this.addChapter = function() {
 			EditorResource.chapters.create({
 				storyId: storyId
