@@ -20,7 +20,7 @@ public class SectionListUpdater extends DBListUpdater<EditorStorySectionInput, S
 		String text = modified.getText().toString();
 		int position = modified.getPosition();
 		SectionEntity section = SectionEntity.createContentSection( text, position );
-		chapter.addSection( section );
+		chapter.addSection( section, position - 1 );
 		return section;
 	}
 	@Override

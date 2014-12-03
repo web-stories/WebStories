@@ -5,13 +5,9 @@ define(function() {
 		
 		this.init = function( id ) {
 			storyId = id;
-			EditorResource.editor.get({
-				storyId: storyId
-			})
-			.$promise
-				.then(function( obj ) {
-					editor = obj;
-					$rootScope.$broadcast( "editor:refresh", editor );
+			refresh( storyId )
+				.then(function( editor ) {
+					$rootScope.$broadcast( "editor:updated", editor );
 				});
 		};
 		
@@ -27,7 +23,7 @@ define(function() {
 				.then(
 					function resolve( chapter ) {
 						editor.chapters.push( chapter );
-						$rootScope.$broadcast( "editor:refresh", editor );
+						$rootScope.$broadcast( "editor:updated", editor );
 						$rootScope.$broadcast( "editor:chapter-add", chapter );
 					}
 				);
@@ -41,8 +37,12 @@ define(function() {
 			})
 			.$promise
 				.then(
-					function resolve() {
-						refresh( storyId );
+					function resolve( section ) {
+						refresh( storyId )
+							.then(function( editor ) {
+								$rootScope.$broadcast( "editor:updated", editor );
+								$rootScope.$broadcast( "editor:section-add", section );
+							});
 					}
 				);
 		};
@@ -73,6 +73,17 @@ define(function() {
 					}
 				);
 		};
+		
+		function refresh( storyId ) {
+			return EditorResource.editor.get({
+				storyId: storyId
+			})
+			.$promise
+				.then(function( obj ) {
+					editor = obj;
+					return editor;
+				});
+		}
 	}
 	return [ "$rootScope", "EditorResource", EditorService ];
 });

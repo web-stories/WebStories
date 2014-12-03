@@ -8,7 +8,7 @@ define(function() {
 			service.init( storyId );
 		};
 		
-		$scope.$on( "editor:refresh", function( event, editor ) {
+		$scope.$on( "editor:updated", function( event, editor ) {
 			$scope.data.editor = editor;
 		});
 		

@@ -136,8 +136,8 @@ Comparable<ChapterEntity> {
 		sections.remove( section );
 	}
 	
-	public void addSection( SectionEntity section ) {
+	public void addSection( SectionEntity section, int index ) {
 		section.setChapter( this );
-		sections.add( section );
+		sections.add( index, section );
 	}
 }

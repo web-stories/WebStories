@@ -8,6 +8,7 @@ import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.editor.EditorStoryInput;
+import org.webstories.core.story.editor.EditorStorySection;
 import org.webstories.core.validation.ValidationException;
 
 @Local
@@ -24,6 +25,6 @@ public interface LocalStoryEditor {
 		throws AccessDeniedException, UserNotLoggedException;
 	void removeSection( long idSection, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;
-	void addSection( long idPrevSection, Logged logged )
+	EditorStorySection addSection( long idPrevSection, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;
 }

@@ -18,6 +18,7 @@ import org.webstories.core.story.StoryUtils;
 import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.editor.EditorStoryInput;
+import org.webstories.core.story.editor.EditorStorySection;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.core.validation.ValidationObject;
 import org.webstories.dao.story.ChapterEntity;
@@ -142,7 +143,7 @@ public class StoryEditor implements LocalStoryEditor {
 		story.addChapter( chapter );
 		
 		final SectionEntity section = SectionEntity.createEmptySection( 1 );
-		chapter.addSection( section );
+		chapter.addSection( section, 0 );
 		
 		new StoryOwnerSecurity( logged ).updatePrivileged(
 			new StoryRead.DefaultRead( story.getId(), entityManager ),
@@ -200,39 +201,43 @@ public class StoryEditor implements LocalStoryEditor {
 	}
 	
 	@Override
-	public void addSection( long idPrevSection, Logged logged )
+	public EditorStorySection addSection( long idPrevSection, Logged logged )
 	throws AccessDeniedException, UserNotLoggedException {
 		if ( logged == null ) {
 			throw new UserNotLoggedException();
 		}
 		
-		final SectionEntity previousSection =
+		SectionEntity previousSection =
 			entityManager.find( SectionEntity.class, idPrevSection );
-		final ChapterEntity chapter = previousSection.getChapter();
+		ChapterEntity chapter = previousSection.getChapter();
 		StoryEntity story = chapter.getStory();
+		
+		// Add a new section in the given position
+		int newSectionPosition = previousSection.getPosition() + 1;
+		int newSectionIndex = newSectionPosition - 1;
+		final SectionEntity newSection = SectionEntity.createEmptySection( newSectionPosition );
+		chapter.addSection( newSection, newSectionIndex );
+		
+		// Update the position of all items relative to the newly added section
+		final List<SectionEntity> sections = chapter.getSections();
+		StoryUtils.refreshPositions( sections );
 		
 		new StoryOwnerSecurity( logged ).updatePrivileged(
 			new StoryRead.DefaultRead( story.getId(), entityManager ),
 			new PrivilegedUpdate<StoryEntity>() {
 				@Override
 				public void run( StoryEntity story ) {
-					int newSectionPosition = previousSection.getPosition() + 1;
-					int newSectionIndex = newSectionPosition - 1;
-					SectionEntity newSection =
-						SectionEntity.createEmptySection( newSectionPosition );
-					chapter.addSection( newSection );
-						
-					// Add the section to the correct position
-					List<SectionEntity> sections = chapter.getSections();
-					sections.add( newSectionIndex, newSection );
+					// Ensures the id will be set to the returned object
+					entityManager.persist( newSection );
 					
-					// Update the position of all adjacent items
-					StoryUtils.refreshPositions( sections );
+					// Refresh all items data in the database because position has changed
 					for ( SectionEntity currentSection : sections ) {
 						entityManager.merge( currentSection );
 					}
 				}
 			}
 		);
+		
+		return EditorStorySection.from( newSection );
 	}
 }
