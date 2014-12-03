@@ -15,7 +15,11 @@ define(function() {
 			.$promise
 				.then(
 					function resolve() {
-						refresh( storyId );
+						refresh( storyId )
+							.then(function( editor ) {
+								var lastChapter = editor.chapters[ editor.chapters.length - 1 ];
+								$rootScope.$broadcast( "editor:chapter-add", lastChapter );
+							});
 					}
 				);
 		};
@@ -69,6 +73,7 @@ define(function() {
 				.then(function( obj ) {
 					editor = obj;
 					$rootScope.$broadcast( "editor:refresh", editor );
+					return editor;
 				});
 		}
 	}
