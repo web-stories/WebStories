@@ -9,6 +9,7 @@ import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.story.editor.EditorStorySection;
+import org.webstories.core.story.editor.RemovalResult;
 import org.webstories.core.validation.ValidationException;
 
 @Local
@@ -23,7 +24,7 @@ public interface LocalStoryEditor {
 		throws ValidationException, AccessDeniedException, UserNotLoggedException;
 	EditorStoryChapter addChapter( long idStory, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;
-	void removeSection( long idSection, Logged logged )
+	RemovalResult removeSection( long idSection, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;
 	EditorStorySection addSection( long idPrevSection, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;

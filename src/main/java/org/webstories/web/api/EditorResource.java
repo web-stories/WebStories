@@ -20,6 +20,7 @@ import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.editor.EditorStory;
 import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStorySection;
+import org.webstories.core.story.editor.RemovalResult;
 import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.core.validation.ValidationException;
@@ -62,11 +63,11 @@ public class EditorResource {
 	
 	@DELETE
 	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
-	public void sectionRemove( @PathParam( "sectionId" ) Long sectionId )
+	public RemovalResult sectionRemove( @PathParam( "sectionId" ) Long sectionId )
 	throws HttpForbiddenException, HttpUnauthorizedException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
-			storyEditor.removeSection( sectionId, logged );
+			return storyEditor.removeSection( sectionId, logged );
 		} catch ( AccessDeniedException e ) {
 			throw new HttpForbiddenException( e );
 		} catch ( UserNotLoggedException e ) {

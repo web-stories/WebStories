@@ -20,6 +20,18 @@ define(function() {
 			$scope.data.scrollable.sectionId = section.id;
 		});
 		
+		$scope.$on( "editor:chapter-remove", function( event, id ) {
+			var prevChapter = service.findPrevChapter( id );
+			if ( prevChapter ) {
+				$scope.data.scrollable.chapterId = prevChapter.id;
+			}
+		});
+		
+		$scope.$on( "editor:section-remove", function( event, id ) {
+			var prevSection = service.findPrevSection( id );
+			$scope.data.scrollable.sectionId = prevSection.id;
+		});
+		
 		$scope.clearScrollable = function() {
 			$scope.data.scrollable = {};
 		};

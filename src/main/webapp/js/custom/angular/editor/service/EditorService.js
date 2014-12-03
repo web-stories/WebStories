@@ -51,7 +51,14 @@ define(function() {
 			})
 			.$promise
 				.then(
-					function resolve() {
+					function resolve( result ) {
+						if ( result.chapter ) {
+							$rootScope
+								.$broadcast( "editor:chapter-remove", result.chapter.id );
+						} else {
+							$rootScope
+								.$broadcast( "editor:section-remove", result.section.id );
+						}
 						refresh( storyId )
 							.then(function( editor ) {
 								$rootScope.$broadcast( "editor:updated", editor );
@@ -74,6 +81,35 @@ define(function() {
 							});
 					}
 				);
+		};
+		
+		this.findPrevChapter = function( id ) {
+			var prev;
+			editor.chapters.some(function( current ) {
+				if ( current.id === id ) {
+					return true;
+				}
+				prev = current;
+			});
+			return prev;
+		};
+		
+		this.findPrevSection = function( id ) {
+			var prev;
+			var allSections = [];
+			
+			editor.chapters.forEach(function( chapter ) {
+				allSections = allSections.concat( chapter.sections );
+			});
+			
+			allSections.some(function( current ) {
+				if ( current.id === id ) {
+					return true;
+				}
+				prev = current;
+			});
+			
+			return prev;
 		};
 		
 		function refresh( storyId ) {

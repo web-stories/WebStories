@@ -19,6 +19,8 @@ import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.story.editor.EditorStorySection;
+import org.webstories.core.story.editor.RemovalResult;
+import org.webstories.core.story.editor.RemovedItem;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.core.validation.ValidationObject;
 import org.webstories.dao.story.ChapterEntity;
@@ -160,37 +162,42 @@ public class StoryEditor implements LocalStoryEditor {
 	}
 	
 	@Override
-	public void removeSection( long idSection, Logged logged )
+	public RemovalResult removeSection( long idSection, Logged logged )
 	throws AccessDeniedException, UserNotLoggedException {
 		if ( logged == null ) {
 			throw new UserNotLoggedException();
 		}
 		
+		final RemovalResult result = new RemovalResult();
 		final SectionEntity section = entityManager.find( SectionEntity.class, idSection );
 		final ChapterEntity chapter = section.getChapter();
 		StoryEntity story = chapter.getStory();
+		
+		// Should update all sections positions in case one was removed from the middle
+		chapter.removeSection( section );
+		StoryUtils.refreshPositions( chapter.getSections() );
+		
+		// If there is no section left in the chapter, it is going to remove the chapter too
+		if ( chapter.getSections().isEmpty() ) {
+			story.removeChapter( chapter );
+			StoryUtils.refreshPositions( story.getChapters() );
+		}
 		
 		new StoryOwnerSecurity( logged ).updatePrivileged(
 			new StoryRead.DefaultRead( story.getId(), entityManager ),
 			new PrivilegedUpdate<StoryEntity>() {
 				@Override
 				public void run( StoryEntity story ) {
-					chapter.removeSection( section );
 					entityManager.remove( section );
-					
-					// In case a section was removed from the middle of a chapter
-					StoryUtils.refreshPositions( chapter.getSections() );
+					result.setSection( new RemovedItem( section.getId() ) );
 					for ( SectionEntity currentSection : chapter.getSections() ) {
 						entityManager.merge( currentSection );
 					}
 					
 					// If there is no section left in the chapter, remove the chapter too
 					if ( chapter.getSections().isEmpty() ) {
-						story.removeChapter( chapter );
 						entityManager.remove( chapter );
-						
-						// In case a chapter was removed from the middle of a story
-						StoryUtils.refreshPositions( story.getChapters() );
+						result.setChapter( new RemovedItem( chapter.getId() ) );
 						for ( ChapterEntity currentChapter : story.getChapters() ) {
 							entityManager.merge( currentChapter );
 						}
@@ -198,6 +205,8 @@ public class StoryEditor implements LocalStoryEditor {
 				}
 			}
 		);
+		
+		return result;
 	}
 	
 	@Override
