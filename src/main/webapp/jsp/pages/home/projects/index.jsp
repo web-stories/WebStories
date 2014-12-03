@@ -95,7 +95,9 @@
           <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items">
             <li class="editor-chapter-thumbs-item"
                 ng-repeat="chapter in chapters">
-              <a class="editor-chapter-thumb" ng-attr-href="#chapter-{{ chapter.position }}">
+              <a class="editor-chapter-thumb" href="#"
+                 scroll-to="chapter-{{ chapter.position }}"
+                 offset="71">
                 Capítulo {{ chapter.position }}
               </a>
               <div ng-show="chapter.publishable !== null">
