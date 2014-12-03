@@ -45,8 +45,9 @@
         <div class="editor-chapters"
              ng-controller="EditableController"
              ng-cloak>
-          <div class="editor-chapter" ng-attr-id="chapter-{{ chapter.position }}"
-               ng-repeat="chapter in chapters">
+          <div class="editor-chapter"
+               ng-attr-id="chapter-{{ chapter.position }}"
+               ng-repeat="chapter in data.editor.chapters">
             <h2 class="editor-chapter-title-header">
               Capítulo {{ chapter.position }}
               <small class="text-success" ng-show="chapter.published">
@@ -94,7 +95,7 @@
              ng-cloak>
           <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items">
             <li class="editor-chapter-thumbs-item"
-                ng-repeat="chapter in chapters">
+                ng-repeat="chapter in data.editor.chapters">
               <a class="editor-chapter-thumb" href="#"
                  scroll-to="chapter-{{ chapter.position }}"
                  offset="71">

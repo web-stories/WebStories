@@ -8,10 +8,6 @@ define(function() {
 			refresh( storyId );
 		};
 		
-		this.getChapters = function() {
-			return editor.chapters;
-		};
-		
 		this.addChapter = function() {
 			EditorResource.chapters.save({
 				storyId: storyId
@@ -72,7 +68,7 @@ define(function() {
 			.$promise
 				.then(function( obj ) {
 					editor = obj;
-					$rootScope.$broadcast( "editor:refresh" );
+					$rootScope.$broadcast( "editor:refresh", editor );
 				});
 		}
 	}

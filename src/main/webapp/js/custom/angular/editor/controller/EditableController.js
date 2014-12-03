@@ -1,12 +1,8 @@
 define(function() {
 	"use strict";
 	function EditableController( $scope, service ) {
-		$scope.addSection = function( prevSectionId, chapterId ) {
-			service.addSection( prevSectionId, chapterId );
-		};
-		$scope.removeSection = function( sectionId, chapterId ) {
-			service.removeSection( sectionId, chapterId );
-		};
+		$scope.addSection = service.addSection;
+		$scope.removeSection = service.removeSection;
 	}
 	return [ "$scope", "EditorService", EditableController ];
 });
