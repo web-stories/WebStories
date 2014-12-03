@@ -20,7 +20,7 @@
   <ul class="nav nav-tabs editor-tabs">
     <li>
       <a href="${pageContext.request.contextPath}/home/projects/?id=${story.id}">
-        História
+        Editor
       </a>
     </li>
     <li class="active">

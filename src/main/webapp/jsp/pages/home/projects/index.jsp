@@ -19,7 +19,7 @@
   <ul class="nav nav-tabs editor-tabs">
     <li class="active">
       <a href="${pageContext.request.contextPath}/home/projects/?id=${story.id}">
-        História
+        Editor
       </a>
     </li>
     <li>
@@ -62,7 +62,8 @@
               </small>
             </h2>
             <input class="form-control editor-chapter-title-name" type="text"
-                   ng-model="chapter.title">
+                   ng-model="chapter.title"
+                   debounce="10000">
             <div class="editor-chapter-section"
                  ng-repeat="section in chapter.sections"
                  smooth-scroll
@@ -70,7 +71,8 @@
                    callback-before="clearScrollable()"
                    offset="80">
               <textarea class="form-control editor-chapter-section-text" ng-attr-id="section-{{ section.position }}"
-                        ng-model="section.text"></textarea>
+                        ng-model="section.text"
+                        debounce="10000"></textarea>
               <div class="editor-chapter-section-footer">
                 <div class="row">
                   <div class="col-md-6">

@@ -6,7 +6,8 @@ define([
 	"js/editor/controller/MenuController", /* 4 */
 	"js/editor/controller/EditableController", /* 5 */
 	"angular.resource",
-	"angular.smoothscroll"
+	"angular.smoothscroll",
+	"angular.debounce"
 ], function() {
 	"use strict";
 	
@@ -18,7 +19,7 @@ define([
 	var MenuController = args[ 4 ];
 	var EditableController = args[ 5 ];
 	
-	angular.module( "ws.editor", [ "ngResource", "smoothScroll" ] )
+	angular.module( "ws.editor", [ "ngResource", "smoothScroll", "debounce" ] )
 		.service( "EditorResource", EditorResource )
 		.service( "EditorService", EditorService )
 		.controller( "EditorController", EditorController )
