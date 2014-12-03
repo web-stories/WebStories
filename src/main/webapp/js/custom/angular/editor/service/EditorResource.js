@@ -9,6 +9,10 @@ define( [ "webstories"], function( webstories ) {
 		
 		this.chapters = $resource( path + ":storyId/chapters", {
 			storyId: "@storyId"
+		}, {
+			create: {
+				method: "POST"
+			}
 		});
 		
 		this.sections = $resource( path + ":storyId/chapters/:chapterId/sections/:sectionId", {

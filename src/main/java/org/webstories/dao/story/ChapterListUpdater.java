@@ -20,7 +20,9 @@ public class ChapterListUpdater extends DBListUpdater<EditorStoryChapterInput, C
 		String title = modified.getTitle().toString();
 		int position = modified.getPosition();
 		StoryState state = modified.isPublished() ? StoryState.PUBLISHED : StoryState.DRAFT;
-		return ChapterEntity.createContentChapter( story, title, position, state );
+		ChapterEntity chapter = ChapterEntity.createContentChapter( title, position, state );
+		story.addChapter( chapter );
+		return chapter;
 	}
 	@Override
 	protected void update( EditorStoryChapterInput modified, ChapterEntity chapter ) {

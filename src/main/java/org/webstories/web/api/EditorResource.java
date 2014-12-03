@@ -18,6 +18,7 @@ import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.editor.EditorStory;
+import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.core.validation.ValidationException;
@@ -74,11 +75,11 @@ public class EditorResource {
 	
 	@POST
 	@Path( "{storyId}/chapters" )
-	public void chaptersSave( @PathParam( "storyId" ) Long storyId )
+	public EditorStoryChapter chapterCreate( @PathParam( "storyId" ) Long storyId )
 	throws HttpUnauthorizedException, HttpForbiddenException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
-			storyEditor.addChapter( storyId, logged );
+			return storyEditor.addChapter( storyId, logged );
 		} catch ( UserNotLoggedException e ) {
 			throw new HttpUnauthorizedException( e );
 		} catch ( AccessDeniedException e ) {

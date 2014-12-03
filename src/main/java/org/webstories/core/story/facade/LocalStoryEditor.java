@@ -5,6 +5,7 @@ import javax.ejb.Local;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
+import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.validation.ValidationException;
@@ -19,7 +20,7 @@ public interface LocalStoryEditor {
 		throws ValidationException, AccessDeniedException, UserNotLoggedException;
 	void publishChapter( long idChapter, Logged logged )
 		throws ValidationException, AccessDeniedException, UserNotLoggedException;
-	void addChapter( long idStory, Logged logged )
+	EditorStoryChapter addChapter( long idStory, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;
 	void removeSection( long idSection, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;

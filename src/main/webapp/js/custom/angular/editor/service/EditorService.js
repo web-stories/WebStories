@@ -5,21 +5,30 @@ define(function() {
 		
 		this.init = function( id ) {
 			storyId = id;
-			refresh( storyId );
+			EditorResource.editor.get({
+				storyId: storyId
+			})
+			.$promise
+				.then(function( obj ) {
+					editor = obj;
+					$rootScope.$broadcast( "editor:refresh", editor );
+				});
+		};
+		
+		this.getEditor = function() {
+			return editor;
 		};
 		
 		this.addChapter = function() {
-			EditorResource.chapters.save({
+			EditorResource.chapters.create({
 				storyId: storyId
 			})
 			.$promise
 				.then(
-					function resolve() {
-						refresh( storyId )
-							.then(function( editor ) {
-								var lastChapter = editor.chapters[ editor.chapters.length - 1 ];
-								$rootScope.$broadcast( "editor:chapter-add", lastChapter );
-							});
+					function resolve( chapter ) {
+						editor.chapters.push( chapter );
+						$rootScope.$broadcast( "editor:refresh", editor );
+						$rootScope.$broadcast( "editor:chapter-add", chapter );
 					}
 				);
 		};
@@ -64,18 +73,6 @@ define(function() {
 					}
 				);
 		};
-		
-		function refresh( storyId, broadcast ) {
-			return EditorResource.editor.get({
-				storyId: storyId
-			})
-			.$promise
-				.then(function( obj ) {
-					editor = obj;
-					$rootScope.$broadcast( "editor:refresh", editor );
-					return editor;
-				});
-		}
 	}
 	return [ "$rootScope", "EditorResource", EditorService ];
 });

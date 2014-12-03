@@ -15,6 +15,7 @@ import org.webstories.core.security.story.StoryOwnerSecurity;
 import org.webstories.core.security.story.StoryRead;
 import org.webstories.core.security.story.StoryUpdate;
 import org.webstories.core.story.StoryUtils;
+import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.validation.ValidationException;
@@ -128,7 +129,7 @@ public class StoryEditor implements LocalStoryEditor {
 	}
 	
 	@Override
-	public void addChapter( long idStory, Logged logged )
+	public EditorStoryChapter addChapter( long idStory, Logged logged )
 	throws AccessDeniedException, UserNotLoggedException {
 		if ( logged == null ) {
 			throw new UserNotLoggedException();
@@ -136,20 +137,25 @@ public class StoryEditor implements LocalStoryEditor {
 		
 		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		
+		int position = story.getChapters().size() + 1;
+		final ChapterEntity chapter = ChapterEntity.createEmptyChapter( position );
+		story.addChapter( chapter );
+		
+		final SectionEntity section = SectionEntity.createEmptySection( 1 );
+		chapter.addSection( section );
+		
 		new StoryOwnerSecurity( logged ).updatePrivileged(
 			new StoryRead.DefaultRead( story.getId(), entityManager ),
 			new PrivilegedUpdate<StoryEntity>() {
 				@Override
 				public void run( StoryEntity story ) {
-					int position = story.getChapters().size() + 1;
-					ChapterEntity chapter = ChapterEntity.createEmptyChapter( story, position );
 					entityManager.persist( chapter );
-					
-					SectionEntity section = SectionEntity.createEmptySection( chapter, 1 );
 					entityManager.persist( section );
 				}
 			}
 		);
+		
+		return EditorStoryChapter.from( chapter );
 	}
 	
 	@Override
@@ -213,7 +219,8 @@ public class StoryEditor implements LocalStoryEditor {
 					int newSectionPosition = previousSection.getPosition() + 1;
 					int newSectionIndex = newSectionPosition - 1;
 					SectionEntity newSection =
-						SectionEntity.createEmptySection( chapter, newSectionPosition );
+						SectionEntity.createEmptySection( newSectionPosition );
+					chapter.addSection( newSection );
 						
 					// Add the section to the correct position
 					List<SectionEntity> sections = chapter.getSections();

@@ -57,13 +57,11 @@ Comparable<ChapterEntity> {
 	 *         A managed and persistent story instance
 	 */
 	public static ChapterEntity createContentChapter(
-		StoryEntity story,
 		String title,
 		int position,
 		StoryState state
 	) {
 		ChapterEntity chapter = new ChapterEntity();
-		chapter.setStory( story );
 		chapter.setTitle( title );
 		chapter.setPosition( position );
 		chapter.setState( state );
@@ -74,9 +72,8 @@ Comparable<ChapterEntity> {
 	 * @param  story
 	 *         A managed and persistent story instance
 	 */
-	public static ChapterEntity createEmptyChapter( StoryEntity story, int position ) {
+	public static ChapterEntity createEmptyChapter( int position ) {
 		ChapterEntity chapter = new ChapterEntity();
-		chapter.setStory( story );
 		chapter.setPosition( position );
 		return chapter;
 	}
@@ -112,11 +109,11 @@ Comparable<ChapterEntity> {
 		this.cd_state = cd_state;
 	}
 	
-	public void setStory( StoryEntity story ) {
-		this.story = story;
-	}
 	public StoryEntity getStory() {
 		return story;
+	}
+	protected void setStory( StoryEntity story ) {
+		this.story = story;
 	}
 	
 	@Override
@@ -137,5 +134,10 @@ Comparable<ChapterEntity> {
 	
 	public void removeSection( SectionEntity section ) {
 		sections.remove( section );
+	}
+	
+	public void addSection( SectionEntity section ) {
+		section.setChapter( this );
+		sections.add( section );
 	}
 }

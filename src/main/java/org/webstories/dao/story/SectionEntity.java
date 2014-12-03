@@ -49,13 +49,8 @@ Comparable<SectionEntity> {
 	 * @param  chapter
 	 *         A managed and persistent chapter instance
 	 */
-	public static SectionEntity createContentSection(
-		ChapterEntity chapter,
-		String text,
-		int position
-	) {
+	public static SectionEntity createContentSection( String text, int position ) {
 		SectionEntity section = new SectionEntity();
-		section.setChapter( chapter );
 		section.setText( text );
 		section.setPosition( position );
 		return section;
@@ -65,9 +60,8 @@ Comparable<SectionEntity> {
 	 * @param  chapter
 	 *         A managed and persistent chapter instance
 	 */
-	public static SectionEntity createEmptySection( ChapterEntity chapter, int position ) {
+	public static SectionEntity createEmptySection( int position ) {
 		SectionEntity section = new SectionEntity();
-	section.setChapter( chapter );
 		section.setPosition( position );
 		return section;
 	}
@@ -97,7 +91,7 @@ Comparable<SectionEntity> {
 	public ChapterEntity getChapter() {
 		return chapter;
 	}
-	public void setChapter( ChapterEntity chapter ) {
+	protected void setChapter( ChapterEntity chapter ) {
 		this.chapter = chapter;
 	}
 	@Override
