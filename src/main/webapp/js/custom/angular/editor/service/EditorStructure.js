@@ -36,7 +36,7 @@ define(function() {
 				$rootScope.$broadcast( "editor:restructured", function( model ) {
 					refresh( storyId )
 					.then(function( serverEditor ) {
-						// TODO should not erase other sections text
+						// TODO should not erase chapters text
 						model.editor.chapters = serverEditor.chapters;
 					});
 				});
@@ -58,30 +58,18 @@ define(function() {
 				refresh( storyId )
 				.then(function( serverEditor ) {
 					$rootScope.$broadcast( "editor:restructured", function( model ) {
-						var modelEditor = model.editor;
+						var editor = new EditorModel( model.editor );
 						
 						if ( result.chapter ) {
-							modelEditor.chapters.forEach(function( chapter, index ) {
-								if ( chapter.id === result.chapter.id ) {
-									modelEditor.chapters.splice( index, 1 );
-								}
-							});
+							editor.removeChapter( result.chapter.id );
 						}
 						
 						if ( result.section ) {
-							modelEditor.chapters.forEach(function( chapter, chapterIndex ) {
-								chapter.sections.forEach(function( section, sectionIndex ) {
-									if ( section.id === result.section.id ) {
-										modelEditor
-											.chapters[ chapterIndex ]
-											.sections.splice( sectionIndex, 1 );
-									}
-								});
-							});
+							editor.removeSection( result.section.id );
 						}
 						
-						// TODO should not erase other sections text
-						modelEditor.chapters = serverEditor.chapters;
+						// TODO should not erase chapters text
+						model.editor.chapters = serverEditor.chapters;
 					});
 				});
 			});
@@ -96,7 +84,7 @@ define(function() {
 				refresh( storyId )
 				.then(function( serverEditor ) {
 					$rootScope.$broadcast( "editor:restructured", function( model ) {
-						// TODO should not erase other sections text
+						// TODO should not erase chapters text
 						model.editor.chapters = serverEditor.chapters;
 					});
 				});

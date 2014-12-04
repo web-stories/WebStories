@@ -9,6 +9,26 @@ define(function() {
 			editor.chapters.push( chapter );
 		};
 		
+		this.removeChapter = function( chapterId ) {
+			editor.chapters.forEach(function( chapter, index ) {
+				if ( chapter.id === chapterId ) {
+					editor.chapters.splice( index, 1 );
+				}
+			});
+		};
+		
+		this.removeSection = function( sectionId ) {
+			editor.chapters.forEach(function( chapter, chapterIndex ) {
+				chapter.sections.forEach(function( section, sectionIndex ) {
+					if ( section.id === sectionId ) {
+						editor
+							.chapters[ chapterIndex ]
+							.sections.splice( sectionIndex, 1 );
+					}
+				});
+			});
+		};
+		
 		this.findPrevChapter = function( id ) {
 			var prev;
 			editor.chapters.some(function( current ) {
