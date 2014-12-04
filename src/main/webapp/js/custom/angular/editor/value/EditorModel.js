@@ -1,7 +1,13 @@
+/**
+ * Facade to manipulate and query on the editor model
+ */
 define(function() {
 	"use strict";
-	function EditorModel( model ) {
-		var editor = model.editor;
+	function EditorModel( editor ) {
+		
+		this.addChapter = function( chapter ) {
+			editor.chapters.push( chapter );
+		};
 		
 		this.findPrevChapter = function( id ) {
 			var prev;

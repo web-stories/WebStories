@@ -21,7 +21,7 @@ define(function() {
 		});
 		
 		$scope.$on( "editor:chapter-remove", function( event, chapterId ) {
-			var editor = new EditorModel( $scope.model );
+			var editor = new EditorModel( $scope.model.editor );
 			var prevChapter = editor.findPrevChapter( chapterId );
 			if ( prevChapter ) {
 				$scope.model.scrollable.chapterId = prevChapter.id;
@@ -29,7 +29,7 @@ define(function() {
 		});
 		
 		$scope.$on( "editor:section-remove", function( event, sectionId ) {
-			var editor = new EditorModel( $scope.model );
+			var editor = new EditorModel( $scope.model.editor );
 			var prevSection = editor.findPrevSection( sectionId );
 			$scope.model.scrollable.sectionId = prevSection.id;
 		});

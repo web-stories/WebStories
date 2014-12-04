@@ -1,6 +1,6 @@
 define(function() {
 	"use strict";
-	function EditorStructure( $rootScope, EditorResource ) {
+	function EditorStructure( $rootScope, EditorResource, EditorModel ) {
 		var storyId;
 		
 		this.init = function( id ) {
@@ -19,7 +19,8 @@ define(function() {
 			})
 			.$promise.then(function( chapter ) {
 				$rootScope.$broadcast( "editor:restructured", function( model ) {
-					model.editor.chapters.push( chapter );
+					var editor = new EditorModel( model.editor );
+					editor.addChapter( chapter );
 				});
 				$rootScope.$broadcast( "editor:chapter-add", chapter );
 			});
@@ -115,5 +116,5 @@ define(function() {
 			.$promise;
 		}
 	}
-	return [ "$rootScope", "EditorResource", EditorStructure ];
+	return [ "$rootScope", "EditorResource", "EditorModel", EditorStructure ];
 });
