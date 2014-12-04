@@ -51,6 +51,7 @@
                  callback-before="clearScrollable()"
                  offset="71">
             <div class="editor-chapter"
+                 ng-attr-id="chapter-{{ chapter.position }}"
                  ng-controller="ChapterController">
               <h2 class="editor-chapter-title-header">
                 Capítulo {{ chapter.position }}
@@ -71,7 +72,7 @@
                      offset="80">
                 <div class="editor-chapter-section"
                      ng-controller="SectionController">
-                  <textarea class="form-control editor-chapter-section-text" ng-attr-id="section-{{ section.position }}"
+                  <textarea class="form-control editor-chapter-section-text"
                             ng-model="section.text"
                               ng-model-options="{ debounce: 2000 }"></textarea>
                   <div class="editor-chapter-section-footer">
