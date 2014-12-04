@@ -3,21 +3,26 @@ define(function() {
 	function EditorSavingQueue( $rootScope ) {
 		var queue = [];
 		
-		this.save = function( savingAction ) {
-			queue.push( savingAction );
+		this.save = function( argument ) {
+			var items = Array.isArray( argument ) ? argument : [ argument ];
+			queue = queue.concat( items );
 			dequeue();
 		};
 		
-		function next() {
+		function getNext() {
 			return queue.shift();
 		}
 		
 		function dequeue() {
+			var next = getNext();
+			
 			if ( !queue.length ) {
-				$rootScope.$broadcast( "editor:saved" );
-				return;
+				next(function() {
+					$rootScope.$broadcast( "editor:saved" );
+				});
+			} else {
+				next( dequeue );
 			}
-			next()( next );
 		}
 	}
 	return [ "$rootScope", EditorSavingQueue ];
