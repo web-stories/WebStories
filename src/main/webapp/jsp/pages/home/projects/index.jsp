@@ -64,7 +64,7 @@
               </h2>
               <input class="form-control editor-chapter-title-name" type="text"
                      ng-model="chapter.title"
-                       ng-model-options="{ debounce: 2000 }">
+                       ng-model-options="{ debounce: 1000 }">
               <div ng-repeat="section in chapter.sections"
                    smooth-scroll
                      scroll-if="{{ model.scrollable.sectionId === section.id }}"
@@ -74,7 +74,7 @@
                      ng-controller="SectionController">
                   <textarea class="form-control editor-chapter-section-text"
                             ng-model="section.text"
-                              ng-model-options="{ debounce: 2000 }"></textarea>
+                              ng-model-options="{ debounce: 1000 }"></textarea>
                   <div class="editor-chapter-section-footer">
                     <div class="row">
                       <div class="col-md-6">
