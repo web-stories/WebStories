@@ -30,7 +30,7 @@ define(function() {
 			EditorResource.sections.create({
 				storyId: storyId,
 				chapterId: chapterId,
-				sectionId: prevSectionId
+				prevSectionId: prevSectionId
 			})
 			.$promise.then(function( section ) {
 				$rootScope.$broadcast( "editor:restructured", function( model ) {

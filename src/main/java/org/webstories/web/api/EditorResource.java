@@ -10,6 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -66,12 +67,12 @@ public class EditorResource {
 	}
 	
 	@POST
-	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
-	public EditorStorySection sectionCreate( @PathParam( "sectionId" ) Long idPrevSection )
+	@Path( "{storyId}/chapters/{chapterId}/sections" )
+	public EditorStorySection sectionCreate( @QueryParam( "prevSectionId" ) Long prevSectionId )
 	throws HttpUnauthorizedException, HttpForbiddenException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
-			return storyEditor.addSection( idPrevSection, logged );
+			return storyEditor.addSection( prevSectionId, logged );
 		} catch ( AccessDeniedException e ) {
 			throw new HttpForbiddenException( e );
 		} catch ( UserNotLoggedException e ) {

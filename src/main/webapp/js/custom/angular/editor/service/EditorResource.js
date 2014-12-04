@@ -27,7 +27,10 @@ define( [ "angular", "webstories"], function( angular, webstories ) {
 				}
 			},
 			create: {
-				method: "POST"
+				method: "POST",
+				params: {
+					prevSectionId: "@prevSectionId"
+				}
 			}
 		});
 		
