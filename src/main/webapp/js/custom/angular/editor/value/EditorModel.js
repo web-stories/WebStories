@@ -48,6 +48,7 @@ define( [ "lodash" ], function( _ ) {
 				serverItem = zip[ i ][ 1 ];
 				if ( modelItem.id === serverItem.id ) {
 					modelItem.position = serverItem.position;
+					modelItem.publishable = serverItem.publishable;
 				} else {
 					modelArray.splice( i, 0, serverItem );
 					zip = _.zip( modelArray, serverArray );

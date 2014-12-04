@@ -9,7 +9,7 @@ require([
 	
 	module( "EditorModel" );
 	
-	test( "should update the sections position with the server data", function() {
+	test( "should update the sections position", function() {
 		var modelEditor = {
 			chapters: [{
 				sections: [{
@@ -33,7 +33,7 @@ require([
 		strictEqual( modelEditor.chapters[ 0 ].sections[ 1 ].position, 2 );
 	});
 	
-	test( "should update the chapters position with the server data", function() {
+	test( "should update the chapters position", function() {
 		var modelEditor = {
 			chapters: [{
 				position: 1,
@@ -86,5 +86,23 @@ require([
 		new EditorModel( modelEditor )
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 0 ].sections[ 1 ].id, 172 );
+	});
+	
+	test( "should refresh the chapter publishable state", function() {
+		var modelEditor = {
+			chapters: [{
+				publishable: false,
+				sections: []
+			}]
+		};
+		var serverEditor = {
+			chapters: [{
+				publishable: true,
+				sections: []
+			}]
+		};
+		new EditorModel( modelEditor )
+			.refreshDataStructure( serverEditor );
+		strictEqual( modelEditor.chapters[ 0 ].publishable, true );
 	});
 });
