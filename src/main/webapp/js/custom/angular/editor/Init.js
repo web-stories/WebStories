@@ -3,6 +3,7 @@ define([
 	"js/editor/service/EditorResource",
 	"js/editor/service/EditorStructure",
 	"js/editor/service/EditorSavingQueue",
+	"js/editor/value/EditorModel",
 	"js/editor/controller/EditorController",
 	"js/editor/controller/MenuController",
 	"js/editor/controller/EditableController",
@@ -15,6 +16,7 @@ define([
 	EditorResource,
 	EditorStructure,
 	EditorSavingQueue,
+	EditorModel,
 	EditorController,
 	MenuController,
 	EditableController,
@@ -27,6 +29,7 @@ define([
 		.service( "EditorResource", EditorResource )
 		.service( "EditorStructure", EditorStructure )
 		.service( "EditorSavingQueue", EditorSavingQueue )
+		.value( "EditorModel", EditorModel )
 		.controller( "EditorController", EditorController )
 		.controller( "MenuController", MenuController )
 		.controller( "EditableController", EditableController )
