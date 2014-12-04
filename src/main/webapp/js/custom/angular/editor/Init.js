@@ -5,6 +5,8 @@ define([
 	"js/editor/controller/EditorController", /* 3 */
 	"js/editor/controller/MenuController", /* 4 */
 	"js/editor/controller/EditableController", /* 5 */
+	"js/editor/controller/ChapterController", /* 6 */
+	"js/editor/controller/SectionController", /* 7 */
 	"angular.resource",
 	"angular.smoothscroll"
 ], function() {
@@ -17,13 +19,17 @@ define([
 	var EditorController = args[ 3 ];
 	var MenuController = args[ 4 ];
 	var EditableController = args[ 5 ];
+	var ChapterController = args[ 6 ];
+	var SectionController = args[ 7 ];
 	
 	angular.module( "ws.editor", [ "ngResource", "smoothScroll" ] )
 		.service( "EditorResource", EditorResource )
 		.service( "EditorService", EditorService )
 		.controller( "EditorController", EditorController )
 		.controller( "MenuController", MenuController )
-		.controller( "EditableController", EditableController );
+		.controller( "EditableController", EditableController )
+		.controller( "ChapterController", ChapterController )
+		.controller( "SectionController", SectionController );
 		
 	angular.bootstrap( document.body, [ "ws.editor" ] );
 });

@@ -45,52 +45,55 @@
         <div class="editor-chapters"
              ng-controller="EditableController"
              ng-cloak>
-          <div class="editor-chapter"
-               ng-attr-id="chapter-{{ chapter.position }}"
-               ng-repeat="chapter in data.editor.chapters"
+          <div ng-repeat="chapter in data.editor.chapters"
                smooth-scroll
                  scroll-if="{{ data.scrollable.chapterId === chapter.id }}"
                  callback-before="clearScrollable()"
                  offset="71">
-            <h2 class="editor-chapter-title-header">
-              Capítulo {{ chapter.position }}
-              <small class="text-success" ng-show="chapter.published">
-                publicado
-              </small>
-              <small ng-show="!chapter.published">
-                rascunho
-              </small>
-            </h2>
-            <input class="form-control editor-chapter-title-name" type="text"
-                   ng-model="chapter.title"
-                   debounce="10000">
-            <div class="editor-chapter-section"
-                 ng-repeat="section in chapter.sections"
-                 smooth-scroll
-                   scroll-if="{{ data.scrollable.sectionId === section.id }}"
-                   callback-before="clearScrollable()"
-                   offset="80">
-              <textarea class="form-control editor-chapter-section-text" ng-attr-id="section-{{ section.position }}"
-                        ng-model="section.text"
-                        debounce="10000"></textarea>
-              <div class="editor-chapter-section-footer">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label class="control-label editor-section-footer-msg" ng-attr-for="section-{{ section.position }}"><!--
-                      Element should be empty to trigger :empty pseudo selector
-                    --></label>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="editor-section-footer-toolbar">
-                      <button class="btn btn-primary"
-                              ng-click="addSection( section.id, chapter.id )">
-                        <span class="icon-down"></span>
-                        Nova seção
-                      </button>
-                      <button class="btn btn-danger"
-                              ng-click="removeSection( section.id, chapter.id )">
-                        <span class="icon-trash"></span>
-                      </button>
+            <div class="editor-chapter"
+                 ng-controller="ChapterController">
+              <h2 class="editor-chapter-title-header">
+                Capítulo {{ chapter.position }}
+                <small class="text-success" ng-show="chapter.published">
+                  publicado
+                </small>
+                <small ng-show="!chapter.published">
+                  rascunho
+                </small>
+              </h2>
+              <input class="form-control editor-chapter-title-name" type="text"
+                     ng-model="chapter.title"
+                       ng-model-options="{ debounce: 2000 }">
+              <div ng-repeat="section in chapter.sections"
+                   smooth-scroll
+                     scroll-if="{{ data.scrollable.sectionId === section.id }}"
+                     callback-before="clearScrollable()"
+                     offset="80">
+                <div class="editor-chapter-section"
+                     ng-controller="SectionController">
+                  <textarea class="form-control editor-chapter-section-text" ng-attr-id="section-{{ section.position }}"
+                            ng-model="section.text"
+                              ng-model-options="{ debounce: 2000 }"></textarea>
+                  <div class="editor-chapter-section-footer">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="control-label editor-section-footer-msg" ng-attr-for="section-{{ section.position }}"><!--
+                          Element should be empty to trigger :empty pseudo selector
+                        --></label>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="editor-section-footer-toolbar">
+                          <button class="btn btn-primary"
+                                  ng-click="addSection( section.id, chapter.id )">
+                            <span class="icon-down"></span>
+                            Nova seção
+                          </button>
+                          <button class="btn btn-danger"
+                                  ng-click="removeSection( section.id, chapter.id )">
+                            <span class="icon-trash"></span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
