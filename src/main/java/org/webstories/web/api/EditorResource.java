@@ -20,6 +20,7 @@ import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.editor.EditorStory;
 import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStorySection;
+import org.webstories.core.story.editor.EditorStorySectionInput;
 import org.webstories.core.story.editor.RemovalResult;
 import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
@@ -45,6 +46,23 @@ public class EditorResource {
 	@Path( "{storyId}" )
 	public EditorStory editorGet( @PathParam( "storyId" ) Long storyId ) {
 		return storyReader.storyEditor( storyId );
+	}
+	
+	@PUT
+	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
+	public EditorStorySection sectionPersist(
+		@PathParam( "sectionId" ) Long sectionId,
+		EditorStorySectionInput input
+	) throws HttpUnauthorizedException, HttpForbiddenException {
+		Logged logged = AuthSession.from( request ).getLogged();
+		String text = input.getText().toString();
+		try {
+			return storyEditor.updateSection( sectionId, text, logged );
+		} catch ( AccessDeniedException e ) {
+			throw new HttpForbiddenException( e );
+		} catch ( UserNotLoggedException e ) {
+			throw new HttpUnauthorizedException( e );
+		}
 	}
 	
 	@POST

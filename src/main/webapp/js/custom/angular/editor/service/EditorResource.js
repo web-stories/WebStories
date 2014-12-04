@@ -1,4 +1,4 @@
-define( [ "webstories"], function( webstories ) {
+define( [ "angular", "webstories"], function( angular, webstories ) {
 	"use strict";
 	function EditorResource( $resource ) {
 		var path = webstories.contextPath + "/api/editor/";
@@ -21,7 +21,10 @@ define( [ "webstories"], function( webstories ) {
 			sectionId: "@sectionId"
 		}, {
 			persist: {
-				method: "PUT"
+				method: "PUT",
+				transformRequest: function( data ) {
+					return angular.toJson( data.section );
+				}
 			},
 			create: {
 				method: "POST"
