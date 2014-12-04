@@ -21,5 +21,5 @@ module.exports = function( grunt ) {
 	
 	// Special tasks
 	grunt.registerTask( "eclipse", [ "newer:concat", "newer:copy", "newer:jshint", "newer:jscs" ] );
-	grunt.registerTask( "default", [ "validate", "files", "integration" ] );
+	grunt.registerTask( "default", [ "validate", "files", "unit" ] );
 };
