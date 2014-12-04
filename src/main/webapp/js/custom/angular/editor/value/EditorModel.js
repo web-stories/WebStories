@@ -1,7 +1,7 @@
 /**
  * Facade to manipulate and query on the editor model
  */
-define(function() {
+define( [ "lodash" ], function( _ ) {
 	"use strict";
 	function EditorModel( editor ) {
 		
@@ -26,6 +26,28 @@ define(function() {
 							.sections.splice( sectionIndex, 1 );
 					}
 				});
+			});
+		};
+		
+		this.refreshDataStructure = function( serverEditor ) {
+			_.zip( editor.chapters, serverEditor.chapters ).forEach(function( chapters ) {
+				var i, modelSection, serverSection;
+				var modelChapter = chapters[ 0 ];
+				var serverChapter = chapters[ 1 ];
+				var sectionsZip = _.zip( modelChapter.sections, serverChapter.sections );
+				
+				beginning:
+				for ( i = 0; i < sectionsZip.length; i += 1 ) {
+					modelSection = sectionsZip[ i ][ 0 ];
+					serverSection = sectionsZip[ i ][ 1 ];
+					if ( modelSection.id === serverSection.id ) {
+						modelSection.position = serverSection.position;
+					} else {
+						modelChapter.sections.splice( i, 0, serverSection );
+						sectionsZip = _.zip( modelChapter.sections, serverChapter.sections );
+						continue beginning;
+					}
+				}
 			});
 		};
 		
