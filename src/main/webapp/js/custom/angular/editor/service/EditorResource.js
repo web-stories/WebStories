@@ -20,6 +20,9 @@ define( [ "webstories"], function( webstories ) {
 			chapterId: "@chapterId",
 			sectionId: "@sectionId"
 		}, {
+			persist: {
+				method: "PUT"
+			},
 			create: {
 				method: "POST"
 			}

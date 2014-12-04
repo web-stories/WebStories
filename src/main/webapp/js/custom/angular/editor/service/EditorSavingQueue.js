@@ -3,7 +3,7 @@ define(function() {
 	function EditorSavingQueue( $rootScope ) {
 		var queue = [];
 		
-		this.save = function( argument ) {
+		this.queue = function( argument ) {
 			var items = Array.isArray( argument ) ? argument : [ argument ];
 			queue = queue.concat( items );
 			dequeue();

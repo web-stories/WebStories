@@ -1,9 +1,9 @@
 define(function() {
 	"use strict";
-	function SectionController( $scope ) {
-		$scope.$watch( "section.title", function() {
-			console.log( "section saved!" );
+	function SectionController( $scope, content ) {
+		$scope.$watch( "section.text", function( modifiedText ) {
+			content.saveSection( modifiedText, $scope.section );
 		});
 	}
-	return [ "$scope", SectionController ];
+	return [ "$scope", "EditorContent", SectionController ];
 });
