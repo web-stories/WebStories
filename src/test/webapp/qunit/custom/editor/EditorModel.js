@@ -33,6 +33,30 @@ require([
 		strictEqual( modelEditor.chapters[ 0 ].sections[ 1 ].position, 2 );
 	});
 	
+	test( "should update the chapters position with the server data", function() {
+		var modelEditor = {
+			chapters: [{
+				position: 1,
+				sections: []
+			}, {
+				position: 3,
+				sections: []
+			}]
+		};
+		var serverEditor = {
+			chapters: [{
+				position: 1,
+				sections: []
+			}, {
+				position: 2,
+				sections: []
+			}]
+		};
+		new EditorModel( modelEditor )
+			.refreshDataStructure( serverEditor );
+		strictEqual( modelEditor.chapters[ 1 ].position, 2 );
+	});
+	
 	test( "should create a new section if the model doesn't have it", function() {
 		var modelEditor = {
 			chapters: [{

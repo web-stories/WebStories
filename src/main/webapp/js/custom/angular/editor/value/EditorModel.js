@@ -30,26 +30,32 @@ define( [ "lodash" ], function( _ ) {
 		};
 		
 		this.refreshDataStructure = function( serverEditor ) {
-			_.zip( editor.chapters, serverEditor.chapters ).forEach(function( chapters ) {
-				var i, modelSection, serverSection;
-				var modelChapter = chapters[ 0 ];
-				var serverChapter = chapters[ 1 ];
-				var sectionsZip = _.zip( modelChapter.sections, serverChapter.sections );
-				
-				beginning:
-				for ( i = 0; i < sectionsZip.length; i += 1 ) {
-					modelSection = sectionsZip[ i ][ 0 ];
-					serverSection = sectionsZip[ i ][ 1 ];
-					if ( modelSection.id === serverSection.id ) {
-						modelSection.position = serverSection.position;
-					} else {
-						modelChapter.sections.splice( i, 0, serverSection );
-						sectionsZip = _.zip( modelChapter.sections, serverChapter.sections );
-						continue beginning;
-					}
-				}
-			});
+			refreshPositionable( editor.chapters, serverEditor.chapters )
+				.forEach(function( chapters ) {
+					var modelChapter = chapters[ 0 ];
+					var serverChapter = chapters[ 1 ];
+					refreshPositionable( modelChapter.sections, serverChapter.sections );
+				});
 		};
+		
+		function refreshPositionable( modelArray, serverArray ) {
+			var modelItem, serverItem;
+			var i = 0;
+			var zip = _.zip( modelArray, serverArray );
+			beginning:
+			for ( ; i < zip.length; i += 1 ) {
+				modelItem = zip[ i ][ 0 ];
+				serverItem = zip[ i ][ 1 ];
+				if ( modelItem.id === serverItem.id ) {
+					modelItem.position = serverItem.position;
+				} else {
+					modelArray.splice( i, 0, serverItem );
+					zip = _.zip( modelArray, serverArray );
+					continue beginning;
+				}
+			}
+			return zip;
+		}
 		
 		this.findPrevChapter = function( id ) {
 			var prev;
