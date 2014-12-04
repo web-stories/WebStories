@@ -45,9 +45,9 @@
         <div class="editor-chapters"
              ng-controller="EditableController"
              ng-cloak>
-          <div ng-repeat="chapter in data.editor.chapters"
+          <div ng-repeat="chapter in model.editor.chapters"
                smooth-scroll
-                 scroll-if="{{ data.scrollable.chapterId === chapter.id }}"
+                 scroll-if="{{ model.scrollable.chapterId === chapter.id }}"
                  callback-before="clearScrollable()"
                  offset="71">
             <div class="editor-chapter"
@@ -67,7 +67,7 @@
                        ng-model-options="{ debounce: 2000 }">
               <div ng-repeat="section in chapter.sections"
                    smooth-scroll
-                     scroll-if="{{ data.scrollable.sectionId === section.id }}"
+                     scroll-if="{{ model.scrollable.sectionId === section.id }}"
                      callback-before="clearScrollable()"
                      offset="80">
                 <div class="editor-chapter-section"
@@ -109,7 +109,7 @@
              ng-cloak>
           <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items">
             <li class="editor-chapter-thumbs-item"
-                ng-repeat="chapter in data.editor.chapters">
+                ng-repeat="chapter in model.editor.chapters">
               <a class="editor-chapter-thumb" href="#"
                  scroll-to="chapter-{{ chapter.position }}"
                    offset="71">
