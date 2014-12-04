@@ -8,7 +8,7 @@ define(function() {
 			EditorStructure.init( storyId );
 		};
 		
-		$scope.$on( "editor:updated", function( event, editor ) {
+		$scope.$on( "editor:restructured", function( event, editor ) {
 			$scope.data.editor = editor;
 		});
 		

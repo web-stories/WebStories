@@ -7,7 +7,7 @@ define(function() {
 			storyId = id;
 			refresh( storyId )
 				.then(function( editor ) {
-					$rootScope.$broadcast( "editor:updated", editor );
+					$rootScope.$broadcast( "editor:restructured", editor );
 				});
 		};
 		
@@ -19,7 +19,7 @@ define(function() {
 				.then(
 					function resolve( chapter ) {
 						editor.chapters.push( chapter );
-						$rootScope.$broadcast( "editor:updated", editor );
+						$rootScope.$broadcast( "editor:restructured", editor );
 						$rootScope.$broadcast( "editor:chapter-add", chapter );
 					}
 				);
@@ -36,7 +36,7 @@ define(function() {
 					function resolve( section ) {
 						refresh( storyId )
 							.then(function( editor ) {
-								$rootScope.$broadcast( "editor:updated", editor );
+								$rootScope.$broadcast( "editor:restructured", editor );
 								$rootScope.$broadcast( "editor:section-add", section );
 							});
 					}
@@ -61,7 +61,7 @@ define(function() {
 						}
 						refresh( storyId )
 							.then(function( editor ) {
-								$rootScope.$broadcast( "editor:updated", editor );
+								$rootScope.$broadcast( "editor:restructured", editor );
 							});
 					}
 				);
@@ -77,7 +77,7 @@ define(function() {
 					function resolve() {
 						refresh( storyId )
 							.then(function( editor ) {
-								$rootScope.$broadcast( "editor:updated", editor );
+								$rootScope.$broadcast( "editor:restructured", editor );
 							});
 					}
 				);
