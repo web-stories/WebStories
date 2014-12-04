@@ -46,7 +46,7 @@ define( [ "lodash" ], function( _ ) {
 			for ( ; i < zip.length; i += 1 ) {
 				modelItem = zip[ i ][ 0 ];
 				serverItem = zip[ i ][ 1 ];
-				if ( modelItem.id === serverItem.id ) {
+				if ( modelItem && modelItem.id === serverItem.id ) {
 					modelItem.position = serverItem.position;
 					modelItem.publishable = serverItem.publishable;
 				} else {

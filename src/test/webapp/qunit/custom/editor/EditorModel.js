@@ -105,4 +105,24 @@ require([
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 0 ].publishable, true );
 	});
+	
+	test( "should create a new section at the top of the array", function() {
+		var modelEditor = {
+			chapters: [{
+				sections: []
+			}]
+		};
+		var serverEditor = {
+			chapters: [{
+				sections: [{
+					id: 310
+				}]
+			}]
+		};
+		new EditorModel( modelEditor )
+			.refreshDataStructure( serverEditor );
+		deepEqual( modelEditor.chapters[ 0 ].sections[ 0 ], {
+			id: 310
+		});
+	});
 });
