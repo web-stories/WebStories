@@ -1,11 +1,11 @@
 define(function() {
 	"use strict";
-	function EditorController( $scope, service ) {
+	function EditorController( $scope, EditorStructure ) {
 		$scope.data = {};
 		$scope.data.scrollable = {};
 		
 		$scope.init = function( storyId ) {
-			service.init( storyId );
+			EditorStructure.init( storyId );
 		};
 		
 		$scope.$on( "editor:updated", function( event, editor ) {
@@ -21,14 +21,14 @@ define(function() {
 		});
 		
 		$scope.$on( "editor:chapter-remove", function( event, id ) {
-			var prevChapter = service.findPrevChapter( id );
+			var prevChapter = EditorStructure.findPrevChapter( id );
 			if ( prevChapter ) {
 				$scope.data.scrollable.chapterId = prevChapter.id;
 			}
 		});
 		
 		$scope.$on( "editor:section-remove", function( event, id ) {
-			var prevSection = service.findPrevSection( id );
+			var prevSection = EditorStructure.findPrevSection( id );
 			$scope.data.scrollable.sectionId = prevSection.id;
 		});
 		
@@ -36,5 +36,5 @@ define(function() {
 			$scope.data.scrollable = {};
 		};
 	}
-	return [ "$scope", "EditorService", EditorController ];
+	return [ "$scope", "EditorStructure", EditorController ];
 });

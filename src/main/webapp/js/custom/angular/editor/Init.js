@@ -1,7 +1,7 @@
 define([
 	"angular",
 	"js/editor/service/EditorResource",
-	"js/editor/service/EditorService",
+	"js/editor/service/EditorStructure",
 	"js/editor/service/EditorSavingQueue",
 	"js/editor/controller/EditorController",
 	"js/editor/controller/MenuController",
@@ -13,7 +13,7 @@ define([
 ], function(
 	angular,
 	EditorResource,
-	EditorService,
+	EditorStructure,
 	EditorSavingQueue,
 	EditorController,
 	MenuController,
@@ -25,7 +25,7 @@ define([
 	
 	angular.module( "ws.editor", [ "ngResource", "smoothScroll" ] )
 		.service( "EditorResource", EditorResource )
-		.service( "EditorService", EditorService )
+		.service( "EditorStructure", EditorStructure )
 		.service( "EditorSavingQueue", EditorSavingQueue )
 		.controller( "EditorController", EditorController )
 		.controller( "MenuController", MenuController )

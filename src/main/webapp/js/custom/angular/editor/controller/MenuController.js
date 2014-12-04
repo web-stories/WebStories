@@ -1,9 +1,9 @@
 define(function() {
 	"use strict";
-	function MenuController( $scope, service ) {
-		$scope.addChapter = service.addChapter;
+	function MenuController( $scope, EditorStructure ) {
+		$scope.addChapter = EditorStructure.addChapter;
 		$scope.publish = function( chapterId ) {
-			service.publish( chapterId )
+			EditorStructure.publish( chapterId )
 				.catch(
 					function reject( reason ) {
 						alert( reason.data.message );
@@ -11,5 +11,5 @@ define(function() {
 				);
 		};
 	}
-	return [ "$scope", "EditorService", MenuController ];
+	return [ "$scope", "EditorStructure", MenuController ];
 });

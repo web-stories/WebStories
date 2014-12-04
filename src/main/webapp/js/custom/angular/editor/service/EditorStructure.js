@@ -1,6 +1,6 @@
 define(function() {
 	"use strict";
-	function EditorService( $rootScope, EditorResource ) {
+	function EditorStructure( $rootScope, EditorResource ) {
 		var storyId, editor;
 		
 		this.init = function( id ) {
@@ -123,5 +123,5 @@ define(function() {
 				});
 		}
 	}
-	return [ "$rootScope", "EditorResource", EditorService ];
+	return [ "$rootScope", "EditorResource", EditorStructure ];
 });
