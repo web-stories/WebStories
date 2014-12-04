@@ -9,12 +9,8 @@ define(function() {
 			dequeue();
 		};
 		
-		function getNext() {
-			return queue.shift();
-		}
-		
 		function dequeue() {
-			var next = getNext();
+			var next = queue.shift();
 			
 			if ( !queue.length ) {
 				next(function() {
