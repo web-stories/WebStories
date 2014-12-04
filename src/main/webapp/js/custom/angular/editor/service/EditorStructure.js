@@ -36,8 +36,8 @@ define(function() {
 				$rootScope.$broadcast( "editor:restructured", function( model ) {
 					refresh( storyId )
 					.then(function( serverEditor ) {
-						// TODO should not erase chapters text
-						model.editor.chapters = serverEditor.chapters;
+						var editor = new EditorModel( model.editor );
+						editor.refreshDataStructure( serverEditor );
 					});
 				});
 				$rootScope.$broadcast( "editor:section-add", section );
@@ -68,8 +68,7 @@ define(function() {
 							editor.removeSection( result.section.id );
 						}
 						
-						// TODO should not erase chapters text
-						model.editor.chapters = serverEditor.chapters;
+						editor.refreshDataStructure( serverEditor );
 					});
 				});
 			});
@@ -84,18 +83,12 @@ define(function() {
 				refresh( storyId )
 				.then(function( serverEditor ) {
 					$rootScope.$broadcast( "editor:restructured", function( model ) {
-						// TODO should not erase chapters text
-						model.editor.chapters = serverEditor.chapters;
+						var editor = new EditorModel( model.editor );
+						editor.refreshDataStructure( serverEditor );
 					});
 				});
 			});
 		};
-		
-		function eachSection( editor, fn ) {
-			editor.chapters.forEach(function( chapter ) {
-				chapter.sections.forEach( fn );
-			});
-		}
 		
 		function refresh( storyId ) {
 			return EditorResource.editor.get({
