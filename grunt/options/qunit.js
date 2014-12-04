@@ -1,11 +1,10 @@
 module.exports = function( grunt ) {
 	"use strict";
-	var baseURL = "http://localhost:8080/<%= servers.wildfly.options.preset %>";
 	return {
-		wildfly: {
+		qunit: {
 			options: {
 				urls: [
-					baseURL + "/test/webapp/html/index.jsp"
+					"http://localhost:8000/test/webapp/qunit/custom/editor/EditorSavingQueue.html"
 				]
 			}
 		}

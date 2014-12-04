@@ -65,25 +65,6 @@ require = (function( require ) {
 			}
 		};
 		
-		if ( require.test ) {
-			// Handle default mapping
-			Object.keys( defaultConfigs.map[ "*" ] ).forEach(function( key ) {
-				var val = defaultConfigs.map[ "*" ][ key ];
-				if ( val.substring( 0, "../".length ) === "../" ) {
-					defaultConfigs.map[ "*" ][ key ] =
-						val.substring( "../".length, val.length );
-				}
-			});
-			// Handle local CDN fallback in the second element the array
-			Object.keys( defaultConfigs.paths ).forEach(function( key ) {
-				var fallback = defaultConfigs.paths[ key ][ 1 ];
-				if ( fallback.substring( 0, "../".length ) === "../" ) {
-					defaultConfigs.paths[ key ][ 1 ] =
-						fallback.substring( "../".length, fallback.length );
-				}
-			});
-		}
-		
 		return defaultConfigs;
 	}
 	
