@@ -14,6 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import org.webstories.core.ResourceNotFoundException;
 import org.webstories.core.auth.AuthSession;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
@@ -28,6 +29,7 @@ import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.web.util.servlet.HttpForbiddenException;
+import org.webstories.web.util.servlet.HttpGoneException;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
 import org.webstories.web.util.servlet.HttpUnprocessableEntityException;
 
@@ -55,9 +57,10 @@ public class EditorResource {
 	public EditorStorySection sectionPersist(
 		@PathParam( "sectionId" ) Long sectionId,
 		EditorStorySectionInput input
-	) throws HttpUnauthorizedException, HttpForbiddenException {
+	) throws HttpUnauthorizedException, HttpForbiddenException, InterruptedException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		String text = input.getText().toString();
+		Thread.sleep( 10000 );
 		try {
 			return storyEditor.updateSection( sectionId, text, logged );
 		} catch ( AccessDeniedException e ) {
@@ -84,7 +87,7 @@ public class EditorResource {
 	@DELETE
 	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
 	public RemovalResult sectionRemove( @PathParam( "sectionId" ) Long sectionId )
-	throws HttpForbiddenException, HttpUnauthorizedException {
+	throws HttpForbiddenException, HttpUnauthorizedException, HttpGoneException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
 			return storyEditor.removeSection( sectionId, logged );
@@ -92,6 +95,8 @@ public class EditorResource {
 			throw new HttpForbiddenException( e );
 		} catch ( UserNotLoggedException e ) {
 			throw new HttpUnauthorizedException( e );
+		} catch ( ResourceNotFoundException e ) {
+			throw new HttpGoneException( e );
 		}
 	}
 	

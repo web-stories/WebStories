@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.webstories.core.ResourceNotFoundException;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
@@ -146,13 +147,23 @@ public class StoryEditor implements LocalStoryEditor {
 	
 	@Override
 	public RemovalResult removeSection( long idSection, Logged logged )
-	throws AccessDeniedException, UserNotLoggedException {
+	throws AccessDeniedException, UserNotLoggedException, ResourceNotFoundException {
 		if ( logged == null ) {
 			throw new UserNotLoggedException();
 		}
 		
 		final RemovalResult result = new RemovalResult();
 		final SectionEntity section = entityManager.find( SectionEntity.class, idSection );
+		
+		// There are cases where clicking in the remove button too fast can cause double ajax
+		// execution.
+		// Let's make this exception clear to see if it happens in the wild.
+		if ( section == null ) {
+			throw new ResourceNotFoundException(
+				"Section '" + idSection + "' does not exist anymore"
+			);
+		}
+		
 		final ChapterEntity chapter = section.getChapter();
 		StoryEntity story = chapter.getStory();
 		

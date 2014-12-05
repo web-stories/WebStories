@@ -2,6 +2,7 @@ package org.webstories.core.story.facade;
 
 import javax.ejb.Local;
 
+import org.webstories.core.ResourceNotFoundException;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
@@ -22,7 +23,7 @@ public interface LocalStoryEditor {
 	EditorStoryChapter addChapter( long idStory, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;
 	RemovalResult removeSection( long idSection, Logged logged )
-		throws AccessDeniedException, UserNotLoggedException;
+		throws AccessDeniedException, UserNotLoggedException, ResourceNotFoundException;
 	EditorStorySection addSection( long idPrevSection, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;
 	EditorStorySection updateSection( long sectionId, String text, Logged logged )
