@@ -1,1 +1,2 @@
-define( [ "jquery" ], function() {
+define( [ "jquery" ], function( $ ) {
+	window.jQuery = $;
