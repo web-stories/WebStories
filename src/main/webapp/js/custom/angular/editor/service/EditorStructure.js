@@ -1,6 +1,6 @@
 define(function() {
 	"use strict";
-	function EditorStructure( $rootScope, EditorResource, EditorModel ) {
+	function EditorStructure( $rootScope, EditorResource, EditorModel, EditorSavingQueue ) {
 		var storyId;
 		
 		this.init = function( id ) {
@@ -45,33 +45,38 @@ define(function() {
 		};
 		
 		this.removeSection = function( chapterId, sectionId ) {
-			EditorResource.sections.remove({
-				storyId: storyId,
-				chapterId: chapterId,
-				sectionId: sectionId
-			})
-			.$promise.then(function( result ) {
-				// Chapter removal is broadcasted over section removal
-				result.chapter ?
-					$rootScope.$broadcast( "editor:chapter-remove", result.chapter.id ) :
-					$rootScope.$broadcast( "editor:section-remove", result.section.id );
-				refresh( storyId )
-				.then(function( serverEditor ) {
-					$rootScope.$broadcast( "editor:restructured", function( $scope ) {
-						var editor = new EditorModel( $scope.editor );
-						
-						if ( result.chapter ) {
-							editor.removeChapter( result.chapter.id );
-						}
-						
-						if ( result.section ) {
-							editor.removeSection( result.section.id );
-						}
-						
-						editor.refreshDataStructure( serverEditor );
+			var operation = function( next ) {
+				EditorResource.sections.remove({
+					storyId: storyId,
+					chapterId: chapterId,
+					sectionId: sectionId
+				})
+				.$promise.then(function( result ) {
+					// Chapter removal is broadcasted over section removal
+					result.chapter ?
+						$rootScope.$broadcast( "editor:chapter-remove", result.chapter.id ) :
+						$rootScope.$broadcast( "editor:section-remove", result.section.id );
+					refresh( storyId )
+					.then(function( serverEditor ) {
+						$rootScope.$broadcast( "editor:restructured", function( $scope ) {
+							var editor = new EditorModel( $scope.editor );
+							
+							if ( result.chapter ) {
+								editor.removeChapter( result.chapter.id );
+							}
+							
+							if ( result.section ) {
+								editor.removeSection( result.section.id );
+							}
+							
+							editor.refreshDataStructure( serverEditor );
+							
+							next();
+						});
 					});
 				});
-			});
+			};
+			EditorSavingQueue.queue( operation );
 		};
 		
 		this.publish = function( chapterId ) {
@@ -97,5 +102,5 @@ define(function() {
 			.$promise;
 		}
 	}
-	return [ "$rootScope", "EditorResource", "EditorModel", EditorStructure ];
+	return [ "$rootScope", "EditorResource", "EditorModel", "EditorSavingQueue", EditorStructure ];
 });

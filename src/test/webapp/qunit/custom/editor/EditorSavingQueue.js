@@ -48,6 +48,30 @@ require([
 		]);
 	});
 	
+	test( "should execute later the second callback when registered after the first is " +
+	"still executing", function() {
+		expect( 3 );
+		var executions = 0;
+		
+		this.service.queue(function first( next ) {
+			executions += 1;
+			setTimeout( next, 10 );
+		});
+		
+		strictEqual( executions, 1, "should execute the first right after it is registered" );
+		
+		this.service.queue(function second( next ) {
+			executions += 1;
+			next();
+		});
+		
+		strictEqual( executions, 1, "should NOT execute the second when the first is executing" );
+		
+		this.clock.tick( 11 );
+		
+		strictEqual( executions, 2, "should execute the second after the first is finished" );
+	});
+	
 	test( "should broadcast 'editor:saved' after the last 'next' call if there is no items in " +
 	"the queue", function() {
 		var executions = 0;
