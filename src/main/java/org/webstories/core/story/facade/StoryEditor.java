@@ -273,4 +273,28 @@ public class StoryEditor implements LocalStoryEditor {
 		
 		return EditorStorySection.from( section );
 	}
+	
+	@Override
+	public EditorStoryChapter updateChapter( long chapterId, final String title, Logged logged )
+	throws AccessDeniedException, UserNotLoggedException {
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
+		
+		final ChapterEntity chapter = entityManager.find( ChapterEntity.class, chapterId );
+		StoryEntity story = chapter.getStory();
+		
+		new StoryOwnerSecurity( logged ).updatePrivileged(
+			new StoryRead.DefaultRead( story.getId(), entityManager ),
+			new PrivilegedUpdate<StoryEntity>() {
+				@Override
+				public void run( StoryEntity story ) {
+					chapter.setTitle( title );
+					entityManager.merge( chapter );
+				};
+			}
+		);
+		
+		return EditorStoryChapter.from( chapter );
+	}
 }

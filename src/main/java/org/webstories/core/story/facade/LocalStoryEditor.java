@@ -30,4 +30,6 @@ public interface LocalStoryEditor {
 		throws AccessDeniedException, UserNotLoggedException;
 	EditorStorySection updateSection( long sectionId, String text, Logged logged )
 		throws AccessDeniedException, UserNotLoggedException;
+	EditorStoryChapter updateChapter( long chapterId, String title, Logged logged )
+		throws AccessDeniedException, UserNotLoggedException;
 }

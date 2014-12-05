@@ -3,9 +3,13 @@ package org.webstories.core.story.editor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.webstories.core.story.StoryChapter;
 import org.webstories.core.text.Text;
 import org.webstories.core.validation.Validatable;
+
+// Prevent "unrecognized field error for 'publishable'" when saving the chapter
+@JsonIgnoreProperties( ignoreUnknown = true )
 
 public class EditorStoryChapterInput implements StoryChapter, Validatable {
 	private Long id;

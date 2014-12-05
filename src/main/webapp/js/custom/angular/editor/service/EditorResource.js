@@ -7,8 +7,9 @@ define( [ "angular", "webstories"], function( angular, webstories ) {
 			storyId: "@storyId"
 		});
 		
-		this.chapters = $resource( path + ":storyId/chapters", {
-			storyId: "@storyId"
+		this.chapters = $resource( path + ":storyId/chapters/:chapterId", {
+			storyId: "@storyId",
+			chapterId: "@chapterId"
 		}, {
 			persist: {
 				method: "PUT",
