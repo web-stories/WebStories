@@ -44,7 +44,7 @@ define(function() {
 			});
 		};
 		
-		this.removeSection = function( sectionId, chapterId ) {
+		this.removeSection = function( chapterId, sectionId ) {
 			EditorResource.sections.remove({
 				storyId: storyId,
 				chapterId: chapterId,

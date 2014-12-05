@@ -94,7 +94,7 @@
                             Nova seção
                           </button>
                           <button class="btn btn-danger"
-                                  ng-click="removeSection( section.id, chapter.id )">
+                                  ng-click="removeSection( chapter.id, section.id )">
                             <span class="icon-trash"></span>
                           </button>
                         </div>
