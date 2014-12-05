@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.webstories.core.story.StoryChapter;
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.Text;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryState;
 
 public class EditorStoryChapter implements StoryChapter {
 	private Long id;
-	private HTMLText title;
+	private Text title;
 	private Integer position;
 	private boolean published;
 	private Boolean publishable;
@@ -19,7 +19,7 @@ public class EditorStoryChapter implements StoryChapter {
 	public static EditorStoryChapter from( ChapterEntity chapterEntity ) {
 		EditorStoryChapter chapter = new EditorStoryChapter();
 		chapter.id = chapterEntity.getId();
-		chapter.title = HTMLText.fromPlainText( chapterEntity.getTitle() );
+		chapter.title = Text.from( chapterEntity.getTitle() );
 		chapter.position = chapterEntity.getPosition();
 		chapter.published = chapterEntity.getState() == StoryState.PUBLISHED;
 		for ( SectionEntity section : chapterEntity.getSections() ) {
@@ -33,7 +33,7 @@ public class EditorStoryChapter implements StoryChapter {
 		return id;
 	}
 	@Override
-	public HTMLText getTitle() {
+	public Text getTitle() {
 		return title;
 	}
 	@Override
