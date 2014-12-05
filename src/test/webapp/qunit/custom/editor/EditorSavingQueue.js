@@ -23,11 +23,11 @@ require([
 		expect( 2 );
 		
 		// Register callbacks
-		this.service.save(function first( next ) {
+		this.service.queue(function first( next ) {
 			ok( true, "should execute first callback immediately" );
 			setTimeout( next, 10 );
 		});
-		this.service.save(function second( next ) {
+		this.service.queue(function second( next ) {
 			ok( true, "should execute the second callback after 10ms" );
 		});
 		
@@ -38,7 +38,7 @@ require([
 	test( "should not execute second callback if 'next' is not called", function() {
 		expect( 1 );
 		
-		this.service.save([
+		this.service.queue([
 			function first( next ) {
 				ok( true, "should execute first callback immediately" );
 			},
@@ -56,7 +56,7 @@ require([
 			executions += 1;
 		});
 		
-		this.service.save(function first( next ) {
+		this.service.queue(function first( next ) {
 			setTimeout( next, 10 );
 		});
 		strictEqual( executions, 0, "should not broadcast before 'next' is called" );
