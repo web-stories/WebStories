@@ -48,6 +48,8 @@
           <div ng-repeat="chapter in model.editor.chapters"
                smooth-scroll
                  scroll-if="{{ model.scrollable.chapterId === chapter.id }}"
+                 easing="easeOutQuint"
+                 duration="500"
                  callback-before="clearScrollable()"
                  offset="71">
             <div class="editor-chapter"
@@ -69,6 +71,8 @@
                    smooth-scroll
                      scroll-if="{{ model.scrollable.sectionId === section.id }}"
                      callback-before="clearScrollable()"
+                     easing="easeOutQuint"
+                     duration="500"
                      offset="80">
                 <div class="editor-chapter-section"
                      ng-controller="SectionController">
@@ -113,7 +117,10 @@
                 ng-repeat="chapter in model.editor.chapters">
               <a class="editor-chapter-thumb" ng-attr-href="#chapter-{{ chapter.position }}"
                  scroll-to="chapter-{{ chapter.position }}"
-                   offset="71">
+                   easing="easeOutQuint"
+                   duration="500"
+                   offset="71" <%-- navbar height --%>
+              >
                 Capítulo {{ chapter.position }}
               </a>
               <div ng-show="chapter.publishable !== null">
