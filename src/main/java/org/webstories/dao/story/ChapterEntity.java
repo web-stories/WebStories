@@ -52,26 +52,6 @@ Comparable<ChapterEntity> {
 	@OneToMany( mappedBy = "chapter", orphanRemoval = true )
 	private List<SectionEntity> sections = new ArrayList<SectionEntity>();
 	
-	/**
-	 * @param  story
-	 *         A managed and persistent story instance
-	 */
-	public static ChapterEntity createContentChapter(
-		String title,
-		int position,
-		StoryState state
-	) {
-		ChapterEntity chapter = new ChapterEntity();
-		chapter.setTitle( title );
-		chapter.setPosition( position );
-		chapter.setState( state );
-		return chapter;
-	}
-	
-	/**
-	 * @param  story
-	 *         A managed and persistent story instance
-	 */
 	public static ChapterEntity createEmptyChapter( int position ) {
 		ChapterEntity chapter = new ChapterEntity();
 		chapter.setPosition( position );

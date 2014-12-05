@@ -7,7 +7,6 @@ import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
-import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.story.editor.EditorStorySection;
 import org.webstories.core.story.editor.RemovalResult;
 import org.webstories.core.validation.ValidationException;
@@ -16,8 +15,6 @@ import org.webstories.core.validation.ValidationException;
 public interface LocalStoryEditor {
 	void updateMeta( long idStory, EditorStoryDetailsInput input, Logged logged )
 		throws ValidationException, AccessDeniedException;
-	void updateStory( EditorStoryInput story, Logged logged )
-		throws ValidationException, AccessDeniedException, UserNotLoggedException;
 	void removeStory( long idStory, Logged logged )
 		throws ValidationException, AccessDeniedException, UserNotLoggedException;
 	void publishChapter( long idChapter, Logged logged )

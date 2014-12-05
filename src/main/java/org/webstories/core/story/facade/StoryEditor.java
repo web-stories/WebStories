@@ -13,11 +13,9 @@ import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.security.PrivilegedUpdate;
 import org.webstories.core.security.story.StoryOwnerSecurity;
 import org.webstories.core.security.story.StoryRead;
-import org.webstories.core.security.story.StoryUpdate;
 import org.webstories.core.story.StoryUtils;
 import org.webstories.core.story.editor.EditorStoryChapter;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
-import org.webstories.core.story.editor.EditorStoryInput;
 import org.webstories.core.story.editor.EditorStorySection;
 import org.webstories.core.story.editor.RemovalResult;
 import org.webstories.core.story.editor.RemovedItem;
@@ -55,21 +53,6 @@ public class StoryEditor implements LocalStoryEditor {
 					entityManager.merge( meta );
 				}
 			}
-		);
-	}
-	
-	@Override
-	public void updateStory( EditorStoryInput story, Logged logged )
-	throws ValidationException, AccessDeniedException, UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		if ( !story.validate() ) {
-			throw new ValidationException();
-		}
-		new StoryOwnerSecurity( logged ).updatePrivileged(
-			new StoryRead.DefaultRead( story.getId(), entityManager ),
-			new StoryUpdate.EditorUpdate( story, entityManager )
 		);
 	}
 	

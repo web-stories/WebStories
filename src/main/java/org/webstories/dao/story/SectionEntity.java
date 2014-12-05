@@ -45,27 +45,11 @@ Comparable<SectionEntity> {
 		return new SectionEntity();
 	}
 	
-	/**
-	 * @param  chapter
-	 *         A managed and persistent chapter instance
-	 */
-	public static SectionEntity createContentSection( String text, int position ) {
-		SectionEntity section = new SectionEntity();
-		section.setText( text );
-		section.setPosition( position );
-		return section;
-	}
-	
-	/**
-	 * @param  chapter
-	 *         A managed and persistent chapter instance
-	 */
 	public static SectionEntity createEmptySection( int position ) {
 		SectionEntity section = new SectionEntity();
 		section.setPosition( position );
 		return section;
 	}
-	
 	
 	@Override
 	public Long getId() {
