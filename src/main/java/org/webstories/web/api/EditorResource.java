@@ -57,10 +57,9 @@ public class EditorResource {
 	public EditorStorySection sectionPersist(
 		@PathParam( "sectionId" ) Long sectionId,
 		EditorStorySectionInput input
-	) throws HttpUnauthorizedException, HttpForbiddenException, InterruptedException {
+	) throws HttpUnauthorizedException, HttpForbiddenException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		String text = input.getText().toString();
-		Thread.sleep( 10000 );
 		try {
 			return storyEditor.updateSection( sectionId, text, logged );
 		} catch ( AccessDeniedException e ) {
