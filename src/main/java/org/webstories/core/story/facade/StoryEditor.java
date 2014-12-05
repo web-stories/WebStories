@@ -159,9 +159,7 @@ public class StoryEditor implements LocalStoryEditor {
 		// execution.
 		// Let's make this exception clear to see if it happens in the wild.
 		if ( section == null ) {
-			throw new ResourceNotFoundException(
-				"Section '" + idSection + "' does not exist anymore"
-			);
+			throw new ResourceNotFoundException( "Section '" + idSection + "' does not exist" );
 		}
 		
 		final ChapterEntity chapter = section.getChapter();

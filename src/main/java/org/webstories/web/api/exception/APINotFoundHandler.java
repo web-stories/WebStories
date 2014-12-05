@@ -4,14 +4,14 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import org.webstories.web.util.servlet.HttpGoneException;
+import org.webstories.web.util.servlet.HttpNotFoundException;
 
 @Provider
-public class APIGoneHandler extends APIExceptionHandler<HttpGoneException>
+public class APINotFoundHandler extends APIExceptionHandler<HttpNotFoundException>
 //https://issues.jboss.org/browse/RESTEASY-666#comment-12680849
-implements ExceptionMapper<HttpGoneException>{
+implements ExceptionMapper<HttpNotFoundException>{
 	@Override
 	protected int getStatusCode() {
-		return Status.GONE.getStatusCode();
+		return Status.NOT_FOUND.getStatusCode();
 	}
 }

@@ -29,7 +29,7 @@ import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.web.util.servlet.HttpForbiddenException;
-import org.webstories.web.util.servlet.HttpGoneException;
+import org.webstories.web.util.servlet.HttpNotFoundException;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
 import org.webstories.web.util.servlet.HttpUnprocessableEntityException;
 
@@ -87,7 +87,7 @@ public class EditorResource {
 	@DELETE
 	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
 	public RemovalResult sectionRemove( @PathParam( "sectionId" ) Long sectionId )
-	throws HttpForbiddenException, HttpUnauthorizedException, HttpGoneException {
+	throws HttpForbiddenException, HttpUnauthorizedException, HttpNotFoundException {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
 			return storyEditor.removeSection( sectionId, logged );
@@ -96,7 +96,7 @@ public class EditorResource {
 		} catch ( UserNotLoggedException e ) {
 			throw new HttpUnauthorizedException( e );
 		} catch ( ResourceNotFoundException e ) {
-			throw new HttpGoneException( e );
+			throw new HttpNotFoundException( e );
 		}
 	}
 	
