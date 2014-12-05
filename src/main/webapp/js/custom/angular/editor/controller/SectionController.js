@@ -1,7 +1,10 @@
 define(function() {
 	"use strict";
 	function SectionController( $scope, EditorContent ) {
-		$scope.$watch( "section.text", function() {
+		$scope.$watch( "section.text", function( newText, oldText ) {
+			if ( newText === oldText ) {
+				return;
+			}
 			var editor = $scope.editor;
 			var chapter = $scope.chapter;
 			var section = $scope.section;
