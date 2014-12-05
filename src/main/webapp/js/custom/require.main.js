@@ -27,6 +27,7 @@ require = (function( require ) {
 		var key, val, defaultConfigs;
 		
 		defaultConfigs = {
+			waitSeconds: 0, // Prevent "Load timeout for modules" in slow connections
 			"map": {
 				"*": {
 					// Custom modules
