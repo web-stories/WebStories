@@ -4,12 +4,12 @@ define([
 	"js/editor/service/EditorStructure",
 	"js/editor/service/EditorContent",
 	"js/editor/service/EditorSavingQueue",
-	"js/editor/value/EditorModel",
 	"js/editor/controller/EditorController",
 	"js/editor/controller/MenuController",
 	"js/editor/controller/EditableController",
 	"js/editor/controller/ChapterController",
 	"js/editor/controller/SectionController",
+	"js/editor/value/EditorModel",
 	"angular.resource",
 	"angular.smoothscroll"
 ], function(
@@ -18,12 +18,12 @@ define([
 	EditorStructure,
 	EditorContent,
 	EditorSavingQueue,
-	EditorModel,
 	EditorController,
 	MenuController,
 	EditableController,
 	ChapterController,
-	SectionController
+	SectionController,
+	EditorModel
 ) {
 	"use strict";
 	
@@ -32,12 +32,12 @@ define([
 		.service( "EditorStructure", EditorStructure )
 		.service( "EditorContent", EditorContent )
 		.service( "EditorSavingQueue", EditorSavingQueue )
-		.value( "EditorModel", EditorModel )
 		.controller( "EditorController", EditorController )
 		.controller( "MenuController", MenuController )
 		.controller( "EditableController", EditableController )
 		.controller( "ChapterController", ChapterController )
-		.controller( "SectionController", SectionController );
+		.controller( "SectionController", SectionController )
+		.value( "EditorModel", EditorModel );
 		
 	angular.bootstrap( document.body, [ "ws.editor" ] );
 });
