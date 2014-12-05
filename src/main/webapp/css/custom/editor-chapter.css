@@ -31,13 +31,25 @@
   top: 5px;
   right: 5px;
 }
-.editor-chapter-thumb-publish[disabled] {
+
+/**
+ * 1. Reset bootstrap focus styles.
+ *    Firefox keeps focus after clicking and then immediately disabling the element after
+ *    publishing the chapter
+ */
+ 
+.editor-chapter-thumb-publish[disabled],
+.editor-chapter-thumb-publish[disabled]:focus { /* 1 */
   border: none;
   background: none;
   text-shadow: none;
   color: #3C763D;
   opacity: 1;
 }
-.editor-chapter-thumbs-items .active .editor-chapter-thumb-publish[disabled] {
+.editor-chapter-thumbs-items .active .editor-chapter-thumb-publish[disabled],
+.editor-chapter-thumbs-items .active .editor-chapter-thumb-publish[disabled]:focus { /* 1 */
   color: #FFF;
+}
+.editor-chapter-thumb-publish[disabled]:focus { /* 1 */
+  box-shadow: none;
 }
