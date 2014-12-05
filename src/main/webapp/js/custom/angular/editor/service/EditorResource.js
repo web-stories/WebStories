@@ -10,6 +10,12 @@ define( [ "angular", "webstories"], function( angular, webstories ) {
 		this.chapters = $resource( path + ":storyId/chapters", {
 			storyId: "@storyId"
 		}, {
+			persist: {
+				method: "PUT",
+				transformRequest: function( data ) {
+					return angular.toJson( data.chapter );
+				}
+			},
 			create: {
 				method: "POST"
 			}

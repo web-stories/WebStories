@@ -1,9 +1,11 @@
 define(function() {
 	"use strict";
-	function ChapterController( $scope ) {
+	function ChapterController( $scope, EditorContent ) {
 		$scope.$watch( "chapter.title", function() {
-			console.log( "title saved!" );
+			var editor = $scope.editor;
+			var chapter = $scope.chapter;
+			EditorContent.saveChapter( editor, chapter );
 		});
 	}
-	return [ "$scope", ChapterController ];
+	return [ "$scope", "EditorContent", ChapterController ];
 });
