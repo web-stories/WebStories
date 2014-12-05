@@ -7,8 +7,8 @@ define(function() {
 			storyId = id;
 			refresh( storyId )
 			.then(function( editor ) {
-				$rootScope.$broadcast( "editor:restructured", function( model ) {
-					model.editor = editor;
+				$rootScope.$broadcast( "editor:restructured", function( $scope ) {
+					$scope.editor = editor;
 				});
 			});
 		};
@@ -18,8 +18,8 @@ define(function() {
 				storyId: storyId
 			})
 			.$promise.then(function( chapter ) {
-				$rootScope.$broadcast( "editor:restructured", function( model ) {
-					var editor = new EditorModel( model.editor );
+				$rootScope.$broadcast( "editor:restructured", function( $scope ) {
+					var editor = new EditorModel( $scope.editor );
 					editor.addChapter( chapter );
 				});
 				$rootScope.$broadcast( "editor:chapter-add", chapter );
@@ -33,10 +33,10 @@ define(function() {
 				prevSectionId: prevSectionId
 			})
 			.$promise.then(function( section ) {
-				$rootScope.$broadcast( "editor:restructured", function( model ) {
+				$rootScope.$broadcast( "editor:restructured", function( $scope ) {
 					refresh( storyId )
 					.then(function( serverEditor ) {
-						var editor = new EditorModel( model.editor );
+						var editor = new EditorModel( $scope.editor );
 						editor.refreshDataStructure( serverEditor );
 					});
 				});
@@ -57,8 +57,8 @@ define(function() {
 					$rootScope.$broadcast( "editor:section-remove", result.section.id );
 				refresh( storyId )
 				.then(function( serverEditor ) {
-					$rootScope.$broadcast( "editor:restructured", function( model ) {
-						var editor = new EditorModel( model.editor );
+					$rootScope.$broadcast( "editor:restructured", function( $scope ) {
+						var editor = new EditorModel( $scope.editor );
 						
 						if ( result.chapter ) {
 							editor.removeChapter( result.chapter.id );
@@ -82,8 +82,8 @@ define(function() {
 			.$promise.then(function() {
 				refresh( storyId )
 				.then(function( serverEditor ) {
-					$rootScope.$broadcast( "editor:restructured", function( model ) {
-						var editor = new EditorModel( model.editor );
+					$rootScope.$broadcast( "editor:restructured", function( $scope ) {
+						var editor = new EditorModel( $scope.editor );
 						editor.refreshDataStructure( serverEditor );
 					});
 				});

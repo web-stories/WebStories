@@ -1,41 +1,40 @@
 define(function() {
 	"use strict";
 	function EditorController( $scope, EditorStructure, EditorModel ) {
-		$scope.model = {};
-		$scope.model.scrollable = {};
+		$scope.scrollable = {};
 		
 		$scope.init = function( storyId ) {
 			EditorStructure.init( storyId );
 		};
 		
 		$scope.$on( "editor:restructured", function( event, updateModel ) {
-			updateModel( $scope.model );
+			updateModel( $scope );
 		});
 		
 		$scope.$on( "editor:chapter-add", function( event, chapter ) {
-			$scope.model.scrollable.chapterId = chapter.id;
+			$scope.scrollable.chapterId = chapter.id;
 		});
 		
 		$scope.$on( "editor:section-add", function( event, section ) {
-			$scope.model.scrollable.sectionId = section.id;
+			$scope.scrollable.sectionId = section.id;
 		});
 		
 		$scope.$on( "editor:chapter-remove", function( event, chapterId ) {
-			var editor = new EditorModel( $scope.model.editor );
+			var editor = new EditorModel( $scope.editor );
 			var prevChapter = editor.findPrevChapter( chapterId );
 			if ( prevChapter ) {
-				$scope.model.scrollable.chapterId = prevChapter.id;
+				$scope.scrollable.chapterId = prevChapter.id;
 			}
 		});
 		
 		$scope.$on( "editor:section-remove", function( event, sectionId ) {
-			var editor = new EditorModel( $scope.model.editor );
+			var editor = new EditorModel( $scope.editor );
 			var prevSection = editor.findPrevSection( sectionId );
-			$scope.model.scrollable.sectionId = prevSection.id;
+			$scope.scrollable.sectionId = prevSection.id;
 		});
 		
 		$scope.clearScrollable = function() {
-			$scope.model.scrollable = {};
+			$scope.scrollable = {};
 		};
 	}
 	return [ "$scope", "EditorStructure", "EditorModel", EditorController ];
