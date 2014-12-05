@@ -105,12 +105,13 @@
       </div>
       <div class="col-sm-4 col-lg-3 hidden-xs">
         <div class="editor-chapter-thumbs" id="chapter-menu"
+             ws-editor-menu
              ng-controller="MenuController"
              ng-cloak>
           <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items">
             <li class="editor-chapter-thumbs-item"
                 ng-repeat="chapter in model.editor.chapters">
-              <a class="editor-chapter-thumb" href="#"
+              <a class="editor-chapter-thumb" ng-attr-href="#chapter-{{ chapter.position }}"
                  scroll-to="chapter-{{ chapter.position }}"
                    offset="71">
                 Capítulo {{ chapter.position }}

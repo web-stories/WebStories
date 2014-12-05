@@ -9,6 +9,7 @@ define([
 	"js/editor/controller/EditableController",
 	"js/editor/controller/ChapterController",
 	"js/editor/controller/SectionController",
+	"js/editor/directive/EditorMenuDirective",
 	"js/editor/value/EditorModel",
 	"angular.resource",
 	"angular.smoothscroll"
@@ -23,6 +24,7 @@ define([
 	EditableController,
 	ChapterController,
 	SectionController,
+	EditorMenuDirective,
 	EditorModel
 ) {
 	"use strict";
@@ -37,6 +39,7 @@ define([
 		.controller( "EditableController", EditableController )
 		.controller( "ChapterController", ChapterController )
 		.controller( "SectionController", SectionController )
+		.directive( "wsEditorMenu", EditorMenuDirective )
 		.value( "EditorModel", EditorModel );
 		
 	angular.bootstrap( document.body, [ "ws.editor" ] );
