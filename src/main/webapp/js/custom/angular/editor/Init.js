@@ -13,6 +13,7 @@ define([
 	"js/editor/controller/ChapterController",
 	"js/editor/controller/SectionController",
 	"js/editor/directive/EditorMenuDirective",
+	"js/editor/directive/EditorFocusDirective",
 	"angular.resource",
 	"angular.smoothscroll"
 ], function(
@@ -29,7 +30,8 @@ define([
 	EditableController,
 	ChapterController,
 	SectionController,
-	EditorMenuDirective
+	EditorMenuDirective,
+	EditorFocusDirective
 ) {
 	"use strict";
 	
@@ -46,7 +48,8 @@ define([
 		.controller( "EditableController", EditableController )
 		.controller( "ChapterController", ChapterController )
 		.controller( "SectionController", SectionController )
-		.directive( "wsEditorMenu", EditorMenuDirective );
+		.directive( "wsEditorMenu", EditorMenuDirective )
+		.directive( "wsEditorFocus", EditorFocusDirective );
 		
 	angular.bootstrap( document.body, [ "ws.editor" ] );
 });

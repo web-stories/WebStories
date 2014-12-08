@@ -80,7 +80,10 @@
                               ng-model="section.text"
                                 <%-- Enable input validation upon typing "enter" --%>
                                 ng-trim="false"
-                              ng-keydown="preventTyping( $event )"></textarea>
+                              ng-keydown="preventTyping( $event )"
+                              ws-editor-focus
+                                focus-if="focusable.sectionId === section.id"
+                                callback-before="clearFocusable()"></textarea>
                     <div class="editor-chapter-section-footer">
                       <div class="row">
                         <div class="col-md-6">

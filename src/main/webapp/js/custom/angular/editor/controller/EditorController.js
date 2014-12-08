@@ -2,6 +2,7 @@ define(function() {
 	"use strict";
 	function EditorController( $scope, EditorStructure, EditorModel ) {
 		$scope.scrollable = {};
+		$scope.focusable = {};
 		
 		$scope.init = function( storyId ) {
 			EditorStructure.init( storyId );
@@ -17,6 +18,7 @@ define(function() {
 		
 		$scope.$on( "editor:section-add", function( event, section ) {
 			$scope.scrollable.sectionId = section.id;
+			$scope.focusable.sectionId = section.id;
 		});
 		
 		$scope.$on( "editor:chapter-remove", function( event, chapterId ) {
@@ -35,6 +37,10 @@ define(function() {
 		
 		$scope.clearScrollable = function() {
 			$scope.scrollable = {};
+		};
+		
+		$scope.clearFocusable = function() {
+			$scope.focusable = {};
 		};
 	}
 	return [ "$scope", "EditorStructure", "EditorModel", EditorController ];
