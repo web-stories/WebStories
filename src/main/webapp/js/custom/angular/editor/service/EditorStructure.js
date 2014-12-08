@@ -73,7 +73,7 @@ define(function() {
 						});
 					})
 					.finally( next );
-				});
+				}, next /* if request fail */ );
 			};
 			EditorSavingQueue.queue( operation );
 		};
