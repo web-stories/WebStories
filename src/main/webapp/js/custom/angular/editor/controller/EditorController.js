@@ -3,9 +3,13 @@ define(function() {
 	function EditorController( $scope, EditorStructure, EditorModel ) {
 		$scope.scrollable = {};
 		$scope.focusable = {};
+		$scope.loader = {};
 		
 		$scope.init = function( storyId ) {
-			EditorStructure.init( storyId );
+			EditorStructure.init( storyId )
+				.then(function() {
+					$scope.loader.ready = true;
+				});
 		};
 		
 		$scope.$on( "editor:restructured", function( event, updateModel ) {

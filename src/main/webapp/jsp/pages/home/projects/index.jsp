@@ -30,9 +30,7 @@
   </ul>
 </div>
 <div class="container">
-  <div class="editor"
-       ng-controller="EditorController"
-       ng-init="init( ${story.id} )">
+  <div class="editor" ng-controller="EditorController" ng-init="init( ${story.id} )">
     <div class="editor-title">
       <h1 class="editor-title-header">
         ${story.title}
@@ -40,11 +38,14 @@
         <small>${story.summary}</small>
       </h1>
     </div>
-    <div class="row"
-         ng-cloak>
+    <div class="loading-dots" ng-show="!loader.ready">
+      <img src="${pageContext.request.contextPath}/static/img/loading-dots.gif">
+    </div>
+    <div class="row" ng-cloak>
       <div class="col-sm-8 col-lg-9">
         <div class="editor-chapters"
-             ng-controller="EditableController">
+             ng-controller="EditableController"
+             ng-show="loader.ready">
           <div ng-repeat="chapter in editor.chapters"
                smooth-scroll
                  scroll-if="{{ scrollable.chapterId === chapter.id }}"
@@ -52,9 +53,7 @@
                  duration="500"
                  callback-before="clearScrollable()"
                  offset="71">
-            <div class="editor-chapter"
-                 ng-attr-id="chapter-{{ chapter.position }}"
-                 ng-controller="ChapterController">
+            <div class="editor-chapter" ng-attr-id="chapter-{{ chapter.position }}" ng-controller="ChapterController">
               <h2 class="editor-chapter-title-header">
                 Capítulo {{ chapter.position }}
                 <small class="text-success" ng-show="chapter.published">
@@ -93,8 +92,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="editor-section-footer-toolbar">
-                            <button class="btn btn-primary"
-                                    ng-click="addSection( section.id, chapter.id )">
+                            <button class="btn btn-primary" ng-click="addSection( section.id, chapter.id )">
                               <span class="icon-down"></span>
                               Nova seção
                             </button>

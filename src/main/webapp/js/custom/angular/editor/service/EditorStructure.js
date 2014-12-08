@@ -5,7 +5,7 @@ define(function() {
 		
 		this.init = function( id ) {
 			storyId = id;
-			refresh( storyId )
+			return refresh( storyId )
 			.then(function( editor ) {
 				$rootScope.$broadcast( "editor:restructured", function( $scope ) {
 					$scope.editor = editor;
