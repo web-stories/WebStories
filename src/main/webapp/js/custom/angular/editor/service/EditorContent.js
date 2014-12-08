@@ -8,7 +8,7 @@ define(function() {
 					chapterId: chapter.id,
 					storyId: editor.id,
 					section: section
-				}).$promise.then( next );
+				}).$promise.finally( next );
 			};
 			EditorSavingQueue.queue( callback );
 		};
@@ -18,7 +18,7 @@ define(function() {
 					chapterId: chapter.id,
 					storyId: editor.id,
 					chapter: chapter
-				}).$promise.then( next );
+				}).$promise.finally( next );
 			};
 			EditorSavingQueue.queue( callback );
 		};

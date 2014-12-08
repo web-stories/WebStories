@@ -3,22 +3,28 @@ define(function() {
 	function SectionController( $scope, $timeout, EditorContent, EditorSectionValidation ) {
 		var debounce;
 		$scope.validity = {};
+		
+		// Validation
 		$scope.$watch( "section.text", function( newText, oldText ) {
-			var editor = $scope.editor;
-			var chapter = $scope.chapter;
-			var section = $scope.section;
-			
 			$scope.validity.text = EditorSectionValidation.getValidityText( newText );
 			$scope.validity.className = EditorSectionValidation.getValidityClassName( newText );
-			
-			// Prevent execution the first time the page is loaded
+		});
+		
+		// Server update
+		$scope.$watch( "section.text", function( newText, oldText ) {
+			// Prevent execution in the first time the page is loaded
 			if ( newText !== oldText ) {
-				if ( debounce ) {
-					$timeout.cancel( debounce );
+				// If all content is deleted, update the server immediately, it prevents error when
+				// deleting the content and removing the section before debounce callback is
+				// executed
+				if ( !newText ) {
+					saveText();
+				} else {
+					if ( debounce ) {
+						$timeout.cancel( debounce );
+					}
+					debounce = $timeout( saveText, 1000 );
 				}
-				debounce = $timeout(function() {
-					EditorContent.saveSection( editor, chapter, section );
-				}, 1000 );
 			}
 		});
 		
@@ -28,6 +34,13 @@ define(function() {
 				event.preventDefault();
 			}
 		};
+		
+		function saveText() {
+			var editor = $scope.editor;
+			var chapter = $scope.chapter;
+			var section = $scope.section;
+			EditorContent.saveSection( $scope.editor, $scope.chapter, $scope.section );
+		}
 	}
 	return [ "$scope", "$timeout", "EditorContent", "EditorSectionValidation",  SectionController ];
 });

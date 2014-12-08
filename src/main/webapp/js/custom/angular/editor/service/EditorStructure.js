@@ -70,10 +70,9 @@ define(function() {
 							}
 							
 							editor.refreshDataStructure( serverEditor );
-							
-							next();
 						});
-					});
+					})
+					.finally( next );
 				});
 			};
 			EditorSavingQueue.queue( operation );
