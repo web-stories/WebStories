@@ -40,11 +40,11 @@
         <small>${story.summary}</small>
       </h1>
     </div>
-    <div class="row">
+    <div class="row"
+         ng-cloak>
       <div class="col-sm-8 col-lg-9">
         <div class="editor-chapters"
-             ng-controller="EditableController"
-             ng-cloak>
+             ng-controller="EditableController">
           <div ng-repeat="chapter in editor.chapters"
                smooth-scroll
                  scroll-if="{{ scrollable.chapterId === chapter.id }}"
@@ -117,8 +117,7 @@
       <div class="col-sm-4 col-lg-3 hidden-xs">
         <div class="editor-chapter-thumbs" id="chapter-menu"
              ws-editor-menu
-             ng-controller="MenuController"
-             ng-cloak>
+             ng-controller="MenuController">
           <ul class="nav nav-pills nav-stacked editor-chapter-thumbs-items">
             <li class="editor-chapter-thumbs-item"
                 ng-repeat="chapter in editor.chapters">
