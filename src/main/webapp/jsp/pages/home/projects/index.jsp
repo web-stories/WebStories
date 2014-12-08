@@ -50,7 +50,7 @@
                smooth-scroll
                  scroll-if="{{ scrollable.chapterId === chapter.id }}"
                  easing="easeOutQuint"
-                 duration="500"
+                 duration="800"
                  callback-before="clearScrollable()"
                  offset="71">
             <div class="editor-chapter" ng-attr-id="chapter-{{ chapter.position }}" ng-controller="ChapterController">
@@ -71,7 +71,7 @@
                      scroll-if="{{ scrollable.sectionId === section.id }}"
                      callback-before="clearScrollable()"
                      easing="easeOutQuint"
-                     duration="500"
+                     duration="1000"
                      offset="80">
                 <div ng-controller="SectionController">
                   <div class="editor-chapter-section {{ validity.className }}">
