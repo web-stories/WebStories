@@ -19,7 +19,7 @@ define(function() {
 			})
 			.$promise.then(function( chapter ) {
 				$rootScope.$broadcast( "editor:restructured", function( $scope ) {
-					var editor = new EditorModel( $scope.editor );
+					var editor = EditorModel.create( $scope.editor );
 					editor.addChapter( chapter );
 				});
 				$rootScope.$broadcast( "editor:chapter-add", chapter );
@@ -36,7 +36,7 @@ define(function() {
 				$rootScope.$broadcast( "editor:restructured", function( $scope ) {
 					refresh( storyId )
 					.then(function( serverEditor ) {
-						var editor = new EditorModel( $scope.editor );
+						var editor = EditorModel.create( $scope.editor );
 						editor.refreshDataStructure( serverEditor );
 					});
 				});
@@ -59,7 +59,7 @@ define(function() {
 					refresh( storyId )
 					.then(function( serverEditor ) {
 						$rootScope.$broadcast( "editor:restructured", function( $scope ) {
-							var editor = new EditorModel( $scope.editor );
+							var editor = EditorModel.create( $scope.editor );
 							
 							if ( result.chapter ) {
 								editor.removeChapter( result.chapter.id );
@@ -88,7 +88,7 @@ define(function() {
 				refresh( storyId )
 				.then(function( serverEditor ) {
 					$rootScope.$broadcast( "editor:restructured", function( $scope ) {
-						var editor = new EditorModel( $scope.editor );
+						var editor = EditorModel.create( $scope.editor );
 						editor.refreshDataStructure( serverEditor );
 					});
 				});

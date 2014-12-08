@@ -3,6 +3,7 @@
  */
 define( [ "lodash" ], function( _ ) {
 	"use strict";
+	
 	function EditorModel( editor ) {
 		
 		this.addChapter = function( chapter ) {
@@ -87,5 +88,10 @@ define( [ "lodash" ], function( _ ) {
 			return prev;
 		};
 	}
-	return EditorModel;
+	
+	return {
+		create: function( editor ) {
+			return new EditorModel( editor );
+		}
+	};
 });

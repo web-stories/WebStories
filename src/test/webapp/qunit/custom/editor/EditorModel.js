@@ -3,7 +3,7 @@ QUnit.config.autostart = false;
 module( "EditorModel" );
 require([
 	"angular",
-	"js/editor/value/EditorModel"
+	"js/editor/factory/EditorModel"
 ], function( angular, EditorModel ) {
 	start();
 	
@@ -28,7 +28,7 @@ require([
 				}]
 			}]
 		};
-		new EditorModel( modelEditor )
+		EditorModel.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 0 ].sections[ 1 ].position, 2 );
 	});
@@ -52,7 +52,7 @@ require([
 				sections: []
 			}]
 		};
-		new EditorModel( modelEditor )
+		EditorModel.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 1 ].position, 2 );
 	});
@@ -83,7 +83,7 @@ require([
 				}]
 			}]
 		};
-		new EditorModel( modelEditor )
+		EditorModel.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 0 ].sections[ 1 ].id, 172 );
 	});
@@ -101,7 +101,7 @@ require([
 				sections: []
 			}]
 		};
-		new EditorModel( modelEditor )
+		EditorModel.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 0 ].publishable, true );
 	});
@@ -119,7 +119,7 @@ require([
 				}]
 			}]
 		};
-		new EditorModel( modelEditor )
+		EditorModel.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		deepEqual( modelEditor.chapters[ 0 ].sections[ 0 ], {
 			id: 310
