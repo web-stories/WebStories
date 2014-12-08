@@ -89,9 +89,11 @@ define( [ "lodash" ], function( _ ) {
 		};
 	}
 	
-	return {
-		create: function( editor ) {
-			return new EditorModel( editor );
-		}
+	return function() {
+		return {
+			create: function( editor ) {
+				return new EditorModel( editor );
+			}
+		};
 	};
 });

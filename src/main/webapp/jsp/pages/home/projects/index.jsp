@@ -74,30 +74,33 @@
                      easing="easeOutQuint"
                      duration="500"
                      offset="80">
-                <div class="editor-chapter-section"
-                     ng-controller="SectionController">
-                  <textarea class="form-control editor-chapter-section-text"
-                            ng-model="section.text"
-                              ng-model-options="{ debounce: 1000 }"></textarea>
-                  <div class="editor-chapter-section-footer">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <label class="control-label editor-section-footer-msg" ng-attr-for="section-{{ section.position }}"><!--
-                          Element should be empty to trigger :empty pseudo selector
-                        --></label>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="editor-section-footer-toolbar">
-                          <button class="btn btn-primary"
-                                  ng-click="addSection( section.id, chapter.id )">
-                            <span class="icon-down"></span>
-                            Nova seção
-                          </button>
-                          <button class="btn btn-danger"
-                                  ng-click="removeSection( chapter.id, section.id )"
-                                  ng-disabled="section.text">
-                            <span class="icon-trash"></span>
-                          </button>
+                <div ng-controller="SectionController">
+                  <div class="editor-chapter-section {{ validity.className }}">
+                    <textarea class="form-control editor-chapter-section-text"
+                              ng-model="section.text"
+                                <%-- Enable input validation upon typing "enter" --%>
+                                ng-trim="false"
+                              ng-keydown="preventTyping( $event )"></textarea>
+                    <div class="editor-chapter-section-footer">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label class="control-label editor-section-footer-msg"
+                                 ng-attr-for="section-{{ section.position }}"
+                                 ng-show="validity.text">{{ validity.text }}</label>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="editor-section-footer-toolbar">
+                            <button class="btn btn-primary"
+                                    ng-click="addSection( section.id, chapter.id )">
+                              <span class="icon-down"></span>
+                              Nova seção
+                            </button>
+                            <button class="btn btn-danger"
+                                    ng-click="removeSection( chapter.id, section.id )"
+                                    ng-disabled="section.text">
+                              <span class="icon-trash"></span>
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>

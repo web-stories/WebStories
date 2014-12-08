@@ -127,9 +127,11 @@ define(function() {
 		};
 	}
 	
-	return {
-		create: function( event ) {
-			return new KeyEvent( event );
-		}
+	return function() {
+		return {
+			create: function( event ) {
+				return new KeyEvent( event );
+			}
+		};
 	};
 });

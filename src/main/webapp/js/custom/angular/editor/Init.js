@@ -4,7 +4,9 @@ define([
 	"js/editor/service/EditorStructure",
 	"js/editor/service/EditorContent",
 	"js/editor/service/EditorSavingQueue",
+	"js/editor/service/EditorSectionValidation",
 	"js/editor/factory/EditorModel",
+	"js/editor/factory/KeyEvent",
 	"js/editor/controller/EditorController",
 	"js/editor/controller/MenuController",
 	"js/editor/controller/EditableController",
@@ -19,7 +21,9 @@ define([
 	EditorStructure,
 	EditorContent,
 	EditorSavingQueue,
+	EditorSectionValidation,
 	EditorModel,
+	KeyEvent,
 	EditorController,
 	MenuController,
 	EditableController,
@@ -34,7 +38,9 @@ define([
 		.service( "EditorStructure", EditorStructure )
 		.service( "EditorContent", EditorContent )
 		.service( "EditorSavingQueue", EditorSavingQueue )
+		.service( "EditorSectionValidation", EditorSectionValidation )
 		.factory( "EditorModel", EditorModel )
+		.factory( "KeyEvent", KeyEvent )
 		.controller( "EditorController", EditorController )
 		.controller( "MenuController", MenuController )
 		.controller( "EditableController", EditableController )
