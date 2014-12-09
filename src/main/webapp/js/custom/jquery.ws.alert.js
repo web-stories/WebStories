@@ -81,7 +81,7 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 		},
 		ajaxError: function( message, jqXHR ) {
 			var error = this._ajaxErrorMessages[ jqXHR.status ];
-			var content = [ "<b>Erro:</b> Não consegui salvar", message ].join( "<br>" );
+			var content = [ message, error ].join( "<br>" );
 			this.show( content );
 		},
 		ajaxValidation: function( validation ) {

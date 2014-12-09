@@ -1,6 +1,6 @@
 define(function() {
 	"use strict";
-	function EditorController( $scope, EditorStructure, EditorModel ) {
+	function EditorController( $scope, EditorStructure, EditorAlert ) {
 		$scope.scrollable = {};
 		$scope.focusable = {};
 		$scope.loader = {};
@@ -9,6 +9,9 @@ define(function() {
 			EditorStructure.init( storyId )
 			.then(function() {
 				$scope.loader.ready = true;
+			})
+			.catch(function( response ) {
+				$scope.alert.error = EditorAlert.ajaxError( response );
 			});
 		};
 		
@@ -33,5 +36,5 @@ define(function() {
 			$scope.focusable = {};
 		};
 	}
-	return [ "$scope", "EditorStructure", "EditorModel", EditorController ];
+	return [ "$scope", "EditorStructure", "EditorAlert",  EditorController ];
 });
