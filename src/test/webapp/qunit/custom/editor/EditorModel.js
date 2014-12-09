@@ -1,13 +1,15 @@
 QUnit.config.autostart = false;
 
 module( "EditorModel" );
-require([
-	"angular",
-	"js/editor/factory/EditorModel"
-], function( angular, EditorModel ) {
+require([ "angular", "js/editor/Init" ], function( angular ) {
 	start();
 	
-	module( "EditorModel" );
+	module( "EditorModel", {
+		setup: function() {
+			var injector = angular.injector([ "ng", "ws.editor" ]);
+			this.factory = injector.get( "EditorModel" );
+		}
+	});
 	
 	test( "should update the sections position", function() {
 		var modelEditor = {
@@ -28,7 +30,7 @@ require([
 				}]
 			}]
 		};
-		EditorModel.create( modelEditor )
+		this.factory.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 0 ].sections[ 1 ].position, 2 );
 	});
@@ -52,7 +54,7 @@ require([
 				sections: []
 			}]
 		};
-		EditorModel.create( modelEditor )
+		this.factory.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 1 ].position, 2 );
 	});
@@ -83,7 +85,7 @@ require([
 				}]
 			}]
 		};
-		EditorModel.create( modelEditor )
+		this.factory.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 0 ].sections[ 1 ].id, 172 );
 	});
@@ -101,7 +103,7 @@ require([
 				sections: []
 			}]
 		};
-		EditorModel.create( modelEditor )
+		this.factory.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		strictEqual( modelEditor.chapters[ 0 ].publishable, true );
 	});
@@ -119,7 +121,7 @@ require([
 				}]
 			}]
 		};
-		EditorModel.create( modelEditor )
+		this.factory.create( modelEditor )
 			.refreshDataStructure( serverEditor );
 		deepEqual( modelEditor.chapters[ 0 ].sections[ 0 ], {
 			id: 310

@@ -52,10 +52,6 @@ define(function() {
 					sectionId: sectionId
 				})
 				.$promise.then(function( result ) {
-					// Chapter removal is broadcasted over section removal
-					result.chapter ?
-						$rootScope.$broadcast( "editor:chapter-remove", result.chapter.id ) :
-						$rootScope.$broadcast( "editor:section-remove", result.section.id );
 					refresh( storyId )
 					.then(function( serverEditor ) {
 						$rootScope.$broadcast( "editor:restructured", function( $scope ) {

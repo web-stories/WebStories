@@ -1,10 +1,7 @@
 QUnit.config.autostart = false;
 
 module( "EditorSavingQueue" );
-require([
-	"angular",
-	"js/editor/Init"
-], function( angular, EditorSavingQueue ) {
+require([ "angular", "js/editor/Init" ], function( angular, EditorSavingQueue ) {
 	start();
 	
 	module( "EditorSavingQueue", {

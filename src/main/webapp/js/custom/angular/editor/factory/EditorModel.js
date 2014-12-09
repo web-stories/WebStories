@@ -58,35 +58,6 @@ define( [ "lodash" ], function( _ ) {
 			}
 			return zip;
 		}
-		
-		this.findPrevChapter = function( id ) {
-			var prev;
-			editor.chapters.some(function( current ) {
-				if ( current.id === id ) {
-					return true;
-				}
-				prev = current;
-			});
-			return prev;
-		};
-		
-		this.findPrevSection = function( id ) {
-			var prev;
-			var allSections = [];
-			
-			editor.chapters.forEach(function( chapter ) {
-				allSections = allSections.concat( chapter.sections );
-			});
-			
-			allSections.some(function( current ) {
-				if ( current.id === id ) {
-					return true;
-				}
-				prev = current;
-			});
-			
-			return prev;
-		};
 	}
 	
 	return function() {

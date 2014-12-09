@@ -25,20 +25,6 @@ define(function() {
 			$scope.focusable.sectionId = section.id;
 		});
 		
-		$scope.$on( "editor:chapter-remove", function( event, chapterId ) {
-			var editor = EditorModel.create( $scope.editor );
-			var prevChapter = editor.findPrevChapter( chapterId );
-			if ( prevChapter ) {
-				$scope.scrollable.chapterId = prevChapter.id;
-			}
-		});
-		
-		$scope.$on( "editor:section-remove", function( event, sectionId ) {
-			var editor = EditorModel.create( $scope.editor );
-			var prevSection = editor.findPrevSection( sectionId );
-			$scope.scrollable.sectionId = prevSection.id;
-		});
-		
 		$scope.clearScrollable = function() {
 			$scope.scrollable = {};
 		};
