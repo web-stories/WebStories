@@ -3,11 +3,13 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 	$.widget( "ws.actionAlert", {
 		_ajaxQueue: $({}),
 		options: {
-			load: function( loaded ) {
-				webstories.loadComponent( "/components/alert-action", loaded );
+			load: function( closeable, loaded ) {
+				webstories.loadComponent( "/components/alert-action?" + $.param({
+					closeable: closeable
+				}), loaded );
 			}
 		},
-		_open: function( resolve ) {
+		_open: function( closeable, resolve ) {
 			
 			// Clear timeout each time an item is intended to be added to the queue.
 			// After the next item, the client may or may not call "closeAfter" again.
@@ -18,7 +20,7 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 			}
 			
 			var execute = function( next ) {
-				this.options.load(function( html ) {
+				this.options.load( closeable, function( html ) {
 					
 					this._opened = true;
 					
@@ -70,9 +72,9 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 			console.log( "closeAfter: " + millis + "ms" );
 			this._closingTimeout = this._delay( this._close, millis );
 		},
-		show: function( text ) {
+		show: function( text, closeable ) {
 			console.log( "message: " + text );
-			return new Promise( this._open.bind( this ) )
+			return new Promise( this._open.bind( this, closeable ) )
 				.then(function() {
 					this.element
 						.find( ".alert-saving-text" )
@@ -82,7 +84,8 @@ define( ["jquery", "webstories", "jquery.ui.widget", "bootstrap"], function( $, 
 		ajaxError: function( message, jqXHR ) {
 			var error = this._ajaxErrorMessages[ jqXHR.status ];
 			var content = [ message, error ].join( "<br>" );
-			this.show( content );
+			var closeable = true;
+			this.show( content, closeable );
 		},
 		ajaxValidation: function( validation ) {
 			if ( validation.length ) {
