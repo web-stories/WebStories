@@ -17,7 +17,8 @@ define(function() {
 			EditorResource.chapters.create({
 				storyId: storyId
 			})
-			.$promise.then(function( chapter ) {
+			.$promise
+			.then(function( chapter ) {
 				$rootScope.$broadcast( "editor:restructured", function( $scope ) {
 					var editor = EditorModel.create( $scope.editor );
 					editor.addChapter( chapter );
@@ -32,7 +33,8 @@ define(function() {
 				chapterId: chapterId,
 				prevSectionId: prevSectionId
 			})
-			.$promise.then(function( section ) {
+			.$promise
+			.then(function( section ) {
 				$rootScope.$broadcast( "editor:restructured", function( $scope ) {
 					refresh( storyId )
 					.then(function( serverEditor ) {
@@ -46,30 +48,33 @@ define(function() {
 		
 		this.removeSection = function( chapterId, sectionId ) {
 			var operation = function( next ) {
+				var removalResult;
 				EditorResource.sections.remove({
 					storyId: storyId,
 					chapterId: chapterId,
 					sectionId: sectionId
 				})
-				.$promise.then(function( result ) {
-					refresh( storyId )
-					.then(function( serverEditor ) {
-						$rootScope.$broadcast( "editor:restructured", function( $scope ) {
-							var editor = EditorModel.create( $scope.editor );
-							
-							if ( result.chapter ) {
-								editor.removeChapter( result.chapter.id );
-							}
-							
-							if ( result.section ) {
-								editor.removeSection( result.section.id );
-							}
-							
-							editor.refreshDataStructure( serverEditor );
-						});
-					})
-					.finally( next );
-				}, next /* if request fail */ );
+				.$promise
+				.then(function( result ) {
+					removalResult = result;
+					return refresh( storyId );
+				})
+				.then(function( serverEditor ) {
+					$rootScope.$broadcast( "editor:restructured", function( $scope ) {
+						var editor = EditorModel.create( $scope.editor );
+						
+						if ( removalResult.chapter ) {
+							editor.removeChapter( removalResult.chapter.id );
+						}
+						
+						if ( removalResult.section ) {
+							editor.removeSection( removalResult.section.id );
+						}
+						
+						editor.refreshDataStructure( serverEditor );
+					});
+				})
+				.finally( next );
 			};
 			EditorSavingQueue.queue( operation );
 		};
@@ -79,13 +84,14 @@ define(function() {
 				storyId: storyId,
 				chapterId: chapterId
 			})
-			.$promise.then(function() {
-				refresh( storyId )
-				.then(function( serverEditor ) {
-					$rootScope.$broadcast( "editor:restructured", function( $scope ) {
-						var editor = EditorModel.create( $scope.editor );
-						editor.refreshDataStructure( serverEditor );
-					});
+			.$promise
+			.then(function() {
+				return refresh( storyId );
+			})
+			.then(function( serverEditor ) {
+				$rootScope.$broadcast( "editor:restructured", function( $scope ) {
+					var editor = EditorModel.create( $scope.editor );
+					editor.refreshDataStructure( serverEditor );
 				});
 			});
 		};

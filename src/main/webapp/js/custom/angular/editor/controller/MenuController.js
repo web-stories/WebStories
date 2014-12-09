@@ -4,11 +4,11 @@ define(function() {
 		$scope.addChapter = EditorStructure.addChapter;
 		$scope.publish = function( chapterId ) {
 			EditorStructure.publish( chapterId )
-				.catch(
-					function reject( reason ) {
-						alert( reason.data.message );
-					}
-				);
+			.catch(
+				function reject( reason ) {
+					alert( reason.data.message );
+				}
+			);
 		};
 	}
 	return [ "$scope", "EditorStructure", MenuController ];

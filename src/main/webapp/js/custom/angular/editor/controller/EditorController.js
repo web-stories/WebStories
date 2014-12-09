@@ -7,9 +7,9 @@ define(function() {
 		
 		$scope.init = function( storyId ) {
 			EditorStructure.init( storyId )
-				.then(function() {
-					$scope.loader.ready = true;
-				});
+			.then(function() {
+				$scope.loader.ready = true;
+			});
 		};
 		
 		$scope.$on( "editor:restructured", function( event, updateModel ) {
