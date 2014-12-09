@@ -1,6 +1,6 @@
 define(function() {
 	"use strict";
-	function EditorContent( EditorResource, EditorSavingQueue ) {
+	function EditorContent( $rootScope, EditorResource, EditorSavingQueue ) {
 		this.saveSection = function( editor, chapter, section ) {
 			var operation = function( next ) {
 				EditorResource.sections.persist({
@@ -8,7 +8,12 @@ define(function() {
 					chapterId: chapter.id,
 					storyId: editor.id,
 					section: section
-				}).$promise.finally( next );
+				})
+				.$promise
+				.catch(function( response ) {
+					$rootScope.$broadcast( "editor:save-error", response );
+				})
+				.finally( next );
 			};
 			EditorSavingQueue.queue( operation );
 		};
@@ -18,10 +23,15 @@ define(function() {
 					chapterId: chapter.id,
 					storyId: editor.id,
 					chapter: chapter
-				}).$promise.finally( next );
+				})
+				.$promise
+				.catch(function( response ) {
+					$rootScope.$broadcast( "editor:save-error", response );
+				})
+				.finally( next );
 			};
 			EditorSavingQueue.queue( operation );
 		};
 	}
-	return [ "EditorResource", "EditorSavingQueue", EditorContent ];
+	return [ "$rootScope", "EditorResource", "EditorSavingQueue", EditorContent ];
 });

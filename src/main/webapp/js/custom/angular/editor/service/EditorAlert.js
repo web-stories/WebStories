@@ -4,7 +4,7 @@ define(function() {
 	function EditorAlert() {
 		this.ajaxError = function( response ) {
 			return {
-				message: "<b>Erro:</b> Não consegui salvar",
+				message: "Ocorreu um problema ao tentar salvar a história.",
 				response: response
 			};
 		};

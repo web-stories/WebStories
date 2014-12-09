@@ -28,6 +28,10 @@ define(function() {
 			$scope.focusable.sectionId = section.id;
 		});
 		
+		$scope.$on( "editor:save-error", function( event, response ) {
+			$scope.alert.error = EditorAlert.ajaxError( response );
+		});
+		
 		$scope.clearScrollable = function() {
 			$scope.scrollable = {};
 		};

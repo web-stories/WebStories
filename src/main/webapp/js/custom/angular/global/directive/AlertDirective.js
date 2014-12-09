@@ -44,11 +44,9 @@ define( [ "jquery", "jquery.ws.alert" ], function( $ ) {
 					}
 					
 					var message = newValue.message;
-					var status = newValue.response.status;
+					var response = newValue.response;
 					
-					element.actionAlert( "ajaxError", "<b>Erro:</b> Não consegui salvar", {
-						status: status
-					});
+					element.actionAlert( "ajaxError", message, response );
 				});
 				
 				scope.$watch( "data.validation", function( newValue, oldValue ) {
