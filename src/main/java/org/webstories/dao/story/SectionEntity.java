@@ -14,7 +14,10 @@ import org.webstories.dao.NumerableEntity;
 
 @Entity
 @Table( name = "ws_section" )
-public class SectionEntity implements NumerableEntity, Comparable<SectionEntity> {
+public class SectionEntity implements NumerableEntity, PositionableEntity,
+Comparable<SectionEntity> {
+	private SectionEntity() {}
+	
 	@Id
 	@TableGenerator(
 		name = "section_sequence",
@@ -26,7 +29,7 @@ public class SectionEntity implements NumerableEntity, Comparable<SectionEntity>
 	private Long id_section;
 	
 	@Column( nullable = false )
-	private String ds_text;
+	private String ds_text = "";
 	
 	@Column( nullable = false )
 	private Integer no_position;
@@ -34,6 +37,19 @@ public class SectionEntity implements NumerableEntity, Comparable<SectionEntity>
 	@ManyToOne
 	@JoinColumn( name = "id_chapter", nullable = true )
 	private ChapterEntity chapter;
+	
+	/**
+	 * Method used for tests only
+	 */
+	public static SectionEntity createTestSection() {
+		return new SectionEntity();
+	}
+	
+	public static SectionEntity createEmptySection( int position ) {
+		SectionEntity section = new SectionEntity();
+		section.setPosition( position );
+		return section;
+	}
 	
 	@Override
 	public Long getId() {
@@ -47,14 +63,19 @@ public class SectionEntity implements NumerableEntity, Comparable<SectionEntity>
 		this.ds_text = ds_text;
 	}
 	
+	@Override
 	public Integer getPosition() {
 		return no_position;
 	}
+	@Override
 	public void setPosition( Integer no_position ) {
 		this.no_position = no_position;
 	}
 	
-	public void setChapter( ChapterEntity chapter ) {
+	public ChapterEntity getChapter() {
+		return chapter;
+	}
+	protected void setChapter( ChapterEntity chapter ) {
 		this.chapter = chapter;
 	}
 	@Override

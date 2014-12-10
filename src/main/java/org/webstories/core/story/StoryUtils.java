@@ -7,6 +7,7 @@ import org.webstories.core.validation.ChapterValidationObject;
 import org.webstories.core.validation.SectionValidationObject;
 import org.webstories.core.validation.ValidationObject;
 import org.webstories.dao.story.ChapterEntity;
+import org.webstories.dao.story.PositionableEntity;
 import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryEntity;
 
@@ -36,13 +37,15 @@ public class StoryUtils {
 		
 		if ( chapter.getTitle().isEmpty() ) {
 			result.add(new ChapterValidationObject(
-				"O título do capítulo não pode estar vazio!"
+				"O título do capítulo não pode estar vazio!",
+				chapter.getId()
 			));
 		}
 		
 		if ( chapter.getSections().isEmpty() ) {
 			result.add(new ChapterValidationObject(
-				"O capítulo deve possuir pelo menos uma seção!"
+				"O capítulo deve possuir pelo menos uma seção!",
+				chapter.getId()
 			));
 		}
 		
@@ -56,5 +59,15 @@ public class StoryUtils {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * Refresh the position of each positionable item in order to keep a consistent crescent number
+	 */
+	public static void refreshPositions( List<? extends PositionableEntity> items ) {
+		int currentPosition = 1;
+		for ( PositionableEntity item : items ) {
+			item.setPosition( currentPosition++ );
+		}
 	}
 }

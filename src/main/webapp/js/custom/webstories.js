@@ -18,14 +18,6 @@ define( ["jquery"], function( $ ) {
 					success.apply( this, args );
 				}
 			});
-		},
-		api: function( url, type, data ) {
-			return $.ajax({
-				url: this.contextPath + url,
-				type: type,
-				contentType: "application/json",
-				data: JSON.stringify( data )
-			});
 		}
 	};
 });

@@ -21,7 +21,10 @@ import org.webstories.dao.NumerableEntity;
 
 @Entity
 @Table( name = "ws_chapter" )
-public class ChapterEntity implements NumerableEntity, Comparable<ChapterEntity> {
+public class ChapterEntity implements NumerableEntity, PositionableEntity,
+Comparable<ChapterEntity> {
+	private ChapterEntity() {}
+	
 	@Id
 	@TableGenerator(
 		name = "chapter_sequence",
@@ -33,21 +36,27 @@ public class ChapterEntity implements NumerableEntity, Comparable<ChapterEntity>
 	private Long id_chapter;
 	
 	@Column( nullable = false, length = 255 )
-	private String ds_title;
+	private String ds_title = "";
 	
 	@Column( nullable = false )
 	private Integer no_position;
 	
 	@Column( nullable = false, length = 255 )
 	@Enumerated( EnumType.STRING )
-	private StoryState cd_state;
+	private StoryState cd_state = StoryState.DRAFT;
 	
 	@ManyToOne
-	@JoinColumn( name = "id_story", nullable = true )
+	@JoinColumn( name = "id_story" )
 	private StoryEntity story;
 	
 	@OneToMany( mappedBy = "chapter", orphanRemoval = true )
 	private List<SectionEntity> sections = new ArrayList<SectionEntity>();
+	
+	public static ChapterEntity createEmptyChapter( int position ) {
+		ChapterEntity chapter = new ChapterEntity();
+		chapter.setPosition( position );
+		return chapter;
+	}
 	
 	@Override
 	public Long getId() {
@@ -64,9 +73,11 @@ public class ChapterEntity implements NumerableEntity, Comparable<ChapterEntity>
 		this.ds_title = ds_title;
 	}
 	
+	@Override
 	public Integer getPosition() {
 		return no_position;
 	}
+	@Override
 	public void setPosition( Integer no_position ) {
 		this.no_position = no_position;
 	}
@@ -78,11 +89,11 @@ public class ChapterEntity implements NumerableEntity, Comparable<ChapterEntity>
 		this.cd_state = cd_state;
 	}
 	
-	public void setStory( StoryEntity story ) {
-		this.story = story;
-	}
 	public StoryEntity getStory() {
 		return story;
+	}
+	protected void setStory( StoryEntity story ) {
+		this.story = story;
 	}
 	
 	@Override
@@ -99,5 +110,14 @@ public class ChapterEntity implements NumerableEntity, Comparable<ChapterEntity>
 	public List<SectionEntity> getSections() {
 		Collections.sort( sections );
 		return sections;
+	}
+	
+	public void removeSection( SectionEntity section ) {
+		sections.remove( section );
+	}
+	
+	public void addSection( SectionEntity section, int index ) {
+		section.setChapter( this );
+		sections.add( index, section );
 	}
 }

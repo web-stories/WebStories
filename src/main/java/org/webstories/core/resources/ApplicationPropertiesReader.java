@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class ApplicationPropertiesReader implements LocalApplicationPropertiesReader {
 	@EJB
-	ResourceReader reader;
+	FileResourceReader reader;
 	
 	@Override
 	public ApplicationProperties readApplicationProperties() throws PropertiesException {
@@ -20,7 +20,7 @@ public class ApplicationPropertiesReader implements LocalApplicationPropertiesRe
 			return ApplicationProperties.from( properties );
 		} catch ( IOException e ) {
 			throw new PropertiesException( e );
-		} catch ( ResourceNotFoundException e ) {
+		} catch ( FileResourceNotFoundException e ) {
 			throw new PropertiesException( "application.properties", e );
 		}
 	}

@@ -19,7 +19,7 @@ public class SectionEntitySortingTest {
 	}
 	
 	private SectionEntity create( int position ) {
-		SectionEntity section = new SectionEntity();
+		SectionEntity section = SectionEntity.createTestSection();
 		section.setPosition( position );
 		return section;
 	}

@@ -27,6 +27,7 @@ require = (function( require ) {
 		var key, val, defaultConfigs;
 		
 		defaultConfigs = {
+			waitSeconds: 0, // Prevent "Load timeout for modules" in slow connections
 			"map": {
 				"*": {
 					// Custom modules
@@ -46,6 +47,10 @@ require = (function( require ) {
 					"jquery.ui.widget": "../js/jquery.ui.widget-1.11.1",
 					"jquery.validate": "../js/jquery.validate-1.13.0",
 					"fastclick": "../js/fastclick-1.0.3",
+					"lodash": "../js/lodash-2.4.1",
+					"angular": "../js/angular-1.3.4",
+					"angular.resource": "../js/angular.resource-1.3.4",
+					"angular.smoothscroll": "../js/angular.smoothscroll-1.7.1",
 					
 					// Make jQuery method private
 					"jquery": "js/jquery.private"
@@ -61,25 +66,6 @@ require = (function( require ) {
 				]
 			}
 		};
-		
-		if ( require.test ) {
-			// Handle default mapping
-			Object.keys( defaultConfigs.map[ "*" ] ).forEach(function( key ) {
-				var val = defaultConfigs.map[ "*" ][ key ];
-				if ( val.substring( 0, "../".length ) === "../" ) {
-					defaultConfigs.map[ "*" ][ key ] =
-						val.substring( "../".length, val.length );
-				}
-			});
-			// Handle local CDN fallback in the second element the array
-			Object.keys( defaultConfigs.paths ).forEach(function( key ) {
-				var fallback = defaultConfigs.paths[ key ][ 1 ];
-				if ( fallback.substring( 0, "../".length ) === "../" ) {
-					defaultConfigs.paths[ key ][ 1 ] =
-						fallback.substring( "../".length, fallback.length );
-				}
-			});
-		}
 		
 		return defaultConfigs;
 	}

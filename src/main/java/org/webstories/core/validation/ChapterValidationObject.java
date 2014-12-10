@@ -1,13 +1,26 @@
 package org.webstories.core.validation;
 
-import org.webstories.core.utils.EmptyObject;
 
 public class ChapterValidationObject extends ValidationObject {
-	public ChapterValidationObject( String message ) {
+	long chapterId;
+	
+	public ChapterValidationObject( String message, long chapterId ) {
 		super( message );
+		this.chapterId = chapterId;
 	}
+	
 	@Override
-	public EmptyObject getData() {
-		return new EmptyObject();
+	public ChapterValidationData getData() {
+		return new ChapterValidationData( chapterId );
+	}
+}
+
+class ChapterValidationData {
+	private long chapterId;
+	public ChapterValidationData( long chapterId ) {
+		this.chapterId = chapterId;
+	}
+	public Long getChapterId() {
+		return chapterId;
 	}
 }

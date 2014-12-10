@@ -17,9 +17,9 @@ module.exports = function( grunt ) {
 	// Main tasks
 	grunt.registerTask( "files", [ "concat", "copy", "uglify", "cssmin" ] );
 	grunt.registerTask( "validate", [ "jshint", "jscs" ] );
-	grunt.registerTask( "integration", [ "servers:wildfly", "qunit", "servers:wildfly:kill" ] );
+	grunt.registerTask( "unit", [ "connect", "qunit" ] );
 	
 	// Special tasks
 	grunt.registerTask( "eclipse", [ "newer:concat", "newer:copy", "newer:jshint", "newer:jscs" ] );
-	grunt.registerTask( "default", [ "validate", "files", "integration" ] );
+	grunt.registerTask( "default", [ "validate", "files", "unit" ] );
 };

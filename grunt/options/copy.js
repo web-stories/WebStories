@@ -18,7 +18,12 @@ module.exports = function( grunt ) {
 				dest: "src/main/webapp/static/js/"
 			}, {
 				expand: true,
-				cwd: "src/main/webapp/js/amdify/default",
+				cwd: "src/main/webapp/js/amdify/angular",
+				src: [ "**/*.js" ],
+				dest: "src/main/webapp/static/js/"
+			}, {
+				expand: true,
+				cwd: "src/main/webapp/js/amdify/angular-module",
 				src: [ "**/*.js" ],
 				dest: "src/main/webapp/static/js/"
 			}]
@@ -27,6 +32,11 @@ module.exports = function( grunt ) {
 			files: [{
 				expand: true,
 				cwd: "src/main/webapp/js/custom/",
+				src: [ "*.js" ],
+				dest: "src/main/webapp/static/js/"
+			}, {
+				expand: true,
+				cwd: "src/main/webapp/js/custom/angular/",
 				src: [ "**/*.js" ],
 				dest: "src/main/webapp/static/js/"
 			}, {
