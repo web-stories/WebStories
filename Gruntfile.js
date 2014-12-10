@@ -20,6 +20,6 @@ module.exports = function( grunt ) {
 	grunt.registerTask( "unit", [ "connect", "qunit" ] );
 	
 	// Special tasks
-	grunt.registerTask( "eclipse", [ "newer:concat", "newer:copy", "newer:jshint", "newer:jscs" ] );
+	grunt.registerTask( "eclipse", [ "concat", "copy", "validate" ] );
 	grunt.registerTask( "default", [ "validate", "files", "unit" ] );
 };

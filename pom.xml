@@ -8,6 +8,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <querydsl.version>3.2.4</querydsl.version>
+    <frontendmaven.version>0.0.19</frontendmaven.version>
     <httpcomponents.version>4.3.4</httpcomponents.version>
     <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
   </properties>
@@ -177,42 +178,11 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <build>
-        <pluginManagement>
-          <plugins>
-            <!-- http://wiki.eclipse.org/M2E_plugin_execution_not_covered#Background -->
-            <plugin>
-              <groupId>org.eclipse.m2e</groupId>
-              <artifactId>lifecycle-mapping</artifactId>
-              <version>1.0.0</version>
-              <configuration>
-                <lifecycleMappingMetadata>
-                  <pluginExecutions>
-                    <pluginExecution>
-                      <pluginExecutionFilter>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <versionRange>[0.0.0,)</versionRange>
-                        <goals>
-                          <goal>install-node-and-npm</goal>
-                          <goal>npm</goal>
-                          <goal>grunt</goal>
-                        </goals>
-                      </pluginExecutionFilter>
-                      <action>
-                        <ignore/>
-                      </action>
-                    </pluginExecution>
-                  </pluginExecutions>
-                </lifecycleMappingMetadata>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
         <plugins>
           <plugin>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
-            <version>0.0.16</version>
+            <version>${frontendmaven.version}</version>
             <executions>
               <execution>
                 <id>install node and npm</id>
@@ -255,56 +225,11 @@
     <profile>
       <id>dev</id>
       <build>
-        <pluginManagement>
-          <plugins>
-            <!-- http://wiki.eclipse.org/M2E_plugin_execution_not_covered#Background -->
-            <plugin>
-              <groupId>org.eclipse.m2e</groupId>
-              <artifactId>lifecycle-mapping</artifactId>
-              <version>1.0.0</version>
-              <configuration>
-                <lifecycleMappingMetadata>
-                  <pluginExecutions>
-                    <pluginExecution>
-                      <pluginExecutionFilter>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <versionRange>[0.0.0,)</versionRange>
-                        <goals>
-                          <goal>install-node-and-npm</goal>
-                          <goal>npm</goal>
-                        </goals>
-                      </pluginExecutionFilter>
-                      <action>
-                        <ignore/>
-                      </action>
-                    </pluginExecution>
-                    <pluginExecution>
-                      <pluginExecutionFilter>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <versionRange>[0.0.0,)</versionRange>
-                        <goals>
-                          <goal>grunt</goal>
-                        </goals>
-                      </pluginExecutionFilter>
-                      <action>
-                        <execute>
-                          <runOnIncremental>true</runOnIncremental>
-                        </execute>
-                      </action>
-                    </pluginExecution>
-                  </pluginExecutions>
-                </lifecycleMappingMetadata>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
         <plugins>
           <plugin>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
-            <version>0.0.16</version>
+            <version>${frontendmaven.version}</version>
             <executions>
               <execution>
                 <id>grunt eclipse</id>
@@ -313,6 +238,12 @@
                 </goals>
                 <configuration>
                   <arguments>eclipse</arguments>
+                  <srcdir>${basedir}/src/main/webapp</srcdir>
+                  <outputdir>${basedir}/src/main/webapp/static</outputdir>
+                  <triggerfiles>
+                    <triggerfile>Gruntfile.js</triggerfile>
+                    <triggerfile>package.json</triggerfile>
+                  </triggerfiles>
                 </configuration>
               </execution>
             </executions>

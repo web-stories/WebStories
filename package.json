@@ -16,7 +16,6 @@
     "grunt-contrib-qunit": "0.5.x",
     "grunt-contrib-uglify": "0.6.x",
     "grunt-jscs": "0.7.x",
-    "grunt-newer": "0.7.x",
     "load-grunt-configs": "0.4.x",
     "load-grunt-tasks": "0.6.x"
   }
