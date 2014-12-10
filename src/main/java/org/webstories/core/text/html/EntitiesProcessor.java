@@ -18,20 +18,4 @@ public class EntitiesProcessor {
 			return result;
 		}
 	}
-	public static class Reverter extends BaseProcessor {
-		public Reverter() {
-			super( ProcessorAlias.HTML_ENTITIES_REVERT );
-		}
-		@Override
-		public String process( HTMLText message ) {
-			String result = message.getCurrent();
-			
-			result = result
-				.replace( "&lt;", "<" )
-				.replace( "&gt;", ">" );
-				
-			return result;
-		}
-	}
-
 }
