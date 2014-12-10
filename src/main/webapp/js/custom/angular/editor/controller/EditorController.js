@@ -31,14 +31,6 @@ define(function() {
 		$scope.$on( "editor:save-error", function( event, response ) {
 			$scope.alert.error = EditorAlert.ajaxError( response );
 		});
-		
-		$scope.clearScrollable = function() {
-			$scope.scrollable = {};
-		};
-		
-		$scope.clearFocusable = function() {
-			$scope.focusable = {};
-		};
 	}
 	return [ "$scope", "EditorStructure", "EditorAlert",  EditorController ];
 });

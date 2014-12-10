@@ -52,7 +52,6 @@
                    scroll-if="{{ scrollable.chapterId === chapter.id }}"
                    easing="easeOutQuint"
                    duration="800"
-                   callback-before="clearScrollable()"
                    offset="71">
               <div class="editor-chapter" ng-attr-id="chapter-{{ chapter.position }}" ng-controller="ChapterController">
                 <h2 class="editor-chapter-title-header">
@@ -70,7 +69,6 @@
                 <div ng-repeat="section in chapter.sections"
                      smooth-scroll
                        scroll-if="{{ scrollable.sectionId === section.id }}"
-                       callback-before="clearScrollable()"
                        easing="easeOutQuint"
                        duration="1000"
                        offset="80">
@@ -82,8 +80,7 @@
                                   ng-trim="false"
                                 ng-keydown="preventTyping( $event )"
                                 ws-editor-focus
-                                  focus-if="focusable.sectionId === section.id"
-                                  callback-before="clearFocusable()"></textarea>
+                                  focus-if="focusable.sectionId === section.id"></textarea>
                       <div class="editor-chapter-section-footer">
                         <div class="row">
                           <div class="col-md-6">
