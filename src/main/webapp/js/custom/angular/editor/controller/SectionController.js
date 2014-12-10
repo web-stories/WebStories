@@ -1,7 +1,6 @@
 define(function() {
 	"use strict";
 	function SectionController( $scope, $timeout, EditorContent, EditorSectionValidation ) {
-		var debounce;
 		$scope.validity = {};
 		
 		// Validation
@@ -11,6 +10,7 @@ define(function() {
 		});
 		
 		// Server update
+		var debounce;
 		$scope.$watch( "section.text", function( newText, oldText ) {
 			// Prevent execution in the first time the page is loaded
 			if ( newText !== oldText ) {
