@@ -3,12 +3,14 @@ define(function() {
 	function MenuController( $scope, EditorStructure ) {
 		$scope.addChapter = EditorStructure.addChapter;
 		$scope.publish = function( chapterId ) {
-			EditorStructure.publish( chapterId )
-			.catch(
-				function reject( reason ) {
-					alert( reason.data.message );
+			EditorStructure.validate( chapterId )
+			.then(function( validationObjects ) {
+				if ( validationObjects.length ) {
+					$scope.alert.validation = validationObjects;
+					return;
 				}
-			);
+				return EditorStructure.publish( chapterId );
+			});
 		};
 	}
 	return [ "$scope", "EditorStructure", MenuController ];

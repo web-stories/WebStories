@@ -79,6 +79,14 @@ define(function() {
 			EditorSavingQueue.queue( operation );
 		};
 		
+		this.validate = function( chapterId ) {
+			return EditorResource.publications.validate({
+				storyId: storyId,
+				chapterId: chapterId
+			})
+			.$promise;
+		};
+		
 		this.publish = function( chapterId ) {
 			return EditorResource.publications.publish({
 				storyId: storyId,

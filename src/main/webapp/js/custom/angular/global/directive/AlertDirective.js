@@ -9,7 +9,7 @@ define( [ "jquery", "jquery.ws.alert" ], function( $ ) {
 			link: function( scope, element, attrs ) {
 				scope.data = {
 					error: {},
-					validation: {}
+					validation: []
 				};
 				
 				element.actionAlert();
@@ -49,11 +49,12 @@ define( [ "jquery", "jquery.ws.alert" ], function( $ ) {
 					element.actionAlert( "ajaxError", message, response );
 				});
 				
-				scope.$watch( "data.validation", function( newValue, oldValue ) {
-					if ( newValue === oldValue ) {
+				scope.$watch( "data.validation", function( newObjects, oldObjects ) {
+					if ( newObjects === oldObjects ) {
 						return;
 					}
-					element.actionAlert( "ajaxValidation", newValue );
+					element.actionAlert( "ajaxValidation", newObjects );
+					element.actionAlert( "closeAfter", 3000 );
 				});
 			}
 		};

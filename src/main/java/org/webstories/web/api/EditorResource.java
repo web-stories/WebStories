@@ -1,5 +1,7 @@
 package org.webstories.web.api;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -28,6 +30,7 @@ import org.webstories.core.story.editor.RemovalResult;
 import org.webstories.core.story.facade.LocalStoryEditor;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.core.validation.ValidationException;
+import org.webstories.core.validation.ValidationObject;
 import org.webstories.web.util.servlet.HttpForbiddenException;
 import org.webstories.web.util.servlet.HttpNotFoundException;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
@@ -144,5 +147,11 @@ public class EditorResource {
 		} catch ( AccessDeniedException e ) {
 			throw new HttpForbiddenException( e );
 		}
+	}
+	
+	@POST
+	@Path( "{storyId}/publications/{chapterId}/validate" )
+	public List<ValidationObject> publicationValidate( @PathParam( "chapterId" ) Long chapterId ) {
+		return storyReader.validateChapter( chapterId );
 	}
 }

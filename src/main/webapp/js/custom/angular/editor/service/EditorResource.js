@@ -45,6 +45,11 @@ define( [ "angular", "webstories"], function( angular, webstories ) {
 			storyId: "@storyId",
 			chapterId: "@chapterId"
 		}, {
+			validate: {
+				method: "POST",
+				url: path + ":storyId/publications/:chapterId/validate",
+				isArray: true
+			},
 			publish: {
 				method: "PUT"
 			}
