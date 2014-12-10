@@ -77,7 +77,7 @@
                 <label for="new-story-title">
                   Título principal
                 </label>
-                <input class="form-control" id="new-story-title" name="title" type="text" placeholder="Ex.: &quot;Pinóquio&quot;" required>
+                <input class="form-control" id="new-story-title" name="title" type="text" placeholder="Ex.: &quot;Pinóquio&quot;" maxlength="200" required>
               </div>
               <div class="form-group">
                 <label for="new-story-summary">

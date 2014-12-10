@@ -1,4 +1,9 @@
-require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ ) {
+require([
+	"jquery",
+	"jquery.validate.extend",
+	"bootstrap.wizard",
+	"jquery.ws.remaining"
+], function( $ ) {
 	"use strict";
 	var form = document.newStoryForm;
 	var validate = $( form ).validate();
@@ -7,6 +12,11 @@ require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ )
 		show: nostory,
 		backdrop: "static"
 	});
+	
+	$( ".remaining" ).remaining({
+		limit: 140
+	});
+	
 	$( "#new-story-wizard" ).wizard({
 		finish: function() {
 			form.submit();
@@ -18,6 +28,7 @@ require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ )
 			return validate.form();
 		}
 	});
+	
 	$( ".create-story" ).click(function( event ) {
 		modal.modal( "show" );
 		// In case this is a link
