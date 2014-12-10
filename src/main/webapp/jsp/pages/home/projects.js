@@ -1,32 +1,10 @@
 require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ ) {
 	"use strict";
-	var form = document.firstStoryForm;
-	var validate = $( form ).validate();
-	var nostory = $( "#meta" ).data( "nostory" ) === true;
-	var modal = $( "#first-story-wizard-modal" ).modal({
-		show: nostory,
-		keyboard: false,
-		backdrop: "static"
-	});
-	$( "#first-story-wizard" ).wizard({
-		finish: function() {
-			form.submit();
-		},
-		jump: function() {
-			modal.modal( "hide" );
-		},
-		beforeNext: function() {
-			return validate.form();
-		}
-	});
-});
-
-require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ ) {
-	"use strict";
 	var form = document.newStoryForm;
 	var validate = $( form ).validate();
+	var nostory = $( "#meta" ).data( "nostory" ) === true;
 	var modal = $( "#new-story-wizard-modal" ).modal({
-		show: false,
+		show: nostory,
 		backdrop: "static"
 	});
 	$( "#new-story-wizard" ).wizard({
@@ -40,8 +18,10 @@ require( ["jquery", "jquery.validate.extend", "bootstrap.wizard"], function( $ )
 			return validate.form();
 		}
 	});
-	$( "#new-story-btn" ).click(function() {
+	$( ".create-story" ).click(function( event ) {
 		modal.modal( "show" );
+		// In case this is a link
+		event.preventDefault();
 	});
 });
 
