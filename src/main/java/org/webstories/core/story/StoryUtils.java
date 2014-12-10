@@ -37,13 +37,15 @@ public class StoryUtils {
 		
 		if ( chapter.getTitle().isEmpty() ) {
 			result.add(new ChapterValidationObject(
-				"O título do capítulo não pode estar vazio!"
+				"O título do capítulo não pode estar vazio!",
+				chapter.getId()
 			));
 		}
 		
 		if ( chapter.getSections().isEmpty() ) {
 			result.add(new ChapterValidationObject(
-				"O capítulo deve possuir pelo menos uma seção!"
+				"O capítulo deve possuir pelo menos uma seção!",
+				chapter.getId()
 			));
 		}
 		
