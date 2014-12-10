@@ -83,16 +83,21 @@
                                   focus-if="focusable.sectionId === section.id"></textarea>
                       <div class="editor-chapter-section-footer">
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-5">
                             <label class="control-label editor-section-footer-msg"
                                    ng-attr-for="section-{{ section.position }}"
                                    ng-show="validity.text">{{ validity.text }}</label>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-7">
                             <div class="editor-section-footer-toolbar">
                               <button class="btn btn-primary" ng-click="addSection( section.id, chapter.id )">
                                 <span class="icon-down"></span>
-                                Nova seção
+                                <span class="hidden-xs">Nova seção</span>
+                              </button>
+                              <button class="btn btn-default"
+                                      ng-disabled="!section.text">
+                                <span class="icon-eye"></span>
+                                <span class="hidden-xs">Pré-visualizar</span>
                               </button>
                               <button class="btn btn-danger"
                                       ng-click="removeSection( chapter.id, section.id )"
