@@ -1,8 +1,23 @@
-define(function() {
+define( [ "webstories" ], function( webstories ) {
 	"use strict";
 	function SectionController( $scope, $timeout, EditorContent, EditorSectionValidation ) {
 		var debounce;
 		$scope.validity = {};
+		$scope.modal = {};
+		
+		$scope.loadPreview = function() {
+			var context = webstories.contextPath;
+			var path = "/view/stories/preview";
+			var query = "id=" + $scope.editor.id;
+			var hash = "section-" + $scope.chapter.position + "-" + $scope.section.position;
+			$scope.previewURL = context + path + "?" + query + "#" + hash;
+		};
+		
+		// Too much memory keeping all iframes loaded, need to reload anyway to update the preview
+		// content so...
+		$scope.unloadPreview = function() {
+			$scope.previewURL = "about:blank";
+		};
 		
 		// Validation
 		$scope.$watch( "section.text", function( newText, oldText ) {
@@ -45,9 +60,8 @@ define(function() {
 			}
 		};
 		
-		$scope.previewSection = function( chapterPosition, sectionPosition ) {
-			$scope.previewModal.show = true;
-			$scope.loadPreview( $scope.editor.id, chapterPosition, sectionPosition );
+		$scope.previewSection = function( sectionId, chapterId ) {
+			$scope.modal.show = true;
 		};
 		
 		function delayedAction() {

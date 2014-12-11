@@ -12,7 +12,7 @@
      modal-options-backdrop="${modalOptionsBackdrop}" modal-options-keyboard="${modalOptionsKeyboard}" modal-options-show="${modalOptionsShow}"
      modal-show="${modalShow}"
      modal-on-show="${modalOnShow}" modal-on-shown="${modalOnShown}"
-     modal-on-hide="${modalOnHide}" modal-on-hidden="${modalOnHidden}">
+     modal-on-hide="${modalOnHide}" moda-on-hidden="${modalOnHidden}">
   <div class="modal-dialog">
     <div class="modal-content"><jsp:doBody/></div>
   </div>
