@@ -75,14 +75,14 @@
                   <div ng-controller="SectionController">
                     <ng:modal directive="bs-modal" modalShow="modal.show"
                               modalOptionsShow="false"
-                              modalOnShow="loadPreview()"
+                              modalOnShown="loadPreview()"
                               modalOnHide="unloadPreview()">
                       <div class="modal-header">
                         <button class="close" type="button" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Pré-visualização</h4>
                       </div>
                       <div class="modal-body">
-                        <iframe class="preview-box" ng-src="{{ previewURL | trusted }}"></iframe>
+                        <iframe class="preview-box" ng-src="{{ previewURL | trusted }}" sandbox="allow-scripts allow-same-origin"></iframe>
                       </div>
                       <div class="modal-footer">
                         <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
@@ -110,7 +110,7 @@
                                 <span class="hidden-xs">Nova seção</span>
                               </button>
                               <button class="btn btn-default"
-                                      ng-click="previewSection( section.id, chapter.id )"
+                                      ng-click="previewSection()"
                                       ng-disabled="previewable === false">
                                 <span class="icon-eye"></span>
                                 <span class="hidden-xs">Pré-visualizar</span>

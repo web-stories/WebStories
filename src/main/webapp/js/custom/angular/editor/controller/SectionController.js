@@ -60,7 +60,7 @@ define( [ "webstories" ], function( webstories ) {
 			}
 		};
 		
-		$scope.previewSection = function( sectionId, chapterId ) {
+		$scope.previewSection = function() {
 			$scope.modal.show = true;
 		};
 		
