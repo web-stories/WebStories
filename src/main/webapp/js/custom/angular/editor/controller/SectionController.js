@@ -1,6 +1,7 @@
 define( [ "webstories" ], function( webstories ) {
 	"use strict";
 	function SectionController( $scope, $timeout, EditorContent, EditorSectionValidation ) {
+		var debounce;
 		$scope.validity = {};
 		$scope.modal = {};
 		
@@ -12,6 +13,8 @@ define( [ "webstories" ], function( webstories ) {
 			$scope.previewURL = context + path + "?" + query + "#" + hash;
 		};
 		
+		// Too much memory keeping all iframes loaded, need to reload anyway to update the preview
+		// content so...
 		$scope.unloadPreview = function() {
 			$scope.previewURL = "about:blank";
 		};
@@ -23,22 +26,31 @@ define( [ "webstories" ], function( webstories ) {
 		});
 		
 		// Server update
-		var debounce;
 		$scope.$watch( "section.text", function( newText, oldText ) {
 			// Prevent execution in the first time the page is loaded
 			if ( newText !== oldText ) {
-				// If all content is deleted, update the server immediately, it prevents error when
-				// deleting the content and removing the section before debounce callback is
-				// executed
+				// Disable preview for each new type and enables after everything is saved
+				$scope.previewable = false;
+				
+				// If all content is deleted, update to the server immediately, it prevents
+				// error when deleting the content and removing the section before debounce
+				// callback is executed
 				if ( !newText ) {
-					saveText();
+					delayedAction();
 				} else {
 					if ( debounce ) {
 						$timeout.cancel( debounce );
 					}
-					debounce = $timeout( saveText, 1000 );
+					debounce = $timeout( delayedAction, 1000 );
 				}
 			}
+		});
+		
+		// If editing and clicking for previewing too fast, the changes don't have
+		// time to persist. So ensure the changes are persisted first before releasing the
+		// preview button
+		$scope.$on( "editor:saved", function() {
+			$scope.previewable = true;
 		});
 		
 		$scope.preventTyping = function( event ) {
@@ -52,10 +64,7 @@ define( [ "webstories" ], function( webstories ) {
 			$scope.modal.show = true;
 		};
 		
-		function saveText() {
-			var editor = $scope.editor;
-			var chapter = $scope.chapter;
-			var section = $scope.section;
+		function delayedAction() {
 			EditorContent.saveSection( $scope.editor, $scope.chapter, $scope.section );
 		}
 	}

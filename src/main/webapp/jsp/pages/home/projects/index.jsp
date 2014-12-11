@@ -111,7 +111,7 @@
                               </button>
                               <button class="btn btn-default"
                                       ng-click="previewSection( section.id, chapter.id )"
-                                      ng-disabled="!section.text">
+                                      ng-disabled="previewable === false">
                                 <span class="icon-eye"></span>
                                 <span class="hidden-xs">Pré-visualizar</span>
                               </button>
