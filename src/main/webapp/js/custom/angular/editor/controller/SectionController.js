@@ -35,6 +35,10 @@ define(function() {
 			}
 		};
 		
+		$scope.previewSection = function( sectionId, chapterId ) {
+			$scope.modal.show = true;
+		};
+		
 		function saveText() {
 			var editor = $scope.editor;
 			var chapter = $scope.chapter;

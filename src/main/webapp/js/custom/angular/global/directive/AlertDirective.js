@@ -1,4 +1,4 @@
-define( [ "jquery", "jquery.ws.alert" ], function( $ ) {
+define( [ "jquery.ws.alert" ], function() {
 	"use strict";
 	function AlertDirective() {
 		return {

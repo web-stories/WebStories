@@ -1,7 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<%@ taglib prefix="ng" tagdir="/WEB-INF/tags/angular" %>
 <jsp:include page="/jsp/include/header.jsp"/>
 <div ng-controller="PageController">
+  <ng:modal directive="bs-modal" modalShow="modal.show" modalOptionsShow="false">
+    <div class="modal-header">
+      <button class="close" type="button" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Pré-visualização</h4>
+    </div>
+    <div class="modal-body">
+      // TODO
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
+    </div>
+  </ng:modal>
   <ws-alert data="alert"></ws-alert>
   <div class="container">
     <ol class="breadcrumb breadcumb-clear toolbar">
@@ -95,6 +107,7 @@
                                 <span class="hidden-xs">Nova seção</span>
                               </button>
                               <button class="btn btn-default"
+                                      ng-click="previewSection( section.id, chapter.id )"
                                       ng-disabled="!section.text">
                                 <span class="icon-eye"></span>
                                 <span class="hidden-xs">Pré-visualizar</span>
