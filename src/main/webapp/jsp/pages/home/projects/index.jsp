@@ -2,18 +2,6 @@
 <%@ taglib prefix="ng" tagdir="/WEB-INF/tags/angular" %>
 <jsp:include page="/jsp/include/header.jsp"/>
 <div ng-controller="PageController">
-  <ng:modal directive="bs-modal" modalShow="modal.show" modalOptionsShow="false">
-    <div class="modal-header">
-      <button class="close" type="button" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Pré-visualização</h4>
-    </div>
-    <div class="modal-body">
-      // TODO
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
-    </div>
-  </ng:modal>
   <ws-alert data="alert"></ws-alert>
   <div class="container">
     <ol class="breadcrumb breadcumb-clear toolbar">
@@ -85,6 +73,21 @@
                        duration="1000"
                        offset="80">
                   <div ng-controller="SectionController">
+                    <ng:modal directive="bs-modal" modalShow="modal.show"
+                              modalOptionsShow="false"
+                              modalOnShow="loadPreview()"
+                              modalOnHide="unloadPreview()">
+                      <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Pré-visualização</h4>
+                      </div>
+                      <div class="modal-body">
+                        <iframe class="preview-box" ng-src="{{ previewURL | trusted }}"></iframe>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
+                      </div>
+                    </ng:modal>
                     <div class="editor-chapter-section {{ validity.className }}">
                       <textarea class="form-control editor-chapter-section-text"
                                 ng-model="section.text"

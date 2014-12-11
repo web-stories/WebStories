@@ -18,6 +18,7 @@ define([
 	"js/editor/directive/EditorFocusDirective",
 	"js/global/directive/AlertDirective",
 	"js/global/directive/BootstrapModal",
+	"js/global/filter/TrustedFilter",
 	"angular.resource",
 	"angular.smoothscroll"
 ], function(
@@ -39,7 +40,8 @@ define([
 	EditorMenuDirective,
 	EditorFocusDirective,
 	AlertDirective,
-	BootstrapModal
+	BootstrapModal,
+	TrustedFilter
 ) {
 	"use strict";
 	
@@ -61,7 +63,8 @@ define([
 		.directive( "wsEditorMenu", EditorMenuDirective )
 		.directive( "wsEditorFocus", EditorFocusDirective )
 		.directive( "wsAlert", AlertDirective )
-		.directive( "bsModal", BootstrapModal );
+		.directive( "bsModal", BootstrapModal )
+		.filter( "trusted", TrustedFilter );
 		
 	angular.bootstrap( document.body, [ "ws.editor" ] );
 });

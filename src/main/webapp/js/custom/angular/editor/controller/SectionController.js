@@ -1,7 +1,20 @@
-define(function() {
+define( [ "webstories" ], function( webstories ) {
 	"use strict";
 	function SectionController( $scope, $timeout, EditorContent, EditorSectionValidation ) {
 		$scope.validity = {};
+		$scope.modal = {};
+		
+		$scope.loadPreview = function() {
+			var context = webstories.contextPath;
+			var path = "/view/stories/preview";
+			var query = "id=" + $scope.editor.id;
+			var hash = "section-" + $scope.chapter.position + "-" + $scope.section.position;
+			$scope.previewURL = context + path + "?" + query + "#" + hash;
+		};
+		
+		$scope.unloadPreview = function() {
+			$scope.previewURL = "about:blank";
+		};
 		
 		// Validation
 		$scope.$watch( "section.text", function( newText, oldText ) {

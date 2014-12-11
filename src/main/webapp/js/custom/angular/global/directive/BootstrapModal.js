@@ -1,11 +1,15 @@
 define( [ "js/global/directive/DirectiveUtils", "bootstrap" ], function( DirectiveUtils ) {
 	"use strict";
 	
-	function BootstrapModal( $parse ) {
+	function BootstrapModal( $timeout ) {
 		return {
 			restrict: "A",
 			scope: {
-				modalShow: "="
+				modalShow: "=",
+				modalOnShow: "&",
+				modalOnShown: "&",
+				modalOnHide: "&",
+				modalOnHidden: "&"
 			},
 			link: function( scope, element, attrs ) {
 				var options = DirectiveUtils.attrParams({
@@ -24,20 +28,42 @@ define( [ "js/global/directive/DirectiveUtils", "bootstrap" ], function( Directi
 					}
 				});
 				
-				element.on( "hidden.bs.modal", function() {
-					scope.$apply(function( scope ) {
-						scope.modalShow = false;
+				element.on( "show.bs.modal", function() {
+					$timeout(function() {
+						if ( scope.modalOnShow ) {
+							scope.modalOnShow();
+						}
 					});
 				});
 				
 				element.on( "shown.bs.modal", function() {
-					scope.$apply(function( scope ) {
+					$timeout(function() {
 						scope.modalShow = true;
+						if ( scope.modalOnShown ) {
+							scope.modalOnShown();
+						}
+					});
+				});
+				
+				element.on( "hide.bs.modal", function() {
+					$timeout(function() {
+						if ( scope.modalOnHide ) {
+							scope.modalOnHide();
+						}
+					});
+				});
+				
+				element.on( "hidden.bs.modal", function() {
+					$timeout(function() {
+						scope.modalShow = false;
+						if ( scope.modalOnHidden ) {
+							scope.modalOnHidden();
+						}
 					});
 				});
 			}
 		};
 	}
 	
-	return [ "$parse", BootstrapModal ];
+	return [ "$timeout",  BootstrapModal ];
 });
