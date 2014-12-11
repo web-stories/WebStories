@@ -73,7 +73,7 @@
                        duration="1000"
                        offset="80">
                   <div ng-controller="SectionController">
-                    <ng:modal directive="bs-modal" modalShow="modal.show"
+                    <ng:modal directive="bs-modal" modalShow="previewModal.show"
                               modalOptionsShow="false"
                               modalOnShown="loadPreview()"
                               modalOnHide="unloadPreview()">
@@ -93,7 +93,7 @@
                                 ng-model="section.text"
                                   <%-- Enable input validation upon typing "enter" --%>
                                   ng-trim="false"
-                                ng-keydown="preventTyping( $event )"
+                                ng-keydown="preventTyping( $event, section.text )"
                                 ws-editor-focus
                                   focus-if="focusable.sectionId === section.id"></textarea>
                       <div class="editor-chapter-section-footer">
