@@ -7,4 +7,5 @@ public interface RequestParam {
 	Double toDouble();
 	String toString();
 	boolean isEmpty();
+	boolean exists();
 }

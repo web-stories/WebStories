@@ -9,6 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.webstories.core.auth.Logged;
+import org.webstories.core.auth.UserNotLoggedException;
+import org.webstories.core.security.AccessDeniedException;
+import org.webstories.core.security.story.StoryOwnerSecurity;
+import org.webstories.core.security.story.StoryRead;
 import org.webstories.core.story.StoryUtils;
 import org.webstories.core.story.editor.EditorStory;
 import org.webstories.core.story.editor.EditorStoryDetails;
@@ -68,7 +72,21 @@ public class StoryReader implements LocalStoryReader {
 	@Override
 	public StoryViewer storyViewer( long idStory ) {
 		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
-		return StoryViewer.from( story );
+		return StoryViewer.createPublic( story );
+	}
+	
+	@Override
+	public StoryViewer storyPreviewer( long idStory, Logged logged )
+	throws AccessDeniedException, UserNotLoggedException {
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
+		
+		// Can only preview if the logged user owns this story
+		StoryEntity story = new StoryOwnerSecurity( logged )
+			.readPrivileged( new StoryRead.DefaultRead( idStory, entityManager ) );
+		
+		return StoryViewer.createPreview( story );
 	}
 	
 	@Override

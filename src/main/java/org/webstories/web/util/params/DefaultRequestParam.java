@@ -53,4 +53,8 @@ public class DefaultRequestParam implements RequestParam {
 		}
 		return value.isEmpty();
 	}
+	@Override
+	public boolean exists() {
+		return value != null;
+	}
 }
