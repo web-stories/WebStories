@@ -11,5 +11,9 @@ require( ["jquery", "jquery.ws.story"], function( $ ) {
 			.addClass( "impress-not-supported" );
 	}
 	
-	$( ".story" ).story();
+	$( ".story" ).story({
+		loaded: function() {
+			$( ".loading-dots" ).hide();
+		}
+	});
 });

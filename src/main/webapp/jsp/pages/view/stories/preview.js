@@ -1,4 +1,8 @@
 require( [ "jquery", "jquery.ws.story" ], function( $ ) {
 	"use strict";
-	$( ".story" ).story();
+	$( ".story" ).story({
+		loaded: function() {
+			$( ".loading-dots" ).hide();
+		}
+	});
 });

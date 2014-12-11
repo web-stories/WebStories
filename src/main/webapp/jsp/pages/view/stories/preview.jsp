@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<div class="loading-dots">
+  <img src="${pageContext.request.contextPath}/static/img/loading-dots.gif">
+</div>
 <ws:story>
   <ws:story-content storyTitle="${details.title}" storySummary="${details.summary}">
     <c:forEach items="${story.chapters}" var="chapter">
