@@ -109,7 +109,7 @@
                                 <span class="icon-down"></span>
                                 <span class="hidden-xs">Nova seção</span>
                               </button>
-                              <button class="btn btn-default"
+                              <button class="btn btn-default hidden-xs"
                                       ng-click="previewSection()"
                                       ng-disabled="previewable === false">
                                 <span class="icon-eye"></span>
