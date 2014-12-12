@@ -46,7 +46,7 @@ public class WebResourcesFolder implements Filter {
 	public void destroy() {}
 	private String getManifestAttr( String key, HttpServletRequest request ) throws IOException {
 		ServletContext context = request.getServletContext();
-		InputStream input = context.getResourceAsStream( "/WEB-INF/classes/META-INF/MANIFEST.MF" );
+		InputStream input = context.getResourceAsStream( "/META-INF/MANIFEST.MF" );
 		Manifest manifest = new Manifest( input );
 		Attributes attributes = manifest.getMainAttributes();
 		return attributes.getValue( key );

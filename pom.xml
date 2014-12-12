@@ -10,6 +10,7 @@
     <querydsl.version>3.2.4</querydsl.version>
     <frontendmaven.version>0.0.19</frontendmaven.version>
     <httpcomponents.version>4.3.4</httpcomponents.version>
+    <warplugin.version>2.5</warplugin.version>
     <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
   </properties>
   <repositories>
@@ -58,7 +59,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
+        <version>${warplugin.version}</version>
         <configuration>
           <warSourceExcludes>js/**,css/**,.gitignore</warSourceExcludes>
           <archive>
@@ -247,6 +248,18 @@
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>${warplugin.version}</version>
+            <configuration>
+              <archive>
+                <manifestEntries>
+                  <Build-Revision>0000000000</Build-Revision>
+                </manifestEntries>
+              </archive>
+            </configuration>
           </plugin>
         </plugins>
         <resources>
