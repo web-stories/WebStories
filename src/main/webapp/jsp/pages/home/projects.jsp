@@ -73,26 +73,26 @@
       <form name="newStoryForm" action="${pageContext.request.contextPath}/home/create" method="post">
         <bs:wizard-panes>
           <bs:wizard-pane active="true">
-              <div class="form-group">
-                <label for="new-story-title">
-                  Título principal
-                </label>
-                <input class="form-control" id="new-story-title" name="title" type="text" placeholder="Ex.: &quot;Pinóquio&quot;" maxlength="200" required>
-              </div>
-              <div class="form-group">
-                <label for="new-story-summary">
-                  Resumo
-                </label>
-                <div class="remaining">
-                  <textarea class="form-control remaining-input" id="new-story-summary" name="summary" data-rule-maxlength="140" type="text"
-                            placeholder="Ex.: &quot;A jornada de um boneco de madeira querendo se tornar um garoto de verdade&quot;"
-                            required></textarea>
-                  <div>
-                    <span class="remaining-chars">140</span>
-                    caracteres restantes
-                  </div>
+            <div class="form-group">
+              <label for="new-story-title">
+                Título
+              </label>
+              <input class="form-control" id="new-story-title" name="title" type="text" placeholder="Ex.: &quot;Pinóquio&quot;" maxlength="200" required>
+            </div>
+            <div class="form-group">
+              <label for="new-story-summary">
+                Resumo
+              </label>
+              <div class="remaining">
+                <textarea class="form-control remaining-input" id="new-story-summary" name="summary" data-rule-maxlength="140" type="text"
+                          placeholder="Ex.: &quot;A jornada de um boneco de madeira querendo se tornar um garoto de verdade&quot;"
+                          required></textarea>
+                <div>
+                  <span class="remaining-chars">140</span>
+                  caracteres restantes
                 </div>
               </div>
+            </div>
           </bs:wizard-pane>
           <bs:wizard-pane>
             <div class="form-group">
