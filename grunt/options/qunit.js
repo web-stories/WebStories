@@ -13,7 +13,7 @@ module.exports = function( grunt ) {
 		global: {
 			options: {
 				urls: [
-					"http://localhost:8000/test/webapp/qunit/custom/editor/DirectiveUtils.html"
+					"http://localhost:8000/test/webapp/qunit/custom/global/DirectiveUtils.html"
 				]
 			}
 		}
