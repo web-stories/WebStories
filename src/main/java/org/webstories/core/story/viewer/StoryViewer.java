@@ -11,7 +11,7 @@ import org.webstories.dao.story.StoryEntity;
 public class StoryViewer implements Story {
 	private Long id;
 	private List<StoryViewerChapter> chapters = new ArrayList<StoryViewerChapter>();
-	public static StoryViewer from( StoryEntity story ) {
+	public static StoryViewer createPublic( StoryEntity story ) {
 		StoryViewer viewer = new StoryViewer();
 		viewer.id = story.getId();
 		for ( ChapterEntity chapter : story.getChapters() ) {
@@ -20,6 +20,14 @@ public class StoryViewer implements Story {
 				continue;
 			}
 			viewer.chapters.add( viewerChapter );
+		}
+		return viewer;
+	}
+	public static StoryViewer createPreview( StoryEntity story ) {
+		StoryViewer viewer = new StoryViewer();
+		viewer.id = story.getId();
+		for ( ChapterEntity chapter : story.getChapters() ) {
+			viewer.chapters.add( StoryViewerChapter.from( chapter ) );
 		}
 		return viewer;
 	}

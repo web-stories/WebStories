@@ -1,0 +1,6 @@
+/**
+ * Reset the default padding, the previewer doesn't have any navbar.
+ */
+body {
+  padding-top: 0;
+}

@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
-<jsp:include page="/jsp/include/header.jsp"/>
 <div class="loading-dots">
   <img src="${pageContext.request.contextPath}/static/img/loading-dots.gif">
 </div>

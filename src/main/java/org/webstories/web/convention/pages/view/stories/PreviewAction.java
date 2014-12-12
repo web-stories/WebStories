@@ -5,18 +5,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.webstories.core.auth.Logged;
+import org.webstories.core.auth.UserNotLoggedException;
+import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.facade.LocalStoryReader;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.BaseServlet;
 import org.webstories.web.util.servlet.HttpForbiddenException;
-import org.webstories.web.util.servlet.HttpInternalServerErrorException;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
 @WebServlet
 @ConventionServlet
-public class IndexAction extends BaseServlet {
+public class PreviewAction extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	
 	@EJB
@@ -24,11 +26,19 @@ public class IndexAction extends BaseServlet {
 	
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
-	throws HttpInternalServerErrorException, HttpForbiddenException, HttpUnauthorizedException {
+	throws HttpForbiddenException, HttpUnauthorizedException {
+		Logged logged = getLogged( request );
 		RequestParams params = RequestParams.from( request );
 		long idStory = params.get( "id" ).toLong();
 		
-		request.setAttribute( "story", storyReader.storyViewer( idStory ) );
-		request.setAttribute( "details", storyReader.storyViewerDetails( idStory ) );
+		try {
+			request.setAttribute( "story", storyReader.storyPreviewer( idStory, logged ) );
+			request.setAttribute( "details", storyReader.storyViewerDetails( idStory ) );
+		} catch ( AccessDeniedException e ) {
+			throw new HttpForbiddenException( e );
+		} catch ( UserNotLoggedException e ) {
+			throw new HttpUnauthorizedException( e );
+		}
 	}
+
 }

@@ -100,6 +100,9 @@ define( ["jquery", "impress", "jquery.ui.widget"], function( $, impress ) {
 					}
 				};
 				this._on( document, events );
+				if ( this.options.loaded ) {
+					this.options.loaded();
+				}
 			}
 		},
 		_changeMenuState: function( stepElement ) {

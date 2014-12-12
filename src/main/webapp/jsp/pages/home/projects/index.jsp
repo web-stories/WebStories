@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<%@ taglib prefix="ng" tagdir="/WEB-INF/tags/angular" %>
 <jsp:include page="/jsp/include/header.jsp"/>
 <div ng-controller="PageController">
   <ws-alert data="alert"></ws-alert>
@@ -73,26 +73,47 @@
                        duration="1000"
                        offset="80">
                   <div ng-controller="SectionController">
+                    <ng:modal directive="bs-modal" modalShow="previewModal.show"
+                              modalOptionsShow="false"
+                              modalOnShown="loadPreview()"
+                              modalOnHide="unloadPreview()">
+                      <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Pré-visualização</h4>
+                      </div>
+                      <div class="modal-body">
+                        <iframe class="preview-box" ng-src="{{ previewURL | trusted }}"></iframe>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
+                      </div>
+                    </ng:modal>
                     <div class="editor-chapter-section {{ validity.className }}">
                       <textarea class="form-control editor-chapter-section-text"
                                 ng-model="section.text"
                                   <%-- Enable input validation upon typing "enter" --%>
                                   ng-trim="false"
-                                ng-keydown="preventTyping( $event )"
+                                ng-keydown="preventTyping( $event, section.text )"
                                 ws-editor-focus
                                   focus-if="focusable.sectionId === section.id"></textarea>
                       <div class="editor-chapter-section-footer">
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-5">
                             <label class="control-label editor-section-footer-msg"
                                    ng-attr-for="section-{{ section.position }}"
                                    ng-show="validity.text">{{ validity.text }}</label>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-7">
                             <div class="editor-section-footer-toolbar">
                               <button class="btn btn-primary" ng-click="addSection( section.id, chapter.id )">
                                 <span class="icon-down"></span>
-                                Nova seção
+                                <span class="hidden-xs">Nova seção</span>
+                              </button>
+                              <button class="btn btn-default hidden-xs"
+                                      ng-click="previewSection()"
+                                      ng-disabled="previewable === false">
+                                <span class="icon-eye"></span>
+                                <span class="hidden-xs">Pré-visualizar</span>
                               </button>
                               <button class="btn btn-danger"
                                       ng-click="removeSection( chapter.id, section.id )"
