@@ -24,7 +24,6 @@ define(function() {
 		});
 		
 		$scope.$on( "editor:section-add", function( event, section ) {
-			$scope.scrollable.sectionId = section.id;
 			$scope.focusable.sectionId = section.id;
 		});
 		

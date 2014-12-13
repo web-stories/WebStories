@@ -58,6 +58,15 @@ Comparable<ChapterEntity> {
 		return chapter;
 	}
 	
+	/**
+	 * Used only for tests
+	 */
+	public static ChapterEntity createChapterWithSections( List<SectionEntity> sections ) {
+		ChapterEntity chapter = new ChapterEntity();
+		chapter.sections.addAll( sections );
+		return chapter;
+	}
+	
 	@Override
 	public Long getId() {
 		return id_chapter;
@@ -118,6 +127,6 @@ Comparable<ChapterEntity> {
 	
 	public void addSection( SectionEntity section, int index ) {
 		section.setChapter( this );
-		sections.add( index, section );
+		getSections().add( index, section );
 	}
 }

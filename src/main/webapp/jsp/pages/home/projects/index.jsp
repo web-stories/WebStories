@@ -66,12 +66,7 @@
                 <input class="form-control editor-chapter-title-name" type="text"
                        ng-model="chapter.title"
                          ng-model-options="{ debounce: 1000 }">
-                <div ng-repeat="section in chapter.sections"
-                     smooth-scroll
-                       scroll-if="{{ scrollable.sectionId === section.id }}"
-                       easing="easeOutQuint"
-                       duration="1000"
-                       offset="80">
+                <div ng-repeat="section in chapter.sections">
                   <div ng-controller="SectionController">
                     <ng:modal directive="bs-modal" modalShow="previewModal.show"
                               modalOptionsShow="false"
