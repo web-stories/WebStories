@@ -9,4 +9,5 @@ import org.webstories.core.auth.Logged;
 @Local
 public interface LocalAppLogger {
 	void logAccess( @Nullable Logged logged, HttpServletRequest request, @Nullable Throwable e );
+	void logInternal( Throwable e );
 }
