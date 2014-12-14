@@ -18,6 +18,12 @@
     <div class="collapse navbar-collapse" id="main-navbar">
       <c:if test="${isLogged}">
         <ul class="nav navbar-nav">
+          <li class="${ fn:indexOf( uri, '/home/feed' ) > -1 ? 'active' : '' }">
+            <a href="${pageContext.request.contextPath}/home/feed">
+              <span class="icon-home"></span>
+              Página inicial
+            </a>
+          </li>
           <li class="${ fn:indexOf( uri, '/home/projects' ) > -1 ? 'active' : '' }">
             <a href="${pageContext.request.contextPath}/home/projects">
               <span class="icon-draft"></span>
