@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/jsp/include/header.jsp"/>
 <div class="container toolbar">
   <ol class="breadcrumb breadcumb-clear">
@@ -11,6 +12,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-lg-9">
+      <c:if test="${ fn:length( items ) == 0 }">
+        <div class="text-center">
+          Sem novidades para exibir
+        </div>
+      </c:if>
       <c:forEach items="${feedItems}" var="feed">
         <div class="media">
           <a class="pull-left" href="${feed.author.profileURL}">
