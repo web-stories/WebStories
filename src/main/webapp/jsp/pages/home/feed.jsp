@@ -17,7 +17,7 @@
           Sem novidades para exibir
         </div>
       </c:if>
-      <c:forEach items="${feedItems}" var="feed">
+      <c:forEach items="${feedItems}" var="feed" varStatus="loop">
         <div class="media">
           <a class="pull-left" href="${feed.author.profileURL}">
             <img class="media-object img-circle" alt="Foto" src="${feed.author.avatarURL}">
@@ -56,6 +56,9 @@
             </div>
           </div>
         </div>
+        <c:if test="${ loop.index != fn:length( feedItems ) - 1 }">
+          <hr>
+        </c:if>
       </c:forEach>
     </div>
     <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
@@ -73,7 +76,7 @@
         </p>
         <p>
           Atualmente estamos em um <strong>pré beta</strong>, ou seja, estamos preparando a
-          plataforma para deixá-la online aberta apenas a convites.
+          plataforma para deixá-la online.
         </p>
         <p>
           Se tiver qualquer dúvida ou sugestões, pode entrar em contato comigo diretamente pelo
