@@ -3,14 +3,17 @@ package org.webstories.core.text.html;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+import org.webstories.core.text.ManipulableText;
 import org.webstories.core.text.TextDecorator;
 
-public class HTMLText extends TextDecorator implements ProcessorVisitable {
+public class HTMLText extends TextDecorator implements ProcessorVisitable, ManipulableText {
 	private String current;
+	private final String content;
 	private TreeSet<ProcessorVisitor> processors = new TreeSet<ProcessorVisitor>();
 	
 	private HTMLText( String text ) {
 		super( text );
+		this.content = text;
 		this.current = text;
 	}
 	
@@ -23,8 +26,14 @@ public class HTMLText extends TextDecorator implements ProcessorVisitable {
 		return message;
 	}
 	
-	protected String getCurrent() {
+	@Override
+	public String getCurrent() {
 		return current;
+	}
+	
+	@Override
+	public String getContent() {
+		return content;
 	}
 	
 	@Override
