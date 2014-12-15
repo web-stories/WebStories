@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,10 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import org.webstories.dao.NumerableEntity;
+import org.webstories.dao.activity.ChapterPublishedActivity;
 
 @Entity
 @Table( name = "ws_chapter" )
@@ -48,6 +51,9 @@ Comparable<ChapterEntity> {
 	@ManyToOne
 	@JoinColumn( name = "id_story" )
 	private StoryEntity story;
+	
+	@OneToOne( mappedBy = "chapter", cascade = { CascadeType.REMOVE } )
+	private ChapterPublishedActivity publishedActivity;
 	
 	@OneToMany( mappedBy = "chapter", orphanRemoval = true )
 	private List<SectionEntity> sections = new ArrayList<SectionEntity>();

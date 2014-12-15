@@ -1,3 +1,7 @@
+/*
+ * 1. With db-level constraint, hibernate cannot cascade the remove operation =(
+ */
+
 CREATE TABLE ws_activity (
 	id_activity BIGINT NOT NULL PRIMARY KEY,
 	id_author BIGINT NOT NULL REFERENCES ws_user,
@@ -15,10 +19,9 @@ CREATE TABLE ws_joined (
 
 CREATE TABLE ws_new_story (
 	id_activity BIGINT NOT NULL PRIMARY KEY REFERENCES ws_activity,
-	id_story BIGINT NOT NULL REFERENCES ws_story
+	id_story BIGINT /* NOT NULL (1) */ REFERENCES ws_story
 );
-
 CREATE TABLE ws_chapter_published (
 	id_activity BIGINT NOT NULL PRIMARY KEY REFERENCES ws_activity,
-	id_chapter BIGINT NOT NULL REFERENCES ws_chapter
+	id_chapter BIGINT /* NOT NULL (1) */ REFERENCES ws_chapter
 );

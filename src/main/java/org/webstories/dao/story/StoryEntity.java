@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import org.webstories.dao.NumerableEntity;
+import org.webstories.dao.activity.NewStoryActivityEntity;
 import org.webstories.dao.user.UserEntity;
 
 @Entity
@@ -37,6 +39,9 @@ public class StoryEntity implements NumerableEntity {
 	
 	@OneToOne( mappedBy = "story", optional = false )
 	private MetaEntity meta;
+	
+	@OneToOne( mappedBy = "story", cascade = { CascadeType.REMOVE } )
+	private NewStoryActivityEntity newStoryActivity;
 	
 	@OneToMany( mappedBy = "story", orphanRemoval = true )
 	private List<ChapterEntity> chapters = new ArrayList<ChapterEntity>();
