@@ -5,21 +5,21 @@ import java.util.List;
 
 import org.webstories.core.story.StoryChapter;
 import org.webstories.core.story.StorySection;
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.html.HTMLOutput;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryState;
 
 public class StoryViewerChapter implements StoryChapter {
 	private Long id;
-	private HTMLText title;
+	private HTMLOutput title;
 	private Integer position;
 	private boolean published;
 	private List<StoryViewerSection> sections = new ArrayList<StoryViewerSection>();
 	public static StoryViewerChapter from( ChapterEntity chapter ) {
 		StoryViewerChapter result = new StoryViewerChapter();
 		result.id = chapter.getId();
-		result.title = HTMLText.fromPlainText( chapter.getTitle() );
+		result.title = HTMLOutput.fromUnsafeInput( chapter.getTitle() );
 		result.position = chapter.getPosition();
 		result.published = chapter.getState() == StoryState.PUBLISHED;
 		for ( SectionEntity section : chapter.getSections() ) {
@@ -32,7 +32,7 @@ public class StoryViewerChapter implements StoryChapter {
 		return id;
 	}
 	@Override
-	public HTMLText getTitle() {
+	public HTMLOutput getTitle() {
 		return title;
 	}
 	@Override

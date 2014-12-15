@@ -1,32 +1,32 @@
 package org.webstories.core.story.editor;
 
 import org.webstories.core.story.StoryMeta;
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.html.HTMLOutput;
 import org.webstories.dao.story.MetaEntity;
 
 public class EditorStoryDetails implements StoryMeta {
 	private Long id;
-	private HTMLText title;
-	private HTMLText summary;
-	private HTMLText synopsis;
+	private HTMLOutput title;
+	private HTMLOutput summary;
+	private HTMLOutput synopsis;
 	public static EditorStoryDetails from( MetaEntity meta ) {
 		EditorStoryDetails details = new EditorStoryDetails();
 		details.id = meta.getId();
-		details.title = HTMLText.fromPlainText( meta.getTitle() );
-		details.summary = HTMLText.fromPlainText( meta.getSummary() );
-		details.synopsis = HTMLText.fromPlainText( meta.getSynopsis() );
+		details.title = HTMLOutput.fromUnsafeInput( meta.getTitle() );
+		details.summary = HTMLOutput.fromUnsafeInput( meta.getSummary() );
+		details.synopsis = HTMLOutput.fromUnsafeInput( meta.getSynopsis() );
 		return details;
 	}
 	@Override
-	public HTMLText getTitle() {
+	public HTMLOutput getTitle() {
 		return title;
 	}
 	@Override
-	public HTMLText getSummary() {
+	public HTMLOutput getSummary() {
 		return summary;
 	}
 	@Override
-	public HTMLText getSynopsis() {
+	public HTMLOutput getSynopsis() {
 		return synopsis;
 	}
 	public Long getId() {

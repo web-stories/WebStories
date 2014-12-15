@@ -6,7 +6,7 @@ import org.junit.Test;
 public class EntitiesProcessorTest {
 	@Test
 	public void should_handle_xss_by_default() {
-		HTMLText message = HTMLText.fromPlainText( "<script>alert(0)</script>" );
+		HTMLOutput message = HTMLOutput.fromUnsafeInput( "<script>alert(0)</script>" );
 		
 		String expected = "&lt;script&gt;alert(0)&lt;/script&gt;";
 		String actual = message.toString();
@@ -15,7 +15,7 @@ public class EntitiesProcessorTest {
 	}
 	@Test
 	public void should_handle_quotation_mark() {
-		HTMLText message = HTMLText.fromPlainText( "\"" );
+		HTMLOutput message = HTMLOutput.fromUnsafeInput( "\"" );
 		
 		String expected = "&quot;";
 		String actual = message.toString();

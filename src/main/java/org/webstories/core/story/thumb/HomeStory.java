@@ -1,7 +1,7 @@
 package org.webstories.core.story.thumb;
 
 import org.webstories.core.story.StoryUtils;
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.html.HTMLOutput;
 import org.webstories.core.user.ThumbnailUserInfoFactory;
 import org.webstories.core.user.UserInfo;
 import org.webstories.dao.IdentifiableEntity;
@@ -10,8 +10,8 @@ import org.webstories.dao.story.StoryEntity;
 
 public class HomeStory implements HomeStoryThumb {
 	private Long id;
-	private HTMLText title;
-	private HTMLText description;
+	private HTMLOutput title;
+	private HTMLOutput description;
 	private UserInfo author;
 	private boolean removable;
 	
@@ -20,8 +20,8 @@ public class HomeStory implements HomeStoryThumb {
 		HomeStory product = new HomeStory();
 		
 		product.id = meta.getId();
-		product.title = HTMLText.fromPlainText( meta.getTitle() );
-		product.description = HTMLText.fromPlainText( meta.getSummary() );
+		product.title = HTMLOutput.fromUnsafeInput( meta.getTitle() );
+		product.description = HTMLOutput.fromUnsafeInput( meta.getSummary() );
 		
 		ThumbnailUserInfoFactory factory = new ThumbnailUserInfoFactory( author );
 		UserInfo authorInfo = new UserInfo( factory );
@@ -37,11 +37,11 @@ public class HomeStory implements HomeStoryThumb {
 		return id;
 	}
 	@Override
-	public HTMLText getTitle() {
+	public HTMLOutput getTitle() {
 		return title;
 	}
 	@Override
-	public HTMLText getDescription() {
+	public HTMLOutput getDescription() {
 		return description;
 	}
 	@Override

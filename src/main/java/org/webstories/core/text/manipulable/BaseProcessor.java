@@ -1,4 +1,5 @@
-package org.webstories.core.text.html;
+package org.webstories.core.text.manipulable;
+
 
 
 public abstract class BaseProcessor implements ProcessorVisitor {

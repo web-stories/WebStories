@@ -3,30 +3,46 @@ package org.webstories.core.text.html;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import org.webstories.core.text.Text;
+import org.webstories.core.text.TextDecorator;
+import org.webstories.core.text.manipulable.ManipulableText;
+import org.webstories.core.text.manipulable.ProcessorVisitable;
+import org.webstories.core.text.manipulable.ProcessorVisitor;
 
-public class HTMLText extends Text implements ProcessorVisitable {
+public class HTMLOutput extends TextDecorator implements ProcessorVisitable, ManipulableText {
 	private String current;
+	private final String content;
 	private TreeSet<ProcessorVisitor> processors = new TreeSet<ProcessorVisitor>();
-	private HTMLText( String text ) {
+	
+	private HTMLOutput( String text ) {
 		super( text );
+		this.content = text;
 		this.current = text;
 	}
+	
 	/**
-	 * Create a new HTMLText while escaping the html entities by default
+	 * Create a new HTMLText from a user generated input to avoid XSS
 	 */
-	public static HTMLText fromPlainText( String text ) {
-		HTMLText message = new HTMLText( text );
+	public static HTMLOutput fromUnsafeInput( String input ) {
+		HTMLOutput message = new HTMLOutput( input );
 		message.accept( new EntitiesProcessor.Converter() );
 		return message;
 	}
-	protected String getCurrent() {
+	
+	@Override
+	public String getCurrent() {
 		return current;
 	}
+	
+	@Override
+	public String getContent() {
+		return content;
+	}
+	
 	@Override
 	public void accept( ProcessorVisitor processor ) {
 		processors.add( processor );
 	}
+	
 	@Override
 	public String toString() {
 		this.current = getContent();

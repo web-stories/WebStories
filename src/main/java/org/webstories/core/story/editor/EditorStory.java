@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.webstories.core.story.Story;
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.html.HTMLOutput;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.StoryEntity;
 
 public class EditorStory implements Story {
 	private Long id;
-	private HTMLText title;
-	private HTMLText summary;
+	private HTMLOutput title;
+	private HTMLOutput summary;
 	private List<EditorStoryChapter> chapters = new ArrayList<EditorStoryChapter>();
 	public static EditorStory from( StoryEntity story ) {
 		EditorStory editor = new EditorStory();
 		editor.id = story.getId();
-		editor.title = HTMLText.fromPlainText( story.getMeta().getTitle() );
-		editor.summary = HTMLText.fromPlainText( story.getMeta().getSummary() );
+		editor.title = HTMLOutput.fromUnsafeInput( story.getMeta().getTitle() );
+		editor.summary = HTMLOutput.fromUnsafeInput( story.getMeta().getSummary() );
 		
 		for ( ChapterEntity chapter : story.getChapters() ) {
 			EditorStoryChapter storyChapter = EditorStoryChapter.from( chapter );
@@ -46,10 +46,10 @@ public class EditorStory implements Story {
 	public Long getId() {
 		return id;
 	}
-	public HTMLText getTitle() {
+	public HTMLOutput getTitle() {
 		return title;
 	}
-	public HTMLText getSummary() {
+	public HTMLOutput getSummary() {
 		return summary;
 	}
 	@Override

@@ -1,9 +1,9 @@
 package org.webstories.core.story;
 
-import org.webstories.core.text.Text;
+import org.webstories.core.text.TextDecorator;
 
 public interface StoryMeta {
-	Text getTitle();
-	Text getSummary();
-	Text getSynopsis();
+	TextDecorator getTitle();
+	TextDecorator getSummary();
+	TextDecorator getSynopsis();
 }

@@ -30,13 +30,7 @@ public class AppLogger implements LocalAppLogger {
 		
 		if ( e != null ) {
 			e.printStackTrace();
-			
-			ExceptionEntity exception = new ExceptionEntity();
-			exception.setDateInc( System.currentTimeMillis() );
-			exception.setException( e) ;
-			setCauses( exception, e );
-			
-			exception.setLog( log );
+			ExceptionEntity exception = createException( e, log );
 			entityManager.persist( exception );
 		}
 		
@@ -53,6 +47,31 @@ public class AppLogger implements LocalAppLogger {
 		
 		access.setLog( log );
 		entityManager.persist( access );
+	}
+	
+	@Override
+	public void logInternal( Throwable e ) {
+		LogEntity log = new LogEntity();
+		entityManager.persist( log );
+		
+		e.printStackTrace();
+		ExceptionEntity exception = createException( e, log );
+		entityManager.persist( exception );
+	}
+	
+	/**
+	 * @param  log
+	 *         A managed and persistent log instance
+	 */
+	private ExceptionEntity createException( Throwable e, LogEntity log ) {
+		ExceptionEntity exception = new ExceptionEntity();
+		exception.setDateInc( System.currentTimeMillis() );
+		exception.setException( e) ;
+		setCauses( exception, e );
+		
+		exception.setLog( log );
+		
+		return exception;
 	}
 	
 	private void setCauses( ExceptionEntity exception, Throwable e ) {

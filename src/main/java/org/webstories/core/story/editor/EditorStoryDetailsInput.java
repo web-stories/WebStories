@@ -1,19 +1,19 @@
 package org.webstories.core.story.editor;
 
 import org.webstories.core.story.StoryMeta;
-import org.webstories.core.text.Text;
+import org.webstories.core.text.PlainText;
 import org.webstories.core.validation.Validatable;
 import org.webstories.web.util.params.RequestParams;
 
 public class EditorStoryDetailsInput implements Validatable, StoryMeta {
-	private Text title;
-	private Text summary;
-	private Text synopsis;
+	private PlainText title;
+	private PlainText summary;
+	private PlainText synopsis;
 	public static EditorStoryDetailsInput from( RequestParams params ) {
 		EditorStoryDetailsInput meta = new EditorStoryDetailsInput(  );
-		meta.title = Text.from( params.get( "title" ).toString() );
-		meta.summary = Text.from( params.get( "summary" ).toString() );
-		meta.synopsis = Text.from( params.get( "synopsis" ).toString() );
+		meta.title = PlainText.from( params.get( "title" ).toString() );
+		meta.summary = PlainText.from( params.get( "summary" ).toString() );
+		meta.synopsis = PlainText.from( params.get( "synopsis" ).toString() );
 		return meta;
 	}
 	@Override
@@ -34,15 +34,15 @@ public class EditorStoryDetailsInput implements Validatable, StoryMeta {
 		return true;
 	}
 	@Override
-	public Text getTitle() {
+	public PlainText getTitle() {
 		return title;
 	}
 	@Override
-	public Text getSummary() {
+	public PlainText getSummary() {
 		return summary;
 	}
 	@Override
-	public Text getSynopsis() {
+	public PlainText getSynopsis() {
 		return synopsis;
 	}
 }

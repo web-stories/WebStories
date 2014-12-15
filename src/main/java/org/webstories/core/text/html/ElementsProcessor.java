@@ -1,12 +1,15 @@
 package org.webstories.core.text.html;
 
+import org.webstories.core.text.manipulable.BaseProcessor;
+import org.webstories.core.text.manipulable.ProcessorAlias;
+
 public class ElementsProcessor {
 	public static class Converter extends BaseProcessor {
 		public Converter() {
 			super( ProcessorAlias.HTML_ELEMENTS );
 		}
 		@Override
-		public String process( HTMLText message ) {
+		public String process( HTMLOutput message ) {
 			String result = message.getCurrent();
 			
 			// Replace LF

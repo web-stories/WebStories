@@ -17,6 +17,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.webstories.core.ResourceNotFoundException;
+import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.auth.AuthSession;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
@@ -45,6 +46,9 @@ public class EditorResource {
 	
 	@EJB
 	LocalStoryEditor storyEditor;
+	
+	@EJB
+	LocalActivityRegistrator activityRegistrator;
 	
 	@EJB
 	LocalStoryReader storyReader;
@@ -140,6 +144,7 @@ public class EditorResource {
 		Logged logged = AuthSession.from( request ).getLogged();
 		try {
 			storyEditor.publishChapter( chapterId, logged );
+			activityRegistrator.registerChapterPublishActivity( chapterId, logged );
 		} catch ( UserNotLoggedException e ) {
 			throw new HttpUnauthorizedException( e );
 		} catch ( ValidationException e ) {

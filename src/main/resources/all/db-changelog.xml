@@ -15,4 +15,7 @@
   <changeSet author="Fagner Brack" id="exception-logging">
     <sqlFile path="scripts/exception-logging.sql" relativeToChangelogFile="true"/>
   </changeSet>
+  <changeSet author="Fagner Brack" id="activities">
+    <sqlFile path="scripts/activities.sql" relativeToChangelogFile="true"/>
+  </changeSet>
 </databaseChangeLog>
