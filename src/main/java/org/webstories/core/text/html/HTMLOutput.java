@@ -6,22 +6,22 @@ import java.util.TreeSet;
 import org.webstories.core.text.ManipulableText;
 import org.webstories.core.text.TextDecorator;
 
-public class HTMLText extends TextDecorator implements ProcessorVisitable, ManipulableText {
+public class HTMLOutput extends TextDecorator implements ProcessorVisitable, ManipulableText {
 	private String current;
 	private final String content;
 	private TreeSet<ProcessorVisitor> processors = new TreeSet<ProcessorVisitor>();
 	
-	private HTMLText( String text ) {
+	private HTMLOutput( String text ) {
 		super( text );
 		this.content = text;
 		this.current = text;
 	}
 	
 	/**
-	 * Create a new HTMLText from a user generated input.
+	 * Create a new HTMLText from a user generated input to avoid XSS
 	 */
-	public static HTMLText fromUnsafeInput( String input ) {
-		HTMLText message = new HTMLText( input );
+	public static HTMLOutput fromUnsafeInput( String input ) {
+		HTMLOutput message = new HTMLOutput( input );
 		message.accept( new EntitiesProcessor.Converter() );
 		return message;
 	}

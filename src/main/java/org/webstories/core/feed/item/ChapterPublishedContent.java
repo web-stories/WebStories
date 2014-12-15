@@ -1,12 +1,12 @@
 package org.webstories.core.feed.item;
 
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.html.HTMLOutput;
 
 public class ChapterPublishedContent extends FeedContent {
 	private Long storyId;
 	private int chapterPosition;
-	private HTMLText storyTitle;
-	private HTMLText chapterTitle;
+	private HTMLOutput storyTitle;
+	private HTMLOutput chapterTitle;
 	
 	public Long getStoryId() {
 		return storyId;
@@ -22,17 +22,17 @@ public class ChapterPublishedContent extends FeedContent {
 		this.chapterPosition = chapterPosition;
 	}
 	
-	public HTMLText getStoryTitle() {
+	public HTMLOutput getStoryTitle() {
 		return storyTitle;
 	}
-	public void setStoryTitle( HTMLText storyTitle ) {
+	public void setStoryTitle( HTMLOutput storyTitle ) {
 		this.storyTitle = storyTitle;
 	}
 	
-	public HTMLText getChapterTitle() {
+	public HTMLOutput getChapterTitle() {
 		return chapterTitle;
 	}
-	public void setChapterTitle( HTMLText chapterTitle ) {
+	public void setChapterTitle( HTMLOutput chapterTitle ) {
 		this.chapterTitle = chapterTitle;
 	}
 }

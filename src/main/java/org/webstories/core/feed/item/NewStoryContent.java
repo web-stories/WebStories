@@ -1,22 +1,22 @@
 package org.webstories.core.feed.item;
 
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.html.HTMLOutput;
 
 public class NewStoryContent extends FeedContent {
-	private HTMLText storyTitle;
-	private HTMLText storySummary;
+	private HTMLOutput storyTitle;
+	private HTMLOutput storySummary;
 	
-	public HTMLText getStoryTitle() {
+	public HTMLOutput getStoryTitle() {
 		return storyTitle;
 	}
-	public void setStoryTitle( HTMLText storyTitle ) {
+	public void setStoryTitle( HTMLOutput storyTitle ) {
 		this.storyTitle = storyTitle;
 	}
 	
-	public HTMLText getStorySummary() {
+	public HTMLOutput getStorySummary() {
 		return storySummary;
 	}
-	public void setStorySummary( HTMLText storySummary ) {
+	public void setStorySummary( HTMLOutput storySummary ) {
 		this.storySummary = storySummary;
 	}
 }

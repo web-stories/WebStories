@@ -2,17 +2,17 @@ package org.webstories.core.story.viewer;
 
 import org.webstories.core.story.StorySection;
 import org.webstories.core.text.html.ElementsProcessor;
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.html.HTMLOutput;
 import org.webstories.dao.story.SectionEntity;
 
 public class StoryViewerSection implements StorySection {
 	private Long id;
-	private HTMLText text;
+	private HTMLOutput text;
 	private Integer position;
 	public static StoryViewerSection from( SectionEntity section ) {
 		StoryViewerSection result = new StoryViewerSection();
 		
-		HTMLText text = HTMLText.fromUnsafeInput( section.getText() );
+		HTMLOutput text = HTMLOutput.fromUnsafeInput( section.getText() );
 		text.accept( new ElementsProcessor.Converter() );
 		result.text = text;
 		
@@ -25,7 +25,7 @@ public class StoryViewerSection implements StorySection {
 		return id;
 	}
 	@Override
-	public HTMLText getText() {
+	public HTMLOutput getText() {
 		return text;
 	}
 	@Override

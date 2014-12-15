@@ -1,6 +1,6 @@
 package org.webstories.core.feed.item;
 
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.html.HTMLOutput;
 import org.webstories.dao.activity.NewStoryActivityEntity;
 import org.webstories.dao.story.MetaEntity;
 
@@ -17,8 +17,8 @@ public class NewStoryFeedFactory extends FeedFactory {
 		NewStoryContent result = new NewStoryContent();
 		MetaEntity storyMeta = activity.getStory().getMeta();
 		
-		HTMLText storyTitle = HTMLText.fromUnsafeInput( storyMeta.getTitle() );
-		HTMLText storySummary = HTMLText.fromUnsafeInput( storyMeta.getSummary() );
+		HTMLOutput storyTitle = HTMLOutput.fromUnsafeInput( storyMeta.getTitle() );
+		HTMLOutput storySummary = HTMLOutput.fromUnsafeInput( storyMeta.getSummary() );
 		
 		result.setStoryTitle( storyTitle );
 		result.setStorySummary( storySummary );

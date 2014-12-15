@@ -1,6 +1,6 @@
 package org.webstories.core.feed.item;
 
-import org.webstories.core.text.html.HTMLText;
+import org.webstories.core.text.html.HTMLOutput;
 import org.webstories.dao.activity.ChapterPublishedActivity;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.MetaEntity;
@@ -23,8 +23,8 @@ public class ChapterPublishedFeedFactory extends FeedFactory {
 		
 		long storyId = story.getId();
 		int chapterPosition = chapter.getPosition();
-		HTMLText storyTitle = HTMLText.fromUnsafeInput( storyMeta.getTitle() );
-		HTMLText chapterTitle = HTMLText.fromUnsafeInput( chapter.getTitle() );
+		HTMLOutput storyTitle = HTMLOutput.fromUnsafeInput( storyMeta.getTitle() );
+		HTMLOutput chapterTitle = HTMLOutput.fromUnsafeInput( chapter.getTitle() );
 		
 		result.setStoryId( storyId );
 		result.setChapterPosition( chapterPosition );

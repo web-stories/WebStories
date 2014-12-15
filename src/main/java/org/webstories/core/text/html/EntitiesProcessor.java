@@ -6,7 +6,7 @@ public class EntitiesProcessor {
 			super( ProcessorAlias.HTML_ENTITIES );
 		}
 		@Override
-		public String process( HTMLText message ) {
+		public String process( HTMLOutput message ) {
 			String result = message.getCurrent();
 			
 			// XSS protection
