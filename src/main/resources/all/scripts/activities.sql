@@ -1,6 +1,7 @@
 CREATE TABLE ws_activity (
 	id_activity BIGINT NOT NULL PRIMARY KEY,
-	id_author BIGINT NOT NULL REFERENCES ws_user
+	id_author BIGINT NOT NULL REFERENCES ws_user,
+	dt_inc BIGINT NOT NULL
 );
 CREATE TABLE activity_sequences (
 	sequence_name VARCHAR( 255 ) NOT NULL PRIMARY KEY,

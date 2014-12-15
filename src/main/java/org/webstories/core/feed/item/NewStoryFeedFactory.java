@@ -27,11 +27,6 @@ public class NewStoryFeedFactory extends FeedFactory {
 	}
 	
 	@Override
-	protected String createDate() {
-		return "not available";
-	}
-	
-	@Override
 	protected FeedType createType() {
 		return FeedType.NEW_STORY;
 	}

@@ -35,11 +35,6 @@ public class ChapterPublishedFeedFactory extends FeedFactory {
 	}
 	
 	@Override
-	protected String createDate() {
-		return "not available";
-	}
-	
-	@Override
 	protected FeedType createType() {
 		return FeedType.CHAPTER_PUBLISHED;
 	}

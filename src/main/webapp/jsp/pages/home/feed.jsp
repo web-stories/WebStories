@@ -12,7 +12,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-lg-9">
-      <c:if test="${ fn:length( items ) == 0 }">
+      <c:if test="${ fn:length( feedItems ) == 0 }">
         <div class="text-center">
           Sem novidades para exibir
         </div>

@@ -1,5 +1,6 @@
 package org.webstories.dao.activity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +29,7 @@ public abstract class ActivityEntity implements NumerableEntity {
 	 */
 	protected ActivityEntity( UserEntity activityAuthor ) {
 		this.user = activityAuthor;
+		this.dt_inc = System.currentTimeMillis();
 	}
 	
 	@Id
@@ -44,6 +46,9 @@ public abstract class ActivityEntity implements NumerableEntity {
 	@JoinColumn( name = "id_author", nullable = false )
 	private UserEntity user;
 	
+	@Column( nullable = false )
+	private long dt_inc;
+	
 	@Override
 	public Long getId() {
 		return id_activity;
@@ -51,5 +56,9 @@ public abstract class ActivityEntity implements NumerableEntity {
 	
 	public UserEntity getUser() {
 		return user;
+	}
+	
+	public long getDateInc() {
+		return dt_inc;
 	}
 }
