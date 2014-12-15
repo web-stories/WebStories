@@ -21,6 +21,9 @@
       ga("create","${application.google.analytics.id}","auto");ga("send","pageview");
     </script>
     <script>
+      window.onerror = function( msg, url, line ) {
+        ga( "send", "event", "error", msg, url + ":" + line );
+      };
       (function() {
         var patchBefore = function( object, property, fn ) {
           var old = object[ property ];
@@ -35,6 +38,12 @@
         patchBefore( window, "alert", function( msg ) {
           ga( "send", "event", "alert", msg );
         });
+        patchBefore( window.console, "error", function( msg ) {
+          ga( "send", "event", "console.error", msg );
+        });
+        patchBefore( window.console, "log", function( msg ) {
+          ga( "send", "event", "console.log", msg );
+        })
       }());
     </script>
   </head>
