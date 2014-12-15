@@ -12,7 +12,7 @@ public class StoryViewerSection implements StorySection {
 	public static StoryViewerSection from( SectionEntity section ) {
 		StoryViewerSection result = new StoryViewerSection();
 		
-		HTMLText text = HTMLText.fromPlainText( section.getText() );
+		HTMLText text = HTMLText.fromUnsafeInput( section.getText() );
 		text.accept( new ElementsProcessor.Converter() );
 		result.text = text;
 		

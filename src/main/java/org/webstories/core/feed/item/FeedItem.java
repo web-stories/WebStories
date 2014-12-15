@@ -1,10 +1,10 @@
-package org.webstories.core.feed;
+package org.webstories.core.feed.item;
 
-import org.webstories.core.text.html.HTMLText;
 import org.webstories.core.user.UserInfo;
 
 public interface FeedItem {
 	UserInfo getAuthor();
-	HTMLText getContent();
+	FeedContent getContent();
 	String getDate();
+	FeedType getType();
 }

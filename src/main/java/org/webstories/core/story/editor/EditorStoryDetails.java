@@ -12,9 +12,9 @@ public class EditorStoryDetails implements StoryMeta {
 	public static EditorStoryDetails from( MetaEntity meta ) {
 		EditorStoryDetails details = new EditorStoryDetails();
 		details.id = meta.getId();
-		details.title = HTMLText.fromPlainText( meta.getTitle() );
-		details.summary = HTMLText.fromPlainText( meta.getSummary() );
-		details.synopsis = HTMLText.fromPlainText( meta.getSynopsis() );
+		details.title = HTMLText.fromUnsafeInput( meta.getTitle() );
+		details.summary = HTMLText.fromUnsafeInput( meta.getSummary() );
+		details.synopsis = HTMLText.fromUnsafeInput( meta.getSynopsis() );
 		return details;
 	}
 	@Override

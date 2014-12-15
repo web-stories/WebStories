@@ -16,8 +16,8 @@ public class EditorStory implements Story {
 	public static EditorStory from( StoryEntity story ) {
 		EditorStory editor = new EditorStory();
 		editor.id = story.getId();
-		editor.title = HTMLText.fromPlainText( story.getMeta().getTitle() );
-		editor.summary = HTMLText.fromPlainText( story.getMeta().getSummary() );
+		editor.title = HTMLText.fromUnsafeInput( story.getMeta().getTitle() );
+		editor.summary = HTMLText.fromUnsafeInput( story.getMeta().getSummary() );
 		
 		for ( ChapterEntity chapter : story.getChapters() ) {
 			EditorStoryChapter storyChapter = EditorStoryChapter.from( chapter );

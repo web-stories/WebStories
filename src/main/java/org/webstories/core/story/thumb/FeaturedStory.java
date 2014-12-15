@@ -16,8 +16,8 @@ public class FeaturedStory implements StoryThumb {
 		FeaturedStory product = new FeaturedStory();
 		
 		product.id = meta.getId();
-		product.title = HTMLText.fromPlainText( meta.getTitle() ); 
-		product.description = HTMLText.fromPlainText( meta.getSummary() );
+		product.title = HTMLText.fromUnsafeInput( meta.getTitle() ); 
+		product.description = HTMLText.fromUnsafeInput( meta.getSummary() );
 		
 		ThumbnailUserInfoFactory factory = new ThumbnailUserInfoFactory( author );
 		UserInfo authorInfo = new UserInfo( factory );

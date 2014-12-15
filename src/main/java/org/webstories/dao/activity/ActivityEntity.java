@@ -29,7 +29,7 @@ public abstract class ActivityEntity implements NumerableEntity {
 	private Long id_activity;
 	
 	@OneToOne( optional = false )
-	@JoinColumn( name = "id_user", nullable = false )
+	@JoinColumn( name = "id_author", nullable = false )
 	private UserEntity user;
 	
 	@Override
@@ -39,5 +39,8 @@ public abstract class ActivityEntity implements NumerableEntity {
 	
 	public void setUser( UserEntity user ) {
 		this.user = user;
+	}
+	public UserEntity getUser() {
+		return user;
 	}
 }

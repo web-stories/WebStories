@@ -17,4 +17,7 @@ public class ChapterPublishedActivity extends ActivityEntity {
 	public void setChapter( ChapterEntity chapter ) {
 		this.chapter = chapter;
 	}
+	public ChapterEntity getChapter() {
+		return chapter;
+	}
 }

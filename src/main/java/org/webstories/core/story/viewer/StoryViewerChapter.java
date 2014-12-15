@@ -19,7 +19,7 @@ public class StoryViewerChapter implements StoryChapter {
 	public static StoryViewerChapter from( ChapterEntity chapter ) {
 		StoryViewerChapter result = new StoryViewerChapter();
 		result.id = chapter.getId();
-		result.title = HTMLText.fromPlainText( chapter.getTitle() );
+		result.title = HTMLText.fromUnsafeInput( chapter.getTitle() );
 		result.position = chapter.getPosition();
 		result.published = chapter.getState() == StoryState.PUBLISHED;
 		for ( SectionEntity section : chapter.getSections() ) {

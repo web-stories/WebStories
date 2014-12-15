@@ -13,12 +13,19 @@ public class HTMLText extends Text implements ProcessorVisitable {
 		this.current = text;
 	}
 	/**
-	 * Create a new HTMLText while escaping the html entities by default
+	 * Create a new HTMLText and escape the html entities from an unsafe input
 	 */
-	public static HTMLText fromPlainText( String text ) {
-		HTMLText message = new HTMLText( text );
+	public static HTMLText fromUnsafeInput( String input ) {
+		HTMLText message = new HTMLText( input );
 		message.accept( new EntitiesProcessor.Converter() );
 		return message;
+	}
+	/**
+	 * Create a new HTMLText without additional html escaping. Should be used when the input is not
+	 * a user generated input.
+	 */
+	public static HTMLText fromSafeInput( String input ) {
+		return new HTMLText( input );
 	}
 	protected String getCurrent() {
 		return current;

@@ -17,4 +17,7 @@ public class NewStoryActivityEntity extends ActivityEntity {
 	public void setStory( StoryEntity story ) {
 		this.story = story;
 	}
+	public StoryEntity getStory() {
+		return story;
+	}
 }
