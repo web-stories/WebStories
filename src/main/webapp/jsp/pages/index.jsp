@@ -5,12 +5,12 @@
   <div class="container index-banner-container">
     <h1>Web Stories</h1>
     <p class="index-banner-paragraph">
-      A sua plataforma para publicação de histórias na Web
+      Você tem o potencial para criar grandes histórias
     </p>
     <c:if test="${canPublish}">
       <p>
         <facebook:login className="btn btn-primary btn-lg" invite="${param.invite}" redirect="${pageContext.request.contextPath}/home/projects">
-          Publique uma história
+          Começar agora!
         </facebook:login>
       </p>
       <p class="index-banner-terms">
@@ -22,7 +22,7 @@
       <p class="index-banner-closed">
         Web Stories atualmente está em um beta fechado.
         <br>
-        <span class="index-banner-contact">Clique aqui para solicitar um convite</span>
+        <span class="index-banner-contact">Clique aqui para solicitar um convite por e-mail</span>
       </p>
     </c:if>
   </div>
