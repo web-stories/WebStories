@@ -5,8 +5,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.integration.OAuth2Data;
 import org.webstories.core.integration.OAuth2Token;
+import org.webstories.core.logging.LocalAppLogger;
 import org.webstories.core.user.PersonName;
 import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.integration.FacebookQueries;
@@ -35,6 +37,12 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 	
 	@EJB
 	LocalDefaultAuthentication authentication;
+	
+	@EJB
+	LocalActivityRegistrator activityRegistrator;
+	
+	@EJB
+	LocalAppLogger logger;
 	
 	@Override
 	public Logged authenticate( OAuth2Token token, OAuth2Data data )
@@ -78,6 +86,14 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			FacebookEntity.from( name, facebookEmail, facebookId, webstoriesUser, profileURL );
 		entityManager.persist( facebook );
 		
-		return Logged.from( facebook );
+		Logged logged = Logged.from( facebook );
+		
+		try {
+			activityRegistrator.registerJoinedActivity( logged );
+		} catch ( UserNotLoggedException e ) {
+			logger.logInternal( e );
+		}
+		
+		return logged;
 	}
 }

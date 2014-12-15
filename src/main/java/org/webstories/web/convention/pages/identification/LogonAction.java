@@ -8,11 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.auth.AuthenticationException;
 import org.webstories.core.auth.LocalFacebookAuthentication;
 import org.webstories.core.auth.Logged;
-import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.integration.FacebookOAuth2DataFactory;
 import org.webstories.core.integration.FacebookOAuth2TokenFactory;
 import org.webstories.core.integration.OAuth2Data;
@@ -37,9 +35,6 @@ public class LogonAction extends BaseServlet {
 	@EJB
 	LocalInviteAuthorization inviteAuthorization;
 	
-	@EJB
-	LocalActivityRegistrator activityRegistrator;
-	
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 	throws IOException, ServletException {
@@ -56,9 +51,8 @@ public class LogonAction extends BaseServlet {
 			OAuth2Token token = requestToken( request );
 			Logged logged = facebookAuth.authenticate( token, data );
 			setLogged( logged, request );
-			activityRegistrator.registerJoinedActivity( logged );
 			response.sendRedirect( data.getRedirect() );
-		} catch ( OAuth2TokenException | AuthenticationException | UserNotLoggedException e ) {
+		} catch ( OAuth2TokenException | AuthenticationException e ) {
 			throw new ServletException( e );
 		}
 	}
