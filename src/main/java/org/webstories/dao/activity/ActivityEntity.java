@@ -18,6 +18,18 @@ import org.webstories.dao.user.UserEntity;
 @Table( name = "ws_activity" )
 @Inheritance( strategy = InheritanceType.JOINED )
 public abstract class ActivityEntity implements NumerableEntity {
+	// Hibernate requires no-args constructor for this and subclasses.
+	// Source: http://stackoverflow.com/a/2971717/1400037
+	protected ActivityEntity() {}
+	
+	/**
+	 * @param  user
+	 *         A managed and persistent user instance
+	 */
+	protected ActivityEntity( UserEntity activityAuthor ) {
+		this.user = activityAuthor;
+	}
+	
 	@Id
 	@TableGenerator(
 		name = "activity_sequence",
@@ -37,9 +49,6 @@ public abstract class ActivityEntity implements NumerableEntity {
 		return id_activity;
 	}
 	
-	public void setUser( UserEntity user ) {
-		this.user = user;
-	}
 	public UserEntity getUser() {
 		return user;
 	}

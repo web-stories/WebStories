@@ -25,7 +25,7 @@
             <div class="media-body">
               <c:if test="${feed.type == 'JOINED'}">
                 <p>
-                  Entrou no Web Stories
+                  Entrou em Web Stories
                 </p>
               </c:if>
               <c:if test="${feed.type == 'NEW_STORY'}">

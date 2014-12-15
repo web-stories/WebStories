@@ -7,7 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.auth.Logged;
+import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.facade.LocalStoryCreator;
 import org.webstories.core.validation.ValidationException;
@@ -27,6 +29,9 @@ public class CreateAction extends BaseServlet {
 	@EJB
 	LocalStoryCreator creator;
 	
+	@EJB
+	LocalActivityRegistrator activityRegistrator;
+	
 	@Override
 	protected void doPost( HttpServletRequest request, HttpServletResponse response )
 	throws HttpInternalServerErrorException, IOException {
@@ -34,9 +39,10 @@ public class CreateAction extends BaseServlet {
 		Logged logged = getLogged( request );
 		EditorStoryDetailsInput input = EditorStoryDetailsInput.from( params );
 		try {
-			creator.createMeta( input, logged );
+			long idStory = creator.createMeta( input, logged );
+			activityRegistrator.registerNewStoryActivity( idStory, logged );
 			response.sendRedirect( request.getHeader( "referer" ) );
-		} catch ( ValidationException | IOException e ) {
+		} catch ( ValidationException | IOException | UserNotLoggedException e ) {
 			throw new HttpInternalServerErrorException( e );
 		}
 	}

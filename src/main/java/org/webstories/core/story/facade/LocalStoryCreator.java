@@ -8,5 +8,5 @@ import org.webstories.core.validation.ValidationException;
 
 @Local
 public interface LocalStoryCreator {
-	void createMeta( EditorStoryDetailsInput input, Logged logged ) throws ValidationException;
+	long createMeta( EditorStoryDetailsInput input, Logged logged ) throws ValidationException;
 }
