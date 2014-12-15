@@ -1,11 +1,11 @@
 package org.webstories.core.story.editor;
 
 import org.webstories.core.story.StorySection;
-import org.webstories.core.text.Text;
+import org.webstories.core.text.PlainText;
 import org.webstories.core.validation.Validatable;
 
 public class EditorStorySectionInput implements StorySection, Validatable {
-	private Text text;
+	private PlainText text;
 	private Long id;
 	private Integer position;
 	@Override
@@ -13,7 +13,7 @@ public class EditorStorySectionInput implements StorySection, Validatable {
 		return id;
 	}
 	@Override
-	public Text getText() {
+	public PlainText getText() {
 		return text;
 	}
 	@Override

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.webstories.core.story.StoryChapter;
-import org.webstories.core.text.Text;
+import org.webstories.core.text.PlainText;
 import org.webstories.core.validation.Validatable;
 
 // Prevent "unrecognized field error for 'publishable'" when saving the chapter
@@ -13,7 +13,7 @@ import org.webstories.core.validation.Validatable;
 
 public class EditorStoryChapterInput implements StoryChapter, Validatable {
 	private Long id;
-	private Text title;
+	private PlainText title;
 	private Integer position;
 	private boolean published;
 	private List<EditorStorySectionInput> sections = new ArrayList<EditorStorySectionInput>();
@@ -22,7 +22,7 @@ public class EditorStoryChapterInput implements StoryChapter, Validatable {
 		return id;
 	}
 	@Override
-	public Text getTitle() {
+	public PlainText getTitle() {
 		return title;
 	}
 	@Override

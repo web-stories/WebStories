@@ -1,10 +1,10 @@
 package org.webstories.core.story;
 
-import org.webstories.core.text.Text;
+import org.webstories.core.text.TextDecorator;
 import org.webstories.dao.NumerableEntity;
 
 public interface StorySection extends NumerableEntity {
 	Long getId();
-	Text getText();
+	TextDecorator getText();
 	Integer getPosition();
 }
