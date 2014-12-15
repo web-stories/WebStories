@@ -1,5 +1,8 @@
 package org.webstories.core.text.html;
 
+import org.webstories.core.text.manipulable.BaseProcessor;
+import org.webstories.core.text.manipulable.ProcessorAlias;
+
 public class EntitiesProcessor {
 	public static class Converter extends BaseProcessor {
 		public Converter() {

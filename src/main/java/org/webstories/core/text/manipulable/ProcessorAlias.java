@@ -1,4 +1,4 @@
-package org.webstories.core.text.html;
+package org.webstories.core.text.manipulable;
 
 /**
  * To avoid conflicts, each processor is applied according to the order in this enum.

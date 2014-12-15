@@ -1,4 +1,4 @@
-package org.webstories.core.text;
+package org.webstories.core.text.manipulable;
 
 
 public interface ManipulableText {

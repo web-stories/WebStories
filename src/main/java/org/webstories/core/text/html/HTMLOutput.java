@@ -3,8 +3,10 @@ package org.webstories.core.text.html;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import org.webstories.core.text.ManipulableText;
 import org.webstories.core.text.TextDecorator;
+import org.webstories.core.text.manipulable.ManipulableText;
+import org.webstories.core.text.manipulable.ProcessorVisitable;
+import org.webstories.core.text.manipulable.ProcessorVisitor;
 
 public class HTMLOutput extends TextDecorator implements ProcessorVisitable, ManipulableText {
 	private String current;
