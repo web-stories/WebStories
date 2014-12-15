@@ -67,7 +67,7 @@
       <bs:wizard-steps>
         <bs:wizard-step number="1" title="Título e Resumo" active="true"/>
         <bs:wizard-step number="2" title="Sinopse"/>
-        <bs:wizard-step number="3" title="Pronto"/>
+        <bs:wizard-step number="3" title="Pronto!"/>
       </bs:wizard-steps>
       <hr>
       <form name="newStoryForm" action="${pageContext.request.contextPath}/home/create" method="post">
@@ -106,10 +106,14 @@
           </bs:wizard-pane>
           <bs:wizard-pane>
             <h2>
-              Pronto!
+              Atenção!
             </h2>
             <p>
-              Clique em <strong class="text-success">começar</strong> para iniciar sua história.
+              Recomendamos que você dê uma olhada na
+              <a href="https://www.dropbox.com/s/t5e3irg9e9czmrq/Documentation%20for%20Authors%20v1.docx?dl=1" target="_blank">
+                documentação para autores
+              </a>, este documento explica os conceitos principais de uma Web Story, tal como
+              outras dicas para criar grandes histórias!
             </p>
           </bs:wizard-pane>
         </bs:wizard-panes>

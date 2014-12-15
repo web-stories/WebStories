@@ -41,7 +41,7 @@ public class CreateAction extends BaseServlet {
 		try {
 			long idStory = creator.createMeta( input, logged );
 			activityRegistrator.registerNewStoryActivity( idStory, logged );
-			response.sendRedirect( request.getHeader( "referer" ) );
+			response.sendRedirect( request.getContextPath() + "/home/projects/?id=" + idStory );
 		} catch ( ValidationException | IOException | UserNotLoggedException e ) {
 			throw new HttpInternalServerErrorException( e );
 		}
