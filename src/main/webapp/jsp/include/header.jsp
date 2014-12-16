@@ -12,7 +12,7 @@
       </button>
       <a class="navbar-brand" href="${pageContext.request.contextPath}/">
         WebStories
-        <small>beta</small>
+        <small>alpha</small>
       </a>
     </div>
     <div class="collapse navbar-collapse" id="main-navbar">

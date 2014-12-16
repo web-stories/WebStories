@@ -75,8 +75,9 @@
           Parabéns por escolher participar dessa iniciativa inovadora!
         </p>
         <p>
-          Atualmente estamos em um <strong>pré beta</strong>, ou seja, estamos preparando a
-          plataforma para deixá-la online.
+          Atualmente o projeto está em um <strong>pré-beta</strong> ou seja,
+          a plataforma ainda está em desenvolvimento e alguns recursos podem não funcionar
+          adequadamente em alguns dispositivos ou navegadores.
         </p>
         <p>
           Se tiver qualquer dúvida ou sugestões, pode entrar em contato comigo diretamente pelo
