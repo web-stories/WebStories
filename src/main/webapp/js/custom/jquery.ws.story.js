@@ -1,4 +1,4 @@
-define( ["jquery", "impress", "jquery.ui.widget"], function( $, impress ) {
+define( ["jquery", "impress", "jquery.ui.widget", "jquery.ws.alert"], function( $, impress ) {
 	"use strict";
 	$.widget( "ws.story", {
 		_keyCodes: {
@@ -14,11 +14,27 @@ define( ["jquery", "impress", "jquery.ui.widget"], function( $, impress ) {
 			TAB: 9
 		},
 		_create: function() {
+			if ( navigator.userAgent.indexOf( "Firefox/34.0" ) !== -1 ) {
+				$( "body" )
+					.removeClass( "impress-supported" )
+					.addClass( "impress-not-supported" );
+			}
+			
 			this.element
 				.removeClass( "hidden" );
 			
 			// Immediate return if impress is not supported 
 			if ( $( ".impress-not-supported" ).length ) {
+				$( "#unsupported" )
+					.actionAlert()
+					.actionAlert(
+						"show",
+						"A versão atual do seu navegador não suporta a visualização em slides!",
+						true
+					);
+				if ( this.options.loaded ) {
+					this.options.loaded();
+				}
 				return;
 			}
 			
