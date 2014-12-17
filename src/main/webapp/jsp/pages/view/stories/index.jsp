@@ -7,21 +7,50 @@
   </div>
   <ws-alert data="alert"></ws-alert>
   <div class="story"
-       ng-show="loader.loaded">
-    Loaded!
+       ng-show="loader.loaded"
+       ng-controller="StoryController">
+    <div class="story-content">
+      <div class="container">
+        <div id="slides-container">
+          <div class="step"
+               ng-repeat="slide in slides" ng-attr-id="section-{{ slide.chapter }}-{{ slide.section }}">
+            <div ng-if="slide.type === 'intro'">
+              <h1 class="story-home-title">
+                {{ slide.title }}
+                <small class="story-home-summary">
+                  {{ slide.summary }}
+                </small>
+              </h1>
+            </div>
+            <div class="story-chapter" ng-if="slide.type === 'chapter'">
+              <h2 class="story-chapter-title">
+                Capítulo {{ slide.chapter }}
+                <small class="story-chapter-name">{{ slide.title }}</small>
+              </h2>
+            </div>
+            <div class="story-section" ng-if="slide.type === 'section'">
+              {{ slide.text }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="story-footer">
+      <div class="container story-controls" ng-show="story.chapters.length">
+        <button class="btn btn-default story-controls-prev-chapter">?</button>
+        <div class="btn-group">
+          <button class="btn btn-default story-prev" ng-show="story.chapters.length > 1">
+            <span class="icon-previous"></span>
+          </button>
+          <button class="btn btn-default story-stop">
+            <span class="icon-stop"></span>
+          </button>
+          <button class="btn btn-default story-next" ng-show="story.chapters.length > 1">
+            <span class="icon-next"></span>
+          </button>
+        </div>
+        <button class="btn btn-default story-controls-next-chapter">?</button>
+      </div>
+    </div>
   </div>
 </div>
-
-<%-- <ws:story> --%>
-<%--   <ws:story-content storyTitle="${details.title}" storySummary="${details.summary}"> --%>
-<%--     <c:forEach items="${story.chapters}" var="chapter"> --%>
-<%--       <ws:story-chapter chapter="${chapter.position}" title="${chapter.title}"> --%>
-<%--         <c:forEach items="${chapter.sections}" var="section"> --%>
-<%--           <ws:story-section chapter="${chapter.position}" section="${section.position}"> --%>
-<%--             ${section.text} --%>
-<%--           </ws:story-section> --%>
-<%--         </c:forEach> --%>
-<%--       </ws:story-chapter> --%>
-<%--     </c:forEach> --%>
-<%--   </ws:story-content> --%>
-<%-- </ws:story> --%>
