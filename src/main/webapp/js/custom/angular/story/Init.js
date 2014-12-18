@@ -1,18 +1,28 @@
 define([
 	"angular",
+	"js/story/service/StoryResource",
+	"js/story/service/StoryStructure",
 	"js/story/controller/PageController",
 	"js/story/controller/StoryController",
-	"js/global/directive/AlertDirective"
+	"js/global/directive/AlertDirective",
+	"js/global/filter/HTMLTrustedFilter",
+	"angular.resource"
 ], function(
 	angular,
+	StoryResource,
+	StoryStructure,
 	PageController,
 	StoryController,
-	AlertDirective
+	AlertDirective,
+	HTMLTrustedFilter
 ) {
 	"use strict";
-	angular.module( "ws.story", [] )
+	angular.module( "ws.story", [ "ngResource" ] )
+		.service( "StoryResource", StoryResource )
+		.service( "StoryStructure", StoryStructure )
 		.controller( "PageController", PageController )
 		.controller( "StoryController", StoryController )
-		.directive( "wsAlert", AlertDirective );
+		.directive( "wsAlert", AlertDirective )
+		.filter( "htmlTrusted", HTMLTrustedFilter );
 	return angular.bootstrap( document.body, [ "ws.story" ] );
 });

@@ -8,13 +8,14 @@
   <ws-alert data="alert"></ws-alert>
   <div class="story"
        ng-show="loader.loaded"
-       ng-controller="StoryController">
+       ng-controller="StoryController"
+       ng-init="init( ${param.id} )">
     <div class="story-content">
       <div class="container">
         <div id="slides-container">
           <div class="step"
                ng-repeat="slide in slides" ng-attr-id="section-{{ slide.chapter }}-{{ slide.section }}">
-            <div ng-if="slide.type === 'intro'">
+            <div ng-if="slide.type === 'INTRO'">
               <h1 class="story-home-title">
                 {{ slide.title }}
                 <small class="story-home-summary">
@@ -22,14 +23,14 @@
                 </small>
               </h1>
             </div>
-            <div class="story-chapter" ng-if="slide.type === 'chapter'">
+            <div class="story-chapter" ng-if="slide.type === 'CHAPTER'">
               <h2 class="story-chapter-title">
                 Capítulo {{ slide.chapter }}
                 <small class="story-chapter-name">{{ slide.title }}</small>
               </h2>
             </div>
-            <div class="story-section" ng-if="slide.type === 'section'">
-              {{ slide.text }}
+            <div class="story-section" ng-if="slide.type === 'SECTION'">
+              <span ng-bind-html="slide.text | htmlTrusted"></span>
             </div>
           </div>
         </div>
