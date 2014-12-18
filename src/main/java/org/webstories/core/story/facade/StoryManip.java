@@ -30,7 +30,7 @@ import org.webstories.dao.story.StoryQueries;
 import org.webstories.dao.story.StoryState;
 
 @Stateless
-public class StoryEditor implements LocalStoryEditor {
+public class StoryManip implements LocalStoryManip {
 	@PersistenceContext
 	EntityManager entityManager;
 	

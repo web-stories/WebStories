@@ -28,7 +28,7 @@ import org.webstories.core.story.editor.EditorStoryChapterInput;
 import org.webstories.core.story.editor.EditorStorySection;
 import org.webstories.core.story.editor.EditorStorySectionInput;
 import org.webstories.core.story.editor.RemovalResult;
-import org.webstories.core.story.facade.LocalStoryEditor;
+import org.webstories.core.story.facade.LocalStoryManip;
 import org.webstories.core.story.facade.LocalAuthorStoryReader;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.core.validation.ValidationObject;
@@ -45,7 +45,7 @@ public class EditorResource {
 	HttpServletRequest request;
 	
 	@EJB
-	LocalStoryEditor storyEditor;
+	LocalStoryManip storyEditor;
 	
 	@EJB
 	LocalActivityRegistrator activityRegistrator;
