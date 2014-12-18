@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.auth.Logged;
-import org.webstories.core.story.facade.LocalAuthorStoryReader;
+import org.webstories.core.story.facade.LocalStoryAuthoringReader;
 import org.webstories.core.story.thumb.HomeStory;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
@@ -22,7 +22,7 @@ public class ProjectsAction extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	
 	@EJB
-	LocalAuthorStoryReader storyReader;
+	LocalStoryAuthoringReader storyReader;
 	
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {

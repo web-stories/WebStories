@@ -11,7 +11,7 @@ import org.webstories.core.story.thumb.HomeStory;
 import org.webstories.core.validation.ValidationObject;
 
 @Local
-public interface LocalAuthorStoryReader {
+public interface LocalStoryAuthoringReader {
 	List<HomeStory> authorStories( Logged logged );
 	EditorStoryDetails storyDetails( long idStory );
 	EditorStory storyEditor( long idStory );

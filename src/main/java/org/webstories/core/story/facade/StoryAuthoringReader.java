@@ -21,7 +21,7 @@ import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
 
 @Stateless
-public class AuthorStoryReader implements LocalAuthorStoryReader {
+public class StoryAuthoringReader implements LocalStoryAuthoringReader {
 	@PersistenceContext
 	EntityManager entityManager;
 	

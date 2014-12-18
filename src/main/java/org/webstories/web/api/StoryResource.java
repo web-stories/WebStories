@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import org.webstories.core.story.facade.LocalAuthorStoryReader;
+import org.webstories.core.story.facade.LocalStoryAuthoringReader;
 import org.webstories.core.story.viewer.StoryViewer;
 
 @Path( "/story" )
@@ -21,7 +21,7 @@ public class StoryResource {
 	HttpServletRequest request;
 	
 	@EJB
-	LocalAuthorStoryReader storyReader;
+	LocalStoryAuthoringReader storyReader;
 	
 	@GET
 	@Path( "{storyId}/slides" )
