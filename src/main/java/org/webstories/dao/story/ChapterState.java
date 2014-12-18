@@ -1,5 +1,5 @@
 package org.webstories.dao.story;
 
-public enum StoryState {
+public enum ChapterState {
 	DRAFT, PUBLISHED;
 }

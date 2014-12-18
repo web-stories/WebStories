@@ -27,7 +27,7 @@ import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
-import org.webstories.dao.story.StoryState;
+import org.webstories.dao.story.ChapterState;
 
 @Stateless
 public class StoryManip implements LocalStoryManip {
@@ -109,7 +109,7 @@ public class StoryManip implements LocalStoryManip {
 			new PrivilegedUpdate<StoryEntity>() {
 				@Override
 				public void run( StoryEntity object ) {
-					chapter.setState( StoryState.PUBLISHED );
+					chapter.setState( ChapterState.PUBLISHED );
 				}
 			}
 		);

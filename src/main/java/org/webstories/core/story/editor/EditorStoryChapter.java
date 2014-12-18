@@ -7,7 +7,7 @@ import org.webstories.core.story.StoryChapter;
 import org.webstories.core.text.PlainText;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.SectionEntity;
-import org.webstories.dao.story.StoryState;
+import org.webstories.dao.story.ChapterState;
 
 public class EditorStoryChapter implements StoryChapter {
 	private Long id;
@@ -21,7 +21,7 @@ public class EditorStoryChapter implements StoryChapter {
 		chapter.id = chapterEntity.getId();
 		chapter.title = PlainText.from( chapterEntity.getTitle() );
 		chapter.position = chapterEntity.getPosition();
-		chapter.published = chapterEntity.getState() == StoryState.PUBLISHED;
+		chapter.published = chapterEntity.getState() == ChapterState.PUBLISHED;
 		for ( SectionEntity section : chapterEntity.getSections() ) {
 			EditorStorySection storySection = EditorStorySection.from( section );
 			chapter.sections.add( storySection );

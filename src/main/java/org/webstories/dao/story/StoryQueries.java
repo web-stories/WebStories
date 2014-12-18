@@ -23,7 +23,7 @@ public class StoryQueries extends Queries {
 	public List<StoryEntity> listLastPublishedStories( int limit ) {
 		QStoryEntity tableStory = QStoryEntity.storyEntity;
 		JPAQuery query = queryFrom( tableStory )
-			.where( tableStory.chapters.any().cd_state.eq( StoryState.PUBLISHED ) )
+			.where( tableStory.chapters.any().cd_state.eq( ChapterState.PUBLISHED ) )
 			.orderBy( tableStory.id_story.desc() )
 			.limit( limit );
 		return query.list( tableStory );

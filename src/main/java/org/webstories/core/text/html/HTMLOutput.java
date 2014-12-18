@@ -8,6 +8,11 @@ import org.webstories.core.text.manipulable.ManipulableText;
 import org.webstories.core.text.manipulable.ProcessorVisitable;
 import org.webstories.core.text.manipulable.ProcessorVisitor;
 
+/**
+ * Represents a text that is supposed to be printed inside an HTML page.<br>
+ * It doesn't necessarly means the text should contain HTML entities, it just means the text is
+ * going to be outputted directly into the HTML.
+ */
 public class HTMLOutput extends TextDecorator implements ProcessorVisitable, ManipulableText {
 	private String current;
 	private final String content;
