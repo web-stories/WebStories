@@ -29,7 +29,7 @@ import org.webstories.core.story.editor.EditorStorySection;
 import org.webstories.core.story.editor.EditorStorySectionInput;
 import org.webstories.core.story.editor.RemovalResult;
 import org.webstories.core.story.facade.LocalStoryEditor;
-import org.webstories.core.story.facade.LocalStoryReader;
+import org.webstories.core.story.facade.LocalAuthorStoryReader;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.core.validation.ValidationObject;
 import org.webstories.web.util.servlet.HttpForbiddenException;
@@ -51,7 +51,7 @@ public class EditorResource {
 	LocalActivityRegistrator activityRegistrator;
 	
 	@EJB
-	LocalStoryReader storyReader;
+	LocalAuthorStoryReader storyReader;
 	
 	@GET
 	@Path( "{storyId}" )
