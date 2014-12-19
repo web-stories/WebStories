@@ -12,7 +12,9 @@ define(function() {
 			.$promise
 			.then(function( slides ) {
 				$rootScope.$broadcast( "story:restructured", function( $scope ) {
-					$scope.slides = slides;
+					$scope.story = {
+						slides: slides
+					};
 				});
 			});
 		};
