@@ -1,12 +1,12 @@
-.impress-not-supported .story-content {
+.not-supported .story-content {
   font-family: "freight-text-pro",Georgia,Cambria,"Times New Roman",Times,serif;
 }
-.impress-not-supported .story-chapter {
+.not-supported .story-chapter {
   display: block;
   margin: 50px 0 30px;
   text-align: center;
 }
 
-.impress-not-supported .story-footer {
+.not-supported .story-footer {
   display: none;
 }

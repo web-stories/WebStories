@@ -1,23 +1,23 @@
 /* Content
    ========================================================================== */
    
-.impress-supported .story-content {
+.story-content {
   font-size: 40px;
 }
 /* sm */
 @media ( min-width: 768px ) {
-  .impress-supported .story-content {
+  .story-content {
     font-size: 30px;
   }
 }
-.impress-supported .story-content {
+.story-content {
   pointer-events: none;
 }
 
 /* Steps
    ========================================================================== */
    
-.impress-supported .step {
+.step {
   width: 930px;
   opacity: 0;
   -webkit-transition: opacity .3s;
@@ -26,34 +26,34 @@
        -o-transition: opacity .3s;
           transition: opacity .3s;
 }
-.impress-supported .step.story-chapter {
+.step.story-chapter {
   -webkit-transition: opacity .6s;
      -moz-transition: opacity .6s;
       -ms-transition: opacity .6s;
        -o-transition: opacity .6s;
           transition: opacity .6s;
 }
-.impress-supported .step.active {
+.step.active {
   opacity: 1;
 }
 
 /* Samsung Galaxy Gran Neo Duos - Landscape */
 @media ( min-width: 530px ) {
-  .impress-supported .step {
+  .step {
     width: 1586px;
   }
 }
 
 /* iPad - Portrait */
 @media ( min-width: 768px ) {
-  .impress-supported .step {
+  .step {
     width: 962px;
   }
 }
 
 /* iPad - Landscape */
 @media ( min-width: 1024px ) {
-  .impress-supported .step {
+  .step {
     width: 943px;
   }
 }
@@ -61,24 +61,24 @@
 /* Home step
    ========================================================================== */
    
-.impress-supported .story-home-title {
+.story-home-title {
   font-size: 200%;
 }
 
 /* Chapter step
    ========================================================================== */
    
-.impress-supported .story-chapter-title {
+.story-chapter-title {
   font-size: 170%;
 }
-.impress-supported .story-chapter-name {
+.story-chapter-name {
   white-space: nowrap;
 }
 
 /* Footer
    ========================================================================== */
    
-.impress-supported .story-footer {
+.story-footer {
   display: block;
   position: absolute;
   bottom: 0;
@@ -91,16 +91,16 @@
 /* Controls
    ========================================================================== */
    
-.impress-supported .story-controls {
+.story-controls {
   text-align: center;
 }
-.impress-supported .story-controls-prev-chapter,
-.impress-supported .story-controls-next-chapter {
+.story-controls-prev-chapter,
+.story-controls-next-chapter {
   font-weight: bold;
 }
 
-.impress-supported .story-controls-prev-chapter,
-.impress-supported .story-controls-next-chapter {
+.story-controls-prev-chapter,
+.story-controls-next-chapter {
   opacity: 0;
   -webkit-transition: opacity .6s, transform .6s;
      -moz-transition: opacity .6s, transform .6s;
@@ -108,14 +108,14 @@
        -o-transition: opacity .6s, transform .6s;
           transition: opacity .6s, transform .6s;
 }
-.impress-supported .story-controls-prev-chapter {
+.story-controls-prev-chapter {
   transform: translateX(-100px);
 }
-.impress-supported .story-controls-next-chapter {
+.story-controls-next-chapter {
   transform: translateX(100px);
 }
-.impress-supported .story-controls-prev-chapter.story-controls-visible,
-.impress-supported .story-controls-next-chapter.story-controls-visible {
+.story-controls-prev-chapter.story-controls-visible,
+.story-controls-next-chapter.story-controls-visible {
   opacity: 1;
   transform: translateY(0);
 }

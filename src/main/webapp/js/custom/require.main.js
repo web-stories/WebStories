@@ -42,7 +42,6 @@ require = (function( require ) {
 					// Vendor modules
 					"bootstrap": "../js/bootstrap-3.2.0",
 					"bootstrap.custom": "../js/bootstrap.custom-0.1.1",
-					"impress": "../js/impress-0.5.4-pre",
 					"jquery.simulate": "../js/jquery.simulate-1.0.0",
 					"jquery.ui.widget": "../js/jquery.ui.widget-1.11.1",
 					"jquery.validate": "../js/jquery.validate-1.13.0",

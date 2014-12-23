@@ -7,7 +7,6 @@ define([
 	"js/story/controller/StoryController",
 	"js/story/controller/PresentationController",
 	"js/global/directive/AlertDirective",
-	"js/global/directive/ImpressDirective",
 	"js/global/filter/HTMLTrustedFilter",
 	"angular.resource"
 ], function(
@@ -19,7 +18,6 @@ define([
 	StoryController,
 	PresentationController,
 	AlertDirective,
-	ImpressDirective,
 	HTMLTrustedFilter
 ) {
 	"use strict";
@@ -31,7 +29,6 @@ define([
 		.controller( "StoryController", StoryController )
 		.controller( "PresentationController", PresentationController )
 		.directive( "wsAlert", AlertDirective )
-		.directive( "impress", ImpressDirective )
 		.filter( "htmlTrusted", HTMLTrustedFilter );
 	return angular.bootstrap( document.body, [ "ws.story" ] );
 });
