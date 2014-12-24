@@ -5,7 +5,6 @@ define([
 	"js/story/factory/SlidesModel",
 	"js/story/controller/PageController",
 	"js/story/controller/StoryController",
-	"js/story/controller/PresentationController",
 	"js/global/directive/AlertDirective",
 	"js/global/filter/HTMLTrustedFilter",
 	"angular.resource",
@@ -17,7 +16,6 @@ define([
 	SlidesModel,
 	PageController,
 	StoryController,
-	PresentationController,
 	AlertDirective,
 	HTMLTrustedFilter
 ) {
@@ -28,7 +26,6 @@ define([
 		.factory( "SlidesModel", SlidesModel )
 		.controller( "PageController", PageController )
 		.controller( "StoryController", StoryController )
-		.controller( "PresentationController", PresentationController )
 		.directive( "wsAlert", AlertDirective )
 		.filter( "htmlTrusted", HTMLTrustedFilter );
 	return angular.bootstrap( document.body, [ "ws.story" ] );
