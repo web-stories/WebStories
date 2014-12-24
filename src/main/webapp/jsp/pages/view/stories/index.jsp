@@ -13,7 +13,8 @@
     <div ng-controller="PresentationController">
       <div class="story-content">
         <div class="container">
-          <div>
+          <div jmpress-root
+               jmpress-steps="story.slides">
             <div class="step"
                  ng-repeat="slide in story.slides" ng-attr-id="section-{{ slide.chapter }}-{{ slide.section }}">
               <div ng-if="slide.type === 'INTRO'">

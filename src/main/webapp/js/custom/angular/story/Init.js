@@ -8,7 +8,8 @@ define([
 	"js/story/controller/PresentationController",
 	"js/global/directive/AlertDirective",
 	"js/global/filter/HTMLTrustedFilter",
-	"angular.resource"
+	"angular.resource",
+	"angular.jmpress"
 ], function(
 	angular,
 	StoryResource,
@@ -21,7 +22,7 @@ define([
 	HTMLTrustedFilter
 ) {
 	"use strict";
-	angular.module( "ws.story", [ "ngResource" ] )
+	angular.module( "ws.story", [ "ngResource", "jmpress" ] )
 		.service( "StoryResource", StoryResource )
 		.service( "StoryStructure", StoryStructure )
 		.factory( "SlidesModel", SlidesModel )
