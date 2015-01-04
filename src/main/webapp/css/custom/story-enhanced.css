@@ -19,6 +19,22 @@
    
 .step {
   width: 930px;
+  opacity: 0;
+  -webkit-transition: opacity .3s;
+     -moz-transition: opacity .3s;
+      -ms-transition: opacity .3s;
+       -o-transition: opacity .3s;
+          transition: opacity .3s;
+}
+.step.story-chapter {
+  -webkit-transition: opacity .6s;
+     -moz-transition: opacity .6s;
+      -ms-transition: opacity .6s;
+       -o-transition: opacity .6s;
+          transition: opacity .6s;
+}
+.step.active {
+  opacity: 1;
 }
 
 /* Samsung Galaxy Gran Neo Duos - Landscape */

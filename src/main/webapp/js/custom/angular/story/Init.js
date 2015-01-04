@@ -2,6 +2,7 @@ define([
 	"angular",
 	"js/story/service/StoryResource",
 	"js/story/service/StoryStructure",
+	"js/story/service/SlidesManip",
 	"js/story/controller/PageController",
 	"js/story/controller/StoryController",
 	"js/global/directive/AlertDirective",
@@ -12,6 +13,7 @@ define([
 	angular,
 	StoryResource,
 	StoryStructure,
+	SlidesManip,
 	PageController,
 	StoryController,
 	AlertDirective,
@@ -21,6 +23,7 @@ define([
 	angular.module( "ws.story", [ "ngResource", "jmpress" ] )
 		.service( "StoryResource", StoryResource )
 		.service( "StoryStructure", StoryStructure )
+		.service( "SlidesManip", SlidesManip )
 		.controller( "PageController", PageController )
 		.controller( "StoryController", StoryController )
 		.directive( "wsAlert", AlertDirective )
