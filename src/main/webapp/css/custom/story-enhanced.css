@@ -2,12 +2,12 @@
    ========================================================================== */
    
 .story-content {
-  font-size: 40px;
+  font-size: 35px;
 }
 /* sm */
 @media ( min-width: 768px ) {
   .story-content {
-    font-size: 30px;
+    font-size: 26px;
   }
 }
 .story-content {
@@ -20,11 +20,11 @@
 .step {
   width: 930px;
   opacity: 0;
-  -webkit-transition: opacity .3s;
-     -moz-transition: opacity .3s;
-      -ms-transition: opacity .3s;
-       -o-transition: opacity .3s;
-          transition: opacity .3s;
+  -webkit-transition: opacity .3s cubic-bezier(.87,.01,.63,.78);
+     -moz-transition: opacity .3s cubic-bezier(.87,.01,.63,.78);
+      -ms-transition: opacity .3s cubic-bezier(.87,.01,.63,.78);
+       -o-transition: opacity .3s cubic-bezier(.87,.01,.63,.78);
+          transition: opacity .3s cubic-bezier(.87,.01,.63,.78);
 }
 .step.story-chapter {
   -webkit-transition: opacity .6s;

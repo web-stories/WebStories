@@ -13,7 +13,8 @@
     <div class="story-content">
       <div class="container">
         <div jmpress-root
-             jmpress-steps="story.slides">
+             jmpress-steps="story.slides"
+             data-transition-duration="300">
           <div class="step"
                ng-repeat="slide in story.slides"
                ng-class="{ 'story-chapter': slide.type === 'CHAPTER' }"
@@ -40,16 +41,18 @@
       </div>
     </div>
     <div class="story-footer">
-      <div class="container story-controls">
+      <div class="container story-controls" ng-controller="ControlsController">
         <button class="btn btn-default story-controls-prev-chapter">?</button>
         <div class="btn-group">
-          <button class="btn btn-default story-prev">
+          <button class="btn btn-default story-prev"
+                  ng-click="backward()">
             <span class="icon-previous"></span>
           </button>
           <button class="btn btn-default story-stop">
             <span class="icon-stop"></span>
           </button>
-          <button class="btn btn-default story-next">
+          <button class="btn btn-default story-next"
+                  ng-click="forward()">
             <span class="icon-next"></span>
           </button>
         </div>
