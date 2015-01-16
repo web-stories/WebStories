@@ -37,6 +37,7 @@ require = (function( require ) {
 					"jquery.ws.editor": "js/jquery.ws.editor",
 					"jquery.ws.remaining": "js/jquery.ws.remaining",
 					"jquery.ws.story": "js/jquery.ws.story",
+					"jquery.jmpress": "js/jquery.jmpress",
 					"webstories": "js/webstories",
 					
 					// Vendor modules
@@ -45,6 +46,14 @@ require = (function( require ) {
 					"jquery.simulate": "../js/jquery.simulate-1.0.0",
 					"jquery.ui.widget": "../js/jquery.ui.widget-1.11.1",
 					"jquery.validate": "../js/jquery.validate-1.13.0",
+					"jquery.jmpress.active": "../js/jquery.jmpress.active-1.0.0-pre",
+					"jquery.jmpress.circular": "../js/jquery.jmpress.circular-1.0.0-pre",
+					"jquery.jmpress.core": "../js/jquery.jmpress.core-1.0.0-pre",
+					"jquery.jmpress.hash": "../js/jquery.jmpress.hash-1.0.0-pre",
+					"jquery.jmpress.mobile": "../js/jquery.jmpress.mobile-1.0.0-pre",
+					"jquery.jmpress.near": "../js/jquery.jmpress.near-1.0.0-pre",
+					"jquery.jmpress.start": "../js/jquery.jmpress.start-1.0.0-pre",
+					"jquery.jmpress.transform": "../js/jquery.jmpress.transform-1.0.0-pre",
 					"fastclick": "../js/fastclick-1.0.3",
 					"lodash": "../js/lodash-2.4.1",
 					"angular": "../js/angular-1.3.4",

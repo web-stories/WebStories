@@ -1,0 +1,10 @@
+define([
+	"jquery.jmpress.core",
+	"jquery.jmpress.near",
+	"jquery.jmpress.transform",
+	"jquery.jmpress.active",
+	"jquery.jmpress.circular",
+	"jquery.jmpress.start",
+	"jquery.jmpress.hash",
+	"jquery.jmpress.mobile"
+]);
