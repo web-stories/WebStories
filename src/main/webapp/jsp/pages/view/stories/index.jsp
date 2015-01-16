@@ -48,7 +48,8 @@
                   ng-click="backward()">
             <span class="icon-previous"></span>
           </button>
-          <button class="btn btn-default story-stop">
+          <button class="btn btn-default story-stop"
+                  ng-click="stop()">
             <span class="icon-stop"></span>
           </button>
           <button class="btn btn-default story-next"
