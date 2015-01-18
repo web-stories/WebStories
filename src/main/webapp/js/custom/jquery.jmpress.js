@@ -6,5 +6,6 @@ define([
 	"jquery.jmpress.circular",
 	"jquery.jmpress.start",
 	"jquery.jmpress.hash",
+	"jquery.jmpress.viewport",
 	"jquery.jmpress.mobile"
 ]);

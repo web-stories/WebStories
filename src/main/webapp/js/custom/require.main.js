@@ -54,6 +54,7 @@ require = (function( require ) {
 					"jquery.jmpress.near": "../js/jquery.jmpress.near-1.0.0-pre",
 					"jquery.jmpress.start": "../js/jquery.jmpress.start-1.0.0-pre",
 					"jquery.jmpress.transform": "../js/jquery.jmpress.transform-1.0.0-pre",
+					"jquery.jmpress.viewport": "../js/jquery.jmpress.viewport-1.0.0-pre",
 					"fastclick": "../js/fastclick-1.0.3",
 					"lodash": "../js/lodash-2.4.1",
 					"angular": "../js/angular-1.3.4",
