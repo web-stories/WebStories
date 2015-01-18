@@ -38,6 +38,7 @@ require = (function( require ) {
 					"jquery.ws.remaining": "js/jquery.ws.remaining",
 					"jquery.ws.story": "js/jquery.ws.story",
 					"jquery.jmpress": "js/jquery.jmpress",
+					"jquery.jmpress.step": "js/jquery.jmpress.step",
 					"webstories": "js/webstories",
 					
 					// Vendor modules

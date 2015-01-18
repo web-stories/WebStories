@@ -7,5 +7,6 @@ define([
 	"jquery.jmpress.start",
 	"jquery.jmpress.hash",
 	"jquery.jmpress.viewport",
-	"jquery.jmpress.mobile"
+	"jquery.jmpress.mobile",
+	"jquery.jmpress.step"
 ]);

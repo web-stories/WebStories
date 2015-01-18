@@ -2,15 +2,6 @@
    ========================================================================== */
    
 .story-content {
-  font-size: 35px;
-}
-/* sm */
-@media ( min-width: 768px ) {
-  .story-content {
-    font-size: 26px;
-  }
-}
-.story-content {
   pointer-events: none;
 }
 
@@ -36,19 +27,9 @@
   opacity: 1;
 }
 
-/* Home step
-   ========================================================================== */
-   
-.story-home-title {
-  font-size: 200%;
-}
-
 /* Chapter step
    ========================================================================== */
    
-.story-chapter-title {
-  font-size: 170%;
-}
 .story-chapter-name {
   white-space: nowrap;
 }
