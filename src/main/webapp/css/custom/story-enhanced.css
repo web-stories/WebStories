@@ -8,6 +8,13 @@
 /* Steps
    ========================================================================== */
    
+.story-home-title,
+.story-chapter-title {
+  text-align: center;
+}
+.story-home-summary {
+  display: block;
+}
 .step {
   opacity: 0;
   -webkit-transition: opacity .3s cubic-bezier(.87,.01,.63,.78);
