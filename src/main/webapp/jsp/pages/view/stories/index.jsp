@@ -44,12 +44,14 @@
     </div>
     <div class="story-footer">
       <div class="container story-controls" ng-controller="ControlsController">
-        <button class="btn btn-default story-controls-prev-chapter">
+        <button class="btn btn-default story-controls-prev-chapter"
+                ng-class="{ 'story-controls-visible': story.controls.prevChapter }"
+                ng-click="prevChapter( story.controls.prevChapter )">
           Cap. {{ story.controls.prevChapter }}
         </button>
         <div class="btn-group">
           <button class="btn btn-default story-prev"
-                  ng-click="backward()">
+                  ng-click="prevSlide()">
             <span class="icon-previous"></span>
           </button>
           <button class="btn btn-default story-stop"
@@ -57,11 +59,13 @@
             <span class="icon-stop"></span>
           </button>
           <button class="btn btn-default story-next"
-                  ng-click="forward()">
+                  ng-click="nextSlide()">
             <span class="icon-next"></span>
           </button>
         </div>
-        <button class="btn btn-default story-controls-next-chapter">
+        <button class="btn btn-default story-controls-next-chapter"
+                ng-class="{ 'story-controls-visible': story.controls.nextChapter }"
+                ng-click="nextChapter( story.controls.nextChapter )">
           Cap. {{ story.controls.nextChapter }}
         </button>
       </div>

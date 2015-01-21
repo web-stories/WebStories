@@ -10,8 +10,10 @@ define(function() {
 			}
 			StoryControls.slideChange( $scope.story.slides, $scope.story.controls );
 		}, true /* Detect changes in the 'active' property inside each object in the array */ );
-		$scope.forward = StoryControls.forward;
-		$scope.backward = StoryControls.backward;
+		$scope.prevChapter = StoryControls.prevChapter;
+		$scope.nextChapter = StoryControls.nextChapter;
+		$scope.nextSlide = StoryControls.nextSlide;
+		$scope.prevSlide = StoryControls.prevSlide;
 		$scope.stop = StoryControls.stop;
 	}
 	

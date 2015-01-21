@@ -5,14 +5,20 @@ define(function() {
 		this.init = function( story ) {
 			story.controls = {};
 		};
-		this.forward = function() {
+		this.nextSlide = function() {
 			jmpress.method( "next" );
 		};
-		this.backward = function() {
+		this.prevSlide = function() {
 			jmpress.method( "prev" );
 		};
 		this.stop = function() {
 			jmpress.method( "goTo", "#section-0-0" );
+		};
+		this.prevChapter = function( chapterNumber ) {
+			jmpress.method( "goTo", "#section-" + chapterNumber + "-0" );
+		};
+		this.nextChapter = function( chapterNumber ) {
+			jmpress.method( "goTo", "#section-" + chapterNumber + "-0" );
 		};
 		this.slideChange = function( storySlides, storyControls ) {
 			var chapterSiblings = ControlsManip.findChapterSiblings( storySlides );
