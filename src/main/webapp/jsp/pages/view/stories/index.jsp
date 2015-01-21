@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <jsp:include page="/jsp/include/header.jsp"/>
-<div ng-controller="PageController" ng-cloak>
+<div ng-controller="PageController">
   <div class="loading-dots" ng-show="!loader.loaded">
     <img src="${pageContext.request.contextPath}/static/img/loading-dots.gif">
   </div>
@@ -9,9 +9,11 @@
   <div class="story"
        ng-show="loader.loaded"
        ng-controller="StoryController"
-       ng-init="init( ${param.id} )">
+       ng-cloak>
     <div class="story-content">
-      <div class="container">
+      <div class="container"
+           ng-controller="SlidesController"
+           ng-init="init( ${param.id} )">
         <div jmpress-root
              jmpress-steps="story.slides"
              data-transition-duration="300">
@@ -42,7 +44,9 @@
     </div>
     <div class="story-footer">
       <div class="container story-controls" ng-controller="ControlsController">
-        <button class="btn btn-default story-controls-prev-chapter">?</button>
+        <button class="btn btn-default story-controls-prev-chapter">
+          Cap. {{ story.controls.prevChapter }}
+        </button>
         <div class="btn-group">
           <button class="btn btn-default story-prev"
                   ng-click="backward()">
@@ -57,7 +61,9 @@
             <span class="icon-next"></span>
           </button>
         </div>
-        <button class="btn btn-default story-controls-next-chapter">?</button>
+        <button class="btn btn-default story-controls-next-chapter">
+          Cap. {{ story.controls.nextChapter }}
+        </button>
       </div>
     </div>
   </div>

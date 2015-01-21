@@ -1,7 +1,7 @@
 define(function() {
 	"use strict";
 	
-	function StoryStructure( $rootScope, SlidesManip, StoryResource ) {
+	function SlidesStructure( $rootScope, SlidesManip, StoryResource ) {
 		var storyId;
 		
 		this.init = function( id ) {
@@ -11,15 +11,13 @@ define(function() {
 			})
 			.$promise
 			.then(function( slides ) {
-				$rootScope.$broadcast( "story:restructured", function( $scope, slidesGap ) {
+				$rootScope.$broadcast( "slides:restructured", function( story, slidesGap ) {
 					SlidesManip.init( slides, slidesGap );
-					$scope.story = {
-						slides: slides
-					};
+					[].push.apply( story.slides, slides );
 				});
 			});
 		};
 	}
 	
-	return [ "$rootScope", "SlidesManip", "StoryResource", StoryStructure ];
+	return [ "$rootScope", "SlidesManip", "StoryResource", SlidesStructure ];
 });

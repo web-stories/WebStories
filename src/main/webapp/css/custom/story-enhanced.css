@@ -95,24 +95,3 @@
 .story-controls-next-chapter {
   font-weight: bold;
 }
-
-.story-controls-prev-chapter,
-.story-controls-next-chapter {
-  opacity: 0;
-  -webkit-transition: opacity .6s, transform .6s;
-     -moz-transition: opacity .6s, transform .6s;
-      -ms-transition: opacity .6s, transform .6s;
-       -o-transition: opacity .6s, transform .6s;
-          transition: opacity .6s, transform .6s;
-}
-.story-controls-prev-chapter {
-  transform: translateX(-100px);
-}
-.story-controls-next-chapter {
-  transform: translateX(100px);
-}
-.story-controls-prev-chapter.story-controls-visible,
-.story-controls-next-chapter.story-controls-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
