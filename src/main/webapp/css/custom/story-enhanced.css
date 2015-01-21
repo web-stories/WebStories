@@ -1,35 +1,47 @@
-/* Font
+/* Content size
    ========================================================================== */
    
+/*
+ * 1. Same width as the viewport
+ */
+.step {
+  width: 1000px; /* 1 */
+}
+/*
+ * 1. Don't let the text too closer to the viewport
+ */
 .story-content {
-  font-size: 12px;
+  padding-right: 5%; /* 1 */
+  padding-left: 5%; /* 1 */
 }
-.story-home-title,
-.story-chapter-title {
-  font-size: 30px;
+.story-content {
+  font-size: 40px;
 }
-/* sm */
-@media ( min-width: 768px ) {
+.story-title {
+  font-size: 80px;
+}
+
+/* Samsung Galaxy Gran Neo Duos - Landscape */
+@media ( min-width: 530px ) and ( min-height: 240px ) {
   .story-content {
-    font-size: 25px;
+    font-size: 22.5px;
   }
-  .story-home-title,
-  .story-chapter-title {
+  .story-title {
     font-size: 45px;
   }
 }
+
 /* lg */
 @media ( min-width: 1200px ) {
   .story-content {
-    font-size: 23px;
+    font-size: 16.8px;
   }
-  .story-home-title,
-  .story-chapter-title {
-    font-size: 40px;
+  .story-title {
+    font-size: 33.7px;
   }
 }
 
-/* Content
+/* Content styles
    ========================================================================== */
    
 .story-content {
@@ -39,12 +51,8 @@
 /* Steps
    ========================================================================== */
    
-.story-home-title,
-.story-chapter-title {
+.story-title {
   text-align: center;
-}
-.story-home-summary {
-  display: block;
 }
 .step {
   opacity: 0;
@@ -54,15 +62,15 @@
        -o-transition: opacity .3s;
           transition: opacity .3s;
 }
-.step.story-chapter {
-  -webkit-transition: opacity .6s;
-     -moz-transition: opacity .6s;
-      -ms-transition: opacity .6s;
-       -o-transition: opacity .6s;
-          transition: opacity .6s;
-}
 .step.active {
   opacity: 1;
+}
+
+/* Intro step
+   ========================================================================== */
+   
+.story-intro-summary {
+  display: block;
 }
 
 /* Chapter step
@@ -70,6 +78,13 @@
    
 .story-chapter-name {
   white-space: nowrap;
+}
+.step.story-chapter {
+  -webkit-transition: opacity .6s;
+     -moz-transition: opacity .6s;
+      -ms-transition: opacity .6s;
+       -o-transition: opacity .6s;
+          transition: opacity .6s;
 }
 
 /* Footer

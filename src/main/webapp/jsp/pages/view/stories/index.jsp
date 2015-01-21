@@ -21,22 +21,24 @@
                ng-repeat="slide in story.slides"
                ng-class="{ 'story-chapter': slide.type === 'CHAPTER' }"
                ng-attr-id="section-{{ slide.chapter }}-{{ slide.section }}">
-            <div ng-if="slide.type === 'INTRO'">
-              <h1 class="story-home-title">
-                {{ slide.title }}
-                <small class="story-home-summary">
-                  {{ slide.summary }}
-                </small>
-              </h1>
-            </div>
-            <div class="story-chapter" ng-if="slide.type === 'CHAPTER'">
-              <h2 class="story-chapter-title">
-                Capítulo {{ slide.chapter }}
-                <small class="story-chapter-name">{{ slide.title }}</small>
-              </h2>
-            </div>
-            <div class="story-section" ng-if="slide.type === 'SECTION'">
-              <span ng-bind-html="slide.text | htmlTrusted"></span>
+            <div class="story-content">
+              <div ng-if="slide.type === 'INTRO'">
+                <h1 class="story-title">
+                  {{ slide.title }}
+                  <small class="story-intro-summary">
+                    {{ slide.summary }}
+                  </small>
+                </h1>
+              </div>
+              <div class="story-chapter" ng-if="slide.type === 'CHAPTER'">
+                <h2 class="story-title">
+                  Capítulo {{ slide.chapter }}
+                  <small class="story-chapter-name">{{ slide.title }}</small>
+                </h2>
+              </div>
+              <div class="story-section" ng-if="slide.type === 'SECTION'">
+                <span ng-bind-html="slide.text | htmlTrusted"></span>
+              </div>
             </div>
           </div>
         </div>

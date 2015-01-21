@@ -1,12 +1,12 @@
 define([
-	"jquery.jmpress.core",
-	"jquery.jmpress.near",
-	"jquery.jmpress.transform",
-	"jquery.jmpress.active",
-	"jquery.jmpress.circular",
-	"jquery.jmpress.start",
-	"jquery.jmpress.hash",
-	"jquery.jmpress.viewport",
-	"jquery.jmpress.mobile",
-	"jquery.jmpress.step"
+	"jmpress/core",
+	"jmpress/near",
+	"jmpress/transform",
+	"jmpress/active",
+	"jmpress/circular",
+	"jmpress/start",
+	"jmpress/hash",
+	"jmpress/viewport",
+	"jmpress/mobile",
+	"jquery.jmpress.story"
 ]);
