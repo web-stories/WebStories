@@ -3,8 +3,6 @@ define([
 	"jmpress/near",
 	"jmpress/transform",
 	"jmpress/active",
-	"jmpress/circular",
-	"jmpress/start",
 	"jmpress/hash",
 	"jmpress/viewport",
 	"jmpress/mobile",
