@@ -52,6 +52,7 @@ require = (function( require ) {
 					"jmpress/hash": "../js/jmpress-1.0.0-pre/hash",
 					"jmpress/mobile": "../js/jmpress-1.0.0-pre/mobile",
 					"jmpress/near": "../js/jmpress-1.0.0-pre/near",
+					"jmpress/keyboard": "../js/jmpress-1.0.0-pre/keyboard",
 					"jmpress/transform": "../js/jmpress-1.0.0-pre/transform",
 					"jmpress/viewport": "../js/jmpress-1.0.0-pre/viewport",
 					"fastclick": "../js/fastclick-1.0.3",
