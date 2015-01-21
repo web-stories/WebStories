@@ -5,7 +5,7 @@
  * 1. Same width as the viewport
  */
 .step {
-  width: 1000px; /* 1 */
+  width: 2000px; /* 1 */
 }
 /*
  * 1. Don't let the text too closer to the viewport
@@ -15,29 +15,29 @@
   padding-left: 5%; /* 1 */
 }
 .story-content {
-  font-size: 40px;
+  font-size: 80px;
 }
 .story-title {
-  font-size: 80px;
+  font-size: 160px;
 }
 
 /* Samsung Galaxy Gran Neo Duos - Landscape */
 @media ( min-width: 530px ) and ( min-height: 240px ) {
   .story-content {
-    font-size: 22.5px;
+    font-size: 45px;
   }
   .story-title {
-    font-size: 45px;
+    font-size: 90px;
   }
 }
 
 /* lg */
 @media ( min-width: 1200px ) {
   .story-content {
-    font-size: 16.8px;
+    font-size: 33.6px;
   }
   .story-title {
-    font-size: 33.7px;
+    font-size: 67.4px;
   }
 }
 
