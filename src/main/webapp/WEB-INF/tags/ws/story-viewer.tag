@@ -3,7 +3,7 @@
 <%@ attribute name="isPreview" %>
 
 <c:if test="${ empty isPreview }">
-  <c:set var="isPreview" value="true"/>
+  <c:set var="isPreview" value="false"/>
 </c:if>
 
 <div ng-controller="PageController">
