@@ -1,12 +1,15 @@
 define( [ "webstories" ], function( webstories ) {
 	"use strict";
 	
-	function EditorResource( $resource ) {
-		var path = webstories.contextPath + "/api/story/";
-		this.slides = $resource( path + ":storyId/slides", {
+	function StoryResource( $resource ) {
+		var path = webstories.contextPath + "/api";
+		this.slides = $resource( path + "/story/:storyId/slides", {
+			storyId: "@storyId"
+		});
+		this.slidesPreview = $resource( path + "/story/:storyId/slides-preview", {
 			storyId: "@storyId"
 		});
 	}
 	
-	return [ "$resource", EditorResource ];
+	return [ "$resource", StoryResource ];
 });

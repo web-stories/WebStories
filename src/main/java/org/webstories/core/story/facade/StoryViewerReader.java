@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.webstories.core.auth.Logged;
+import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.security.ReadSecurity;
 import org.webstories.core.security.story.PublishedChapterSecurity;
@@ -69,6 +70,37 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 				}
 			} catch ( AccessDeniedException e ) {
 				// If chapter is not published ignore it
+			}
+		}
+		
+		return slides;
+	}
+	@Override
+	public List<StorySlide> previewSlides( long idStory, Logged logged )
+	throws UserNotLoggedException, AccessDeniedException {
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
+		
+		if ( !isPreviewable( idStory, logged ) ) {
+			throw new AccessDeniedException();
+		}
+		
+		List<StorySlide> slides = new ArrayList<StorySlide>();
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
+		
+		IntroSlideFactory introFactory = new IntroSlideFactory( story.getMeta() );
+		IntroSlide intro = new IntroSlide( introFactory );
+		slides.add( intro );
+		
+		for ( ChapterEntity chapter : story.getChapters() ) {
+			ChapterSlideFactory chapterFactory = new ChapterSlideFactory( chapter );
+			ChapterSlide chapterSlide = new ChapterSlide( chapterFactory );
+			slides.add( chapterSlide );
+			for ( SectionEntity section : chapter.getSections() ) {
+				SectionSlideFactory sectionFactory = new SectionSlideFactory( section );
+				SectionSlide sectionSlide = new SectionSlide( sectionFactory );
+				slides.add( sectionSlide );
 			}
 		}
 		

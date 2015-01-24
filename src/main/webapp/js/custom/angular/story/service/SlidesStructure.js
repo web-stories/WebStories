@@ -4,9 +4,9 @@ define(function() {
 	function SlidesStructure( $rootScope, SlidesManip, StoryResource ) {
 		var storyId;
 		
-		this.init = function( id ) {
+		this.init = function( id, isPreview ) {
 			storyId = id;
-			return StoryResource.slides.query({
+			return StoryResource[ isPreview ? "slidesPreview" : "slides" ].query({
 				storyId: storyId
 			})
 			.$promise
