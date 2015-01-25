@@ -23,9 +23,10 @@
              jmpress-steps="story.slides"
              data-transition-duration="300">
           <div class="step"
-               ng-repeat="slide in story.slides"
+               ng-repeat="slide in steps"
                ng-class="{ 'story-chapter': slide.type === 'CHAPTER' }"
-               ng-attr-id="section-{{ slide.chapter }}-{{ slide.section }}">
+               ng-attr-id="section-{{ slide.chapter }}-{{ slide.section }}"
+               jmpress-step>
             <div class="story-content">
               <div ng-if="slide.type === 'INTRO'">
                 <h1 class="story-title">

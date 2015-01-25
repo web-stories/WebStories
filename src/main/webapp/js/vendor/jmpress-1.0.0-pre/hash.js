@@ -69,12 +69,13 @@
 		if ( hashSettings.use ) {
 			if ( hashSettings.bindChange ) {
 				$( window ).bind( "hashchange" + current.hashNamespace, function( event ) {
-					var urlItem = getElementFromUrl( settings );
+					var urlItem = getElementFromUrl( settings ),
+						activeStep = jmpress.jmpress( "active" );
 					if ( jmpress.jmpress( "initialized" ) ) {
 						jmpress.jmpress( "scrollFix" );
 					}
-					if ( urlItem && urlItem.length ) {
-						if ( urlItem.attr( "id" ) !== jmpress.jmpress( "active" ).attr( "id" ) ) {
+					if ( urlItem && urlItem.length && activeStep ) {
+						if ( urlItem.attr( "id" ) !== activeStep.attr( "id" ) ) {
 							jmpress.jmpress( "select", urlItem );
 						}
 						setHash( urlItem.attr( "id" ) );
