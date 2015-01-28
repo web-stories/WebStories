@@ -73,7 +73,9 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		}
 		
 		if ( !facebookEmail.equals( invite.getEmail() ) ) {
-			throw new AuthenticationException( "E-mail does not match invitation" );
+			throw new AuthenticationException(
+				"E-mail does not match invitation: " + invite.getEmail()
+			);
 		}
 		
 		// Register user
