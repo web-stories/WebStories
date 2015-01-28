@@ -56,11 +56,11 @@
 }
 .step {
   opacity: 0;
-  -webkit-transition: opacity .3s;
-     -moz-transition: opacity .3s;
-      -ms-transition: opacity .3s;
-       -o-transition: opacity .3s;
-          transition: opacity .3s;
+  -webkit-transition: opacity .2s;
+     -moz-transition: opacity .2s;
+      -ms-transition: opacity .2s;
+       -o-transition: opacity .2s;
+          transition: opacity .2s;
 }
 .step.active {
   opacity: 1;

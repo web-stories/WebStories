@@ -21,7 +21,7 @@
            ng-init="init( ${param.id}, ${isPreview} )">
         <div jmpress-root
              jmpress-steps="story.slides"
-             data-transition-duration="300">
+             data-transition-duration="150">
           <div class="step"
                ng-repeat="slide in steps"
                ng-class="{ 'story-chapter': slide.type === 'CHAPTER' }"
