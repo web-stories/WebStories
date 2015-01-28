@@ -77,7 +77,7 @@
                         <h4 class="modal-title">Pré-visualização</h4>
                       </div>
                       <div class="modal-body">
-                        <iframe class="preview-box" ng-src="{{ previewURL | trusted }}"></iframe>
+                        <iframe class="preview-box" ng-src="{{ previewURL | urlTrusted }}"></iframe>
                       </div>
                       <div class="modal-footer">
                         <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
