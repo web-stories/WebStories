@@ -38,7 +38,7 @@
 }
 
 /* Samsung Galaxy Gran Neo Duos - Landscape */
-@media ( min-width: 530px ) and ( min-height: 240px ) {
+@media ( width: 536px ) and ( height: 245px ) {
   .step {
     width: 1900px;
   }
@@ -51,16 +51,28 @@
 }
 
 /* iPad - Portrait */
-@media ( min-width: 768px ) and ( min-height: 1024px ) {
+@media ( width: 768px ) and ( height: 1024px ) {
   .step {
     width: 1900px;
+  }
+  .story-content {
+    font-size: 60px;
+  }
+  .story-title {
+    font-size: 120px;
   }
 }
 
 /* iPad - Landscape */
-@media ( min-width: 1024px ) and ( min-height: 768px ) {
+@media ( width: 1024px ) and ( height: 768px ) {
   .step {
     width: 1825px;
+  }
+  .story-content {
+    font-size: 40px;
+  }
+  .story-title {
+    font-size: 80px;
   }
 }
 
