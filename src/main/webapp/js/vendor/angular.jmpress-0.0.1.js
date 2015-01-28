@@ -1,5 +1,5 @@
 /**
- * angular-jmpress 0.0.1-pre
+ * angular-jmpress 0.0.1
  *
  * Copyright 2014-2015 Fagner Brack (@FagnerMartinsBrack)
  *
@@ -126,17 +126,21 @@ function jmpressRoot( $compile, jmpress, initialStep ) {
 			jmpress.init( element );
 
 			element.jmpress( "setActive", function( step, eventData ) {
-				var target = scope.steps[ step.index() ];
-				if ( target ) {
-					target.active = true;
-				}
+				safeApply( scope, function() {
+					var target = scope.steps[ step.index() ];
+					if ( target ) {
+						target.active = true;
+					}
+				});
 			});
 
 			element.jmpress( "setInactive", function( step, eventData ) {
-				var target = scope.steps[ step.index() ];
-				if ( target ) {
-					delete target.active;
-				}
+				safeApply( scope, function() {
+					var target = scope.steps[ step.index() ];
+					if ( target ) {
+						delete target.active;
+					}
+				});
 			});
 
 			scope.init();
@@ -161,6 +165,22 @@ function jmpressRoot( $compile, jmpress, initialStep ) {
 			});
 		}
 	};
+}
+
+// A single jmpress callback can be called synchronously inside an angular $digest or
+// asynchronously by a jquery implementation in which angular doesn't have control. For that reason
+// it may or may not throw an error for an $apply or $digest being already in progress while using
+// "scope.$apply" in some jmpress callbacks.
+// The recommended solution for similar cases is to use "$timeout", but having one more
+// asynchronous operation make it hard to test the module, because we would have to fill the
+// tests with several "setTimeouts" to wait for angular "$timeout" to execute.
+// Due to the tradeoffs, a check for "scope.$root.$$phase" was choosen over the "$timeout" call.
+function safeApply( scope, fn ) {
+	if ( scope.$root.$$phase === "$digest" || scope.$root.$$phase === "$apply" ) {
+		fn();
+	} else {
+		scope.$apply( fn );
+	}
 }
 
 function jmpressStep( jmpress ) {
