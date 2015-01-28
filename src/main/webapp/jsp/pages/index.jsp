@@ -5,7 +5,7 @@
   <div class="container index-banner-container">
     <h1>Web Stories</h1>
     <p class="index-banner-paragraph">
-      Você tem o potencial para criar grandes histórias
+      Porque você tem o potencial para criar grandes histórias
     </p>
     <c:if test="${canPublish}">
       <p>
