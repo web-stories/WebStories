@@ -1,18 +1,8 @@
 /* Content size
    ========================================================================== */
    
-/*
- * 1. Same width as the viewport
- */
 .step {
-  width: 2000px; /* 1 */
-}
-/*
- * 1. Don't let the text too closer to the viewport
- */
-.story-content {
-  padding-right: 5%; /* 1 */
-  padding-left: 5%; /* 1 */
+  width: 1800px;
 }
 .story-content {
   font-size: 80px;
@@ -21,8 +11,37 @@
   font-size: 160px;
 }
 
+/* sm */
+@media ( min-width: 768px ) {
+  .step {
+    width: 1500px;
+  }
+}
+/* md */
+@media ( min-width: 992px ) {
+  .step {
+    width: 1570px;
+  }
+}
+
+/* lg */
+@media ( min-width: 1200px ) {
+  .step {
+    width: 1650px;
+  }
+  .story-content {
+    font-size: 33.6px;
+  }
+  .story-title {
+    font-size: 67.4px;
+  }
+}
+
 /* Samsung Galaxy Gran Neo Duos - Landscape */
 @media ( min-width: 530px ) and ( min-height: 240px ) {
+  .step {
+    width: 1900px;
+  }
   .story-content {
     font-size: 45px;
   }
@@ -31,13 +50,17 @@
   }
 }
 
-/* lg */
-@media ( min-width: 1200px ) {
-  .story-content {
-    font-size: 33.6px;
+/* iPad - Portrait */
+@media ( min-width: 768px ) and ( min-height: 1024px ) {
+  .step {
+    width: 1900px;
   }
-  .story-title {
-    font-size: 67.4px;
+}
+
+/* iPad - Landscape */
+@media ( min-width: 1024px ) and ( min-height: 768px ) {
+  .step {
+    width: 1825px;
   }
 }
 

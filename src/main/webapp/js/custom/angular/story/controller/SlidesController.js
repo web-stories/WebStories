@@ -10,7 +10,7 @@ define(function() {
 				});
 		};
 		$scope.$on( "slides:restructured", function( event, updateModel ) {
-			var slidesGap = $document[ 0 ].documentElement.clientWidth / 3;
+			var slidesGap = $document[ 0 ].documentElement.clientWidth * 2;
 			updateModel( $scope.story, slidesGap );
 		});
 	}

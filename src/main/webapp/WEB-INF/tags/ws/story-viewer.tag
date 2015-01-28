@@ -21,7 +21,7 @@
            ng-init="init( ${param.id}, ${isPreview} )">
         <div jmpress-root
              jmpress-steps="story.slides"
-             data-transition-duration="150">
+             data-transition-duration="300">
           <div class="step"
                ng-repeat="slide in steps"
                ng-class="{ 'story-chapter': slide.type === 'CHAPTER' }"
@@ -36,13 +36,13 @@
                   </small>
                 </h1>
               </div>
-              <div class="story-chapter" ng-if="slide.type === 'CHAPTER'">
+              <div ng-if="slide.type === 'CHAPTER'">
                 <h2 class="story-title">
                   Capítulo {{ slide.chapter }}
                   <small class="story-chapter-name">{{ slide.title }}</small>
                 </h2>
               </div>
-              <div class="story-section" ng-if="slide.type === 'SECTION'">
+              <div ng-if="slide.type === 'SECTION'">
                 <span ng-bind-html="slide.text | htmlTrusted"></span>
               </div>
             </div>
