@@ -5,12 +5,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.webstories.core.story.facade.LocalStoryReader;
+import org.webstories.core.story.facade.LocalStoryViewerReader;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.BaseServlet;
-import org.webstories.web.util.servlet.HttpForbiddenException;
-import org.webstories.web.util.servlet.HttpInternalServerErrorException;
-import org.webstories.web.util.servlet.HttpUnauthorizedException;
+import org.webstories.web.util.servlet.HttpNotFoundException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
@@ -20,15 +18,16 @@ public class IndexAction extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	
 	@EJB
-	LocalStoryReader storyReader;
+	LocalStoryViewerReader storyReader;
 	
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
-	throws HttpInternalServerErrorException, HttpForbiddenException, HttpUnauthorizedException {
+	throws HttpNotFoundException {
 		RequestParams params = RequestParams.from( request );
 		long idStory = params.get( "id" ).toLong();
 		
-		request.setAttribute( "story", storyReader.storyViewer( idStory ) );
-		request.setAttribute( "details", storyReader.storyViewerDetails( idStory ) );
+		if ( !storyReader.isPubliclyViewable( idStory ) ) {
+			throw new HttpNotFoundException( "Story not found" + idStory );
+		}
 	}
 }

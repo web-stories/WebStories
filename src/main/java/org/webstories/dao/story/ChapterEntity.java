@@ -46,7 +46,7 @@ Comparable<ChapterEntity> {
 	
 	@Column( nullable = false, length = 255 )
 	@Enumerated( EnumType.STRING )
-	private StoryState cd_state = StoryState.DRAFT;
+	private ChapterState cd_state = ChapterState.DRAFT;
 	
 	@ManyToOne
 	@JoinColumn( name = "id_story" )
@@ -97,10 +97,10 @@ Comparable<ChapterEntity> {
 		this.no_position = no_position;
 	}
 	
-	public StoryState getState() {
+	public ChapterState getState() {
 		return cd_state;
 	}
-	public void setState( StoryState cd_state ) {
+	public void setState( ChapterState cd_state ) {
 		this.cd_state = cd_state;
 	}
 	

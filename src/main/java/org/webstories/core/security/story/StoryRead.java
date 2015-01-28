@@ -3,6 +3,7 @@ package org.webstories.core.security.story;
 import javax.persistence.EntityManager;
 
 import org.webstories.core.security.PrivilegedRead;
+import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.StoryEntity;
 
 public class StoryRead {
@@ -16,6 +17,16 @@ public class StoryRead {
 		@Override
 		public StoryEntity run() {
 			return entityManager.find( StoryEntity.class, idStory );
+		}
+	}
+	public static class ChapterRead implements PrivilegedRead<ChapterEntity> {
+		private ChapterEntity chapter;
+		public ChapterRead( ChapterEntity chapter ) {
+			this.chapter = chapter;
+		}
+		@Override
+		public ChapterEntity run() {
+			return chapter;
 		}
 	}
 }

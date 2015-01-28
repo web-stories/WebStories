@@ -38,11 +38,6 @@
     incluindo mas não restrito a histórias, músicas ou imagens.
   </p>
   <p>
-    Ao utilizar o Serviço, você concorda e autoriza Web Stories a ter acesso irrestrito a qualquer
-    conteúdo de mídia publicado no Serviço por ou em seu nome, incluindo mas não restrito a
-    histórias, músicas ou imagens.
-  </p>
-  <p>
     <strong>
       Contas
     </strong>

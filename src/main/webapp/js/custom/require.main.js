@@ -37,20 +37,30 @@ require = (function( require ) {
 					"jquery.ws.editor": "js/jquery.ws.editor",
 					"jquery.ws.remaining": "js/jquery.ws.remaining",
 					"jquery.ws.story": "js/jquery.ws.story",
+					"jquery.jmpress": "js/jquery.jmpress",
+					"jquery.jmpress.story": "js/jquery.jmpress.story",
 					"webstories": "js/webstories",
 					
 					// Vendor modules
 					"bootstrap": "../js/bootstrap-3.2.0",
 					"bootstrap.custom": "../js/bootstrap.custom-0.1.1",
-					"impress": "../js/impress-0.5.4-pre",
 					"jquery.simulate": "../js/jquery.simulate-1.0.0",
 					"jquery.ui.widget": "../js/jquery.ui.widget-1.11.1",
 					"jquery.validate": "../js/jquery.validate-1.13.0",
+					"jmpress/active": "../js/jmpress-1.0.0/active",
+					"jmpress/core": "../js/jmpress-1.0.0/core",
+					"jmpress/hash": "../js/jmpress-1.0.0/hash",
+					"jmpress/mobile": "../js/jmpress-1.0.0/mobile",
+					"jmpress/near": "../js/jmpress-1.0.0/near",
+					"jmpress/keyboard": "../js/jmpress-1.0.0/keyboard",
+					"jmpress/transform": "../js/jmpress-1.0.0/transform",
+					"jmpress/viewport": "../js/jmpress-1.0.0/viewport",
 					"fastclick": "../js/fastclick-1.0.3",
 					"lodash": "../js/lodash-2.4.1",
 					"angular": "../js/angular-1.3.4",
 					"angular.resource": "../js/angular.resource-1.3.4",
 					"angular.smoothscroll": "../js/angular.smoothscroll-1.7.1",
+					"angular.jmpress": "../js/angular.jmpress-0.0.1",
 					
 					// Make jQuery method private
 					"jquery": "js/jquery.private"

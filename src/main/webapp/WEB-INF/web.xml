@@ -77,6 +77,10 @@
     <error-code>404</error-code>
     <location>/error/sc-404</location>
   </error-page>
+  <error-page>
+    <exception-type>org.webstories.web.util.servlet.HttpNotFoundException</exception-type>
+    <location>/error/sc-404</location>
+  </error-page>
   
   <!-- Unhandled codes are delegated to the page of status code 500 -->
   <error-page>

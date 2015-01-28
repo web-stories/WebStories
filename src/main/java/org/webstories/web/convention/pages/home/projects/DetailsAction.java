@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.webstories.core.story.facade.LocalStoryReader;
+import org.webstories.core.story.facade.LocalStoryAuthoringReader;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
@@ -20,7 +20,7 @@ public class DetailsAction extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	
 	@EJB
-	LocalStoryReader storyReader;
+	LocalStoryAuthoringReader storyReader;
 	
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {

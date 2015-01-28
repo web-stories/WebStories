@@ -13,7 +13,7 @@ import org.webstories.core.story.editor.RemovalResult;
 import org.webstories.core.validation.ValidationException;
 
 @Local
-public interface LocalStoryEditor {
+public interface LocalStoryManip {
 	void updateMeta( long idStory, EditorStoryDetailsInput input, Logged logged )
 		throws ValidationException, AccessDeniedException;
 	void removeStory( long idStory, Logged logged )

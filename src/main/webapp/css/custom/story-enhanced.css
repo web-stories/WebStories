@@ -1,84 +1,89 @@
-/* Content
+/* Content size
    ========================================================================== */
    
-.impress-supported .story-content {
-  font-size: 40px;
+/*
+ * 1. Same width as the viewport
+ */
+.step {
+  width: 2000px; /* 1 */
 }
-/* sm */
-@media ( min-width: 768px ) {
-  .impress-supported .story-content {
-    font-size: 30px;
+/*
+ * 1. Don't let the text too closer to the viewport
+ */
+.story-content {
+  padding-right: 5%; /* 1 */
+  padding-left: 5%; /* 1 */
+}
+.story-content {
+  font-size: 80px;
+}
+.story-title {
+  font-size: 160px;
+}
+
+/* Samsung Galaxy Gran Neo Duos - Landscape */
+@media ( min-width: 530px ) and ( min-height: 240px ) {
+  .story-content {
+    font-size: 45px;
+  }
+  .story-title {
+    font-size: 90px;
   }
 }
-.impress-supported .story-content {
+
+/* lg */
+@media ( min-width: 1200px ) {
+  .story-content {
+    font-size: 33.6px;
+  }
+  .story-title {
+    font-size: 67.4px;
+  }
+}
+
+/* Content styles
+   ========================================================================== */
+   
+.story-content {
   pointer-events: none;
 }
 
 /* Steps
    ========================================================================== */
    
-.impress-supported .step {
-  width: 930px;
+.story-title {
+  text-align: center;
+}
+.step {
   opacity: 0;
-  -webkit-transition: opacity .3s;
-     -moz-transition: opacity .3s;
-      -ms-transition: opacity .3s;
-       -o-transition: opacity .3s;
-          transition: opacity .3s;
+  -webkit-transition: opacity .2s;
+     -moz-transition: opacity .2s;
+      -ms-transition: opacity .2s;
+       -o-transition: opacity .2s;
+          transition: opacity .2s;
 }
-.impress-supported .step.story-chapter {
-  -webkit-transition: opacity .6s;
-     -moz-transition: opacity .6s;
-      -ms-transition: opacity .6s;
-       -o-transition: opacity .6s;
-          transition: opacity .6s;
-}
-.impress-supported .step.active {
+.step.active {
   opacity: 1;
 }
 
-/* Samsung Galaxy Gran Neo Duos - Landscape */
-@media ( min-width: 530px ) {
-  .impress-supported .step {
-    width: 1586px;
-  }
-}
-
-/* iPad - Portrait */
-@media ( min-width: 768px ) {
-  .impress-supported .step {
-    width: 962px;
-  }
-}
-
-/* iPad - Landscape */
-@media ( min-width: 1024px ) {
-  .impress-supported .step {
-    width: 943px;
-  }
-}
-
-/* Home step
+/* Intro step
    ========================================================================== */
    
-.impress-supported .story-home-title {
-  font-size: 200%;
+.story-intro-summary {
+  display: block;
 }
 
 /* Chapter step
    ========================================================================== */
    
-.impress-supported .story-chapter-title {
-  font-size: 170%;
-}
-.impress-supported .story-chapter-name {
+.story-chapter-name {
   white-space: nowrap;
 }
 
 /* Footer
    ========================================================================== */
    
-.impress-supported .story-footer {
+.story-footer {
   display: block;
   position: absolute;
   bottom: 0;
@@ -91,16 +96,19 @@
 /* Controls
    ========================================================================== */
    
-.impress-supported .story-controls {
+.story-controls {
   text-align: center;
 }
-.impress-supported .story-controls-prev-chapter,
-.impress-supported .story-controls-next-chapter {
+.story-controls-prev-chapter,
+.story-controls-next-chapter {
   font-weight: bold;
 }
 
-.impress-supported .story-controls-prev-chapter,
-.impress-supported .story-controls-next-chapter {
+/* Controls animation
+   ========================================================================== */
+   
+.story-controls-prev-chapter,
+.story-controls-next-chapter {
   opacity: 0;
   -webkit-transition: opacity .6s, transform .6s;
      -moz-transition: opacity .6s, transform .6s;
@@ -108,14 +116,14 @@
        -o-transition: opacity .6s, transform .6s;
           transition: opacity .6s, transform .6s;
 }
-.impress-supported .story-controls-prev-chapter {
+.story-controls-prev-chapter {
   transform: translateX(-100px);
 }
-.impress-supported .story-controls-next-chapter {
+.story-controls-next-chapter {
   transform: translateX(100px);
 }
-.impress-supported .story-controls-prev-chapter.story-controls-visible,
-.impress-supported .story-controls-next-chapter.story-controls-visible {
+.story-controls-prev-chapter.story-controls-visible,
+.story-controls-next-chapter.story-controls-visible {
   opacity: 1;
   transform: translateY(0);
 }
