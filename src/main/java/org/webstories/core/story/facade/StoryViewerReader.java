@@ -13,6 +13,8 @@ import org.webstories.core.security.ReadSecurity;
 import org.webstories.core.security.story.PublishedChapterSecurity;
 import org.webstories.core.security.story.StoryOwnerSecurity;
 import org.webstories.core.security.story.StoryRead;
+import org.webstories.core.story.viewer.ChapterEndingSlide;
+import org.webstories.core.story.viewer.ChapterEndingSlideFactory;
 import org.webstories.core.story.viewer.ChapterSlide;
 import org.webstories.core.story.viewer.ChapterSlideFactory;
 import org.webstories.core.story.viewer.IntroSlide;
@@ -67,6 +69,9 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 					SectionSlide sectionSlide = new SectionSlide( sectionFactory );
 					slides.add( sectionSlide );
 				}
+				
+				ChapterEndingSlideFactory endingFactory = new ChapterEndingSlideFactory( chapter );
+				slides.add( new ChapterEndingSlide( endingFactory ) );
 			} catch ( AccessDeniedException e ) {
 				// If chapter is not published ignore it
 			}
