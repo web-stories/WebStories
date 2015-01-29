@@ -86,8 +86,22 @@
          show="false">
       <div class="modal-dialog">
         <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Continua...</h4>
+          </div>
           <div class="modal-body">
-            // TODO
+            <p>
+              Este capítulo chegou ao fim.
+            </p>
+            <p>
+              Mas não se preocupe, logo logo o próximo capítulo estará disponível.<br>
+              Fique ligado!
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" type="button">
+              Ir para o início
+            </button>
           </div>
         </div>
       </div>

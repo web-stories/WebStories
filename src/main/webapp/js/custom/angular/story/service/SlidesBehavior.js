@@ -5,7 +5,11 @@ define(function() {
 	"use strict";
 	function SlidesBehavior( $rootScope, jmpress ) {
 		this.handleChapterEnding = function( slides ) {
-			var activeSlide = jmpress.getActiveReference( slides ).step;
+			var active = jmpress.getActiveReference( slides );
+			if ( !active ) {
+				return;
+			}
+			var activeSlide = active.step;
 			var openModal = activeSlide.type === "CHAPTER_ENDING";
 			$rootScope.$broadcast( "modal-open:chapter-ending", openModal );
 		};
