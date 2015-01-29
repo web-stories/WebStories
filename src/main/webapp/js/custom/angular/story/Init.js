@@ -3,6 +3,7 @@ define([
 	"js/story/service/StoryResource",
 	"js/story/service/SlidesStructure",
 	"js/story/service/SlidesManip",
+	"js/story/service/SlidesBehavior",
 	"js/story/service/ControlsManip",
 	"js/story/service/StoryControls",
 	"js/story/controller/PageController",
@@ -20,6 +21,7 @@ define([
 	StoryResource,
 	SlidesStructure,
 	SlidesManip,
+	SlidesBehavior,
 	ControlsManip,
 	StoryControls,
 	PageController,
@@ -36,6 +38,7 @@ define([
 		.service( "StoryResource", StoryResource )
 		.service( "SlidesStructure", SlidesStructure )
 		.service( "SlidesManip", SlidesManip )
+		.service( "SlidesBehavior", SlidesBehavior )
 		.service( "ControlsManip", ControlsManip )
 		.service( "StoryControls", StoryControls )
 		.controller( "PageController", PageController )
