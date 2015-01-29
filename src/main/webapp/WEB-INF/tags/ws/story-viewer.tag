@@ -79,4 +79,18 @@
       </div>
     </div>
   </div>
+  <div ng-controller="ModalsController">
+    <div class="modal fade" tabindex="-1" role="dialog"
+         bs-modal
+         is-open="modals.chapterEnding.open"
+         show="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            // TODO
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

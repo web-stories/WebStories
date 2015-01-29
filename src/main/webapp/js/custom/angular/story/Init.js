@@ -9,7 +9,9 @@ define([
 	"js/story/controller/StoryController",
 	"js/story/controller/ControlsController",
 	"js/story/controller/SlidesController",
+	"js/story/controller/ModalsController",
 	"js/global/directive/AlertDirective",
+	"js/global/directive/BootstrapModal",
 	"js/global/filter/HTMLTrustedFilter",
 	"angular.resource",
 	"angular.jmpress"
@@ -24,7 +26,9 @@ define([
 	StoryController,
 	ControlsController,
 	SlidesController,
+	ModalsController,
 	AlertDirective,
+	BootstrapModal,
 	HTMLTrustedFilter
 ) {
 	"use strict";
@@ -38,7 +42,9 @@ define([
 		.controller( "StoryController", StoryController )
 		.controller( "ControlsController", ControlsController )
 		.controller( "SlidesController", SlidesController )
+		.controller( "ModalsController", ModalsController )
 		.directive( "wsAlert", AlertDirective )
+		.directive( "bsModal", BootstrapModal )
 		.filter( "htmlTrusted", HTMLTrustedFilter );
 	return angular.bootstrap( document.body, [ "ws.story" ] );
 });
