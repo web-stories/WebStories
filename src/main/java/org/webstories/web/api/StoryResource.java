@@ -41,8 +41,8 @@ public class StoryResource {
 	@Path( "{storyId}/slides-preview" )
 	public List<StorySlide> slidesPreviewGet( @PathParam( "storyId" ) Long storyId )
 	throws HttpUnauthorizedException, HttpForbiddenException {
-		Logged logged= AuthSession.from( request ).getLogged();
 		try {
+			Logged logged= AuthSession.from( request ).getLogged();
 			return storyReader.previewSlides( storyId, logged );
 		} catch ( UserNotLoggedException e ) {
 			throw new HttpUnauthorizedException( e );

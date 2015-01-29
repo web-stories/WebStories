@@ -90,11 +90,7 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		
 		Logged logged = Logged.from( facebook );
 		
-		try {
-			activityRegistrator.registerJoinedActivity( logged );
-		} catch ( UserNotLoggedException e ) {
-			logger.logInternal( e );
-		}
+		activityRegistrator.registerJoinedActivity( logged );
 		
 		return logged;
 	}

@@ -11,8 +11,12 @@ public class AuthSession {
 	public static AuthSession from( HttpServletRequest request ) {
 		return new AuthSession( request.getSession() );
 	}
-	public Logged getLogged() {
-		return ( Logged )session.getAttribute( "logged" );
+	public Logged getLogged() throws UserNotLoggedException {
+		Logged logged = ( Logged )session.getAttribute( "logged" );
+		if ( logged == null ) {
+			throw new UserNotLoggedException();
+		}
+		return logged;
 	}
 	public void setLogged( Logged logged ) {
 		session.setAttribute( "logged", logged );

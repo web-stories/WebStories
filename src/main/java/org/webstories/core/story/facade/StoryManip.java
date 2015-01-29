@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 
 import org.webstories.core.ResourceNotFoundException;
 import org.webstories.core.auth.Logged;
-import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.security.PrivilegedUpdate;
 import org.webstories.core.security.story.StoryOwnerSecurity;
@@ -23,11 +22,11 @@ import org.webstories.core.story.editor.RemovedItem;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.core.validation.ValidationObject;
 import org.webstories.dao.story.ChapterEntity;
+import org.webstories.dao.story.ChapterState;
 import org.webstories.dao.story.MetaEntity;
 import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryEntity;
 import org.webstories.dao.story.StoryQueries;
-import org.webstories.dao.story.ChapterState;
 
 @Stateless
 public class StoryManip implements LocalStoryManip {
@@ -59,11 +58,7 @@ public class StoryManip implements LocalStoryManip {
 	
 	@Override
 	public void removeStory( long idStory, Logged logged )
-	throws ValidationException, AccessDeniedException, UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	throws ValidationException, AccessDeniedException {
 		final StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		
 		if ( !StoryUtils.isRemovable( story ) ) {
@@ -91,10 +86,7 @@ public class StoryManip implements LocalStoryManip {
 	
 	@Override
 	public void publishChapter( long idChapter, Logged logged )
-	throws ValidationException, AccessDeniedException, UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
+	throws ValidationException, AccessDeniedException {
 		
 		final ChapterEntity chapter = entityManager.find( ChapterEntity.class, idChapter );
 		StoryEntity story = chapter.getStory();
@@ -117,11 +109,7 @@ public class StoryManip implements LocalStoryManip {
 	
 	@Override
 	public EditorStoryChapter addChapter( long idStory, Logged logged )
-	throws AccessDeniedException, UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	throws AccessDeniedException {
 		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		
 		int position = story.getChapters().size() + 1;
@@ -147,11 +135,7 @@ public class StoryManip implements LocalStoryManip {
 	
 	@Override
 	public RemovalResult removeSection( long idSection, Logged logged )
-	throws AccessDeniedException, UserNotLoggedException, ResourceNotFoundException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	throws AccessDeniedException, ResourceNotFoundException {
 		final RemovalResult result = new RemovalResult();
 		final SectionEntity section = entityManager.find( SectionEntity.class, idSection );
 		
@@ -203,11 +187,7 @@ public class StoryManip implements LocalStoryManip {
 	
 	@Override
 	public EditorStorySection addSection( long idPrevSection, Logged logged )
-	throws AccessDeniedException, UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	throws AccessDeniedException {
 		SectionEntity previousSection =
 			entityManager.find( SectionEntity.class, idPrevSection );
 		ChapterEntity chapter = previousSection.getChapter();
@@ -244,11 +224,7 @@ public class StoryManip implements LocalStoryManip {
 	
 	@Override
 	public EditorStorySection updateSection( long sectionId, final String text, Logged logged )
-	throws AccessDeniedException, UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	throws AccessDeniedException {
 		final SectionEntity section = entityManager.find( SectionEntity.class, sectionId );
 		StoryEntity story = section.getChapter().getStory();
 		
@@ -268,11 +244,7 @@ public class StoryManip implements LocalStoryManip {
 	
 	@Override
 	public EditorStoryChapter updateChapter( long chapterId, final String title, Logged logged )
-	throws AccessDeniedException, UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	throws AccessDeniedException {
 		final ChapterEntity chapter = entityManager.find( ChapterEntity.class, chapterId );
 		StoryEntity story = chapter.getStory();
 		

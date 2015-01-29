@@ -12,6 +12,7 @@ import org.webstories.core.story.facade.LocalStoryAuthoringReader;
 import org.webstories.core.story.thumb.HomeStory;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
+import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
@@ -25,7 +26,8 @@ public class ProjectsAction extends BaseServlet {
 	LocalStoryAuthoringReader storyReader;
 	
 	@Override
-	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {
+	protected void doGet( HttpServletRequest request, HttpServletResponse response )
+	throws HttpUnauthorizedException {
 		Logged logged = getLogged( request );
 		List<HomeStory> userStories = storyReader.authorStories( logged );
 		request.setAttribute( "userStories", userStories );

@@ -5,7 +5,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.webstories.core.auth.Logged;
-import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.dao.activity.ChapterPublishedActivity;
 import org.webstories.dao.activity.JoinedActivityEntity;
 import org.webstories.dao.activity.NewStoryActivityEntity;
@@ -19,23 +18,14 @@ public class ActivityRegistrator implements LocalActivityRegistrator {
 	EntityManager entityManager;
 	
 	@Override
-	public void registerJoinedActivity( Logged logged ) throws UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	public void registerJoinedActivity( Logged logged ) {
 		UserEntity activityAuthor = entityManager.find( UserEntity.class, logged.getId() );
 		JoinedActivityEntity activity = new JoinedActivityEntity( activityAuthor );
 		entityManager.persist( activity );
 	}
 	
 	@Override
-	public void registerChapterPublishActivity( long idChapter, Logged logged )
-	throws UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	public void registerChapterPublishActivity( long idChapter, Logged logged ) {
 		ChapterEntity chapter = entityManager.find( ChapterEntity.class, idChapter );
 		UserEntity activityAuthor = entityManager.find( UserEntity.class, logged.getId() );
 		
@@ -45,12 +35,7 @@ public class ActivityRegistrator implements LocalActivityRegistrator {
 	}
 	
 	@Override
-	public void registerNewStoryActivity( long idStory, Logged logged )
-	throws UserNotLoggedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	public void registerNewStoryActivity( long idStory, Logged logged ) {
 		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		UserEntity activityAuthor = entityManager.find( UserEntity.class, logged.getId() );
 		

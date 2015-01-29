@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.auth.Logged;
-import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.story.editor.EditorStoryDetailsInput;
 import org.webstories.core.story.facade.LocalStoryCreator;
 import org.webstories.core.validation.ValidationException;
@@ -17,6 +16,7 @@ import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
 import org.webstories.web.util.servlet.HttpInternalServerErrorException;
+import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
@@ -34,7 +34,7 @@ public class CreateAction extends BaseServlet {
 	
 	@Override
 	protected void doPost( HttpServletRequest request, HttpServletResponse response )
-	throws HttpInternalServerErrorException, IOException {
+	throws HttpInternalServerErrorException, HttpUnauthorizedException {
 		RequestParams params = RequestParams.from( request );
 		Logged logged = getLogged( request );
 		EditorStoryDetailsInput input = EditorStoryDetailsInput.from( params );
@@ -42,7 +42,7 @@ public class CreateAction extends BaseServlet {
 			long idStory = creator.createMeta( input, logged );
 			activityRegistrator.registerNewStoryActivity( idStory, logged );
 			response.sendRedirect( request.getContextPath() + "/home/projects/?id=" + idStory );
-		} catch ( ValidationException | IOException | UserNotLoggedException e ) {
+		} catch ( ValidationException | IOException e ) {
 			throw new HttpInternalServerErrorException( e );
 		}
 	}

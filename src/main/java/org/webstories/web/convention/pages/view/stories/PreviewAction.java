@@ -10,6 +10,7 @@ import org.webstories.core.story.facade.LocalStoryViewerReader;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.BaseServlet;
 import org.webstories.web.util.servlet.HttpNotFoundException;
+import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
@@ -23,14 +24,10 @@ public class PreviewAction extends BaseServlet {
 	
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
-	throws HttpNotFoundException {
+	throws HttpNotFoundException, HttpUnauthorizedException {
 		Logged logged = getLogged( request );
 		RequestParams params = RequestParams.from( request );
 		long idStory = params.get( "id" ).toLong();
-		
-		if ( logged == null ) {
-			throw new HttpNotFoundException( "User is not logged" );
-		}
 		
 		if ( !storyReader.isPreviewable( idStory, logged ) ) {
 			String msg = String.format(

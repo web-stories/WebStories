@@ -28,8 +28,8 @@ import org.webstories.core.story.editor.EditorStoryChapterInput;
 import org.webstories.core.story.editor.EditorStorySection;
 import org.webstories.core.story.editor.EditorStorySectionInput;
 import org.webstories.core.story.editor.RemovalResult;
-import org.webstories.core.story.facade.LocalStoryManip;
 import org.webstories.core.story.facade.LocalStoryAuthoringReader;
+import org.webstories.core.story.facade.LocalStoryManip;
 import org.webstories.core.validation.ValidationException;
 import org.webstories.core.validation.ValidationObject;
 import org.webstories.web.util.servlet.HttpForbiddenException;
@@ -65,9 +65,9 @@ public class EditorResource {
 		@PathParam( "sectionId" ) Long sectionId,
 		EditorStorySectionInput input
 	) throws HttpUnauthorizedException, HttpForbiddenException {
-		Logged logged = AuthSession.from( request ).getLogged();
 		String text = input.getText().toString();
 		try {
+			Logged logged = AuthSession.from( request ).getLogged();
 			return storyEditor.updateSection( sectionId, text, logged );
 		} catch ( AccessDeniedException e ) {
 			throw new HttpForbiddenException( e );
@@ -80,8 +80,8 @@ public class EditorResource {
 	@Path( "{storyId}/chapters/{chapterId}/sections" )
 	public EditorStorySection sectionCreate( @QueryParam( "prevSectionId" ) Long prevSectionId )
 	throws HttpUnauthorizedException, HttpForbiddenException {
-		Logged logged = AuthSession.from( request ).getLogged();
 		try {
+			Logged logged = AuthSession.from( request ).getLogged();
 			return storyEditor.addSection( prevSectionId, logged );
 		} catch ( AccessDeniedException e ) {
 			throw new HttpForbiddenException( e );
@@ -94,8 +94,8 @@ public class EditorResource {
 	@Path( "{storyId}/chapters/{chapterId}/sections/{sectionId}" )
 	public RemovalResult sectionRemove( @PathParam( "sectionId" ) Long sectionId )
 	throws HttpForbiddenException, HttpUnauthorizedException, HttpNotFoundException {
-		Logged logged = AuthSession.from( request ).getLogged();
 		try {
+			Logged logged = AuthSession.from( request ).getLogged();
 			return storyEditor.removeSection( sectionId, logged );
 		} catch ( AccessDeniedException e ) {
 			throw new HttpForbiddenException( e );
@@ -112,9 +112,9 @@ public class EditorResource {
 		@PathParam( "chapterId" ) Long chapterId,
 		EditorStoryChapterInput input
 	) throws HttpUnauthorizedException, HttpForbiddenException {
-		Logged logged = AuthSession.from( request ).getLogged();
 		String title = input.getTitle().toString();
 		try {
+			Logged logged = AuthSession.from( request ).getLogged();
 			return storyEditor.updateChapter( chapterId, title, logged );
 		} catch ( AccessDeniedException e ) {
 			throw new HttpForbiddenException( e );
@@ -127,8 +127,8 @@ public class EditorResource {
 	@Path( "{storyId}/chapters" )
 	public EditorStoryChapter chapterCreate( @PathParam( "storyId" ) Long storyId )
 	throws HttpUnauthorizedException, HttpForbiddenException {
-		Logged logged = AuthSession.from( request ).getLogged();
 		try {
+			Logged logged = AuthSession.from( request ).getLogged();
 			return storyEditor.addChapter( storyId, logged );
 		} catch ( UserNotLoggedException e ) {
 			throw new HttpUnauthorizedException( e );
@@ -141,8 +141,8 @@ public class EditorResource {
 	@Path( "{storyId}/publications/{chapterId}" )
 	public void publicationPublish( @PathParam( "chapterId" ) Long chapterId )
 	throws HttpForbiddenException, HttpUnauthorizedException, HttpUnprocessableEntityException {
-		Logged logged = AuthSession.from( request ).getLogged();
 		try {
+			Logged logged = AuthSession.from( request ).getLogged();
 			storyEditor.publishChapter( chapterId, logged );
 			activityRegistrator.registerChapterPublishActivity( chapterId, logged );
 		} catch ( UserNotLoggedException e ) {

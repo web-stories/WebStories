@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import org.webstories.core.auth.Logged;
-import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.feed.item.FeedItem;
 import org.webstories.core.logging.LocalAppLogger;
 import org.webstories.dao.activity.ActivityEntity;
@@ -23,8 +22,7 @@ public class NewsFeed implements LocalNewsFeed {
 	LocalAppLogger logger;
 	
 	@Override
-	public List<FeedItem> feedItems( Logged logged )
-	throws UserNotLoggedException, AccessDeniedException {
+	public List<FeedItem> feedItems( Logged logged ) throws AccessDeniedException {
 		List<FeedItem> result = new ArrayList<FeedItem>();
 		List<ActivityEntity> newsActivities = activityQueries.listNewsFeedActivities();
 		

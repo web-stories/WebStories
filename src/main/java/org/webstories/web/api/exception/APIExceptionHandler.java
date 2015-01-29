@@ -8,6 +8,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 
 import org.webstories.core.auth.AuthSession;
 import org.webstories.core.auth.Logged;
+import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.logging.LocalAppLogger;
 
 public abstract class APIExceptionHandler<E extends Throwable> implements ExceptionMapper<E> {
@@ -19,8 +20,14 @@ public abstract class APIExceptionHandler<E extends Throwable> implements Except
 	
 	@Override
 	public Response toResponse( E exception ) {
-		Logged logged = AuthSession.from( request ).getLogged();
+		Logged logged = null;
+		
+		try {
+			AuthSession.from( request ).getLogged();
+		} catch ( UserNotLoggedException e ) {}
+		
 		logger.logAccess( logged, request, exception );
+		
 		return Response
 			.status( getStatusCode() )
 			.entity( ErrorObjectFactory.create( exception ) )

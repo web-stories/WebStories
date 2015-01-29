@@ -17,6 +17,7 @@ import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
 import org.webstories.web.util.servlet.HttpInternalServerErrorException;
+import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
@@ -31,7 +32,7 @@ public class SaveAction extends BaseServlet {
 	
 	@Override
 	protected void doPost( HttpServletRequest request, HttpServletResponse response )
-	throws HttpInternalServerErrorException {
+	throws HttpInternalServerErrorException, HttpUnauthorizedException {
 		Logged logged = getLogged( request );
 		RequestParams params = RequestParams.from( request );
 		HttpSession session = request.getSession();

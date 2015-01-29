@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.webstories.core.auth.Logged;
-import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.security.ReadSecurity;
 import org.webstories.core.security.story.PublishedChapterSecurity;
@@ -77,11 +76,7 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 	}
 	@Override
 	public List<StorySlide> previewSlides( long idStory, Logged logged )
-	throws UserNotLoggedException, AccessDeniedException {
-		if ( logged == null ) {
-			throw new UserNotLoggedException();
-		}
-		
+	throws AccessDeniedException {
 		if ( !isPreviewable( idStory, logged ) ) {
 			throw new AccessDeniedException();
 		}
