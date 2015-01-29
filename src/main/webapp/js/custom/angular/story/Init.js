@@ -10,7 +10,7 @@ define([
 	"js/story/controller/StoryController",
 	"js/story/controller/ControlsController",
 	"js/story/controller/SlidesController",
-	"js/story/controller/ModalsController",
+	"js/story/controller/ChapterEndingController",
 	"js/global/directive/AlertDirective",
 	"js/global/directive/BootstrapModal",
 	"js/global/filter/HTMLTrustedFilter",
@@ -28,7 +28,7 @@ define([
 	StoryController,
 	ControlsController,
 	SlidesController,
-	ModalsController,
+	ChapterEndingController,
 	AlertDirective,
 	BootstrapModal,
 	HTMLTrustedFilter
@@ -45,7 +45,7 @@ define([
 		.controller( "StoryController", StoryController )
 		.controller( "ControlsController", ControlsController )
 		.controller( "SlidesController", SlidesController )
-		.controller( "ModalsController", ModalsController )
+		.controller( "ChapterEndingController", ChapterEndingController )
 		.directive( "wsAlert", AlertDirective )
 		.directive( "bsModal", BootstrapModal )
 		.filter( "htmlTrusted", HTMLTrustedFilter );

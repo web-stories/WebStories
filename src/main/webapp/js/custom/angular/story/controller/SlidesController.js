@@ -13,7 +13,7 @@ define(function() {
 			if ( slides === oldSlides ) {
 				return;
 			}
-			SlidesBehavior.handleChapterEnding( slides );
+			SlidesBehavior.slideChange( slides );
 		}, true );
 		$scope.$on( "slides:restructured", function( event, updateModel ) {
 			var slidesGap = $document[ 0 ].documentElement.clientWidth * 2;

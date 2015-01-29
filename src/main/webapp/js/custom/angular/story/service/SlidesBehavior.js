@@ -1,17 +1,16 @@
 /**
- * Handle special behavior for steps, other than just print the contents in the view
+ * Handle rules related to the behavior of slides
  */
 define(function() {
 	"use strict";
 	function SlidesBehavior( $rootScope, jmpress ) {
-		this.handleChapterEnding = function( slides ) {
+		this.slideChange = function( slides ) {
 			var active = jmpress.getActiveReference( slides );
 			if ( !active ) {
 				return;
 			}
 			var activeSlide = active.step;
-			var openModal = activeSlide.type === "CHAPTER_ENDING";
-			$rootScope.$broadcast( "modal-open:chapter-ending", openModal );
+			$rootScope.$broadcast( "slides:change", activeSlide );
 		};
 	}
 	return [ "$rootScope", "jmpress", SlidesBehavior ];

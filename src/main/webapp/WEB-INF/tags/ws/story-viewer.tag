@@ -82,7 +82,7 @@
   <div ng-controller="ModalsController">
     <div class="modal fade" tabindex="-1" role="dialog"
          bs-modal
-         is-open="modals.chapterEnding.open"
+         is-open="modal.open"
          show="false">
       <div class="modal-dialog">
         <div class="modal-content">
