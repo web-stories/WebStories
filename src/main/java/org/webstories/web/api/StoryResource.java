@@ -1,7 +1,5 @@
 package org.webstories.web.api;
 
-import java.util.List;
-
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -17,7 +15,7 @@ import org.webstories.core.auth.Logged;
 import org.webstories.core.auth.UserNotLoggedException;
 import org.webstories.core.security.AccessDeniedException;
 import org.webstories.core.story.facade.LocalStoryViewerReader;
-import org.webstories.core.story.viewer.StorySlide;
+import org.webstories.core.story.viewer.StoryViewer;
 import org.webstories.web.util.servlet.HttpForbiddenException;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
@@ -32,18 +30,18 @@ public class StoryResource {
 	LocalStoryViewerReader storyReader;
 	
 	@GET
-	@Path( "{storyId}/slides" )
-	public List<StorySlide> slidesGet( @PathParam( "storyId" ) Long storyId ) {
-		return storyReader.publicSlides( storyId );
+	@Path( "{storyId}" )
+	public StoryViewer storyGet( @PathParam( "storyId" ) Long storyId ) {
+		return storyReader.publicStory( storyId );
 	}
 	
 	@GET
-	@Path( "{storyId}/slides-preview" )
-	public List<StorySlide> slidesPreviewGet( @PathParam( "storyId" ) Long storyId )
+	@Path( "{storyId}/preview" )
+	public StoryViewer storyPreviewGet( @PathParam( "storyId" ) Long storyId )
 	throws HttpUnauthorizedException, HttpForbiddenException {
 		try {
-			Logged logged= AuthSession.from( request ).getLogged();
-			return storyReader.previewSlides( storyId, logged );
+			Logged logged = AuthSession.from( request ).getLogged();
+			return storyReader.previewedStory( storyId, logged );
 		} catch ( UserNotLoggedException e ) {
 			throw new HttpUnauthorizedException( e );
 		} catch ( AccessDeniedException e ) {

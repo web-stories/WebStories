@@ -1,44 +1,53 @@
 define([
 	"angular",
 	"js/story/service/StoryResource",
-	"js/story/service/SlidesStructure",
+	"js/story/service/StoryStructure",
 	"js/story/service/SlidesManip",
+	"js/story/service/SlidesBehavior",
 	"js/story/service/ControlsManip",
 	"js/story/service/StoryControls",
 	"js/story/controller/PageController",
 	"js/story/controller/StoryController",
 	"js/story/controller/ControlsController",
 	"js/story/controller/SlidesController",
+	"js/story/controller/ChapterEndingController",
 	"js/global/directive/AlertDirective",
+	"js/global/directive/BootstrapModal",
 	"js/global/filter/HTMLTrustedFilter",
 	"angular.resource",
 	"angular.jmpress"
 ], function(
 	angular,
 	StoryResource,
-	SlidesStructure,
+	StoryStructure,
 	SlidesManip,
+	SlidesBehavior,
 	ControlsManip,
 	StoryControls,
 	PageController,
 	StoryController,
 	ControlsController,
 	SlidesController,
+	ChapterEndingController,
 	AlertDirective,
+	BootstrapModal,
 	HTMLTrustedFilter
 ) {
 	"use strict";
 	angular.module( "ws.story", [ "ngResource", "jmpress" ] )
 		.service( "StoryResource", StoryResource )
-		.service( "SlidesStructure", SlidesStructure )
+		.service( "StoryStructure", StoryStructure )
 		.service( "SlidesManip", SlidesManip )
+		.service( "SlidesBehavior", SlidesBehavior )
 		.service( "ControlsManip", ControlsManip )
 		.service( "StoryControls", StoryControls )
 		.controller( "PageController", PageController )
 		.controller( "StoryController", StoryController )
 		.controller( "ControlsController", ControlsController )
 		.controller( "SlidesController", SlidesController )
+		.controller( "ChapterEndingController", ChapterEndingController )
 		.directive( "wsAlert", AlertDirective )
+		.directive( "bsModal", BootstrapModal )
 		.filter( "htmlTrusted", HTMLTrustedFilter );
 	return angular.bootstrap( document.body, [ "ws.story" ] );
 });
