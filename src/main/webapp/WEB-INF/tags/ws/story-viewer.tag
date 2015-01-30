@@ -93,17 +93,27 @@
               </h4>
             </div>
             <div class="modal-body">
-              <p>
-                Este capítulo chegou ao fim.
-              </p>
-              <p>
-                Mas não se preocupe, logo logo o próximo capítulo estará disponível.<br>
-                Fique ligado!
+              <div ng-if="story.finished">
+                <p>
+                  Obrigado por ler esta história!<br>
+                </p>
+              </div>
+              <div ng-if="!story.finished">
+                <p>
+                  Este capítulo chegou ao fim, mas a história ainda não acabou!
+                </p>
+                <p>
+                  Fique ligado!
+                </p>
+              </div>
+              <p class="text-muted">
+                Se quiser ficar por dentro ou ajudar com sugestões visite  
+                <a href="http://facebook.com/webstories.org">fb.com/webstories.org</a>.
               </p>
             </div>
             <div class="modal-footer">
-              <a class="btn btn-primary" type="button" href="#section-0-0">
-                Ir para o início
+              <a class="btn btn-primary" type="button" href="${pageContext.request.contextPath}/">
+                Página inicial
               </a>
             </div>
           </div>
