@@ -13,7 +13,7 @@ define(function() {
 			if ( slides === oldSlides ) {
 				return;
 			}
-			$rootScope.$broadcast( "slides:change", $scope.story );
+			$rootScope.$broadcast( "slides:change" );
 		}, true );
 		$scope.$on( "slides:restructured", function( event, updateModel ) {
 			var slidesGap = $document[ 0 ].documentElement.clientWidth * 2;
