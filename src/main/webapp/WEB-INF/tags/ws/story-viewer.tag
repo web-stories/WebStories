@@ -79,7 +79,7 @@
       </div>
     </div>
   </div>
-  <div ng-controller="ModalsController">
+  <div ng-controller="ChapterEndingController">
     <div class="modal fade" tabindex="-1" role="dialog"
          bs-modal
          is-open="modal.open"
@@ -87,7 +87,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Continua...</h4>
+            <h4 class="modal-title">
+              {{ modal.title }}
+            </h4>
           </div>
           <div class="modal-body">
             <p>
@@ -99,9 +101,9 @@
             </p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" type="button">
+            <a class="btn btn-primary" type="button" href="#section-0-0">
               Ir para o início
-            </button>
+            </a>
           </div>
         </div>
       </div>

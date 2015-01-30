@@ -42,14 +42,18 @@ define(function() {
 			if ( chapter === -1 ) {
 				for ( i = slides.length - 1; i > 0; i -= 1 ) {
 					currentSlide = slides[ i ];
-					if ( !currentSlide.hasOwnProperty( "chapter" ) ) {
-						continue;
-					}
 					if ( !lastChapter || lastChapter === currentSlide.chapter ) {
 						found.push( currentSlide );
 						lastChapter = currentSlide.chapter;
 					} else {
 						break;
+					}
+				}
+			} else {
+				for ( i = 0; i < slides.length; i += 1 ) {
+					currentSlide = slides[ i ];
+					if ( currentSlide.chapter === chapter ) {
+						found.push( currentSlide );
 					}
 				}
 			}

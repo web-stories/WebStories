@@ -3,15 +3,19 @@
  */
 define(function() {
 	"use strict";
-	function SlidesBehavior( $rootScope, jmpress ) {
+	function SlidesBehavior( $rootScope, jmpress, SlidesManip ) {
 		this.slideChange = function( slides ) {
 			var active = jmpress.getActiveReference( slides );
 			if ( !active ) {
 				return;
 			}
 			var activeSlide = active.step;
-			$rootScope.$broadcast( "slides:change", activeSlide );
+			var chapterSlides = SlidesManip.findChapterSlides( slides, activeSlide.chapter );
+			$rootScope.$broadcast( "slides:change", {
+				activeSlide: activeSlide,
+				chapterSlides: chapterSlides
+			});
 		};
 	}
-	return [ "$rootScope", "jmpress", SlidesBehavior ];
+	return [ "$rootScope", "jmpress", "SlidesManip", SlidesBehavior ];
 });
