@@ -4,17 +4,18 @@
 define(function() {
 	"use strict";
 	function SlidesBehavior( $rootScope, jmpress, SlidesManip ) {
-		this.slideChange = function( slides ) {
-			var active = jmpress.getActiveReference( slides );
-			if ( !active ) {
+		this.chapterEnding = function( story, modal ) {
+			var activeReference = jmpress.getActiveReference( story.slides );
+			
+			if ( !activeReference ) {
 				return;
 			}
-			var activeSlide = active.step;
-			var chapterSlides = SlidesManip.findChapterSlides( slides, activeSlide.chapter );
-			$rootScope.$broadcast( "slides:change", {
-				activeSlide: activeSlide,
-				chapterSlides: chapterSlides
-			});
+			
+			var activeSlide = activeReference.step;
+			var chapterSlides = SlidesManip.findChapterSlides( story.slides, activeSlide.chapter );
+			
+			modal.open = activeSlide.type === "CHAPTER_ENDING";
+			modal.title = chapterSlides[ 0 ].title;
 		};
 	}
 	return [ "$rootScope", "jmpress", "SlidesManip", SlidesBehavior ];

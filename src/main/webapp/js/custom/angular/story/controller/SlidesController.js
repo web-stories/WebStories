@@ -1,6 +1,6 @@
 define(function() {
 	"use strict";
-	function SlidesController( $scope, $document, StoryStructure, SlidesBehavior ) {
+	function SlidesController( $rootScope, $scope, $document, StoryStructure ) {
 		$scope.story.slides = [];
 		$scope.init = function( storyId, isPreview ) {
 			StoryStructure
@@ -13,12 +13,12 @@ define(function() {
 			if ( slides === oldSlides ) {
 				return;
 			}
-			SlidesBehavior.slideChange( slides );
+			$rootScope.$broadcast( "slides:change", $scope.story );
 		}, true );
 		$scope.$on( "slides:restructured", function( event, updateModel ) {
 			var slidesGap = $document[ 0 ].documentElement.clientWidth * 2;
 			updateModel( $scope.story, slidesGap );
 		});
 	}
-	return [ "$scope", "$document", "StoryStructure", "SlidesBehavior", SlidesController ];
+	return [ "$rootScope", "$scope", "$document", "StoryStructure", SlidesController ];
 });
