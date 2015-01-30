@@ -1,9 +1,9 @@
 define(function() {
 	"use strict";
-	function SlidesController( $scope, $document, SlidesStructure, SlidesBehavior ) {
+	function SlidesController( $scope, $document, StoryStructure, SlidesBehavior ) {
 		$scope.story.slides = [];
 		$scope.init = function( storyId, isPreview ) {
-			SlidesStructure
+			StoryStructure
 				.init( storyId, isPreview )
 				.then(function() {
 					$scope.loader.loaded = true;
@@ -20,5 +20,5 @@ define(function() {
 			updateModel( $scope.story, slidesGap );
 		});
 	}
-	return [ "$scope", "$document", "SlidesStructure", "SlidesBehavior", SlidesController ];
+	return [ "$scope", "$document", "StoryStructure", "SlidesBehavior", SlidesController ];
 });

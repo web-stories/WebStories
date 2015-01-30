@@ -1,7 +1,7 @@
 define([
 	"angular",
 	"js/story/service/StoryResource",
-	"js/story/service/SlidesStructure",
+	"js/story/service/StoryStructure",
 	"js/story/service/SlidesManip",
 	"js/story/service/SlidesBehavior",
 	"js/story/service/ControlsManip",
@@ -19,7 +19,7 @@ define([
 ], function(
 	angular,
 	StoryResource,
-	SlidesStructure,
+	StoryStructure,
 	SlidesManip,
 	SlidesBehavior,
 	ControlsManip,
@@ -36,7 +36,7 @@ define([
 	"use strict";
 	angular.module( "ws.story", [ "ngResource", "jmpress" ] )
 		.service( "StoryResource", StoryResource )
-		.service( "SlidesStructure", SlidesStructure )
+		.service( "StoryStructure", StoryStructure )
 		.service( "SlidesManip", SlidesManip )
 		.service( "SlidesBehavior", SlidesBehavior )
 		.service( "ControlsManip", ControlsManip )
