@@ -10,16 +10,17 @@ define( [ "js/global/directive/DirectiveUtils", "bootstrap" ], function( Directi
 				onShown: "&",
 				onHide: "&",
 				onHidden: "&",
-				show: "&",
-				backdrop: "&",
-				keyboard: "&"
+				show: "@",
+				backdrop: "@",
+				keyboard: "@"
 			},
 			link: function( scope, element, attrs ) {
-				element.modal({
-					backdrop: scope.backdrop(),
-					keyboard: scope.keyboard(),
-					show: scope.show()
+				var options = DirectiveUtils.param({
+					backdrop: scope.backdrop,
+					keyboard: scope.keyboard,
+					show: scope.show
 				});
+				element.modal( options );
 				
 				scope.$watch( "isOpen", function( value ) {
 					element.modal( value === true ? "show" : "hide" );
