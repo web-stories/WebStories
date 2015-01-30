@@ -83,7 +83,8 @@
     <div class="modal fade" tabindex="-1" role="dialog"
          bs-modal
          is-open="modal.open"
-         show="false">
+         show="false"
+         backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
