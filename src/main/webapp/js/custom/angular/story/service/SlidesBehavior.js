@@ -3,20 +3,18 @@
  */
 define(function() {
 	"use strict";
-	function SlidesBehavior( $rootScope, jmpress, SlidesManip ) {
+	function SlidesBehavior( $rootScope, jmpress ) {
 		this.chapterEnding = function( story, modal ) {
+			var slides = story.slides;
 			var activeReference = jmpress.getActiveReference( story.slides );
 			
 			if ( !activeReference ) {
 				return;
 			}
 			
-			var activeSlide = activeReference.step;
-			var chapterSlides = SlidesManip.findChapterSlides( story.slides, activeSlide.chapter );
-			
-			modal.open = activeSlide.type === "CHAPTER_ENDING";
-			modal.title = chapterSlides[ 0 ].title;
+			modal.open = activeReference.step.type === "CHAPTER_ENDING";
+			modal.title = slides[ 0 ].title;
 		};
 	}
-	return [ "$rootScope", "jmpress", "SlidesManip", SlidesBehavior ];
+	return [ "$rootScope", "jmpress", SlidesBehavior ];
 });

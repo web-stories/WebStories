@@ -90,7 +90,9 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 		IntroSlide intro = new IntroSlide( introFactory );
 		slides.add( intro );
 		
-		for ( ChapterEntity chapter : story.getChapters() ) {
+		List<ChapterEntity> storyChapters = story.getChapters();
+		for ( int i = 0; i < storyChapters.size(); i++ ) {
+			ChapterEntity chapter = storyChapters.get( i );
 			try {
 				ReadSecurity<ChapterEntity> security = new PublishedChapterSecurity();
 				chapter = security.readPrivileged( new StoryRead.ChapterRead( chapter ) );
@@ -105,8 +107,11 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 					slides.add( sectionSlide );
 				}
 				
-				ChapterEndingSlideFactory endingFactory = new ChapterEndingSlideFactory( chapter );
-				slides.add( new ChapterEndingSlide( endingFactory ) );
+				// Temporarly only show the chapter ending for the ending of the story
+				if ( i == storyChapters.size() - 1 ) {
+					ChapterEndingSlideFactory endingFactory = new ChapterEndingSlideFactory( chapter );
+					slides.add( new ChapterEndingSlide( endingFactory ) );
+				}
 			} catch ( AccessDeniedException e ) {
 				// If chapter is not published ignore it
 			}
