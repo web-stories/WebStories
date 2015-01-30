@@ -13,6 +13,8 @@ import org.webstories.core.security.ReadSecurity;
 import org.webstories.core.security.story.PublishedChapterSecurity;
 import org.webstories.core.security.story.StoryOwnerSecurity;
 import org.webstories.core.security.story.StoryRead;
+import org.webstories.core.story.viewer.ChapterEndingSlide;
+import org.webstories.core.story.viewer.ChapterEndingSlideFactory;
 import org.webstories.core.story.viewer.ChapterSlide;
 import org.webstories.core.story.viewer.ChapterSlideFactory;
 import org.webstories.core.story.viewer.IntroSlide;
@@ -20,7 +22,9 @@ import org.webstories.core.story.viewer.IntroSlideFactory;
 import org.webstories.core.story.viewer.SectionSlide;
 import org.webstories.core.story.viewer.SectionSlideFactory;
 import org.webstories.core.story.viewer.StorySlide;
+import org.webstories.core.story.viewer.StoryViewer;
 import org.webstories.dao.story.ChapterEntity;
+import org.webstories.dao.story.ChapterState;
 import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryEntity;
 
@@ -45,13 +49,48 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 		}
 	}
 	@Override
-	public List<StorySlide> publicSlides( long idStory ) {
+	public StoryViewer publicStory( long idStory ) {
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
+		List<ChapterEntity> chapters = story.getChapters();
+		
+		StoryViewer viewer = new StoryViewer();
+		viewer.setSlides( publicSlides( idStory ) );
+		viewer.setFinished( containsDraft( chapters ) == false );
+		
+		return viewer;
+	}
+	@Override
+	public StoryViewer previewedStory( long idStory, Logged logged ) throws AccessDeniedException {
+		if ( !isPreviewable( idStory, logged ) ) {
+			throw new AccessDeniedException();
+		}
+		
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
+		List<ChapterEntity> chapters = story.getChapters();
+		
+		StoryViewer viewer = new StoryViewer();
+		viewer.setSlides( previewSlides( idStory, logged ) );
+		viewer.setFinished( containsDraft( chapters ) == false );
+		
+		return viewer;
+	}
+	private boolean containsDraft( List<ChapterEntity> chapters ) {
+		for ( ChapterEntity chapter : chapters ) {
+			if ( chapter.getState() == ChapterState.DRAFT ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	private List<StorySlide> publicSlides( long idStory ) {
 		List<StorySlide> slides = new ArrayList<StorySlide>();
 		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		
 		IntroSlideFactory introFactory = new IntroSlideFactory( story.getMeta() );
 		IntroSlide intro = new IntroSlide( introFactory );
 		slides.add( intro );
+		
+		ChapterEntity lastChapter = null;
 		
 		for ( ChapterEntity chapter : story.getChapters() ) {
 			try {
@@ -67,20 +106,23 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 					SectionSlide sectionSlide = new SectionSlide( sectionFactory );
 					slides.add( sectionSlide );
 				}
+				
+				lastChapter = chapter;
 			} catch ( AccessDeniedException e ) {
 				// If chapter is not published ignore it
 			}
 		}
 		
-		return slides;
-	}
-	@Override
-	public List<StorySlide> previewSlides( long idStory, Logged logged )
-	throws AccessDeniedException {
-		if ( !isPreviewable( idStory, logged ) ) {
-			throw new AccessDeniedException();
+		// Temporarly only show the chapter ending for the ending of the story
+		if ( lastChapter != null ) {
+			ChapterEndingSlideFactory endingFactory = new ChapterEndingSlideFactory( lastChapter );
+			slides.add( new ChapterEndingSlide( endingFactory ) );
 		}
 		
+		return slides;
+	}
+	public List<StorySlide> previewSlides( long idStory, Logged logged )
+	throws AccessDeniedException {
 		List<StorySlide> slides = new ArrayList<StorySlide>();
 		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		

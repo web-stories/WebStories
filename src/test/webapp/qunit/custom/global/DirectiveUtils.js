@@ -13,13 +13,9 @@ require([ "js/global/directive/DirectiveUtils" ], function( DirectiveUtils ) {
 		strictEqual( result, 50 );
 	});
 	
-	module( ".attrParams( obj )" );
-	test( "Empty property should be ignored", function() {
-		var result = DirectiveUtils.attrParams({ empty: "" });
-		deepEqual( result, {}, "object should be empty" );
-	});
+	module( ".param( obj )" );
 	test( "Pass properties converting the type", function() {
-		var result = DirectiveUtils.attrParams({ boolean: "false" });
+		var result = DirectiveUtils.param({ boolean: "false" });
 		deepEqual( result, {
 			boolean: false
 		}, "object should be empty" );

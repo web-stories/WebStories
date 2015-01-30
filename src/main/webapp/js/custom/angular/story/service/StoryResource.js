@@ -3,10 +3,10 @@ define( [ "webstories" ], function( webstories ) {
 	
 	function StoryResource( $resource ) {
 		var path = webstories.contextPath + "/api";
-		this.slides = $resource( path + "/story/:storyId/slides", {
+		this.story = $resource( path + "/story/:storyId", {
 			storyId: "@storyId"
 		});
-		this.slidesPreview = $resource( path + "/story/:storyId/slides-preview", {
+		this.storyPreview = $resource( path + "/story/:storyId/preview", {
 			storyId: "@storyId"
 		});
 	}

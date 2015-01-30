@@ -1,18 +1,24 @@
 define(function() {
 	"use strict";
-	function SlidesController( $scope, $document, SlidesStructure ) {
+	function SlidesController( $rootScope, $scope, $document, StoryStructure ) {
 		$scope.story.slides = [];
 		$scope.init = function( storyId, isPreview ) {
-			SlidesStructure
+			StoryStructure
 				.init( storyId, isPreview )
 				.then(function() {
 					$scope.loader.loaded = true;
 				});
 		};
+		$scope.$watch( "story.slides", function( slides, oldSlides ) {
+			if ( slides === oldSlides ) {
+				return;
+			}
+			$rootScope.$broadcast( "slides:change" );
+		}, true );
 		$scope.$on( "slides:restructured", function( event, updateModel ) {
 			var slidesGap = $document[ 0 ].documentElement.clientWidth * 2;
 			updateModel( $scope.story, slidesGap );
 		});
 	}
-	return [ "$scope", "$document", "SlidesStructure", SlidesController ];
+	return [ "$rootScope", "$scope", "$document", "StoryStructure", SlidesController ];
 });

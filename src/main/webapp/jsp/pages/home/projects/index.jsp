@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ng" tagdir="/WEB-INF/tags/angular" %>
 <jsp:include page="/jsp/include/header.jsp"/>
 <div ng-controller="PageController">
   <ws-alert data="alert"></ws-alert>
@@ -68,21 +67,27 @@
                          ng-model-options="{ debounce: 1000 }">
                 <div ng-repeat="section in chapter.sections">
                   <div ng-controller="SectionController">
-                    <ng:modal directive="bs-modal" modalShow="previewModal.show"
-                              modalOptionsShow="false"
-                              modalOnShown="loadPreview()"
-                              modalOnHide="unloadPreview()">
-                      <div class="modal-header">
-                        <button class="close" type="button" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Pré-visualização</h4>
+                    <div class="modal fade" tabindex="-1" role="dialog"
+                         bs-modal
+                         is-open="previewModal.show"
+                         show="false"
+                         on-shown="loadPreview()"
+                         on-hide="unloadPreview()">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Pré-visualização</h4>
+                          </div>
+                          <div class="modal-body">
+                            <iframe class="preview-box" ng-src="{{ previewURL | urlTrusted }}"></iframe>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
+                          </div>
+                        </div>
                       </div>
-                      <div class="modal-body">
-                        <iframe class="preview-box" ng-src="{{ previewURL | urlTrusted }}"></iframe>
-                      </div>
-                      <div class="modal-footer">
-                        <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
-                      </div>
-                    </ng:modal>
+                    </div>
                     <div class="editor-chapter-section {{ validity.className }}">
                       <textarea class="form-control editor-chapter-section-text"
                                 ng-model="section.text"

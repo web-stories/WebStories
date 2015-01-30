@@ -16,6 +16,14 @@ module.exports = function( grunt ) {
 					"http://localhost:8000/test/webapp/qunit/custom/global/DirectiveUtils.html"
 				]
 			}
+		},
+		story: {
+			options: {
+				urls: [
+					"http://localhost:8000/test/webapp/qunit/custom/story/ControlsManip.html",
+					"http://localhost:8000/test/webapp/qunit/custom/story/SlidesManip.html"
+				]
+			}
 		}
 	};
 };

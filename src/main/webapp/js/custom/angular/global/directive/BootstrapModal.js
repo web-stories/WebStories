@@ -5,61 +5,49 @@ define( [ "js/global/directive/DirectiveUtils", "bootstrap" ], function( Directi
 		return {
 			restrict: "A",
 			scope: {
-				modalShow: "=",
-				modalOnShow: "&",
-				modalOnShown: "&",
-				modalOnHide: "&",
-				modalOnHidden: "&"
+				isOpen: "=",
+				onShow: "&",
+				onShown: "&",
+				onHide: "&",
+				onHidden: "&",
+				show: "@",
+				backdrop: "@",
+				keyboard: "@"
 			},
 			link: function( scope, element, attrs ) {
-				var options = DirectiveUtils.attrParams({
-					backdrop: attrs.modalOptionsBackdrop,
-					keyboard: attrs.modalOptionsKeyboard,
-					show: attrs.modalOptionsShow
+				var options = DirectiveUtils.param({
+					backdrop: scope.backdrop,
+					keyboard: scope.keyboard,
+					show: scope.show
 				});
-				
 				element.modal( options );
 				
-				scope.$watch( "modalShow", function( value ) {
-					if ( value === true ) {
-						element.modal( "show" );
-					} else if ( value === false ) {
-						element.modal( "hide" );
-					}
+				scope.$watch( "isOpen", function( value ) {
+					element.modal( value === true ? "show" : "hide" );
 				});
 				
 				element.on( "show.bs.modal", function() {
-					$timeout(function() {
-						if ( scope.modalOnShow ) {
-							scope.modalOnShow();
-						}
-					});
+					if ( scope.onShow ) {
+						$timeout( scope.onShow );
+					}
 				});
 				
 				element.on( "shown.bs.modal", function() {
-					$timeout(function() {
-						scope.modalShow = true;
-						if ( scope.modalOnShown ) {
-							scope.modalOnShown();
-						}
-					});
+					if ( scope.onShown ) {
+						$timeout( scope.onShown );
+					}
 				});
 				
 				element.on( "hide.bs.modal", function() {
-					$timeout(function() {
-						if ( scope.modalOnHide ) {
-							scope.modalOnHide();
-						}
-					});
+					if ( scope.onHide ) {
+						$timeout( scope.onHide );
+					}
 				});
 				
 				element.on( "hidden.bs.modal", function() {
-					$timeout(function() {
-						scope.modalShow = false;
-						if ( scope.modalOnHidden ) {
-							scope.modalOnHidden();
-						}
-					});
+					if ( scope.onHidden ) {
+						$timeout( scope.onHidden );
+					}
 				});
 			}
 		};
