@@ -49,66 +49,6 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 		}
 	}
 	@Override
-	public List<StorySlide> publicSlides( long idStory ) {
-		List<StorySlide> slides = new ArrayList<StorySlide>();
-		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
-		
-		IntroSlideFactory introFactory = new IntroSlideFactory( story.getMeta() );
-		IntroSlide intro = new IntroSlide( introFactory );
-		slides.add( intro );
-		
-		for ( ChapterEntity chapter : story.getChapters() ) {
-			try {
-				ReadSecurity<ChapterEntity> security = new PublishedChapterSecurity();
-				chapter = security.readPrivileged( new StoryRead.ChapterRead( chapter ) );
-				
-				ChapterSlideFactory chapterFactory = new ChapterSlideFactory( chapter );
-				ChapterSlide chapterSlide = new ChapterSlide( chapterFactory );
-				slides.add( chapterSlide );
-				
-				for ( SectionEntity section : chapter.getSections() ) {
-					SectionSlideFactory sectionFactory = new SectionSlideFactory( section );
-					SectionSlide sectionSlide = new SectionSlide( sectionFactory );
-					slides.add( sectionSlide );
-				}
-				
-				ChapterEndingSlideFactory endingFactory = new ChapterEndingSlideFactory( chapter );
-				slides.add( new ChapterEndingSlide( endingFactory ) );
-			} catch ( AccessDeniedException e ) {
-				// If chapter is not published ignore it
-			}
-		}
-		
-		return slides;
-	}
-	@Override
-	public List<StorySlide> previewSlides( long idStory, Logged logged )
-	throws AccessDeniedException {
-		if ( !isPreviewable( idStory, logged ) ) {
-			throw new AccessDeniedException();
-		}
-		
-		List<StorySlide> slides = new ArrayList<StorySlide>();
-		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
-		
-		IntroSlideFactory introFactory = new IntroSlideFactory( story.getMeta() );
-		IntroSlide intro = new IntroSlide( introFactory );
-		slides.add( intro );
-		
-		for ( ChapterEntity chapter : story.getChapters() ) {
-			ChapterSlideFactory chapterFactory = new ChapterSlideFactory( chapter );
-			ChapterSlide chapterSlide = new ChapterSlide( chapterFactory );
-			slides.add( chapterSlide );
-			for ( SectionEntity section : chapter.getSections() ) {
-				SectionSlideFactory sectionFactory = new SectionSlideFactory( section );
-				SectionSlide sectionSlide = new SectionSlide( sectionFactory );
-				slides.add( sectionSlide );
-			}
-		}
-		
-		return slides;
-	}
-	@Override
 	public StoryViewer publicStory( long idStory ) {
 		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
 		List<ChapterEntity> chapters = story.getChapters();
@@ -141,5 +81,59 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 			}
 		}
 		return false;
+	}
+	private List<StorySlide> publicSlides( long idStory ) {
+		List<StorySlide> slides = new ArrayList<StorySlide>();
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
+		
+		IntroSlideFactory introFactory = new IntroSlideFactory( story.getMeta() );
+		IntroSlide intro = new IntroSlide( introFactory );
+		slides.add( intro );
+		
+		for ( ChapterEntity chapter : story.getChapters() ) {
+			try {
+				ReadSecurity<ChapterEntity> security = new PublishedChapterSecurity();
+				chapter = security.readPrivileged( new StoryRead.ChapterRead( chapter ) );
+				
+				ChapterSlideFactory chapterFactory = new ChapterSlideFactory( chapter );
+				ChapterSlide chapterSlide = new ChapterSlide( chapterFactory );
+				slides.add( chapterSlide );
+				
+				for ( SectionEntity section : chapter.getSections() ) {
+					SectionSlideFactory sectionFactory = new SectionSlideFactory( section );
+					SectionSlide sectionSlide = new SectionSlide( sectionFactory );
+					slides.add( sectionSlide );
+				}
+				
+				ChapterEndingSlideFactory endingFactory = new ChapterEndingSlideFactory( chapter );
+				slides.add( new ChapterEndingSlide( endingFactory ) );
+			} catch ( AccessDeniedException e ) {
+				// If chapter is not published ignore it
+			}
+		}
+		
+		return slides;
+	}
+	public List<StorySlide> previewSlides( long idStory, Logged logged )
+	throws AccessDeniedException {
+		List<StorySlide> slides = new ArrayList<StorySlide>();
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
+		
+		IntroSlideFactory introFactory = new IntroSlideFactory( story.getMeta() );
+		IntroSlide intro = new IntroSlide( introFactory );
+		slides.add( intro );
+		
+		for ( ChapterEntity chapter : story.getChapters() ) {
+			ChapterSlideFactory chapterFactory = new ChapterSlideFactory( chapter );
+			ChapterSlide chapterSlide = new ChapterSlide( chapterFactory );
+			slides.add( chapterSlide );
+			for ( SectionEntity section : chapter.getSections() ) {
+				SectionSlideFactory sectionFactory = new SectionSlideFactory( section );
+				SectionSlide sectionSlide = new SectionSlide( sectionFactory );
+				slides.add( sectionSlide );
+			}
+		}
+		
+		return slides;
 	}
 }
