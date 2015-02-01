@@ -1,7 +1,7 @@
 define(function() {
 	"use strict";
 	
-	function StoryControls( jmpress, ControlsManip, SlidesManip ) {
+	function StoryControls( jmpress, ControlsManip ) {
 		this.init = function( story ) {
 			story.controls = {};
 		};
@@ -20,12 +20,12 @@ define(function() {
 		this.nextChapter = function( chapterNumber ) {
 			jmpress.method( "goTo", "#section-" + chapterNumber + "-0" );
 		};
-		this.slideChange = function( storySlides, storyControls ) {
+		this.applySiblings = function( storySlides, storyControls ) {
 			var chapterSiblings = ControlsManip.findChapterSiblings( storySlides );
 			storyControls.prevChapter = chapterSiblings.prevChapter;
 			storyControls.nextChapter = chapterSiblings.nextChapter;
 		};
 	}
 	
-	return [ "jmpress", "ControlsManip", "SlidesManip", StoryControls ];
+	return [ "jmpress", "ControlsManip", StoryControls ];
 });

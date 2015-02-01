@@ -4,12 +4,8 @@ define(function() {
 	function ControlsController( $scope, StoryControls ) {
 		$scope.story.controls = {};
 		$scope.$watch( "story.slides", function( slides, oldSlides ) {
-			// Ignore first call with empty slides
-			if ( slides === oldSlides ) {
-				return;
-			}
-			StoryControls.slideChange( $scope.story.slides, $scope.story.controls );
-		}, true /* Detect changes in the 'active' property inside each object in the array */ );
+			StoryControls.applySiblings( $scope.story.slides, $scope.story.controls );
+		}, true );
 		$scope.prevChapter = StoryControls.prevChapter;
 		$scope.nextChapter = StoryControls.nextChapter;
 		$scope.nextSlide = StoryControls.nextSlide;

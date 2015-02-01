@@ -18,7 +18,9 @@ define(function() {
 			});
 		};
 		/*
-		 * Find the current active slide or undefined if there is no active slide available yet
+		 * Find the current active slide or undefined if there is no active slide available yet.
+		 * This method is required until "github.com/web-stories/angular-jmpress/issues/1".
+		 * After that, use "jmpress.getActiveReference()" instead.
 		 */
 		this.findActive = function( slides ) {
 			var i = 0;
