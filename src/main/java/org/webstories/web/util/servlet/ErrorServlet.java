@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jboss.resteasy.spi.UnauthorizedException;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.logging.LocalAppLogger;
 
@@ -22,8 +23,16 @@ public abstract class ErrorServlet extends BaseServlet {
 	@Override
 	protected void service( HttpServletRequest request, HttpServletResponse response )
 	throws ServletException, IOException {
-		Logged logged = getLogged( request );
+		Logged logged;
 		Throwable e = ( Throwable )request.getAttribute( RequestDispatcher.ERROR_EXCEPTION );
+		
+		// logAccess reqquires a "null" contract for a Logged instance. So prevent throwing
+		// the exception upwards before the logging occurs.
+		try {
+			logged = getLogged( request );
+		} catch ( UnauthorizedException exception ) {
+			logged = null;
+		}
 		
 		logger.logAccess( logged, request, e );
 		
