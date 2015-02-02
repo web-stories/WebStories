@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jboss.resteasy.spi.UnauthorizedException;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.logging.LocalAppLogger;
 
@@ -30,7 +29,7 @@ public abstract class ErrorServlet extends BaseServlet {
 		// the exception upwards before the logging occurs.
 		try {
 			logged = getLogged( request );
-		} catch ( UnauthorizedException exception ) {
+		} catch ( HttpUnauthorizedException exception ) {
 			logged = null;
 		}
 		
