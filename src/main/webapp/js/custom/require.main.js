@@ -58,6 +58,7 @@ require = (function( require ) {
 					"fastclick": "../js/fastclick-1.0.3",
 					"lodash": "../js/lodash-2.4.1",
 					"angular": "../js/angular-1.3.4",
+					"angular.cookies": "../js/angular.cookies-1.3.4",
 					"angular.resource": "../js/angular.resource-1.3.4",
 					"angular.smoothscroll": "../js/angular.smoothscroll-1.7.1",
 					"angular.jmpress": "../js/angular.jmpress-0.0.1",

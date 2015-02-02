@@ -14,6 +14,7 @@ define([
 	"js/global/directive/AlertDirective",
 	"js/global/directive/BootstrapModal",
 	"js/global/filter/HTMLTrustedFilter",
+	"angular.cookies",
 	"angular.resource",
 	"angular.jmpress"
 ], function(
@@ -34,7 +35,7 @@ define([
 	HTMLTrustedFilter
 ) {
 	"use strict";
-	angular.module( "ws.story", [ "ngResource", "jmpress" ] )
+	angular.module( "ws.story", [ "ngResource", "ngCookies", "jmpress" ] )
 		.service( "StoryResource", StoryResource )
 		.service( "StoryStructure", StoryStructure )
 		.service( "SlidesManip", SlidesManip )
