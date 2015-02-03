@@ -38,7 +38,7 @@
 }
 
 /* Samsung Galaxy Gran Neo Duos - Landscape */
-@media ( width: 536px ) and ( height: 245px ) {
+@media ( width: 534px ) and ( height: 239px ) {
   .step {
     width: 1900px;
   }
