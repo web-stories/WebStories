@@ -1,14 +1,7 @@
 define(function() {
 	"use strict";
-	function SlidesController( $rootScope, $scope, $document, StoryStructure ) {
+	function SlidesController( $rootScope, $scope, $document ) {
 		$scope.story.slides = [];
-		$scope.init = function( storyId, isPreview ) {
-			StoryStructure
-				.init( storyId, isPreview )
-				.then(function() {
-					$scope.loader.loaded = true;
-				});
-		};
 		$scope.$watch( "story.slides", function( slides, oldSlides ) {
 			if ( slides === oldSlides ) {
 				return;
@@ -20,5 +13,5 @@ define(function() {
 			updateModel( $scope.story, slidesGap );
 		});
 	}
-	return [ "$rootScope", "$scope", "$document", "StoryStructure", SlidesController ];
+	return [ "$rootScope", "$scope", "$document", SlidesController ];
 });

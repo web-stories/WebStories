@@ -13,12 +13,12 @@
   <ws-alert data="alert"></ws-alert>
   <div ng-show="loader.loaded"
        ng-controller="StoryController"
-       ng-cloak>
+       ng-cloak
+       ng-init="init( ${param.id}, ${isPreview} )">
     <div class="story">
       <div class="story-content">
         <div class="container"
-             ng-controller="SlidesController"
-             ng-init="init( ${param.id}, ${isPreview} )">
+             ng-controller="SlidesController">
           <div jmpress-root
                jmpress-steps="story.slides"
                data-transition-duration="300">
