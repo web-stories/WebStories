@@ -56,6 +56,7 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 		StoryViewer viewer = new StoryViewer();
 		viewer.setSlides( publicSlides( idStory ) );
 		viewer.setFinished( containsDraft( chapters ) == false );
+		viewer.setStoryId( story.getId() );
 		
 		return viewer;
 	}
@@ -71,6 +72,7 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 		StoryViewer viewer = new StoryViewer();
 		viewer.setSlides( previewSlides( idStory, logged ) );
 		viewer.setFinished( containsDraft( chapters ) == false );
+		viewer.setStoryId( story.getId() );
 		
 		return viewer;
 	}

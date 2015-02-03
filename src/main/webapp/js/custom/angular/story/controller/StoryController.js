@@ -12,7 +12,7 @@ define(function() {
 		};
 		$scope.$on( "slides:change", function() {
 			var prevActiveSlide = SlidesManip.findPreviousFromActive( $scope.story.slides );
-			StoryPersistence.rememberSlide( 17, prevActiveSlide );
+			StoryPersistence.rememberSlide( $scope.story.storyId, prevActiveSlide );
 		});
 	}
 	
