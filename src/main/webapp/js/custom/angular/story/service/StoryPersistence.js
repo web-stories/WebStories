@@ -1,7 +1,8 @@
 define(function() {
 	"use strict";
-	function StoryPersistence( $cookieStore ) {
-		this.rememberSlide = function( storyId, rememberedSlide ) {
+	function StoryPersistence( $cookieStore, SlidesManip ) {
+		this.rememberSlide = function( storyId, slides ) {
+			var rememberedSlide = SlidesManip.findPreviousFromActive( $scope.story.slides );
 			var stories = $cookieStore.get( "stories" ) || {};
 			stories[ storyId ] = rememberedSlide;
 			$cookieStore.put( "stories", stories );
@@ -10,5 +11,5 @@ define(function() {
 			return $cookieStore.get( "stories" )[ storyId ];
 		};
 	}
-	return [ "$cookieStore", StoryPersistence ];
+	return [ "$cookieStore", "SlidesManip", StoryPersistence ];
 });

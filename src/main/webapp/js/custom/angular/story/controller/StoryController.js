@@ -1,7 +1,7 @@
 define(function() {
 	"use strict";
 	
-	function StoryController( $scope, SlidesManip, StoryPersistence, StoryStructure ) {
+	function StoryController( $scope, StoryPersistence, StoryStructure ) {
 		$scope.story = {};
 		$scope.init = function( storyId, isPreview ) {
 			StoryStructure
@@ -11,10 +11,9 @@ define(function() {
 				});
 		};
 		$scope.$on( "slides:change", function() {
-			var prevActiveSlide = SlidesManip.findPreviousFromActive( $scope.story.slides );
-			StoryPersistence.rememberSlide( $scope.story.storyId, prevActiveSlide );
+			StoryPersistence.rememberSlide( $scope.story.storyId, $scope.story.slides );
 		});
 	}
 	
-	return [ "$scope", "SlidesManip", "StoryPersistence", "StoryStructure", StoryController ];
+	return [ "$scope", "StoryPersistence", "StoryStructure", StoryController ];
 });
