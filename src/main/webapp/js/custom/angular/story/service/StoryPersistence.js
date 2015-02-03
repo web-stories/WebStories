@@ -8,7 +8,18 @@ define(function() {
 			$cookieStore.put( "stories", stories );
 		};
 		this.activateRemembered = function( storyId, slides ) {
-			var stored = $cookieStore.get( "stories" )[ storyId ];
+			var stories = $cookieStore.get( "stories" );
+			if ( !stories ) {
+				// There's no story being remembered
+				return;
+			}
+			
+			var stored = stories[ storyId ];
+			if ( !stored ) {
+				// This story doesn't have a remembered slide
+				return;
+			}
+			
 			SlidesManip.activate( slides, stored.chapter, stored.section );
 		};
 	}
