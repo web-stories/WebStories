@@ -8,6 +8,7 @@ define(function() {
 				.init( storyId, isPreview )
 				.then(function() {
 					$scope.loader.loaded = true;
+					StoryPersistence.activateRemembered( storyId, $scope.story.slides );
 				});
 		};
 		$scope.$on( "slides:change", function() {

@@ -44,6 +44,19 @@ define(function() {
 			}
 		};
 		/*
+		 * Set a given slide as active according to the chapter and section
+		 * Use this until "github.com/web-stories/angular-jmpress/issues/3"
+		 */
+		this.activate = function( slides, chapter, section ) {
+			slides.forEach(function( slide ) {
+				if ( slide.chapter === chapter && slide.section === section ) {
+					slide.active = true;
+				} else {
+					delete slide.active;
+				}
+			});
+		};
+		/*
 		 * Find all slides that belong to a given chapter.
 		 * 
 		 * -1: last chapter
