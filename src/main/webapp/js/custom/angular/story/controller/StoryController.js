@@ -8,6 +8,7 @@ define(function() {
 				.init( storyId, isPreview )
 				.then(function() {
 					$scope.loader.loaded = true;
+					// TODO can't activate the remembered slide if user access the URL directly
 					StoryPersistence.activateRemembered( storyId, $scope.story.slides );
 				});
 		};
