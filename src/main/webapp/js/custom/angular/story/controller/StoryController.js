@@ -1,15 +1,16 @@
 define(function() {
 	"use strict";
 	
-	function StoryController( $scope, StoryPersistence, StoryStructure ) {
+	function StoryController( $scope, jmpress, StoryPersistence, StoryStructure ) {
 		$scope.story = {};
 		$scope.init = function( storyId, isPreview ) {
 			StoryStructure
 				.init( storyId, isPreview )
 				.then(function() {
+					jmpress.register( "selectInitialStep", function( slides ) {
+						return StoryPersistence.retrieveRememberedSlide( storyId, slides );
+					});
 					$scope.loader.loaded = true;
-					// TODO can't activate the remembered slide if user access the URL directly
-					StoryPersistence.activateRemembered( storyId, $scope.story.slides );
 				});
 		};
 		$scope.$on( "slides:change", function() {
@@ -17,5 +18,5 @@ define(function() {
 		});
 	}
 	
-	return [ "$scope", "StoryPersistence", "StoryStructure", StoryController ];
+	return [ "$scope", "jmpress", "StoryPersistence", "StoryStructure", StoryController ];
 });

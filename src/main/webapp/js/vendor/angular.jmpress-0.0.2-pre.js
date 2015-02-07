@@ -1,5 +1,5 @@
 /**
- * angular-jmpress 0.0.1
+ * angular-jmpress 0.0.2-pre
  *
  * Copyright 2014-2015 Fagner Brack (@FagnerMartinsBrack)
  *
@@ -41,56 +41,104 @@ function initialStep() {
 		}
 	};
 	this.fromStart = function( rootElement, settings ) {
-		return rootElement.find( settings.stepSelector );
+		return rootElement.find( settings.stepSelector )[ 0 ];
 	};
 	function getElementFromUrl( settings ) {
 		var element = $( "#" + window.location.hash.replace( /^#\/?/, "" ) );
 		var stepSelector = settings.stepSelector;
 		if ( element.length > 0 && element.is( stepSelector ) ) {
-			return element;
+			return element[ 0 ];
 		}
 	}
 }
 
 function jmpress() {
-	var element, methodName;
-	var instance = this;
-	var publicMethods = {
-		getActiveReference: function( steps ) {
-			var result;
-			var index = 0;
-			for ( ; index < steps.length; index += 1 ) {
-				if ( steps[ index ].active ) {
-					result = {
-						step: steps[ index ],
-						index: index
-					};
-					break;
-				}
+	var element, instanceSteps;
+	var methods = {
+		"selectInitialStep": []
+	};
+
+	this.init = function( initializedElement, scope ) {
+		element = initializedElement;
+		instanceSteps = scope.steps;
+	};
+
+	this.register = function( method, callback ) {
+		if ( !( method in methods ) ) {
+			throw new Error( "Method '" + method + "' doesn't exist!" );
+		}
+		methods[ method ].push( callback );
+	};
+
+	this.fire = function( method ) {
+		var callbackReturn;
+		var firingArguments = [].slice.call( arguments, 1 );
+		methods[ method ].some(function( callback ) {
+			callbackReturn = callback.apply( null, firingArguments );
+			if ( callbackReturn ) {
+				return true;
 			}
-			return result;
-		},
-		method: function() {
-			var args = [].slice.call( arguments );
-			return element.jmpress.apply( element, args );
+		});
+		return callbackReturn;
+	};
+
+	this.method = function() {
+		var args = [].slice.call( arguments );
+		return element.jmpress.apply( element, args );
+	};
+
+	this.activate = function( steps, callback ) {
+		if ( !Array.isArray( steps ) ) {
+			callback = steps;
+			steps = instanceSteps;
+		}
+
+		steps.forEach(function( step ) {
+			delete step.active;
+		});
+
+		steps.some(function( step ) {
+			if ( callback( step ) === true ) {
+				step.active = true;
+				return true;
+			}
+		});
+	};
+
+	this.findActive = function( index ) {
+		return this.getActive( instanceSteps, index );
+	};
+
+	this.getActive = function( steps, index ) {
+		var activeRef = this.getActiveReference( steps, index );
+		if ( activeRef ) {
+			return activeRef.step;
 		}
 	};
 
-	this.init = function( initializedElement ) {
-		element = initializedElement;
-	};
+	this.getActiveReference = function( steps, index ) {
+		var active;
+		steps.forEach(function( step, i ) {
+			if ( step.active ) {
+				active = {
+					step: step,
+					index: i
+				};
+			}
+		});
 
-	for ( methodName in publicMethods ) {
-		instance[ methodName ] = (function( methodName ) {
-			return function() {
-				var args = [].slice.call( arguments );
-				if ( !element ) {
-					console.error( "jmpress not initialized when calling '" + methodName + "'" );
-				}
-				return publicMethods[ methodName ].apply( instance, args );
-			};
-		}( methodName ));
-	}
+		var targetStep, targetIndex;
+		if ( active && index ) {
+			targetIndex = active.index + index;
+			targetStep = steps[ targetIndex ];
+			active = targetStep ? {
+				step: targetStep,
+				index: targetIndex
+			} : undefined;
+		}
+
+		return active;
+	};
 }
 
 function jmpressRoot( $compile, jmpress, initialStep ) {
@@ -123,7 +171,7 @@ function jmpressRoot( $compile, jmpress, initialStep ) {
 			});
 
 			element.jmpress();
-			jmpress.init( element );
+			jmpress.init( element, scope );
 
 			element.jmpress( "setActive", function( step, eventData ) {
 				safeApply( scope, function() {
@@ -151,16 +199,22 @@ function jmpressRoot( $compile, jmpress, initialStep ) {
 				}
 
 				// SELECTING THE INITIAL STEP
-				// The initial step does not work when we add steps dynamically with
-				// angular.
-				// For now replicate some of the behavior here.
-				var settings, firstStep;
-				if ( jmpress.getActiveReference( steps ) === undefined ) {
-					settings = jmpress.method( "settings" );
+				// The jmpress mechanism for the initial step does not work when we add steps
+				// dynamically with angular.
+				var firstStep;
+				var activeReference = jmpress.getActiveReference( steps );
+				var settings = jmpress.method( "settings" );
+				if ( !activeReference ) {
 					firstStep =
 						initialStep.fromHash( settings ) ||
+						jmpress.fire( "selectInitialStep", steps ) ||
 						initialStep.fromStart( element, settings );
-					jmpress.method( "goTo", firstStep );
+					if ( $.isPlainObject( firstStep ) ) {
+						firstStep = element.find( ".step" ).eq( steps.indexOf( firstStep ) );
+					}
+					// TODO review the contract for the "goTo" method, changing for plain
+					// element seems to change the "setActive" callbacks first argument.
+					jmpress.method( "goTo", $( firstStep ) );
 				}
 			});
 		}

@@ -7,7 +7,7 @@ define(function() {
 			stories[ storyId ] = rememberedSlide;
 			$cookieStore.put( "stories", stories );
 		};
-		this.activateRemembered = function( storyId, slides ) {
+		this.retrieveRememberedSlide = function( storyId, slides ) {
 			var stories = $cookieStore.get( "stories" );
 			if ( !stories ) {
 				// There's no story being remembered
@@ -20,7 +20,9 @@ define(function() {
 				return;
 			}
 			
-			SlidesManip.activate( slides, stored.chapter, stored.section );
+			return slides.filter(function( slide ) {
+				return slide.chapter === stored.chapter && slide.section === stored.section;
+			})[ 0 ];
 		};
 	}
 	return [ "$cookieStore", "SlidesManip", StoryPersistence ];
