@@ -1,7 +1,13 @@
 /*
  * Custom configuration for story viewer using jmpress plugin structure
  */
-define( [ "jquery", "jmpress/core", "jmpress/viewport", "jmpress/near" ], function( $ ) {
+define([
+	"jquery",
+	"viewport",
+	"jmpress/core",
+	"jmpress/viewport",
+	"jmpress/near"
+], function( $, viewport ) {
 	"use strict";
 	
 	function firstSlide( step, eventData ) {
@@ -11,7 +17,10 @@ define( [ "jquery", "jmpress/core", "jmpress/viewport", "jmpress/near" ], functi
 	// VIEWPORT
 	// A viewport config is necessary to enable auto resize of the content on window resize
 	$.jmpress( "beforeActive", function( step, eventData ) {
-		eventData.stepData.viewPortWidth = 2000;
+		eventData.stepData.viewPortWidth = 500;
+		if ( viewport.is( "SM" ) ) {
+			eventData.stepData.viewPortWidth = 2000;
+		}
 	});
 	
 	// CUSTOM FLOW

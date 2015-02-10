@@ -40,6 +40,7 @@ require = (function( require ) {
 					"jquery.jmpress": "js/jquery.jmpress",
 					"jquery.jmpress.story": "js/jquery.jmpress.story",
 					"webstories": "js/webstories",
+					"viewport": "js/viewport",
 					
 					// Vendor modules
 					"bootstrap": "../js/bootstrap-3.2.0",
