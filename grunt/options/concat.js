@@ -30,12 +30,14 @@ module.exports = function( grunt ) {
 		js: {
 			files: {
 				"src/main/webapp/static/js/polyfills.js": [
-					// PhantomJS
+					// PhantomJS <= 1
 					"src/main/webapp/js/polyfills/bind.js",
 					// Browsers that lack a console
 					"src/main/webapp/js/polyfills/console.js",
 					// IE <= 11
-					"src/main/webapp/js/polyfills/promise.js"
+					"src/main/webapp/js/polyfills/promise.js",
+					// IE <= 9
+					"src/main/webapp/js/polyfills/matchMedia.js"
 				]
 			}
 		}
