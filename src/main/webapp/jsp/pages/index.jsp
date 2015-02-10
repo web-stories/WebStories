@@ -39,7 +39,7 @@
                   <img class="media-object" height="60" width="60" src="${story.author.avatarURL}" alt="(Avatar)">
                 </a>
                 <div class="media-body" title="${story.description}">
-                  <a class="story-thumb-title" href="${pageContext.request.contextPath}/view/stories/?id=${story.id}#section-0-0">
+                  <a class="story-thumb-title" href="${pageContext.request.contextPath}/view/stories/?id=${story.id}">
                     ${story.title}
                   </a>
                   <p class="story-thumb-summary">

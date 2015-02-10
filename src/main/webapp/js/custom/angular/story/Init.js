@@ -6,6 +6,7 @@ define([
 	"js/story/service/SlidesBehavior",
 	"js/story/service/ControlsManip",
 	"js/story/service/StoryControls",
+	"js/story/service/StoryPersistence",
 	"js/story/controller/PageController",
 	"js/story/controller/StoryController",
 	"js/story/controller/ControlsController",
@@ -14,6 +15,7 @@ define([
 	"js/global/directive/AlertDirective",
 	"js/global/directive/BootstrapModal",
 	"js/global/filter/HTMLTrustedFilter",
+	"angular.cookies",
 	"angular.resource",
 	"angular.jmpress"
 ], function(
@@ -24,6 +26,7 @@ define([
 	SlidesBehavior,
 	ControlsManip,
 	StoryControls,
+	StoryPersistence,
 	PageController,
 	StoryController,
 	ControlsController,
@@ -34,13 +37,14 @@ define([
 	HTMLTrustedFilter
 ) {
 	"use strict";
-	angular.module( "ws.story", [ "ngResource", "jmpress" ] )
+	angular.module( "ws.story", [ "ngResource", "ngCookies", "jmpress" ] )
 		.service( "StoryResource", StoryResource )
 		.service( "StoryStructure", StoryStructure )
 		.service( "SlidesManip", SlidesManip )
 		.service( "SlidesBehavior", SlidesBehavior )
 		.service( "ControlsManip", ControlsManip )
 		.service( "StoryControls", StoryControls )
+		.service( "StoryPersistence", StoryPersistence )
 		.controller( "PageController", PageController )
 		.controller( "StoryController", StoryController )
 		.controller( "ControlsController", ControlsController )

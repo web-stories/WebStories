@@ -40,6 +40,7 @@ require = (function( require ) {
 					"jquery.jmpress": "js/jquery.jmpress",
 					"jquery.jmpress.story": "js/jquery.jmpress.story",
 					"webstories": "js/webstories",
+					"viewport": "js/viewport",
 					
 					// Vendor modules
 					"bootstrap": "../js/bootstrap-3.2.0",
@@ -58,9 +59,10 @@ require = (function( require ) {
 					"fastclick": "../js/fastclick-1.0.3",
 					"lodash": "../js/lodash-2.4.1",
 					"angular": "../js/angular-1.3.4",
+					"angular.cookies": "../js/angular.cookies-1.3.4",
 					"angular.resource": "../js/angular.resource-1.3.4",
 					"angular.smoothscroll": "../js/angular.smoothscroll-1.7.1",
-					"angular.jmpress": "../js/angular.jmpress-0.0.1",
+					"angular.jmpress": "../js/angular.jmpress-0.0.2-pre",
 					
 					// Make jQuery method private
 					"jquery": "js/jquery.private"
