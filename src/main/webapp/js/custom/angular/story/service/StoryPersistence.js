@@ -1,8 +1,8 @@
 define(function() {
 	"use strict";
-	function StoryPersistence( $cookieStore, SlidesManip ) {
+	function StoryPersistence( $cookieStore, jmpress ) {
 		this.rememberSlide = function( storyId, slides ) {
-			var rememberedSlide = SlidesManip.findPreviousFromActive( slides );
+			var rememberedSlide = jmpress.getActive( slides, -1 );
 			var stories = $cookieStore.get( "stories" ) || {};
 			stories[ storyId ] = rememberedSlide;
 			$cookieStore.put( "stories", stories );
@@ -25,5 +25,5 @@ define(function() {
 			})[ 0 ];
 		};
 	}
-	return [ "$cookieStore", "SlidesManip", StoryPersistence ];
+	return [ "$cookieStore", "jmpress", StoryPersistence ];
 });

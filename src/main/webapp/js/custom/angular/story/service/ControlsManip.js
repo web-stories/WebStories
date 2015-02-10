@@ -1,9 +1,9 @@
 define(function() {
 	"use strict";
 	
-	function ControlsManip( SlidesManip ) {
+	function ControlsManip( SlidesManip, jmpress ) {
 		this.findChapterSiblings = function( slides ) {
-			var activeSlide = SlidesManip.findActive( slides );
+			var activeSlide = jmpress.getActive( slides );
 			var lastChapterSlides = SlidesManip.findChapterSlides( slides, -1 );
 			
 			if ( !activeSlide || activeSlide.chapter === 0 ) {
@@ -29,5 +29,5 @@ define(function() {
 			};
 		};
 	}
-	return [ "SlidesManip", ControlsManip ];
+	return [ "SlidesManip", "jmpress", ControlsManip ];
 });
