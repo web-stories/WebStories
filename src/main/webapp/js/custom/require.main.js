@@ -62,7 +62,7 @@ require = (function( require ) {
 					"angular.cookies": "../js/angular.cookies-1.3.4",
 					"angular.resource": "../js/angular.resource-1.3.4",
 					"angular.smoothscroll": "../js/angular.smoothscroll-1.7.1",
-					"angular.jmpress": "../js/angular.jmpress-0.0.2-pre",
+					"angular.jmpress": "../js/angular.jmpress-0.0.2",
 					
 					// Make jQuery method private
 					"jquery": "js/jquery.private"
