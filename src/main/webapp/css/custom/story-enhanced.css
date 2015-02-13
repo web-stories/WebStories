@@ -37,8 +37,8 @@
   }
 }
 
-/* Samsung Galaxy Gran Neo Duos - Landscape */
-@media ( width: 534px ) and ( height: 239px ) {
+/* smartphones in landscape mode */
+@media ( max-height: 300px ) {
   .story-content {
     font-size: 11.2px;
   }
