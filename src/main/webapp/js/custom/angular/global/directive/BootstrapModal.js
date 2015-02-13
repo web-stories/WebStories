@@ -39,6 +39,10 @@ define( [ "js/global/directive/DirectiveUtils", "bootstrap" ], function( Directi
 				});
 				
 				element.on( "hide.bs.modal", function() {
+					// Update the open state when the modal is closed from outside an
+					// angular digest cycle
+					delete scope.isOpen;
+					
 					if ( scope.onHide ) {
 						$timeout( scope.onHide );
 					}
