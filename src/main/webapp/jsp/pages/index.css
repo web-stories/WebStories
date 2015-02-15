@@ -24,3 +24,11 @@
 .index-stories-container {
   margin-top: -75px;
 }
+
+.motivational-block {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.quote {
+  width: auto;
+}

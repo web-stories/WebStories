@@ -57,21 +57,18 @@
     </div>
   </div>
 </c:if>
-<div class="container">
-  <div class="page-header">
-    <h1>Planos futuros</h1>
+<div class="container motivational-block">
+  <hr>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <blockquote class="quote">
+        Acredite em si mesmo e descubra o por quê você faz o que faz, assim descobrirá o seu
+        o potencial para fazer o que quiser.
+      </blockquote>
+    </div>
   </div>
-  <ul>
-    <li>
-      Permitir a criação de histórias colaborativas
-    </li>
-    <li>
-      Possibilitar a criação de histórias no estilo
-      <a href="http://en.wikipedia.org/wiki/Choose_Your_Own_Adventure">Choose your own adventure</a>
-    </li>
-    <li>
-      Melhorar a experiência do leitor permitindo o uso de imagens e efeitos sonoros relevantes para
-      o conteúdo da história
-    </li>
-  </ul>
+  <hr>
+  <div class="text-center">
+    <a href="${pageContext.request.contextPath}/about">O que é Web Stories?</a>
+  </div>
 </div>
