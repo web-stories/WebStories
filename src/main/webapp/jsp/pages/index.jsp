@@ -1,5 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="facebook" tagdir="/WEB-INF/tags/facebook" %>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=707830335964914&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <jsp:include page="/jsp/include/header.jsp"/>
 <div class="jumbotron index-banner">
   <div class="container index-banner-container">
@@ -58,17 +66,26 @@
   </div>
 </c:if>
 <div class="container motivational-block">
-  <hr>
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <div class="col-sm-6 col-md-8">
+      <hr>
       <blockquote class="quote">
         Acredite em si mesmo e descubra o por quê você faz o que faz, assim descobrirá o seu
         o potencial para fazer o que quiser.
       </blockquote>
+      <hr>
+      <div class="text-center">
+        <a href="${pageContext.request.contextPath}/about">O que é Web Stories?</a>
+      </div>
     </div>
-  </div>
-  <hr>
-  <div class="text-center">
-    <a href="${pageContext.request.contextPath}/about">O que é Web Stories?</a>
+    <div class="hidden-xs col-sm-6 col-md-4">
+      <div class="fb-like-box"
+           data-href="https://www.facebook.com/webstories.org"
+           data-colorscheme="light"
+           data-show-faces="true"
+           data-header="false"
+           data-stream="false"
+           data-show-border="false">Loading...</div>
+    </div>
   </div>
 </div>
