@@ -1,0 +1,1 @@
+<meta name="description" content="Plataforma inovadora para a criação de histórias na web, porque você tem o potencial para criar grandes histórias.">

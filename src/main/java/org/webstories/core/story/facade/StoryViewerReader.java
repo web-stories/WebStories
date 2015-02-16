@@ -27,6 +27,7 @@ import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.ChapterState;
 import org.webstories.dao.story.SectionEntity;
 import org.webstories.dao.story.StoryEntity;
+import org.webstories.web.IndividualPageSEO;
 
 @Stateless
 public class StoryViewerReader implements LocalStoryViewerReader {
@@ -75,6 +76,15 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 		viewer.setStoryId( story.getId() );
 		
 		return viewer;
+	}
+	@Override
+	public IndividualPageSEO storySEO( long idStory ) {
+		StoryEntity story = entityManager.find( StoryEntity.class, idStory );
+		IndividualPageSEO result = new IndividualPageSEO
+			.Builder()
+				.description( story.getMeta().getSummary() )
+			.build();
+		return result;
 	}
 	private boolean containsDraft( List<ChapterEntity> chapters ) {
 		for ( ChapterEntity chapter : chapters ) {

@@ -1,0 +1,1 @@
+<meta name="description" content="Descubra o que é e como surgiu a plataforma Web Stories.">

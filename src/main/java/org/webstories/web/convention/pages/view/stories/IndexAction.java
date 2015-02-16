@@ -29,5 +29,7 @@ public class IndexAction extends BaseServlet {
 		if ( !storyReader.isPubliclyViewable( idStory ) ) {
 			throw new HttpNotFoundException( "Story not found" + idStory );
 		}
+		
+		request.setAttribute( "seo", storyReader.storySEO( idStory ) );
 	}
 }
