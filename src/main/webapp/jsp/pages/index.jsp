@@ -13,7 +13,7 @@
   <div class="container index-banner-container">
     <h1>Web Stories</h1>
     <p class="index-banner-paragraph">
-      Porque você tem o potencial para criar grandes histórias
+      Você tem o potencial para criar grandes histórias
     </p>
     <c:if test="${canPublish}">
       <p>
@@ -75,7 +75,8 @@
       </blockquote>
       <hr>
       <div class="text-center">
-        <a href="${pageContext.request.contextPath}/about">O que é Web Stories?</a>
+        É o pensamento acima que sustenta Web Stories.<br>
+        <a href="${pageContext.request.contextPath}/about">Clique para saber mais.</a>
       </div>
     </div>
     <div class="hidden-xs col-sm-6 col-md-4">

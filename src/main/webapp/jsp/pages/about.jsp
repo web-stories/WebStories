@@ -1,10 +1,10 @@
 <jsp:include page="/jsp/include/header.jsp"/>
 <div class="container">
+  <div class="introduction-title">
+    <h1 class="text-center">O que é Web Stories?</h1>
+  </div>
   <div class="row">
     <div class="col-md-6">
-      <div class="introduction-article-title">
-        <h1>Apresentação</h1>
-      </div>
       <p>
         Olá, meu nome é <a href="https://www.facebook.com/fagner.brack">Fagner Brack</a>.
       </p>
@@ -33,9 +33,6 @@
       </p>
     </div>
     <div class="col-md-6">
-      <div class="introduction-article-title">
-        <h1>Por quê?</h1>
-      </div>
       <p>
         Livros tratam de expressar uma história no formato de texto. Este tipo de informação não
         precisa estar restrita a textos estáticos, ela deve ser possível de ser expressada
@@ -45,14 +42,15 @@
       </p>
       <p>
         O meu sonho é criar uma forma de permitir que as pessoas possam compartilhar contos e
-        histórias utilizando textos e imagens em uma plataforma simples, direta, gratuita e com o
+        histórias utilizando textos, sons e imagens em uma plataforma simples, gratuita e com o
         potencial para a criação de histórias colaborativas com finais alternativos.
       </p>
       <p>
         Isso é <strong>Web Stories</strong>.
       </p>
       <p>
-        Quer concretizar este sonho junto?
+        Quer concretizar este sonho junto?<br>
+        <a href="//facebook.com/webstories.org">Então clique aqui para acompanhar no Facebook!</a>
       </p>
     </div>
   </div>
