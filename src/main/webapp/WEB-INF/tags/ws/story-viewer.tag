@@ -94,22 +94,23 @@
             </div>
             <div class="modal-body">
               <div ng-if="story.finished">
-                <p>
-                  Obrigado por ler esta história!<br>
+                <p class="text-center">
+                  Esta história chegou ao fim, obrigado!<br>
                 </p>
               </div>
               <div ng-if="!story.finished">
-                <p>
-                  Este capítulo chegou ao fim, mas a história ainda não acabou!
-                </p>
-                <p>
-                  Fique ligado!
+                <p class="text-center">
+                  Este capítulo chegou ao fim, mas a história ainda não acabou! Fique ligado!
                 </p>
               </div>
-              <p class="text-muted">
-                Se quiser ficar por dentro ou ajudar com sugestões visite  
-                <a href="http://facebook.com/webstories.org">fb.com/webstories.org</a>.
-              </p>
+              <c:if test="${ not isPreview }">
+                <div class="story-sharing-wrapper">
+                  <div class="story-sharing-container">
+                    <div class="addthis_sharing_toolbox"></div>
+                    #compartilhe
+                  </div>
+                </div>
+              </c:if>
             </div>
             <div class="modal-footer">
               <a class="btn btn-primary" type="button" href="${pageContext.request.contextPath}/">

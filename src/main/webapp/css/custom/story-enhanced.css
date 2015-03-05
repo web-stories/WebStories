@@ -159,3 +159,14 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Story sharing
+   ========================================================================== */
+   
+.story-sharing-wrapper {
+  text-align: center;
+}
+.story-sharing-container {
+  display: inline-block;
+  color: #777;
+}
