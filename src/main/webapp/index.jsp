@@ -62,5 +62,6 @@
       });
     </script>
     <convention:include-script/>
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54f8c9bf1520f925" async="async"></script>
   </body>
 </html>
