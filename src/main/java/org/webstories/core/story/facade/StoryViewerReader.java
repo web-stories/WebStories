@@ -83,6 +83,7 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 		IndividualPageSEO result = new IndividualPageSEO
 			.Builder()
 				.description( story.getMeta().getSummary() )
+				.title( story.getMeta().getTitle() )
 			.build();
 		return result;
 	}
