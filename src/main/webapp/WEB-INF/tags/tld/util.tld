@@ -12,8 +12,8 @@
     <function-signature>java.lang.String encode(java.lang.String)</function-signature>
   </function>
   <function>
-    <name>buildURI</name>
+    <name>concatQuery</name>
     <function-class>org.webstories.web.tags.URLFunctions</function-class>
-    <function-signature>java.lang.String buildURI(java.lang.String,java.lang.String)</function-signature>
+    <function-signature>java.lang.String concatQuery(java.lang.String,java.lang.String)</function-signature>
   </function>
 </taglib>
