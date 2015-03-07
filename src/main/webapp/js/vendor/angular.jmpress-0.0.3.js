@@ -1,5 +1,5 @@
 /**
- * angular-jmpress 0.0.2-pre
+ * angular-jmpress 0.0.3
  *
  * Copyright 2014-2015 Fagner Brack (@FagnerMartinsBrack)
  *
@@ -44,7 +44,7 @@ function initialStep() {
 		return rootElement.find( settings.stepSelector )[ 0 ];
 	};
 	function getElementFromUrl( settings ) {
-		var element = $( "#" + window.location.hash.replace( /^#\/?/, "" ) );
+		var element = $( document.getElementById( window.location.hash.replace( /^#\/?/, "" ) ) );
 		var stepSelector = settings.stepSelector;
 		if ( element.length > 0 && element.is( stepSelector ) ) {
 			return element[ 0 ];

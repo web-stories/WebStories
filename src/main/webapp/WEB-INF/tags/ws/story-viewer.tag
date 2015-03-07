@@ -1,5 +1,6 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="util" uri="http://java.webstories.org/jsp/jstl/util" %>
 <%@ attribute name="isPreview" %>
 
 <c:if test="${ empty isPreview }">
@@ -105,7 +106,8 @@
               </div>
               <div class="story-sharing-wrapper">
                 <div class="story-sharing-container">
-                  <div class="addthis_sharing_toolbox"></div>
+                  <div class="addthis_sharing_toolbox"
+                       data-url="${util:concatQuery( requestScope['com.fagnerbrack.servlet.convention.original_url'], requestScope['javax.servlet.forward.query_string'] )}"></div>
                   #compartilhe
                 </div>
               </div>
