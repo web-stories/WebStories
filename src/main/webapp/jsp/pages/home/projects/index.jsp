@@ -51,7 +51,7 @@
                    scroll-if="{{ scrollable.chapterId === chapter.id }}"
                    easing="easeOutQuint"
                    duration="800"
-                   offset="71">
+                   offset="20">
               <div class="editor-chapter" ng-attr-id="chapter-{{ chapter.position }}" ng-controller="ChapterController">
                 <h2 class="editor-chapter-title-header">
                   Capítulo {{ chapter.position }}
@@ -142,7 +142,7 @@
                    scroll-to="chapter-{{ chapter.position }}"
                      easing="easeOutQuint"
                      duration="500"
-                     offset="71" <%-- navbar height --%>
+                      offset="20"
                 >
                   Capítulo {{ chapter.position }}
                 </a>
