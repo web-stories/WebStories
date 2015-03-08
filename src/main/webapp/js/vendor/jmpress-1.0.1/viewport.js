@@ -34,8 +34,7 @@
 		maxScale: 0,
 		minScale: 0,
 		zoomable: 0,
-		zoomBindMove: true,
-		zoomBindWheel: true
+		zoomBindMove: true
 	};
 	// Depends on transform.js
 	defaults.reasonableAnimation.resize = {
@@ -64,29 +63,6 @@
 		eventData.current.userZoom = 0;
 		eventData.current.userTranslateX = 0;
 		eventData.current.userTranslateY = 0;
-		if ( eventData.settings.viewPort.zoomBindWheel ) {
-
-			$( eventData.settings.fullscreen ? document : this ).bind([
-				"mousewheel" + eventData.current.viewPortNamespace,
-				"DOMMouseScroll" + eventData.current.viewPortNamespace
-			].join( " " ), function( event, delta ) {
-				delta = delta || event.originalEvent.wheelDelta ||
-					-event.originalEvent.detail /* mozilla */;
-				var direction = ( delta / Math.abs( delta ) );
-				if ( direction < 0 ) {
-					$( eventData.jmpress ).jmpress(
-						"zoomOut",
-						event.originalEvent.clientX, event.originalEvent.clientY
-					);
-				} else if ( direction > 0 ) {
-					$( eventData.jmpress ).jmpress(
-						"zoomIn",
-						event.originalEvent.clientX, event.originalEvent.clientY
-					);
-				}
-				return false;
-			});
-		}
 		if ( eventData.settings.viewPort.zoomBindMove ) {
 			$( eventData.settings.fullscreen ? document : this )
 			.bind( "mousedown" + eventData.current.viewPortNamespace, function( event ) {
