@@ -96,6 +96,10 @@
                             <iframe class="preview-box" ng-src="{{ previewURL | urlTrusted }}"></iframe>
                           </div>
                           <div class="modal-footer">
+                            <button class="btn btn-default" type="button" data-dismiss="modal" ng-click="previewPopup()">
+                              <span class="icon-eye"></span>
+                              <span class="hidden-xs">Em uma nova janela</span>
+                            </button>
                             <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
                           </div>
                         </div>
@@ -122,7 +126,7 @@
                                 <span class="icon-down"></span>
                                 <span class="hidden-xs">Nova seção</span>
                               </button>
-                              <button class="btn btn-default hidden-xs"
+                              <button class="btn btn-default"
                                       ng-click="previewSection()"
                                       ng-disabled="previewable === false">
                                 <span class="icon-eye"></span>
