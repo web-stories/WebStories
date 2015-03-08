@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="facebook" tagdir="/WEB-INF/tags/facebook" %>
+<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -8,7 +9,7 @@
   js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=707830335964914&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<jsp:include page="/jsp/include/header.jsp"/>
+<ws:header/>
 <div class="jumbotron index-banner">
   <div class="container index-banner-container">
     <h1>Web Stories</h1>

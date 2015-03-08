@@ -1,4 +1,5 @@
-<jsp:include page="/jsp/include/header.jsp"/>
+<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<ws:header/>
 <div class="container">
   <div class="error-message-container">
     <h1>

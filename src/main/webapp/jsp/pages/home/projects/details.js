@@ -22,3 +22,13 @@ require( ["jquery"], function( $ ) {
 		keydown: replaceLF
 	});
 });
+
+// Make sure use knows it has to be saved on mobile devices portrait
+// In portrait the save button is hidden in the bottom
+require( ["jquery"], function( $ ) {
+	"use strict";
+	$( "#details-meta-synopsis, #details-meta-title, #details-meta-summary" )
+		.on( "keyup", function() {
+			$( ".save-reminder" ).show();
+		});
+});
