@@ -1,4 +1,5 @@
-<jsp:include page="/jsp/include/header.jsp"/>
+<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<ws:header/>
 <div class="container">
   <div class="introduction-title">
     <h1 class="text-center">O que é Web Stories?</h1>

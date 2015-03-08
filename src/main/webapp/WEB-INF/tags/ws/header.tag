@@ -1,11 +1,18 @@
+<%@ tag pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ attribute name="smartphoneNav" %>
+<c:if test="${ empty smartphoneNav }">
+  <c:set var="smartphoneNav" value="true"/>
+</c:if>
 <c:set var="uri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-<nav class="navbar navbar-default navbar-fixed-top header-navbar">
+<nav class="navbar navbar-default header-navbar">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle collapsed header-navbar-toggle" data-toggle="collapse" data-target="#main-navbar" type="button">
-      <span class="sr-only">Toggle navigation</span>
+      <button class="navbar-toggle collapsed header-navbar-toggle ${ not smartphoneNav ? 'hidden-xs' : '' }"
+              data-toggle="collapse" data-target="#main-navbar"
+              type="button">
+        <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>

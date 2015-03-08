@@ -19,8 +19,11 @@ import org.webstories.core.integration.OAuth2Token;
 import org.webstories.core.integration.OAuth2TokenException;
 import org.webstories.core.integration.OAuth2TokenFactory;
 import org.webstories.core.invitation.LocalInviteAuthorization;
+import org.webstories.core.utils.SHA256;
+import org.webstories.dao.user.UserQueries;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.BaseServlet;
+import org.webstories.web.util.servlet.HttpInternalServerErrorException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
@@ -34,6 +37,9 @@ public class LogonAction extends BaseServlet {
 	
 	@EJB
 	LocalInviteAuthorization inviteAuthorization;
+	
+	@EJB
+	UserQueries userQueries;
 	
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
@@ -54,6 +60,27 @@ public class LogonAction extends BaseServlet {
 			response.sendRedirect( data.getRedirect() );
 		} catch ( OAuth2TokenException | AuthenticationException e ) {
 			throw new ServletException( e );
+		}
+	}
+	
+	@Override
+	protected void doPost( HttpServletRequest request, HttpServletResponse response )
+	throws HttpInternalServerErrorException {
+		// There's no default login implementation yet, this is just for internal use
+		
+		try {
+			String secret = request.getParameter( "secret" );
+			String actual = SHA256.encrypt( secret );
+			String expected = "6db8e0d9747198a8c4a9a0a6b93e72676aeb2cbc6a75b98d5a96520f13ab9d19";
+			
+			if ( actual.equals( expected ) ) {
+				Logged logged = Logged.from( userQueries.findByPrimaryKey( 1L ) );
+				setLogged( logged, request );
+			}
+			
+			response.sendRedirect( request.getContextPath() + "/home/projects" );
+		} catch ( Exception e ) {
+			throw new HttpInternalServerErrorException( e );
 		}
 	}
 	

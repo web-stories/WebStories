@@ -1,4 +1,4 @@
-define( [ "webstories" ], function( webstories ) {
+define( [ "webstories", "viewport" ], function( webstories, viewport ) {
 	"use strict";
 	function SectionController( $scope, $timeout, EditorContent, EditorSectionValidation ) {
 		// ========================================================================================
@@ -7,18 +7,22 @@ define( [ "webstories" ], function( webstories ) {
 		
 		$scope.previewModal = {};
 		$scope.loadPreview = function() {
-			var context = webstories.contextPath;
-			var path = "/view/stories/preview";
-			var query = "id=" + $scope.editor.id;
-			var hash = "section-" + $scope.chapter.position + "-" + $scope.section.position;
-			$scope.previewURL = context + path + "?" + query + "#" + hash;
+			$scope.previewURL = generatePreviewURL();
 		};
 		// Should not leave all iframes loaded, otherwise noticeable performance issues occur
 		$scope.unloadPreview = function() {
 			$scope.previewURL = "about:blank";
 		};
 		$scope.previewSection = function() {
-			$scope.previewModal.show = true;
+			// Open modal for larger screens
+			if ( viewport.is( "SM" ) ) {
+				$scope.previewModal.show = true;
+			} else {
+				window.open( generatePreviewURL() );
+			}
+		};
+		$scope.previewPopup = function() {
+			window.open( generatePreviewURL() );
 		};
 		$scope.$watch( "section.text", function( newText, oldText ) {
 			if ( newText !== oldText ) {
@@ -26,6 +30,13 @@ define( [ "webstories" ], function( webstories ) {
 				$scope.previewable = false;
 			}
 		});
+		function generatePreviewURL() {
+			var context = webstories.contextPath;
+			var path = "/view/stories/preview";
+			var query = "id=" + $scope.editor.id;
+			var hash = "section-" + $scope.chapter.position + "-" + $scope.section.position;
+			return context + path + "?" + query + "#" + hash;
+		}
 		
 		// If editing and clicking for previewing too fast, the changes don't have
 		// time to persist. So ensure the changes are persisted first before releasing the

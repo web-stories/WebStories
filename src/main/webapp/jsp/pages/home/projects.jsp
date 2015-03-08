@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags/bootstrap" %>
-<jsp:include page="/jsp/include/header.jsp"/>
+<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<ws:header/>
 <div id="meta" data-nostory="${nostory}"></div>
 <div class="container toolbar">
   <div class="row">

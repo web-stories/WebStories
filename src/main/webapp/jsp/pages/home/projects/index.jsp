@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="/jsp/include/header.jsp"/>
+<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<ws:header/>
 <div ng-controller="PageController">
   <ws-alert data="alert"></ws-alert>
   <div class="container">
@@ -42,24 +42,37 @@
         <img src="${pageContext.request.contextPath}/static/img/loading-dots.gif">
       </div>
       <div class="row" ng-cloak>
-        <div class="col-sm-8 col-lg-9">
+        <div class="col-sm-8 col-lg-9" ng-controller="MenuController">
           <div class="editor-chapters"
                ng-controller="EditableController"
                ng-show="loader.ready">
+            <!-- This is necessary to start the story from mobile devices -->
+            <div ng-show="!editor.chapters.length">
+              <div class="text-center">
+                <button class="btn btn-link" href="javascript:void(0)" ng-click="addChapter()">
+                  Começar o primeiro capítulo
+                </button>
+              </div>
+            </div>
             <div ng-repeat="chapter in editor.chapters"
                  smooth-scroll
                    scroll-if="{{ scrollable.chapterId === chapter.id }}"
                    easing="easeOutQuint"
                    duration="800"
-                   offset="71">
+                   offset="20">
               <div class="editor-chapter" ng-attr-id="chapter-{{ chapter.position }}" ng-controller="ChapterController">
                 <h2 class="editor-chapter-title-header">
                   Capítulo {{ chapter.position }}
-                  <small class="text-success" ng-show="chapter.published">
+                  <small class="text-success" ng-show="chapter.publishable === false">
                     publicado
                   </small>
-                  <small ng-show="!chapter.published">
+                  <small class="hidden-xs" ng-show="chapter.publishable === null">
                     rascunho
+                  </small>
+                  <small class="visible-xs-inline" ng-show="chapter.publishable === true">
+                    <a href="javascript:void(0)" ng-click="publish( chapter.id )">
+                      publicar
+                    </a>
                   </small>
                 </h2>
                 <input class="form-control editor-chapter-title-name" type="text"
@@ -83,6 +96,10 @@
                             <iframe class="preview-box" ng-src="{{ previewURL | urlTrusted }}"></iframe>
                           </div>
                           <div class="modal-footer">
+                            <button class="btn btn-default" type="button" data-dismiss="modal" ng-click="previewPopup()">
+                              <span class="icon-eye"></span>
+                              <span class="hidden-xs">Em uma nova janela</span>
+                            </button>
                             <button class="btn btn-primary" type="button" data-dismiss="modal">Fechar</button>
                           </div>
                         </div>
@@ -109,7 +126,7 @@
                                 <span class="icon-down"></span>
                                 <span class="hidden-xs">Nova seção</span>
                               </button>
-                              <button class="btn btn-default hidden-xs"
+                              <button class="btn btn-default"
                                       ng-click="previewSection()"
                                       ng-disabled="previewable === false">
                                 <span class="icon-eye"></span>
@@ -128,6 +145,11 @@
                   </div>
                 </div>
               </div>
+              <div class="text-center" ng-show="$last">
+                <button class="btn btn-link" ng-click="addChapter()">
+                  Novo capítulo
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -142,7 +164,7 @@
                    scroll-to="chapter-{{ chapter.position }}"
                      easing="easeOutQuint"
                      duration="500"
-                     offset="71" <%-- navbar height --%>
+                      offset="20"
                 >
                   Capítulo {{ chapter.position }}
                 </a>

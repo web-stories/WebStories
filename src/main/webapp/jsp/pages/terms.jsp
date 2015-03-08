@@ -1,4 +1,5 @@
-<jsp:include page="/jsp/include/header.jsp"/>
+<%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
+<ws:header/>
 <div class="container">
   <h1 class="terms-title">
     Termos e Condições ("Termos")
