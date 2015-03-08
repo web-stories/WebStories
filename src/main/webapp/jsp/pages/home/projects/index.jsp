@@ -42,7 +42,7 @@
         <img src="${pageContext.request.contextPath}/static/img/loading-dots.gif">
       </div>
       <div class="row" ng-cloak>
-        <div class="col-sm-8 col-lg-9">
+        <div class="col-sm-8 col-lg-9" ng-controller="MenuController">
           <div class="editor-chapters"
                ng-controller="EditableController"
                ng-show="loader.ready">
@@ -55,11 +55,16 @@
               <div class="editor-chapter" ng-attr-id="chapter-{{ chapter.position }}" ng-controller="ChapterController">
                 <h2 class="editor-chapter-title-header">
                   Capítulo {{ chapter.position }}
-                  <small class="text-success" ng-show="chapter.published">
+                  <small class="text-success" ng-show="chapter.publishable === false">
                     publicado
                   </small>
-                  <small ng-show="!chapter.published">
+                  <small class="hidden-xs" ng-show="chapter.publishable === null">
                     rascunho
+                  </small>
+                  <small class="visible-xs-inline" ng-show="chapter.publishable === true">
+                    <a href="javascript:void(0)" ng-click="publish( chapter.id )">
+                      publicar
+                    </a>
                   </small>
                 </h2>
                 <input class="form-control editor-chapter-title-name" type="text"
