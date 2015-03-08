@@ -46,6 +46,14 @@
           <div class="editor-chapters"
                ng-controller="EditableController"
                ng-show="loader.ready">
+            <!-- This is necessary to start the story from mobile devices -->
+            <div ng-show="!editor.chapters.length">
+              <div class="text-center">
+                <button class="btn btn-link" href="javascript:void(0)" ng-click="addChapter()">
+                  Começar o primeiro capítulo
+                </button>
+              </div>
+            </div>
             <div ng-repeat="chapter in editor.chapters"
                  smooth-scroll
                    scroll-if="{{ scrollable.chapterId === chapter.id }}"
@@ -132,6 +140,11 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="text-center" ng-show="$last">
+                <button class="btn btn-link" ng-click="addChapter()">
+                  Novo capítulo
+                </button>
               </div>
             </div>
           </div>
