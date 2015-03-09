@@ -18,4 +18,7 @@
   <changeSet author="Fagner Brack" id="activities">
     <sqlFile path="scripts/activities.sql" relativeToChangelogFile="true"/>
   </changeSet>
+  <changeSet author="Fagner Brack" id="invitations-rework">
+    <sqlFile path="scripts/invitations-rework.sql" relativeToChangelogFile="true"/>
+  </changeSet>
 </databaseChangeLog>
