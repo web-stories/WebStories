@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.eclipse.jdt.annotation.Nullable;
 import org.webstories.dao.NumerableEntity;
 
 @Entity
@@ -23,8 +24,8 @@ public class InviteEntity implements NumerableEntity {
 	@GeneratedValue( strategy = GenerationType.TABLE, generator = "invite_sequence" )
 	private Long id_invite;
 	
-	@Column( nullable = false, unique = true, length = 255 )
-	private String ds_email;
+	@Column( unique = true, length = 255 )
+	private @Nullable String ds_email;
 	
 	@Column( nullable = false, unique = true, length = 255 )
 	private String cod_invite;
@@ -37,7 +38,7 @@ public class InviteEntity implements NumerableEntity {
 		this.id_invite = id_invite;
 	}
 	
-	public String getEmail() {
+	public @Nullable String getEmail() {
 		return ds_email;
 	}
 	public void setEmail( String ds_email ) {

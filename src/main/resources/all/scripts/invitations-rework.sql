@@ -1,0 +1,1 @@
+ALTER TABLE ws_invite ALTER ds_email DROP NOT NULL;
