@@ -1,0 +1,16 @@
+.main-title {
+  margin-top: 0;
+}
+/*
+ * 1. Bootstrap override
+ */
+.invites-table td,
+.invited-table td {
+  vertical-align: middle !important; /* 1 */
+}
+.invites-table-using {
+  width: 145px;
+}
+.invited-avatar {
+  width: 0px;
+}
