@@ -64,10 +64,12 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		
 		InviteEntity invite = inviteQueries.findByInviteCode( data.getInviteCode() );
 		if ( invite == null ) {
-			throw new AuthenticationException( "Invalid invitation code: " + data.getInviteCode() );
+			throw new AuthenticationException(
+				"This invitation code does not exist: " + data.getInviteCode()
+			);
 		}
 		
-		// If the user refused to share the e-mail this field will be null
+		// If the user refused to share the e-mail, this field will be null
 		if ( facebookEmail == null ) {
 			throw new AuthenticationException( "E-mail not available" );
 		}
