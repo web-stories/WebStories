@@ -74,6 +74,12 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			throw new AuthenticationException( "E-mail not available" );
 		}
 		
+		// If the invitation does not contain an e-mail, then it means the invitation was not
+		// previously reserved
+		if ( invite.getEmail() == null ) {
+			invite.setEmail( facebookEmail );
+		}
+		
 		if ( !facebookEmail.equals( invite.getEmail() ) ) {
 			// Log both e-mails in case the user informs the e-mail with something different.
 			// A situation happened when the user informed the e-mail manually for invitation, but
