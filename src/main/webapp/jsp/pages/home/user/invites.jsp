@@ -39,12 +39,7 @@
               <td class="invites-table-using">
                 <button class="btn btn-default">
                   <span class="icon-emailforward2"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-facebook"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-twitter"></span>
+                  Enviar e-mail
                 </button>
               </td>
             </tr>
@@ -55,12 +50,7 @@
               <td class="invites-table-using">
                 <button class="btn btn-default">
                   <span class="icon-emailforward2"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-facebook"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-twitter"></span>
+                  Enviar e-mail
                 </button>
               </td>
             </tr>
@@ -71,12 +61,7 @@
               <td class="invites-table-using">
                 <button class="btn btn-default">
                   <span class="icon-emailforward2"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-facebook"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-twitter"></span>
+                  Enviar e-mail
                 </button>
               </td>
             </tr>
@@ -87,12 +72,7 @@
               <td class="invites-table-using">
                 <button class="btn btn-default">
                   <span class="icon-emailforward2"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-facebook"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-twitter"></span>
+                  Enviar e-mail
                 </button>
               </td>
             </tr>
@@ -103,12 +83,7 @@
               <td class="invites-table-using">
                 <button class="btn btn-default">
                   <span class="icon-emailforward2"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-facebook"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon-twitter"></span>
+                  Enviar e-mail
                 </button>
               </td>
             </tr>
