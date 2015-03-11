@@ -63,8 +63,6 @@
                 <a href="${pageContext.request.contextPath}/home/user/invites">
                   <span class="icon-email"></span>
                   Meus convites
-                  <%-- TODO: Read the correct invitation count --%>
-                  <span class="badge badge-notification">7</span>
                 </a>
               </li>
             </ul>
