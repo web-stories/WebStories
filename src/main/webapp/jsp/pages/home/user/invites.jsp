@@ -74,7 +74,7 @@
             <c:forEach items="${ invitedUsers }" var="invitedUser">
               <tr>
                 <td class="invited-avatar">
-                  <img class="img-circle" src="${ invitedUser.avatarURL }" alt="Foto">
+                  <img class="img-circle" width="65" height="65" src="${ invitedUser.avatarURL }" alt="Foto">
                 </td>
                 <td>
                   ${ invitedUser.name }
