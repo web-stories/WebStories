@@ -27,7 +27,9 @@ public class InviteQueries extends Queries {
 	public List<InviteEntity> findAvailableInvitations( long idUser ) {
 		QInviteEntity tableInvite = QInviteEntity.inviteEntity;
 		JPAQuery query = queryFrom( tableInvite ).where(
-			tableInvite.ds_email.isNull()
+			tableInvite.ds_email.isNull().and(
+				tableInvite.inviter.id_user.eq( idUser )
+			)
 		);
 		return query.list( tableInvite );
 	}
