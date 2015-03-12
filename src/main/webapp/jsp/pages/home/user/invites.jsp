@@ -29,7 +29,7 @@
     <li>Uma conta será criada para o primeiro que usar um convite</li>
   </ul>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8 col-lg-7">
       <h3>Meus convites</h3>
       <c:if test="${ fn:length( availableInviteCodes ) == 0 }">
         <p>
@@ -61,7 +61,7 @@
         </div>
       </c:if>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4 col-lg-5">
       <h3>Meus convidados</h3>
       <c:if test="${ fn:length( invitedUsers ) == 0 }">
         <p>
