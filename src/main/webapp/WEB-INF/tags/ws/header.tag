@@ -47,12 +47,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown ${ fn:indexOf( uri, '/home/user' ) > -1 ? 'active' : '' }">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-              <img class="img-circle header-nav-avatar"
-                     height="30"
-                     width="30"
-                     <%-- TODO: Use the profile URL of the logged user --%>
-                     src="https://graph.facebook.com/276170692591315/picture?type=large&width=30&height=30"
-                     alt="">
+              <img class="img-circle header-nav-avatar" height="30" width="30" src="${logged.avatarURL}" alt="">
               <span class="hidden-sm">
                 ${logged.firstName}
               </span>
