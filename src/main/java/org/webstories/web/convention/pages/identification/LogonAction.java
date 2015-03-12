@@ -24,6 +24,7 @@ import org.webstories.dao.user.UserQueries;
 import org.webstories.web.util.params.RequestParams;
 import org.webstories.web.util.servlet.BaseServlet;
 import org.webstories.web.util.servlet.HttpInternalServerErrorException;
+import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
@@ -58,7 +59,9 @@ public class LogonAction extends BaseServlet {
 			Logged logged = facebookAuth.authenticate( token, data );
 			setLogged( logged, request );
 			response.sendRedirect( data.getRedirect() );
-		} catch ( OAuth2TokenException | AuthenticationException e ) {
+		} catch ( AuthenticationException e ) {
+			throw new HttpUnauthorizedException( e );
+		} catch ( OAuth2TokenException e ) {
 			throw new ServletException( e );
 		}
 	}
