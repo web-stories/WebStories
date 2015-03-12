@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.core.auth.Logged;
 import org.webstories.core.invitation.LocalInviteReader;
+import org.webstories.core.user.UserInfo;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
 import org.webstories.web.util.servlet.HttpUnauthorizedException;
@@ -29,6 +30,9 @@ public class InvitesAction extends BaseServlet {
 	throws HttpUnauthorizedException {
 		Logged logged = getLogged( request );
 		List<String> availableInviteCodes = inviteReader.availableInvitations( logged );
+		List<UserInfo> invitedUsers = inviteReader.invitedUsers( logged );
+		
 		request.setAttribute( "availableInviteCodes", availableInviteCodes );
+		request.setAttribute( "invitedUsers", invitedUsers );
 	}
 }

@@ -63,26 +63,27 @@
     </div>
     <div class="col-md-6">
       <h3>Meus convidados</h3>
-      <table class="table invited-table">
-        <tbody>
-          <tr>
-            <td class="invited-avatar">
-              <img class="img-circle" src="https://graph.facebook.com/10155251318620525/picture?width=65&amp;height=65" alt="Foto">
-            </td>
-            <td>
-              Fabio Neves
-            </td>
-          </tr>
-          <tr>
-            <td class="invited-avatar">
-              <img class="img-circle" src="https://graph.facebook.com/362077513973404/picture?type=large&width=65&height=65" alt="Foto">
-            </td>
-            <td>
-              Guilherme Holz
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <c:if test="${ fn:length( invitedUsers ) == 0 }">
+        <p>
+          Após um convidado criar uma conta, o nome aparecerá aqui!  
+        </p>
+      </c:if>
+      <c:if test="${ fn:length( invitedUsers ) > 0 }">
+        <table class="table invited-table">
+          <tbody>
+            <c:forEach items="${ invitedUsers }" var="invitedUser">
+              <tr>
+                <td class="invited-avatar">
+                  <img class="img-circle" src="${ invitedUser.avatarURL }" alt="Foto">
+                </td>
+                <td>
+                  ${ invitedUser.name }
+                </td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </c:if>
     </div>
   </div>
 </div>
