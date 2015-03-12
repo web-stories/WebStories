@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.integration.OAuth2Data;
 import org.webstories.core.integration.OAuth2Token;
+import org.webstories.core.invitation.LocalInviteCreator;
 import org.webstories.core.logging.LocalAppLogger;
 import org.webstories.core.user.PersonName;
 import org.webstories.dao.integration.FacebookEntity;
@@ -40,6 +41,9 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 	
 	@EJB
 	LocalActivityRegistrator activityRegistrator;
+	
+	@EJB
+	LocalInviteCreator inviteCreator;
 	
 	@EJB
 	LocalAppLogger logger;
@@ -108,6 +112,7 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		Logged logged = Logged.from( facebook );
 		
 		activityRegistrator.registerJoinedActivity( logged );
+		inviteCreator.increaseUserInvitations( idUser );
 		
 		return logged;
 	}

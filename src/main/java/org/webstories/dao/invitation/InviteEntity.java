@@ -12,12 +12,16 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import org.eclipse.jdt.annotation.Nullable;
+import org.webstories.core.invitation.InviteUtils;
+import org.webstories.core.utils.SHA256Exception;
 import org.webstories.dao.NumerableEntity;
 import org.webstories.dao.user.UserEntity;
 
 @Entity
 @Table( name = "ws_invite" )
 public class InviteEntity implements NumerableEntity {
+	private InviteEntity() {}
+	
 	@Id
 	@TableGenerator(
 		name = "invite_sequence",
@@ -42,12 +46,21 @@ public class InviteEntity implements NumerableEntity {
 	@JoinColumn( name = "id_invited" )
 	@Nullable private UserEntity invited;
 	
+	/**
+	 * 
+	 * @param  inviter
+	 *         A managed and persistent instance
+	 */
+	public static InviteEntity create( UserEntity inviter ) throws SHA256Exception {
+		InviteEntity invite = new InviteEntity();
+		invite.cod_invite = InviteUtils.generateCode();
+		invite.inviter = inviter;
+		return invite;
+	}
+	
 	@Override
 	public Long getId() {
 		return id_invite;
-	}
-	public void setId( Long id_invite ) {
-		this.id_invite = id_invite;
 	}
 	
 	public @Nullable String getEmail() {
@@ -59,9 +72,6 @@ public class InviteEntity implements NumerableEntity {
 	
 	public String getInviteCode() {
 		return cod_invite;
-	}
-	public void setInviteCode( String cod_invite ) {
-		this.cod_invite = cod_invite;
 	}
 	
 	public UserEntity getInviter() {
