@@ -97,6 +97,8 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		UserEntity webstoriesUser = userQueries.findByPrimaryKey( idUser );
 		String profileURL = facebookUser.getLink();
 		
+		invite.setInvited( webstoriesUser );
+		
 		FacebookEntity facebook =
 			FacebookEntity.from( name, facebookEmail, facebookId, webstoriesUser, profileURL );
 		entityManager.persist( facebook );

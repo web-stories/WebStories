@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -37,6 +38,10 @@ public class InviteEntity implements NumerableEntity {
 	@JoinColumn( name = "id_inviter", nullable = false )
 	private UserEntity inviter;
 	
+	@OneToOne
+	@JoinColumn( name = "id_invited" )
+	private UserEntity user;
+	
 	@Override
 	public Long getId() {
 		return id_invite;
@@ -61,5 +66,9 @@ public class InviteEntity implements NumerableEntity {
 	
 	public UserEntity getInviter() {
 		return inviter;
+	}
+	
+	public void setInvited( UserEntity user ) {
+		this.inviter = user;
 	}
 }
