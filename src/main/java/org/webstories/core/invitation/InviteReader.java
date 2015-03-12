@@ -11,6 +11,7 @@ import org.webstories.core.user.UserInfo;
 import org.webstories.dao.integration.FacebookEntity;
 import org.webstories.dao.invitation.InviteEntity;
 import org.webstories.dao.invitation.InviteQueries;
+import org.webstories.dao.user.UserEntity;
 
 @Stateless
 public class InviteReader implements LocalInviteReader {
@@ -36,7 +37,12 @@ public class InviteReader implements LocalInviteReader {
 		List<InviteEntity> usedInvitations = inviteQueries.findUsedInvitations( idUser );
 		
 		for ( InviteEntity invite : usedInvitations ) {
-			FacebookEntity facebook = invite.getInviter().getFacebook();
+			UserEntity invited = invite.getInvited();
+			// Invitation not taken yet
+			if ( invited == null ) {
+				continue;
+			}
+			FacebookEntity facebook = invited.getFacebook();
 			GuestUserInfoFactory factory = new GuestUserInfoFactory( facebook );
 			result.add( new UserInfo( factory ) );
 		}

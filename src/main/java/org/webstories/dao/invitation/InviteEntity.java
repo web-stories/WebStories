@@ -40,7 +40,7 @@ public class InviteEntity implements NumerableEntity {
 	
 	@OneToOne
 	@JoinColumn( name = "id_invited" )
-	private UserEntity user;
+	@Nullable private UserEntity invited;
 	
 	@Override
 	public Long getId() {
@@ -68,7 +68,10 @@ public class InviteEntity implements NumerableEntity {
 		return inviter;
 	}
 	
-	public void setInvited( UserEntity user ) {
-		this.inviter = user;
+	public @Nullable UserEntity getInvited() {
+		return invited;
+	} 
+	public void setInvited( UserEntity invited ) {
+		this.invited = invited;
 	}
 }

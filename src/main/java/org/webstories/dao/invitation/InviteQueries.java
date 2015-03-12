@@ -34,7 +34,6 @@ public class InviteQueries extends Queries {
 	public List<InviteEntity> findUsedInvitations( long idUser ) {
 		QInviteEntity tableInvite = QInviteEntity.inviteEntity;
 		JPAQuery query = queryFrom( tableInvite ).where(
-			// TODO: get the invited user not the inviter
 			tableInvite.inviter.id_user.eq( idUser )
 		);
 		return query.list( tableInvite );
