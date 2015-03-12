@@ -1,5 +1,7 @@
 package org.webstories.dao.invitation;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 
 import org.webstories.dao.Queries;
@@ -21,5 +23,12 @@ public class InviteQueries extends Queries {
 			tableInvite.cod_invite.eq( inviteCode )
 		);
 		return query.singleResult( tableInvite );
+	}
+	public List<InviteEntity> findAvailableInvitations( long idUser ) {
+		QInviteEntity tableInvite = QInviteEntity.inviteEntity;
+		JPAQuery query = queryFrom( tableInvite ).where(
+			tableInvite.ds_email.isNull()
+		);
+		return query.list( tableInvite );
 	}
 }

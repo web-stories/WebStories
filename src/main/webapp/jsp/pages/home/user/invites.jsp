@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ws" tagdir="/WEB-INF/tags/ws" %>
 <ws:header/>
 <div id="meta" data-nostory="${nostory}"></div>
@@ -28,68 +30,36 @@
   </ul>
   <div class="row">
     <div class="col-md-6">
-      <h3>Meus convites (5/5)</h3>
-      <div class="table-responsive">
-        <table class="table invites-table">
-          <tbody>
-            <tr>
-              <td>
-                http://webstories.org/?invite=fj654j56h4
-              </td>
-              <td class="invites-table-using">
-                <button class="btn btn-default">
-                  <span class="icon-emailforward2"></span>
-                  Enviar e-mail
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                http://webstories.org/?invite=fgh7f
-              </td>
-              <td class="invites-table-using">
-                <button class="btn btn-default">
-                  <span class="icon-emailforward2"></span>
-                  Enviar e-mail
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                http://webstories.org/?invite=nbbnsd5654
-              </td>
-              <td class="invites-table-using">
-                <button class="btn btn-default">
-                  <span class="icon-emailforward2"></span>
-                  Enviar e-mail
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                http://webstories.org/?invite=qwhoijk456
-              </td>
-              <td class="invites-table-using">
-                <button class="btn btn-default">
-                  <span class="icon-emailforward2"></span>
-                  Enviar e-mail
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                http://webstories.org/?invite=33g2dfg13
-              </td>
-              <td class="invites-table-using">
-                <button class="btn btn-default">
-                  <span class="icon-emailforward2"></span>
-                  Enviar e-mail
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <h3>Meus convites</h3>
+      <c:if test="${ fn:length( availableInviteCodes ) == 0 }">
+        <p>
+          Você não tem mais convites disponíveis.
+        </p>
+      </c:if>
+      <c:if test="${ fn:length( availableInviteCodes ) > 0 }">
+        <div class="table-responsive">
+          <table class="table invites-table">
+            <tbody>
+              <c:forEach items="${ availableInviteCodes }" var="inviteCode">
+                <c:set var="url" value="http://webstories.org/?invite=${ inviteCode }"/>
+                <c:set var="subject" value="Oi, gostaria de fazer parte da comunidade Web Stories?"/>
+                <c:set var="body" value="Consegui um convite: ${url}"/>
+                <tr>
+                  <td>
+                    ${ url }
+                  </td>
+                  <td class="invites-table-using">
+                    <a class="btn btn-default" href="mailto:?subject=${subject}&body=${body}">
+                      <span class="icon-emailforward2"></span>
+                      Enviar e-mail
+                    </a>
+                  </td>
+                </tr>
+              </c:forEach>
+            </tbody>
+          </table>
+        </div>
+      </c:if>
     </div>
     <div class="col-md-6">
       <h3>Meus convidados</h3>

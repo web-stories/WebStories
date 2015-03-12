@@ -1,11 +1,17 @@
 package org.webstories.web.convention.pages.home.user;
 
+import java.util.List;
+
+import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.webstories.core.auth.Logged;
+import org.webstories.core.invitation.LocalInviteReader;
 import org.webstories.web.util.servlet.AuthForwarded;
 import org.webstories.web.util.servlet.BaseServlet;
+import org.webstories.web.util.servlet.HttpUnauthorizedException;
 
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
@@ -15,6 +21,14 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 public class InvitesAction extends BaseServlet {
 	private static final long serialVersionUID = 1;
 	
+	@EJB
+	LocalInviteReader inviteReader;
+	
 	@Override
-	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {}
+	protected void doGet( HttpServletRequest request, HttpServletResponse response )
+	throws HttpUnauthorizedException {
+		Logged logged = getLogged( request );
+		List<String> availableInviteCodes = inviteReader.availableInvitations( logged );
+		request.setAttribute( "availableInviteCodes", availableInviteCodes );
+	}
 }
