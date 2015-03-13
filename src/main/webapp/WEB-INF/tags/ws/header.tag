@@ -28,14 +28,39 @@
           <li class="${ fn:indexOf( uri, '/home/feed' ) > -1 ? 'active' : '' }">
             <a href="${pageContext.request.contextPath}/home/feed">
               <span class="icon-home"></span>
-              Página inicial
+              <span class="hidden-sm">
+                Página inicial
+              </span>
             </a>
           </li>
           <li class="${ fn:indexOf( uri, '/home/projects' ) > -1 ? 'active' : '' }">
             <a href="${pageContext.request.contextPath}/home/projects">
               <span class="icon-draft"></span>
-              Meus projetos
+              <span class="hidden-sm">
+                Meus projetos
+              </span>
             </a>
+          </li>
+        </ul>
+      </c:if>
+      <c:if test="${isLogged}">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown ${ fn:indexOf( uri, '/home/user' ) > -1 ? 'active' : '' }">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+              <img class="img-circle header-nav-avatar" height="30" width="30" src="${logged.avatarURL}" alt="">
+              <span class="hidden-sm">
+                ${logged.firstName}
+              </span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="${pageContext.request.contextPath}/home/user/invites">
+                  <span class="icon-email"></span>
+                  Meus convites
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </c:if>

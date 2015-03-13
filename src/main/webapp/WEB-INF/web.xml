@@ -72,7 +72,7 @@
     <dispatcher>ERROR</dispatcher>
   </filter-mapping>
   
-  <!-- Handled status codes -->
+  <!-- Handled status codes and exceptions -->
   <error-page>
     <error-code>404</error-code>
     <location>/error/sc-404</location>
@@ -80,6 +80,10 @@
   <error-page>
     <exception-type>org.webstories.web.util.servlet.HttpNotFoundException</exception-type>
     <location>/error/sc-404</location>
+  </error-page>
+  <error-page>
+    <exception-type>org.webstories.web.util.servlet.HttpUnauthorizedException</exception-type>
+    <location>/error/logon-error</location>
   </error-page>
   
   <!-- Unhandled codes are delegated to the page of status code 500 -->

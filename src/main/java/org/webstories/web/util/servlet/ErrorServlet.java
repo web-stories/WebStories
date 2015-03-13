@@ -18,7 +18,8 @@ public abstract class ErrorServlet extends BaseServlet {
 	LocalAppLogger logger;
 	
 	@Override
-	protected abstract void doGet( HttpServletRequest request, HttpServletResponse response );
+	protected abstract void doGet( HttpServletRequest request, HttpServletResponse response )
+		throws IOException;
 	@Override
 	protected void service( HttpServletRequest request, HttpServletResponse response )
 	throws ServletException, IOException {

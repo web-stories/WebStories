@@ -6,21 +6,9 @@ import org.webstories.core.user.avatar.AvatarURL;
 import org.webstories.core.user.avatar.AvatarURLFactory;
 import org.webstories.dao.IdentifiableEntity;
 
-public class ThumbnailUserInfoFactory extends UserInfoFactory {
-	private IdentifiableEntity identifiable;
-	
+public class ThumbnailUserInfoFactory extends IdentifiableUserInfoFactory {
 	public ThumbnailUserInfoFactory( IdentifiableEntity identifiable ) {
-		this.identifiable = identifiable;
-	}
-	
-	@Override
-	protected PersonName createName() {
-		return PersonName.from( identifiable );
-	}
-	
-	@Override
-	protected String createEmail() {
-		return identifiable.getEmail();
+		super( identifiable );
 	}
 	
 	@Override
@@ -33,10 +21,5 @@ public class ThumbnailUserInfoFactory extends UserInfoFactory {
 		} catch ( MalformedURLException e ) {
 			throw new RuntimeException( "Failed to create avatar url", e );
 		}
-	}
-	
-	@Override
-	protected String createProfileURL() {
-		return identifiable.getProfileURL();
 	}
 }

@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.integration.OAuth2Data;
 import org.webstories.core.integration.OAuth2Token;
+import org.webstories.core.invitation.LocalInviteCreator;
 import org.webstories.core.logging.LocalAppLogger;
 import org.webstories.core.user.PersonName;
 import org.webstories.dao.integration.FacebookEntity;
@@ -42,6 +43,9 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 	LocalActivityRegistrator activityRegistrator;
 	
 	@EJB
+	LocalInviteCreator inviteCreator;
+	
+	@EJB
 	LocalAppLogger logger;
 	
 	@Override
@@ -59,17 +63,27 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		}
 		
 		if ( data.getInviteCode() == null ) {
-			throw new AuthenticationException( "Invitation code is empty" );
+			throw new AuthenticationException( "O convite está vazio" );
 		}
 		
 		InviteEntity invite = inviteQueries.findByInviteCode( data.getInviteCode() );
 		if ( invite == null ) {
-			throw new AuthenticationException( "Invalid invitation code: " + data.getInviteCode() );
+			throw new AuthenticationException(
+				"Este convite não existe: " + data.getInviteCode()
+			);
 		}
 		
-		// If the user refused to share the e-mail this field will be null
+		// If the user refused to share the e-mail, this field will be null
 		if ( facebookEmail == null ) {
-			throw new AuthenticationException( "E-mail not available" );
+			throw new AuthenticationException(
+				"É necessário que você compartilhe o endereço de e-mail do Facebook"
+			);
+		}
+		
+		// If the invitation does not contain an e-mail, then it means the invitation was not
+		// previously reserved
+		if ( invite.getEmail() == null ) {
+			invite.setEmail( facebookEmail );
 		}
 		
 		if ( !facebookEmail.equals( invite.getEmail() ) ) {
@@ -78,8 +92,8 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			// it was typed in a smartphone, then the first letter was uppercased, causing this
 			// error upon registration.
 			throw new AuthenticationException(
-				"E-mail does not match invitation"
-					+ "(" + invite.getEmail() + "/" + facebookEmail + ")"
+				"<p>Este convite já foi utilizado por " + invite.getEmail() + ".</p>" +
+				"<p>O seu e-mail é " + facebookEmail + "</p>"
 			);
 		}
 		
@@ -89,6 +103,8 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		UserEntity webstoriesUser = userQueries.findByPrimaryKey( idUser );
 		String profileURL = facebookUser.getLink();
 		
+		invite.setInvited( webstoriesUser );
+		
 		FacebookEntity facebook =
 			FacebookEntity.from( name, facebookEmail, facebookId, webstoriesUser, profileURL );
 		entityManager.persist( facebook );
@@ -96,6 +112,7 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		Logged logged = Logged.from( facebook );
 		
 		activityRegistrator.registerJoinedActivity( logged );
+		inviteCreator.increaseUserInvitations( idUser );
 		
 		return logged;
 	}

@@ -17,3 +17,10 @@
 .header-navbar-search-form {
   border-bottom: none; /* 1 */
 }
+
+.header-nav-avatar {
+  position: relative;
+  float: left;
+  top: -5px;
+  left: -5px;
+}
