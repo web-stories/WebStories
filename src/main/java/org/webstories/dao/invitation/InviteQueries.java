@@ -37,7 +37,7 @@ public class InviteQueries extends Queries {
 		QInviteEntity tableInvite = QInviteEntity.inviteEntity;
 		JPAQuery query = queryFrom( tableInvite ).where(
 			tableInvite.inviter.id_user.eq( idUser )
-		);
+		).orderBy( tableInvite.id_invite.desc() ); /* Order not specified, but consistent */
 		return query.list( tableInvite );
 	}
 }
