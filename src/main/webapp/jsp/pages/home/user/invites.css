@@ -12,6 +12,10 @@
   width: 160px;
   text-align: right;
 }
+/**
+ * 1. Make the td content dictate the td width.
+      "width: 0px" doesn't work in Safari and Chrome.
+ */
 .invited-avatar {
-  width: 0px;
+  width: 1px; /* 1 */
 }
