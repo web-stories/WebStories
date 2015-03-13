@@ -19,7 +19,7 @@
 </div>
 <div class="container">
   <h2 class="main-title">
-    Torne-se um Webby
+    Torne-se um porta-voz!
   </h2>
   <p>
     Faça parte da divulgação de Web Stories.
