@@ -14,5 +14,6 @@ public interface LocalFacebookAuthentication {
 	 * If the user is not registered through Facebook, this method creates a new Facebook
 	 * registration and returns the logged instance.
 	 */
-	Logged authenticate( OAuth2Token token, OAuth2Data data ) throws AuthenticationException;
+	Logged authenticate( OAuth2Token token, OAuth2Data data )
+		throws FacebookAuthenticationException;
 }

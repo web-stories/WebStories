@@ -50,7 +50,7 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 	
 	@Override
 	public Logged authenticate( OAuth2Token token, OAuth2Data data )
-	throws AuthenticationException {
+	throws FacebookAuthenticationException {
 		FacebookClient client = new DefaultFacebookClient( token.getAccessToken() );
 		User facebookUser = client.fetchObject( "me", User.class );
 		String facebookEmail = facebookUser.getEmail();
@@ -63,19 +63,19 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		}
 		
 		if ( data.getInviteCode() == null ) {
-			throw new AuthenticationException( "O convite está vazio" );
+			throw new FacebookAuthenticationException( "O convite está vazio" );
 		}
 		
 		InviteEntity invite = inviteQueries.findByInviteCode( data.getInviteCode() );
 		if ( invite == null ) {
-			throw new AuthenticationException(
+			throw new FacebookAuthenticationException(
 				"Este convite não existe: " + data.getInviteCode()
 			);
 		}
 		
 		// If the user refused to share the e-mail, this field will be null
 		if ( facebookEmail == null ) {
-			throw new AuthenticationException(
+			throw new FacebookAuthenticationException(
 				"É necessário que você compartilhe o endereço de e-mail do Facebook"
 			);
 		}
@@ -91,7 +91,7 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			// A situation happened when the user informed the e-mail manually for invitation, but
 			// it was typed in a smartphone, then the first letter was uppercased, causing this
 			// error upon registration.
-			throw new AuthenticationException(
+			throw new FacebookAuthenticationException(
 				"<p>Este convite já foi utilizado por " + invite.getEmail() + ".</p>" +
 				"<p>O seu e-mail é " + facebookEmail + "</p>"
 			);
@@ -99,7 +99,14 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		
 		// Register user
 		PersonName name = PersonName.from( facebookUser );
-		long idUser = authentication.register( name );
+		long idUser;
+		
+		try {
+			idUser = authentication.register( name );
+		} catch ( AuthenticationException e ) {
+			throw new FacebookAuthenticationException( e );
+		}
+		
 		UserEntity webstoriesUser = userQueries.findByPrimaryKey( idUser );
 		String profileURL = facebookUser.getLink();
 		
