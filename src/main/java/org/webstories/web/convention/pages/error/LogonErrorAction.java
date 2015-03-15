@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.webstories.web.api.exception.ErrorObject;
-import org.webstories.web.api.exception.ErrorObjectFactory;
 import org.webstories.web.util.servlet.ErrorServlet;
 
 @WebServlet
@@ -18,8 +17,7 @@ public class LogonErrorAction extends ErrorServlet {
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 	throws IOException {
 		Throwable e = ( Throwable )request.getAttribute( RequestDispatcher.ERROR_EXCEPTION );
-		ErrorObjectFactory factory = new ErrorObjectFactory( e );
-		ErrorObject error = new ErrorObject( factory );
+		ErrorObject error = LogonErrors.translate( e );
 		request.setAttribute( "error", error );
 		response.setStatus( HttpServletResponse.SC_UNAUTHORIZED );
 	}
