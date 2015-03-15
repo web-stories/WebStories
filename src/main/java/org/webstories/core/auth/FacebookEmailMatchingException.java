@@ -5,13 +5,7 @@ public class FacebookEmailMatchingException extends FacebookAuthenticationExcept
 	private String inviteEmail;
 	private String userEmail;
 	public FacebookEmailMatchingException( String inviteEmail, String userEmail ) {
-		super(
-			String.format(
-				"O seu e-mail é %s, mas este convite já foi utilizado por %s.",
-				userEmail,
-				inviteEmail
-			)
-		);
+		super( "Este convite já foi utilizado" );
 		this.inviteEmail = inviteEmail;
 		this.userEmail = userEmail;
 	}
