@@ -18,7 +18,9 @@
             <c:if test="${ error.type eq 'FB_EMAIL_MATCHING' }">
               Tente o seguinte:
               <ul>
-                <li>Verifique se você está acessando com a conta do Facebook que possui o e-mail <strong>${error.inviteEmail}</strong></li>
+                <li>Acesse o Web Stories com a conta do Facebook que possui o e-mail <strong>${error.inviteEmail}</strong>.</li>
+                <li>Clique <a href="http://facebook.com/">aqui</a> para voltar ao Facebook e sair da conta <strong>${error.userEmail}</strong>.</li>
+                <li>Solicite um convite que ainda não foi utilizado.</li>
               </ul>
             </c:if>
           </p>
