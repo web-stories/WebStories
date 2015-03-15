@@ -28,9 +28,12 @@ public abstract class APIExceptionHandler<E extends Throwable> implements Except
 		
 		logger.logAccess( logged, request, exception );
 		
+		ErrorObjectFactory factory = new ErrorObjectFactory( exception );
+		ErrorObject error = new ErrorObject( factory );
+		
 		return Response
 			.status( getStatusCode() )
-			.entity( ErrorObjectFactory.create( exception ) )
+			.entity( error )
 			.build();
 	}
 	

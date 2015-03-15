@@ -1,23 +1,23 @@
 package org.webstories.web.api.exception;
 
+import org.webstories.core.throwables.ThrowableUtils;
+
 public class ErrorObjectFactory {
-	public static ErrorObject create( Throwable e ) {
-		Throwable currentCause = e;
-		String message = e.getMessage();
+	private Throwable e;
+	
+	public ErrorObjectFactory( Throwable e ) {
+		this.e = e;
+	}
+	
+	public String createMessage() {
+		Throwable rootCauseWithMessage = ThrowableUtils.findRootCauseWithMessage( e );
+		String message = rootCauseWithMessage.getMessage();
 		
-		// Iterate over all causes to find the closest message to the root cause
-		while ( currentCause.getCause() != null ) {
-			currentCause = currentCause.getCause();
-			if ( currentCause.getMessage() != null ) {
-				message = currentCause.getMessage();
-			}
-		}
-		
-		// No message was found...
+		// If there's no message in the whole stack...
 		if ( message == null ) {
 			message = "Unknown error";
 		}
 		
-		return new ErrorObject( message );
+		return message;
 	}
 }
