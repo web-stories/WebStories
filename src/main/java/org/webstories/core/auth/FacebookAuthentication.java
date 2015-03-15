@@ -90,11 +90,8 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			// Log both e-mails in case the user informs the e-mail with something different.
 			// A situation happened when the user informed the e-mail manually for invitation, but
 			// it was typed in a smartphone, then the first letter was uppercased, causing this
-			// error upon registration.
-			throw new FacebookAuthenticationException(
-				"<p>Este convite já foi utilizado por " + invite.getEmail() + ".</p>" +
-				"<p>O seu e-mail é " + facebookEmail + "</p>"
-			);
+			// exception to be thrown on registration.
+			throw new FacebookEmailMatchingException( invite.getEmail(), facebookEmail );
 		}
 		
 		// Register user
