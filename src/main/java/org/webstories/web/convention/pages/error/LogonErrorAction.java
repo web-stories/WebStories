@@ -18,7 +18,8 @@ public class LogonErrorAction extends ErrorServlet {
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 	throws IOException {
 		Throwable e = ( Throwable )request.getAttribute( RequestDispatcher.ERROR_EXCEPTION );
-		ErrorObject error = ErrorObjectFactory.create( e );
+		ErrorObjectFactory factory = new ErrorObjectFactory( e );
+		ErrorObject error = new ErrorObject( factory );
 		request.setAttribute( "error", error );
 		response.setStatus( HttpServletResponse.SC_UNAUTHORIZED );
 	}

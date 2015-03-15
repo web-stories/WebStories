@@ -3,7 +3,13 @@ package org.webstories.web.api.exception;
 import org.webstories.core.throwables.ThrowableUtils;
 
 public class ErrorObjectFactory {
-	public static ErrorObject create( Throwable e ) {
+	private Throwable e;
+	
+	public ErrorObjectFactory( Throwable e ) {
+		this.e = e;
+	}
+	
+	public String createMessage() {
 		Throwable rootCauseWithMessage = ThrowableUtils.findRootCauseWithMessage( e );
 		String message = rootCauseWithMessage.getMessage();
 		
@@ -12,6 +18,6 @@ public class ErrorObjectFactory {
 			message = "Unknown error";
 		}
 		
-		return new ErrorObject( message );
+		return message;
 	}
 }
