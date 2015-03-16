@@ -146,9 +146,9 @@
       <version>2.6</version>
     </dependency>
     <dependency>
-      <groupId>org.jboss.as</groupId>
-      <artifactId>jboss-as-spec-api</artifactId>
-      <version>7.2.0.Final</version>
+      <groupId>org.jboss.spec</groupId>
+      <artifactId>jboss-javaee-6.0</artifactId>
+      <version>3.0.3.Final</version>
       <type>pom</type>
       <scope>provided</scope>
     </dependency>

@@ -13,10 +13,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
-import org.jboss.resteasy.annotations.cache.NoCache;
 import org.webstories.core.ResourceNotFoundException;
 import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.auth.AuthSession;
@@ -55,10 +57,17 @@ public class EditorResource {
 	LocalStoryAuthoringReader storyReader;
 	
 	@GET
-	@NoCache
 	@Path( "{storyId}" )
-	public EditorStory editorGet( @PathParam( "storyId" ) Long storyId ) {
-		return storyReader.storyEditor( storyId );
+	public Response editorGet( @PathParam( "storyId" ) Long storyId ) {
+		EditorStory story = storyReader.storyEditor( storyId );
+		
+		CacheControl noCache = new CacheControl();
+		noCache.setNoCache( true );
+		
+		ResponseBuilder result = Response.ok( story );
+		result.cacheControl( noCache );
+		
+		return result.build();
 	}
 	
 	@PUT
