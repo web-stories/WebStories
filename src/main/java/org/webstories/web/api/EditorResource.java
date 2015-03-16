@@ -16,6 +16,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import org.jboss.resteasy.annotations.cache.NoCache;
 import org.webstories.core.ResourceNotFoundException;
 import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.auth.AuthSession;
@@ -54,6 +55,7 @@ public class EditorResource {
 	LocalStoryAuthoringReader storyReader;
 	
 	@GET
+	@NoCache
 	@Path( "{storyId}" )
 	public EditorStory editorGet( @PathParam( "storyId" ) Long storyId ) {
 		return storyReader.storyEditor( storyId );
