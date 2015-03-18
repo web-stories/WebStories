@@ -23,7 +23,7 @@ public abstract class APIExceptionHandler<E extends Throwable> implements Except
 		Logged logged = null;
 		
 		try {
-			AuthSession.from( request ).getLogged();
+			logged = AuthSession.from( request ).getLogged();
 		} catch ( UserNotLoggedException e ) {}
 		
 		logger.logAccess( logged, request, exception );
