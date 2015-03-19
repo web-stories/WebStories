@@ -66,15 +66,33 @@
     </div>
   </div>
 </c:if>
-<div class="container motivational-block">
+<div class="container main-container">
   <div class="row">
     <div class="col-sm-6 col-md-8">
-      <hr>
-      <blockquote class="quote">
-        Acredite em si mesmo e descubra o por quê você faz o que faz, assim descobrirá o seu
-        o potencial para fazer o que quiser.
-      </blockquote>
-      <hr>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+          <img class="mail-list-pointer" src="${pageContext.request.contextPath}/static/img/pointing-arrow.png" alt="">
+          <form method="post" action="http://webstories.us10.list-manage.com/subscribe/post">
+            <input type="hidden" name="u" value="62cb6a0352cc02c516d7c1e6d">
+            <input type="hidden" name="id" value="7db64e74b2">
+            <h3>Quer receber novidades?</h3>
+            <div class="input-group">
+              <input class="form-control" type="email" autocapitalize="off" autocorrect="off" name="MERGE0" placeholder="Digite o seu e-mail" required>
+              <span class="input-group-btn">
+                <button class="btn btn-default">Enviar</button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="quote">
+        <hr>
+        <blockquote class="quote-content">
+          Acredite em si mesmo e descubra o por quê você faz o que faz, assim descobrirá o seu
+          o potencial para fazer o que quiser.
+        </blockquote>
+        <hr>
+      </div>
       <div class="text-center">
         É o pensamento acima que sustenta Web Stories.<br>
         <a href="${pageContext.request.contextPath}/about">Clique para saber mais.</a>
@@ -86,6 +104,7 @@
            data-colorscheme="light"
            data-show-faces="true"
            data-header="false"
+           data-height="350"
            data-stream="false"
            data-show-border="false">Loading...</div>
     </div>

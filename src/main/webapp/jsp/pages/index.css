@@ -25,10 +25,34 @@
   margin-top: -75px;
 }
 
-.motivational-block {
-  padding-top: 20px;
+.main-container {
   padding-bottom: 20px;
 }
+
+.mail-list-pointer {
+  position: absolute;
+  right: 17px;
+  top: -44px;
+}
+
+/* sm */
+@media ( min-width: 768px ) {
+  .mail-list-pointer {
+    right: 40px;
+  }
+}
+
+/* md */
+@media ( min-width: 992px ) {
+  .mail-list-pointer {
+    top: -28px;
+  }
+}
+
 .quote {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+.quote-content {
   width: auto;
 }
