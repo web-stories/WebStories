@@ -9,7 +9,7 @@
 
 <div ng-controller="PageController">
   <div class="loading-dots" ng-show="!loader.loaded">
-    <img src="${pageContext.request.contextPath}/static/img/loading-dots.gif">
+    <img src="${pageContext.request.contextPath}/static/img/loading-dots.gif" width="29" height="11">
   </div>
   <ws-alert data="alert"></ws-alert>
   <div ng-show="loader.loaded"

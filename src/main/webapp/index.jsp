@@ -46,9 +46,9 @@
         })
       }());
     </script>
+    <convention:include-stylesheet/>
   </head>
   <body>
-    <convention:include-stylesheet/>
     <div id="wrapper-default">
       <convention:include/>
     </div>
