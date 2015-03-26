@@ -32,7 +32,8 @@
 .mail-list-pointer {
   position: absolute;
   right: 17px;
-  top: -44px;
+  top: -15px;
+  width: 50px;
 }
 
 /* sm */
@@ -45,7 +46,7 @@
 /* md */
 @media ( min-width: 992px ) {
   .mail-list-pointer {
-    top: -28px;
+    top: 0;
   }
 }
 
