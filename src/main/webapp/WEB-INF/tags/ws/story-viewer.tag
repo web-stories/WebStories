@@ -96,7 +96,7 @@
             <div class="modal-body">
               <div ng-if="story.finished">
                 <p class="text-center">
-                  Esta história chegou ao fim, obrigado!<br>
+                  Esta história chegou ao fim, o que você achou?<br>
                 </p>
               </div>
               <div ng-if="!story.finished">
@@ -109,6 +109,16 @@
                   <div class="addthis_sharing_toolbox"
                        data-url="${util:concatQuery( requestScope['com.fagnerbrack.servlet.convention.original_url'], requestScope['javax.servlet.forward.query_string'] )}"></div>
                   #compartilhe
+                </div>
+              </div>
+              <div ws-modal-facebook-comments>
+                <div id="fb-root"></div>
+                <div class="fb-comments"
+                     data-href="${util:concatQuery( requestScope['com.fagnerbrack.servlet.convention.original_url'], requestScope['javax.servlet.forward.query_string'] )}"
+                     data-numposts="5"
+                     data-mobile="true"
+                     data-colorscheme="light">
+                  Carregando comentários...
                 </div>
               </div>
             </div>

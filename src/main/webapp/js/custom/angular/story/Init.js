@@ -14,6 +14,7 @@ define([
 	"js/story/controller/ChapterEndingController",
 	"js/global/directive/AlertDirective",
 	"js/global/directive/BootstrapModal",
+	"js/story/directive/ModalFacebookComments",
 	"js/global/filter/HTMLTrustedFilter",
 	"angular.cookies",
 	"angular.resource",
@@ -34,6 +35,7 @@ define([
 	ChapterEndingController,
 	AlertDirective,
 	BootstrapModal,
+	ModalFacebookComments,
 	HTMLTrustedFilter
 ) {
 	"use strict";
@@ -52,6 +54,7 @@ define([
 		.controller( "ChapterEndingController", ChapterEndingController )
 		.directive( "wsAlert", AlertDirective )
 		.directive( "bsModal", BootstrapModal )
+		.directive( "wsModalFacebookComments", ModalFacebookComments )
 		.filter( "htmlTrusted", HTMLTrustedFilter );
 	return angular.bootstrap( document.body, [ "ws.story" ] );
 });

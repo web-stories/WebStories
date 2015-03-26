@@ -63,5 +63,12 @@
     </script>
     <convention:include-script/>
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54f8c9bf1520f925" async="async"></script>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=${application.facebook.app.id}&version=v2.3";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
   </body>
 </html>

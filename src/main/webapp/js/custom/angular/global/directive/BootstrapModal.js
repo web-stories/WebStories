@@ -14,6 +14,13 @@ define( [ "js/global/directive/DirectiveUtils", "bootstrap" ], function( Directi
 				backdrop: "@",
 				keyboard: "@"
 			},
+			controller: [ "$scope", "$element", function( $scope, $element ) {
+				this.on = function( name, callback ) {
+					return $element.on( name, function() {
+						$timeout( callback );
+					});
+				};
+			}],
 			link: function( scope, element, attrs ) {
 				var options = DirectiveUtils.param({
 					backdrop: scope.backdrop,
