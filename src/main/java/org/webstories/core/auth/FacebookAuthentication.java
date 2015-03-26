@@ -63,7 +63,9 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		}
 		
 		if ( data.getInviteCode() == null ) {
-			throw new FacebookAuthenticationException( "O convite está vazio" );
+			throw new FacebookAuthenticationException(
+				"Você deve acessar pelo seu convite primeiro!"
+			);
 		}
 		
 		InviteEntity invite = inviteQueries.findByInviteCode( data.getInviteCode() );
