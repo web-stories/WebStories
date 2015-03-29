@@ -20,6 +20,7 @@ import org.webstories.dao.user.UserQueries;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Version;
 import com.restfb.types.User;
 
 @Stateless
@@ -51,7 +52,10 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 	@Override
 	public Logged authenticate( OAuth2Token token, OAuth2Data data )
 	throws FacebookAuthenticationException {
-		FacebookClient client = new DefaultFacebookClient( token.getAccessToken() );
+		FacebookClient client = new DefaultFacebookClient(
+			token.getAccessToken(),
+			Version.VERSION_2_2
+		);
 		User facebookUser = client.fetchObject( "me", User.class );
 		String facebookEmail = facebookUser.getEmail();
 		String facebookId = facebookUser.getId();
