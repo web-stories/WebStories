@@ -56,7 +56,7 @@ public class LogonAction extends BaseServlet {
 		
 		try {
 			OAuth2Token token = requestToken( request );
-			Logged logged = facebookAuth.authenticate( token, data );
+			Logged logged = facebookAuth.authenticate( token, data, request );
 			setLogged( logged, request );
 			response.sendRedirect( data.getRedirect() );
 		} catch ( AuthenticationException e ) {

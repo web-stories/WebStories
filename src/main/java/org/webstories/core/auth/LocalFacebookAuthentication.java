@@ -1,6 +1,7 @@
 package org.webstories.core.auth;
 
 import javax.ejb.Local;
+import javax.servlet.ServletRequest;
 
 import org.webstories.core.integration.OAuth2Data;
 import org.webstories.core.integration.OAuth2Token;
@@ -14,6 +15,6 @@ public interface LocalFacebookAuthentication {
 	 * If the user is not registered through Facebook, this method creates a new Facebook
 	 * registration and returns the logged instance.
 	 */
-	Logged authenticate( OAuth2Token token, OAuth2Data data )
+	Logged authenticate( OAuth2Token token, OAuth2Data data, ServletRequest request )
 		throws FacebookAuthenticationException;
 }

@@ -4,10 +4,14 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.ServletRequest;
 
 import org.webstories.core.activity.LocalActivityRegistrator;
 import org.webstories.core.integration.OAuth2Data;
 import org.webstories.core.integration.OAuth2Token;
+import org.webstories.core.integration.client.DefaultIntegrationClient;
+import org.webstories.core.integration.client.FacebookIntegrationClientFactory;
+import org.webstories.core.integration.client.IntegrationClient;
 import org.webstories.core.invitation.LocalInviteCreator;
 import org.webstories.core.logging.LocalAppLogger;
 import org.webstories.core.user.PersonName;
@@ -50,7 +54,7 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 	LocalAppLogger logger;
 	
 	@Override
-	public Logged authenticate( OAuth2Token token, OAuth2Data data )
+	public Logged authenticate( OAuth2Token token, OAuth2Data data, ServletRequest request )
 	throws FacebookAuthenticationException {
 		FacebookClient client = new DefaultFacebookClient(
 			token.getAccessToken(),
@@ -60,10 +64,14 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		String facebookEmail = facebookUser.getEmail();
 		String facebookId = facebookUser.getId();
 		
+		IntegrationClient integration = new DefaultIntegrationClient(
+			new FacebookIntegrationClientFactory( client, request )
+		);
+		
 		// If the user is already registered, then just log in, no additional check is required
 		FacebookEntity facebookEntity = facebookQueries.findByFacebookId( facebookId );
 		if ( facebookEntity != null ) {
-			return Logged.from( facebookEntity );
+			return Logged.from( facebookEntity, integration );
 		}
 		
 		if ( data.getInviteCode() == null ) {
@@ -119,7 +127,7 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			FacebookEntity.from( name, facebookEmail, facebookId, webstoriesUser, profileURL );
 		entityManager.persist( facebook );
 		
-		Logged logged = Logged.from( facebook );
+		Logged logged = Logged.from( facebook, integration );
 		
 		activityRegistrator.registerJoinedActivity( logged );
 		inviteCreator.increaseUserInvitations( idUser );
