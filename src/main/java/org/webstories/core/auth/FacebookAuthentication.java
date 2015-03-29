@@ -12,6 +12,7 @@ import org.webstories.core.integration.OAuth2Token;
 import org.webstories.core.integration.client.DefaultIntegrationClient;
 import org.webstories.core.integration.client.FacebookIntegrationClientFactory;
 import org.webstories.core.integration.client.IntegrationClient;
+import org.webstories.core.integration.client.IntegrationClientException;
 import org.webstories.core.invitation.LocalInviteCreator;
 import org.webstories.core.logging.LocalAppLogger;
 import org.webstories.core.user.PersonName;
@@ -64,9 +65,18 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 		String facebookEmail = facebookUser.getEmail();
 		String facebookId = facebookUser.getId();
 		
-		IntegrationClient integration = new DefaultIntegrationClient(
-			new FacebookIntegrationClientFactory( client, request )
-		);
+		IntegrationClient integration;
+		try {
+			integration = new DefaultIntegrationClient(
+				new FacebookIntegrationClientFactory(
+					client,
+					request,
+					"http://webstories.org/?invite=" + data.getInviteCode()
+				)
+			);
+		} catch ( IntegrationClientException e ) {
+			throw new FacebookAuthenticationException( e );
+		}
 		
 		// If the user is already registered, then just log in, no additional check is required
 		FacebookEntity facebookEntity = facebookQueries.findByFacebookId( facebookId );
@@ -105,7 +115,11 @@ public class FacebookAuthentication implements LocalFacebookAuthentication {
 			// A situation happened when the user informed the e-mail manually for invitation, but
 			// it was typed in a smartphone, then the first letter was uppercased, causing this
 			// exception to be thrown on registration.
-			throw new FacebookEmailMatchingException( invite.getEmail(), facebookEmail );
+			throw new FacebookEmailMatchingException(
+				invite.getEmail(),
+				facebookEmail,
+				integration.getLogoutURL()
+			);
 		}
 		
 		// Register user

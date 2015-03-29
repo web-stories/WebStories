@@ -19,4 +19,7 @@ public class FBEmailMatchingErrorObjectFactory extends LogonErrorObjectFactory {
 	public String createUserEmail() {
 		return exception.getUserEmail();
 	}
+	public String createFacebookLogoutURL() {
+		return exception.getFacebookLogoutURL();
+	}
 }
