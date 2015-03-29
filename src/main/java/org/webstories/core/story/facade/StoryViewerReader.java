@@ -23,6 +23,7 @@ import org.webstories.core.story.viewer.SectionSlide;
 import org.webstories.core.story.viewer.SectionSlideFactory;
 import org.webstories.core.story.viewer.StorySlide;
 import org.webstories.core.story.viewer.StoryViewer;
+import org.webstories.core.user.PersonName;
 import org.webstories.dao.story.ChapterEntity;
 import org.webstories.dao.story.ChapterState;
 import org.webstories.dao.story.SectionEntity;
@@ -84,6 +85,7 @@ public class StoryViewerReader implements LocalStoryViewerReader {
 			.Builder()
 				.description( story.getMeta().getSummary() )
 				.title( story.getMeta().getTitle() )
+				.author( PersonName.from( story.getAuthor().getFacebook() ).toString() )
 			.build();
 		return result;
 	}
