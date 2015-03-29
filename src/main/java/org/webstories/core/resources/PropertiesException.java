@@ -1,7 +1,7 @@
 package org.webstories.core.resources;
 
+@SuppressWarnings( "serial" )
 public class PropertiesException extends Exception {
-	private static final long serialVersionUID = 1;
 	public PropertiesException( String filename, Throwable cause ) {
 		super( filename, cause );
 	}

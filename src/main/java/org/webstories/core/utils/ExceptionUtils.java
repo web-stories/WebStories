@@ -24,7 +24,6 @@ public class ExceptionUtils {
 		return cause;
 	}
 	
-	public static class EmptyCauseException extends Exception {
-		private static final long serialVersionUID = 1;
-	}
+	@SuppressWarnings( "serial" )
+	public static class EmptyCauseException extends Exception {}
 }

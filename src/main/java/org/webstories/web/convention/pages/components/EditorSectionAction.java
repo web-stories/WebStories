@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
 @ConventionServlet
+@SuppressWarnings( "serial" )
 public class EditorSectionAction extends HttpServlet {
-	private static final long serialVersionUID = 1;
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {}
 }

@@ -1,7 +1,7 @@
 package org.webstories.core;
 
+@SuppressWarnings( "serial" )
 public class ResourceNotFoundException extends Exception {
-	private static final long serialVersionUID = 1;
 	public ResourceNotFoundException( String msg ) {
 		super( msg );
 	}

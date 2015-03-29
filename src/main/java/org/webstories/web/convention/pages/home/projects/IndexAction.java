@@ -15,9 +15,8 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 @WebServlet
 @ConventionServlet
 @AuthForwarded
+@SuppressWarnings( "serial" )
 public class IndexAction extends BaseServlet {
-	private static final long serialVersionUID = 1;
-	
 	@EJB
 	LocalStoryAuthoringReader storyReader;
 	

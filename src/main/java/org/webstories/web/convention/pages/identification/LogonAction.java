@@ -30,9 +30,8 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 
 @WebServlet
 @ConventionServlet
+@SuppressWarnings( "serial" )
 public class LogonAction extends BaseServlet {
-	private static final long serialVersionUID = 1;
-	
 	@EJB
 	LocalFacebookAuthentication facebookAuth;
 	

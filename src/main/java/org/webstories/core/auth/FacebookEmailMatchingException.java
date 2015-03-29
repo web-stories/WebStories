@@ -1,8 +1,7 @@
 package org.webstories.core.auth;
 
-
+@SuppressWarnings( "serial" )
 public class FacebookEmailMatchingException extends FacebookAuthenticationException {
-	private static final long serialVersionUID = 1;
 	private String inviteEmail;
 	private String userEmail;
 	private String facebookLogoutURL;

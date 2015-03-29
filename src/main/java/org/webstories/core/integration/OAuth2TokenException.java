@@ -1,7 +1,7 @@
 package org.webstories.core.integration;
 
+@SuppressWarnings( "serial" )
 public class OAuth2TokenException extends Exception {
-	private static final long serialVersionUID = 1;
 	public OAuth2TokenException( String msg ) {
 		super( msg );
 	}

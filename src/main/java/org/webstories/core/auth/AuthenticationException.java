@@ -1,7 +1,7 @@
 package org.webstories.core.auth;
 
+@SuppressWarnings( "serial" )
 public class AuthenticationException extends Exception {
-	private static final long serialVersionUID = 1;
 	public AuthenticationException() {
 		super();
 	}

@@ -11,8 +11,8 @@ import org.webstories.web.api.exception.ErrorObject;
 import org.webstories.web.util.servlet.ErrorServlet;
 
 @WebServlet
+@SuppressWarnings( "serial" )
 public class LogonErrorAction extends ErrorServlet {
-	private static final long serialVersionUID = 1;
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 	throws IOException {

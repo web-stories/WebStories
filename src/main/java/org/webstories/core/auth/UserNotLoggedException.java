@@ -1,5 +1,4 @@
 package org.webstories.core.auth;
 
-public class UserNotLoggedException extends Exception {
-	private static final long serialVersionUID = 1;
-}
+@SuppressWarnings( "serial" )
+public class UserNotLoggedException extends Exception {}

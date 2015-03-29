@@ -11,8 +11,8 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 
 @WebServlet
 @ConventionServlet
+@SuppressWarnings( "serial" )
 public class AboutAction extends BaseServlet {
-	private static final long serialVersionUID = 1;
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {
 		request.setAttribute( "seo", new IndividualPageSEO

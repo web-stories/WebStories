@@ -8,8 +8,8 @@ import org.webstories.web.util.servlet.BaseServlet;
 import com.fagnerbrack.servlet.convention.ConventionServlet;
 
 @ConventionServlet
+@SuppressWarnings( "serial" )
 public class AuthAction extends BaseServlet {
-	private static final long serialVersionUID = 1;
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response ) {}
 }

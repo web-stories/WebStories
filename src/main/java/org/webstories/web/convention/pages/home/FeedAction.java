@@ -21,9 +21,8 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 @WebServlet
 @ConventionServlet
 @AuthForwarded
+@SuppressWarnings( "serial" )
 public class FeedAction extends BaseServlet {
-	private static final long serialVersionUID = 1;
-	
 	@EJB
 	LocalNewsFeed newsFeed;
 	

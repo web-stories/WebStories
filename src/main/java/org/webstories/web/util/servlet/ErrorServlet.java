@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.webstories.core.auth.Logged;
 import org.webstories.core.logging.LocalAppLogger;
 
+@SuppressWarnings( "serial" )
 public abstract class ErrorServlet extends BaseServlet {
-	private static final long serialVersionUID = 1;
-	
 	@EJB
 	LocalAppLogger logger;
 	

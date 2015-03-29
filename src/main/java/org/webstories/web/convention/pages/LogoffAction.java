@@ -17,8 +17,8 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 
 @WebServlet
 @ConventionServlet
+@SuppressWarnings( "serial" )
 public class LogoffAction extends BaseServlet {
-	private static final long serialVersionUID = 1;
 	@Override
 	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 	throws HttpInternalServerErrorException {

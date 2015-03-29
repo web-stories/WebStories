@@ -24,9 +24,8 @@ import com.fagnerbrack.servlet.convention.ConventionServlet;
 @WebServlet
 @ConventionServlet
 @AuthForwarded
+@SuppressWarnings( "serial" )
 public class SaveAction extends BaseServlet {
-	private static final long serialVersionUID = 1;
-	
 	@EJB
 	LocalStoryManip storyEditor;
 	
