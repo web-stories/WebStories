@@ -56,8 +56,12 @@
             <ul class="dropdown-menu" role="menu">
               <li>
                 <a href="${pageContext.request.contextPath}/home/user/invites">
-                  <span class="icon-email"></span>
                   Meus convites
+                </a>
+              </li>
+              <li>
+                <a href="${pageContext.request.contextPath}/logoff">
+                  Sair
                 </a>
               </li>
             </ul>

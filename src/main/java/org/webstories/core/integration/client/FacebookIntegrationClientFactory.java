@@ -11,16 +11,13 @@ public class FacebookIntegrationClientFactory implements IntegrationClientFactor
 	private FacebookClient client;
 	private ServletRequest request;
 	private String next = "http://webstories.org/";
-	public FacebookIntegrationClientFactory( FacebookClient client, ServletRequest request ) {
-		this.client = client;
-		this.request = request;
-	}
 	public FacebookIntegrationClientFactory(
 		FacebookClient client,
 		ServletRequest request,
 		String next
 	) {
-		this( client, request );
+		this.client = client;
+		this.request = request;
 		this.next = next;
 	}
 	@Override
