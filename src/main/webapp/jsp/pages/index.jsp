@@ -83,6 +83,9 @@
         <blockquote class="quote-content">
           Acredite em si mesmo e descubra o por quê você faz o que faz, assim descobrirá o seu
           o potencial para fazer o que quiser.
+          <span class="quote-tweet">
+          	[<a target="_blank" href="http://ctt.ec/19O4f">Twitte isso</a>]
+          </span>
         </blockquote>
         <hr>
       </div>
