@@ -178,8 +178,60 @@
     </dependency>
   </dependencies>
   <profiles>
+    <!--
+      Do not run the tests because the current server build crashes for low memory when running
+      qunit tests with phantomjs.
+      Let the ci warn about failures for now.
+    -->
     <profile>
       <id>prod</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>${frontendmaven.version}</version>
+            <executions>
+              <execution>
+                <id>install node and npm</id>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>v0.10.32</nodeVersion>
+                  <npmVersion>2.1.4</npmVersion>
+                </configuration>
+              </execution>
+              <execution>
+                <id>npm install</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>grunt default</id>
+                <goals>
+                  <goal>grunt</goal>
+                </goals>
+                <configuration>
+                  <arguments>prod --verbose --debug --stack</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+        <resources>
+          <resource>
+            <directory>src/main/resources/all</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources/prod</directory>
+          </resource>
+        </resources>
+      </build>
+    </profile>
+    <profile>
+      <id>ci</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
