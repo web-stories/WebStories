@@ -8,7 +8,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <querydsl.version>3.2.4</querydsl.version>
-    <frontendmaven.version>0.0.19</frontendmaven.version>
+    <frontendmaven.version>0.0.23</frontendmaven.version>
     <httpcomponents.version>4.3.4</httpcomponents.version>
     <warplugin.version>2.5</warplugin.version>
     <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
