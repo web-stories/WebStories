@@ -3,7 +3,7 @@ module.exports = function( grunt ) {
 	
 	var options = {
 		config: {
-			src: "grunt/options/*.js"
+			src: "grunt-config/options/*.js"
 		}
 	};
 	
