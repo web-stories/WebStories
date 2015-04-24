@@ -50,11 +50,13 @@
                 </p>
               </c:if>
             </div>
+            <!--
             <div>
               <abbr class="text-muted">
                 ${feed.date}
               </abbr>
             </div>
+            -->
           </div>
         </div>
         <c:if test="${ loop.index != fn:length( feedItems ) - 1 }">
