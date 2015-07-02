@@ -24,7 +24,9 @@
       <p class="index-banner-closed">
         Web Stories atualmente está em um beta fechado.
         <br>
-        <span class="index-banner-contact">Clique aqui para solicitar um convite por e-mail</span>
+        <span class="index-banner-contact">
+          <a href="http://eepurl.com/bhsXPH">Cadastre o seu e-mail abaixo para receber um convite</a>
+        </span>
       </p>
     </c:if>
   </div>
