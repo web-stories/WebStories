@@ -91,20 +91,25 @@
         </blockquote>
         <hr>
       </div>
-      <div class="text-center">
+      <div class="text-center about">
         É o pensamento acima que sustenta Web Stories.<br>
         <a href="${pageContext.request.contextPath}/about">Clique para saber mais.</a>
       </div>
     </div>
-    <div class="hidden-xs col-sm-6 col-md-4">
-      <div class="fb-like-box"
-           data-href="https://www.facebook.com/webstories.org"
-           data-colorscheme="light"
-           data-show-faces="true"
-           data-header="false"
-           data-height="350"
-           data-stream="false"
-           data-show-border="false">Loading...</div>
+    <div class="col-xs-12 col-sm-6 col-md-4 text-center">
+      <hr class="visible-xs">
+      <div
+        class="fb-page"
+        data-href="http://facebook.com/webstories.org"
+        data-width="500"
+        data-small-header="true"
+        data-show-facepile="true"
+        data-show-posts="true"
+      >
+        <div class="fb-xfbml-parse-ignore">
+          Veja Web Stories <a href="http://facebook.com/webstories.org">no Facebook</a> ...
+        </div>
+      </div>
     </div>
   </div>
 </div>
