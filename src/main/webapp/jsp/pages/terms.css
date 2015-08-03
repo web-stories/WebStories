@@ -1,5 +1,8 @@
 .terms-title,
-.terms-date,
-.terms-section {
+.terms-date {
   text-align: center;
+}
+
+.terms-content {
+  text-align: justify;
 }
