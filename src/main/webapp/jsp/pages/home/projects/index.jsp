@@ -123,7 +123,7 @@
                           <div class="col-md-7">
                             <div class="editor-section-footer-toolbar">
                               <button class="btn btn-primary" ng-click="addSection( section.id, chapter.id )">
-                                <span class="icon-down"></span>
+                                <span class="icon-comment6"></span>
                                 <span class="hidden-xs">Nova seção</span>
                               </button>
                               <button class="btn btn-default"
