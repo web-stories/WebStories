@@ -79,7 +79,7 @@
                        ng-model="chapter.title"
                          ng-model-options="{ debounce: 1000 }">
                 <div ng-repeat="section in chapter.sections">
-                  <div ng-controller="SectionController">
+                  <div ng-controller="SectionController" ng-view>
                     <div class="modal fade" tabindex="-1" role="dialog"
                          bs-modal
                          is-open="previewModal.show"
@@ -107,6 +107,7 @@
                     </div>
                     <div class="editor-chapter-section {{ validity.className }}">
                       <textarea class="form-control editor-chapter-section-text"
+                                data-dynamic
                                 ng-model="section.text"
                                   <%-- Enable input validation upon typing "enter" --%>
                                   ng-trim="false"

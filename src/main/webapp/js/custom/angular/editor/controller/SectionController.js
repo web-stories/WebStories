@@ -1,6 +1,17 @@
-define( [ "webstories", "viewport" ], function( webstories, viewport ) {
+define([
+	"webstories",
+	"viewport",
+	"dynamic-textarea"
+], function( webstories, viewport, dynamicTextarea ) {
 	"use strict";
 	function SectionController( $scope, $timeout, EditorContent, EditorSectionValidation ) {
+		$scope.$watch( "section.text", function() {
+			// Update the textarea height in the next digest cycle
+			// after the view is rendered
+			$timeout(function() {
+				dynamicTextarea.refresh();
+			});
+		});
 		// ========================================================================================
 		// Section preview
 		// ========================================================================================

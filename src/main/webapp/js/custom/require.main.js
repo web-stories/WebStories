@@ -43,6 +43,7 @@ require = (function( require ) {
 					"viewport": "js/viewport",
 					
 					// Vendor modules
+					"dynamic-textarea": "../js/dynamic-textarea-0.0.2",
 					"bootstrap": "../js/bootstrap-3.2.0",
 					"bootstrap.custom": "../js/bootstrap.custom-0.1.1",
 					"jquery.simulate": "../js/jquery.simulate-1.0.0",
